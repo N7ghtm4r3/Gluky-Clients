@@ -1,6 +1,7 @@
 package com.tecknobit.gluky.ui.screens
 
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
+import com.tecknobit.equinoxcore.annotations.FutureEquinoxApi
 import com.tecknobit.equinoxnavigation.I18nNavigationTab
 import com.tecknobit.equinoxnavigation.NavigatorScreen
 import com.tecknobit.gluky.ui.components.ProfilePic
@@ -34,7 +36,7 @@ import gluky.composeapp.generated.resources.meals
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalComposeApi::class)
-class HomeScreen : NavigatorScreen<I18nNavigationTab>() {
+class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
 
     /**
      * Method used to arrange the content of the screen to display
@@ -120,6 +122,20 @@ class HomeScreen : NavigatorScreen<I18nNavigationTab>() {
 
     private fun I18nNavigationTab.isNotAccountTab(): Boolean {
         return title != Res.string.account
+    }
+
+    @FutureEquinoxApi
+    override fun bottomNavigationContentPadding(): PaddingValues {
+        return if (activeNavigationTabIndex.value != 0)
+            super.bottomNavigationContentPadding()
+        else {
+            PaddingValues(
+                top = 0.dp,
+                start = 0.dp,
+                end = 0.dp,
+                bottom = 80.dp
+            )
+        }
     }
 
     /**
