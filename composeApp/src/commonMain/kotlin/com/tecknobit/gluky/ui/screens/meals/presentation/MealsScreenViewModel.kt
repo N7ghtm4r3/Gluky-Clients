@@ -21,11 +21,14 @@ class MealsScreenViewModel : EquinoxViewModel(
     )
     val day = _day.asStateFlow()
 
+    private var previousPage = 50
+
     fun computeDayValue(
         page: Int,
     ) {
-        val offset = page - 50
+        val offset = page - previousPage
         _day.value += (ONE_DAY_MILLIS * offset)
+        previousPage = page
     }
 
 }

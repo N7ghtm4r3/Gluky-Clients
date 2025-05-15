@@ -21,6 +21,7 @@ import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
 import com.tecknobit.equinoxcore.annotations.FutureEquinoxApi
 import com.tecknobit.equinoxnavigation.I18nNavigationTab
 import com.tecknobit.equinoxnavigation.NavigatorScreen
+import com.tecknobit.gluky.CloseApplicationOnNavBack
 import com.tecknobit.gluky.ui.components.ProfilePic
 import com.tecknobit.gluky.ui.icons.Meals
 import com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen
@@ -43,6 +44,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
      */
     @Composable
     override fun ArrangeScreenContent() {
+        CloseApplicationOnNavBack()
         GlukyTheme {
             NavigationContent()
         }
