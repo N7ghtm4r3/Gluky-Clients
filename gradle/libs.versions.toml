@@ -11,6 +11,7 @@ kotlin = "2.1.21"
 kotlinx-coroutines = "1.10.2"
 equinox = "1.1.2"
 equinox-navigation = "1.0.1"
+kotlinxDatetime = "0.6.2"
 precompose = "1.7.0-alpha03"
 coilCompose = "3.1.0"
 ktor = "3.1.0"
@@ -24,6 +25,7 @@ kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-s
 equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref = "equinox" }
 equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinox" }
 equinox-navigation = { module = "io.github.n7ghtm4r3:equinox-navigation", version.ref = "equinox-navigation" }
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "ktor" }

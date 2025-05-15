@@ -4,4 +4,13 @@
     <string name="meals">Comidas</string>
     <string name="analyses">Análisis</string>
     <string name="account">Cuenta</string>
+    <!-- TODO: TO REMOVE WHEN asDayOfWeek METHOD INTEGRATED IN EQUINOX -->
+    <string name="mon">LUN</string>
+    <string name="tue">MAR</string>
+    <string name="wed">MIÉ</string>
+    <string name="thu">JUE</string>
+    <string name="fri">VIE</string>
+    <string name="sat">SÁB</string>
+    <string name="sun">DOM</string>
+    <!-- TODO: END OF TO REMOVE WHEN asDayOfWeek METHOD INTEGRATED IN EQUINOX -->
 </resources>

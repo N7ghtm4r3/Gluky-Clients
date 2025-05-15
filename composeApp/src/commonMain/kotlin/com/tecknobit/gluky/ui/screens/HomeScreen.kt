@@ -56,9 +56,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
                     top = 16.dp
                 ),
             size = 115.dp,
-            onClick = {
-                activeNavigationTabIndex.value = 2
-            }
+            onClick = { activeNavigationTabIndex.value = 2 }
         )
     }
 
@@ -100,9 +98,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
                 } else {
                     ProfilePic(
                         size = 40.dp,
-                        onClick = {
-                            activeNavigationTabIndex.value = 2
-                        }
+                        onClick = { activeNavigationTabIndex.value = 2 }
                     )
                 }
             },
