@@ -9,8 +9,8 @@ import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.gluky.helpers.customHttpClient
 import com.tecknobit.gluky.ui.components.imageLoader
-import com.tecknobit.gluky.ui.screens.HomeScreen
-import com.tecknobit.gluky.ui.screens.Splashscreen
+import com.tecknobit.gluky.ui.screens.home.HomeScreen
+import com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.comicneue
 import gluky.composeapp.generated.resources.fredoka

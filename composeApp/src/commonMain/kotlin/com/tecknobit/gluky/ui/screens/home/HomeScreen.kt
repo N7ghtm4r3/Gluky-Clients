@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens
+package com.tecknobit.gluky.ui.screens.home
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,9 +24,11 @@ import com.tecknobit.equinoxnavigation.NavigatorScreen
 import com.tecknobit.gluky.CloseApplicationOnNavBack
 import com.tecknobit.gluky.ui.components.ProfilePic
 import com.tecknobit.gluky.ui.icons.Meals
+import com.tecknobit.gluky.ui.screens.TMPNavigatorScreen
 import com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen
 import com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen
 import com.tecknobit.gluky.ui.screens.meals.presenter.MealsScreen
+import com.tecknobit.gluky.ui.screens.shared.GlukyScreenPage
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.GlukyTheme
 import gluky.composeapp.generated.resources.Res
@@ -166,7 +168,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
      *
      * @return the screen as [EquinoxNoModelScreen]
      */
-    override fun Int.tabContent(): EquinoxNoModelScreen {
+    override fun Int.tabContent(): GlukyScreenPage<*> {
         return when (this) {
             0 -> MealsScreen()
             1 -> AnalysesScreen()

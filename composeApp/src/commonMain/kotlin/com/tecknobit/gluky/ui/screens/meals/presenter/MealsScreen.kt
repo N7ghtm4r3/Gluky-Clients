@@ -1,42 +1,49 @@
 package com.tecknobit.gluky.ui.screens.meals.presenter
 
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
+import com.tecknobit.gluky.ui.screens.meals.components.DayPickerBar
 import com.tecknobit.gluky.ui.screens.meals.components.ScrollableDayPicker
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.shared.GlukyScreenPage
 
-class MealsScreen : EquinoxScreen<MealsScreenViewModel>(
-    viewModel = MealsScreenViewModel()
+class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
+    viewModel = MealsScreenViewModel(),
+    useResponsiveWidth = false
 ) {
 
-    private lateinit var day: State<Long>
+    private lateinit var currentDay: State<Long>
 
-    /**
-     * Method used to arrange the content of the screen to display
-     */
     @Composable
     @LayoutCoordinator
-    override fun ArrangeScreenContent() {
+    override fun ColumnScope.ScreenPageContent() {
         ResponsiveContent(
             onExpandedSizeClass = {
-
+                DayPickerBar(
+                    viewModel = viewModel,
+                    currentDay = currentDay.value
+                )
             },
             onMediumSizeClass = {
+                DayPickerBar(
+                    viewModel = viewModel,
+                    currentDay = currentDay.value
+                )
             },
             onMediumWidthExpandedHeight = {
                 ScrollableDayPicker(
                     viewModel = viewModel,
-                    day = day.value
+                    currentDay = currentDay.value
                 )
             },
             onCompactSizeClass = {
                 ScrollableDayPicker(
                     viewModel = viewModel,
-                    day = day.value
+                    currentDay = currentDay.value
                 )
             }
         )
@@ -47,7 +54,7 @@ class MealsScreen : EquinoxScreen<MealsScreenViewModel>(
      */
     @Composable
     override fun CollectStates() {
-        day = viewModel.day.collectAsState()
+        currentDay = viewModel.currentDay.collectAsState()
     }
 
 }

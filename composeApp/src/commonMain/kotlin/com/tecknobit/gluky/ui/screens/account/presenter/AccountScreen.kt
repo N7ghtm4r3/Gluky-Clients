@@ -1,18 +1,16 @@
 package com.tecknobit.gluky.ui.screens.account.presenter
 
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
-import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel
+import com.tecknobit.gluky.ui.screens.shared.GlukyScreenPage
 
-class AccountScreen : EquinoxScreen<AccountScreenViewModel>(
+class AccountScreen : GlukyScreenPage<AccountScreenViewModel>(
     viewModel = AccountScreenViewModel()
 ) {
 
-    /**
-     * Method used to arrange the content of the screen to display
-     */
     @Composable
-    override fun ArrangeScreenContent() {
+    override fun ColumnScope.ScreenPageContent() {
     }
 
     /**

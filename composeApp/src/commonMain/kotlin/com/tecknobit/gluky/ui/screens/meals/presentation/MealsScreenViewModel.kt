@@ -10,25 +10,35 @@ class MealsScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
 ) {
 
-    private companion object {
+    companion object {
 
         const val ONE_DAY_MILLIS = 86_400_000
 
+        const val MAX_LOADABLE_DAYS = 100
+
+        const val INITIAL_SELECTED_DAY = MAX_LOADABLE_DAYS / 2
+
     }
 
-    private val _day = MutableStateFlow(
+    private val _currentDay = MutableStateFlow(
         value = currentTimestamp()
     )
-    val day = _day.asStateFlow()
+    val currentDay = _currentDay.asStateFlow()
 
-    private var previousPage = 50
+    private var previousPage = INITIAL_SELECTED_DAY
 
     fun computeDayValue(
         page: Int,
     ) {
         val offset = page - previousPage
-        _day.value += (ONE_DAY_MILLIS * offset)
+        _currentDay.value += (ONE_DAY_MILLIS * offset)
         previousPage = page
+    }
+
+    fun setCurrentDay(
+        millis: Long,
+    ) {
+        _currentDay.value = millis
     }
 
 }

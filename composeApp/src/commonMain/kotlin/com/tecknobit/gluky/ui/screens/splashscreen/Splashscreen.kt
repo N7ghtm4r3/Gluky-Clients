@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens
+package com.tecknobit.gluky.ui.screens.splashscreen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
