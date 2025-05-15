@@ -13,4 +13,19 @@
     <string name="sat">SAM</string>
     <string name="sun">DIM</string>
     <!-- TODO: END OF TO REMOVE WHEN asDayOfWeek METHOD INTEGRATED IN EQUINOX -->
+
+    <!-- TODO: TO REMOVE WHEN asMonth METHOD INTEGRATED IN EQUINOX -->
+    <string name="january">Janvier</string>
+    <string name="february">Février</string>
+    <string name="march">Mars</string>
+    <string name="april">Avril</string>
+    <string name="may">Mai</string>
+    <string name="june">Juin</string>
+    <string name="july">Juillet</string>
+    <string name="august">Août</string>
+    <string name="september">Septembre</string>
+    <string name="october">Octobre</string>
+    <string name="november">Novembre</string>
+    <string name="december">Décembre</string>
+    <!-- TODO: END OF TO REMOVE WHEN asMonth METHOD INTEGRATED IN EQUINOX -->
 </resources>

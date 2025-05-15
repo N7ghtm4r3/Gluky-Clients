@@ -12,7 +12,7 @@ class MealsScreenViewModel : EquinoxViewModel(
 
     companion object {
 
-        const val ONE_DAY_MILLIS = 86_400_000
+        const val ONE_DAY_MILLIS = 86_400_000L
 
         const val MAX_LOADABLE_DAYS = 100
 

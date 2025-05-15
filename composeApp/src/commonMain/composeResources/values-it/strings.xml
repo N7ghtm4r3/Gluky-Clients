@@ -13,4 +13,19 @@
     <string name="sat">SAB</string>
     <string name="sun">DOM</string>
     <!-- TODO: END OF TO REMOVE WHEN asDayOfWeek METHOD INTEGRATED IN EQUINOX -->
+
+    <!-- TODO: TO REMOVE WHEN asMonth METHOD INTEGRATED IN EQUINOX -->
+    <string name="january">Gennaio</string>
+    <string name="february">Febbraio</string>
+    <string name="march">Marzo</string>
+    <string name="april">Aprile</string>
+    <string name="may">Maggio</string>
+    <string name="june">Giugno</string>
+    <string name="july">Luglio</string>
+    <string name="august">Agosto</string>
+    <string name="september">Settembre</string>
+    <string name="october">Ottobre</string>
+    <string name="november">Novembre</string>
+    <string name="december">Dicembre</string>
+    <!-- TODO: END OF TO REMOVE WHEN asMonth METHOD INTEGRATED IN EQUINOX -->
 </resources>

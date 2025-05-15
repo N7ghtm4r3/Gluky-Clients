@@ -59,9 +59,11 @@ fun DayIndicator(
                         .alignBy(
                             alignmentLine = LastBaseline
                         ),
-                    text = dayInMillis.toDateString(
-                        pattern = "MM"
-                    ),
+                    text = "/${
+                        dayInMillis.toDateString(
+                            pattern = "MM"
+                        )
+                    }",
                     style = AppTypography.labelLarge,
                     color = contentColor
                 )
