@@ -50,6 +50,7 @@ import kotlin.math.min
 fun ScrollableDayPicker(
     viewModel: MealsScreenViewModel,
     currentDay: Long,
+    mealContent: @Composable () -> Unit,
 ) {
     Box(
         modifier = Modifier
@@ -78,12 +79,12 @@ fun ScrollableDayPicker(
             shape = BottomSheetDefaults.ExpandedShape,
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 6.dp
-            )
-        ) {
-            MealDay(
-                viewModel = viewModel
-            )
-        }
+            ),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            ),
+            content = { mealContent() }
+        )
     }
 }
 

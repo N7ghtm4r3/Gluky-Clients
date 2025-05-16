@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -30,6 +31,7 @@ import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
@@ -62,7 +64,11 @@ import kotlinx.datetime.Month
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
-private val indicatorWidth = 125.dp
+private val IndicatorWidth = 125.dp
+
+private val BarShape = RoundedCornerShape(
+    size = 16.dp
+)
 
 @Composable
 @ResponsiveClassComponent(
@@ -71,6 +77,7 @@ private val indicatorWidth = 125.dp
 fun DayPickerBar(
     viewModel: MealsScreenViewModel,
     currentDay: Long,
+    mealContent: @Composable () -> Unit,
 ) {
     // Compute the window to use given the current days
     val daysWindow: MutableList<Long> = remember { mutableStateListOf() }
@@ -90,10 +97,10 @@ fun DayPickerBar(
     LaunchedEffect(containerWidth) {
         if (containerWidth > 0) {
             val itemWidthPx = with(density) {
-                indicatorWidth.toPx()
+                IndicatorWidth.toPx()
             }
             val centerOffset = (containerWidth / 2 - itemWidthPx / 2).toInt()
-            state.scrollToItem(
+            state.animateScrollToItem(
                 index = INITIAL_SELECTED_DAY,
                 scrollOffset = -centerOffset
             )
@@ -110,36 +117,45 @@ fun DayPickerBar(
     }
     Column(
         modifier = Modifier
-            .height(135.dp)
-            .responsiveMaxWidth()
-            .clip(
-                shape = RoundedCornerShape(
-                    size = 16.dp
-                )
-            )
-            .background(MaterialTheme.colorScheme.surfaceContainerHighest),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(
+        Column(
             modifier = Modifier
-                .padding(
-                    top = 10.dp
-                ),
-            text = stringResource(currentMonth.value),
-            style = AppTypography.titleMedium,
-            color = Color.White
-        )
-        PickerBar(
-            modifier = Modifier
-                .onGloballyPositioned { coordinates ->
-                    containerWidth = coordinates.size.width
-                },
-            viewModel = viewModel,
-            daysWindow = daysWindow,
-            currentMonth = currentMonth,
-            currentDay = currentDay,
-            state = state
-        )
+                .height(135.dp)
+                .responsiveMaxWidth()
+                .shadow(
+                    elevation = 4.dp,
+                    shape = BarShape
+                )
+                .clip(
+                    shape = BarShape
+                )
+                .background(MaterialTheme.colorScheme.surfaceContainerHighest),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                modifier = Modifier
+                    .padding(
+                        top = 10.dp
+                    ),
+                text = stringResource(currentMonth.value),
+                style = AppTypography.titleMedium,
+                color = Color.White
+            )
+            PickerBar(
+                modifier = Modifier
+                    .onGloballyPositioned { coordinates ->
+                        containerWidth = coordinates.size.width
+                    },
+                viewModel = viewModel,
+                daysWindow = daysWindow,
+                currentMonth = currentMonth,
+                currentDay = currentDay,
+                state = state
+            )
+        }
+        mealContent()
     }
 }
 
@@ -172,7 +188,7 @@ private fun PickerBar(
         ) { day ->
             DayIndicator(
                 modifier = Modifier
-                    .width(indicatorWidth)
+                    .width(IndicatorWidth)
                     .clip(
                         shape = RoundedCornerShape(
                             topStart = 10.dp,
