@@ -74,14 +74,14 @@ fun ScrollableDayPicker(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.70f)
+                .fillMaxHeight(0.72f)
                 .align(Alignment.BottomCenter),
             shape = BottomSheetDefaults.ExpandedShape,
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 6.dp
             ),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant
+                containerColor = MaterialTheme.colorScheme.background
             ),
             content = { mealContent() }
         )

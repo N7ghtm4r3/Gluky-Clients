@@ -16,6 +16,7 @@ kotlinxDatetime = "0.6.2"
 precompose = "1.7.0-alpha03"
 coilCompose = "3.1.0"
 ktor = "3.1.0"
+kotlinxSerializationJson = "1.8.1"
 
 [libraries]
 glukycore = { module = "com.tecknobit.glukycore:glukycore", version.ref = "glukycore" }
@@ -33,6 +34,7 @@ coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.r
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

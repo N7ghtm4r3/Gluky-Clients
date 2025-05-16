@@ -28,4 +28,11 @@
     <string name="november">November</string>
     <string name="december">December</string>
     <!-- TODO: END OF TO REMOVE WHEN asMonth METHOD INTEGRATED IN EQUINOX -->
+    <string name="breakfast">Breakfast</string>
+    <string name="morning_snack">Morning snack</string>
+    <string name="lunch">Lunch</string>
+    <string name="afternoon_snack">Afternoon snack</string>
+    <string name="dinner">Dinner</string>
+    <string name="basal_insulin">Basal insulin</string>
+    <string name="noted_at">Noted at %1$s</string>
 </resources>
