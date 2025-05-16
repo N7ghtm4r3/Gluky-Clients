@@ -1,10 +1,11 @@
+@file:OptIn(ExperimentalComposeUiApi::class, ExperimentalComposeApi::class)
+
 package com.tecknobit.gluky.ui.screens.meals.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BreakfastDining
@@ -16,10 +17,21 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import com.pushpal.jetlime.ItemsList
+import com.pushpal.jetlime.JetLimeDefaults
+import com.pushpal.jetlime.JetLimeEvent
+import com.pushpal.jetlime.JetLimeEventDefaults
+import com.pushpal.jetlime.JetLimeRow
+import com.tecknobit.equinoxcompose.components.BadgeText
+import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
+import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.ui.icons.Apple
 import com.tecknobit.gluky.ui.icons.Snack
 import com.tecknobit.gluky.ui.icons.Syringe
@@ -51,8 +63,7 @@ fun MealCard(
 ) {
     Card(
         modifier = Modifier
-            .fillMaxWidth()
-            .height(150.dp),
+            .fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
@@ -64,14 +75,10 @@ fun MealCard(
                 )
         ) {
             CardHeader(
-                mealType = meal.type
+                meal = meal
             )
-            Text(
-                text = stringResource(
-                    resource = Res.string.noted_at,
-                    "21:22"
-                ),
-                style = AppTypography.bodyLarge
+            CardContent(
+                meal = meal
             )
         }
     }
@@ -79,17 +86,18 @@ fun MealCard(
 
 @Composable
 private fun CardHeader(
-    mealType: MeasurementType,
+    meal: Meal,
 ) {
+    val type = meal.type
     Row(
         modifier = Modifier
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(5.dp)
     ) {
-        val mealName = stringResource(mealType.text())
+        val mealName = stringResource(type.text())
         Icon(
-            imageVector = mealType.icon(),
+            imageVector = type.icon(),
             contentDescription = mealName,
             tint = MaterialTheme.colorScheme.primary
         )
@@ -98,6 +106,15 @@ private fun CardHeader(
             style = AppTypography.titleLarge
         )
     }
+    Text(
+        text = stringResource(
+            resource = Res.string.noted_at,
+            meal.annotationDate.toDateString(
+                pattern = H24_HOURS_MINUTES_PATTERN
+            )
+        ),
+        style = AppTypography.bodyLarge
+    )
 }
 
 private fun MeasurementType.icon(): ImageVector {
@@ -119,5 +136,57 @@ private fun MeasurementType.text(): StringResource {
         AFTERNOON_SNACK -> Res.string.afternoon_snack
         DINNER -> Res.string.dinner
         BASAL_INSULIN -> Res.string.basal_insulin
+    }
+}
+
+@Composable
+private fun CardContent(
+    meal: Meal,
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        GlycemiaStatus(
+            meal = meal
+        )
+    }
+}
+
+@Composable
+private fun GlycemiaStatus(
+    meal: Meal,
+) {
+    JetLimeRow(
+        modifier = Modifier
+            .fillMaxWidth(),
+        itemsList = ItemsList(meal.getGlycemiaStatus()),
+        style = JetLimeDefaults.rowStyle(
+            pathEffect = PathEffect.dashPathEffect(
+                intervals = floatArrayOf(30f, 30f),
+                phase = 0f,
+            ),
+            itemSpacing = 150.dp,
+            contentDistance = 10.dp
+        )
+    ) { index, glycemiaValue, position ->
+        val glycemiaValueSettled = glycemiaValue != -1
+        JetLimeEvent(
+            style = JetLimeEventDefaults.eventStyle(
+                position = position,
+                pointRadius = 10.dp,
+                pointAnimation = if (glycemiaValueSettled)
+                    null
+                else
+                    JetLimeEventDefaults.pointAnimation(),
+                pointStrokeWidth = 2.dp,
+            )
+        ) {
+            if (glycemiaValueSettled) {
+                BadgeText(
+                    badgeText = glycemiaValue.toString(),
+                    badgeColor = MaterialTheme.colorScheme.error
+                )
+            }
+        }
     }
 }

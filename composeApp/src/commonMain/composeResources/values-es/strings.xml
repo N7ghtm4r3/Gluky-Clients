@@ -35,4 +35,5 @@
     <string name="dinner">Cena</string>
     <string name="basal_insulin">Insulina basal</string>
     <string name="noted_at">Anotado a las %1$s</string>
+    <string name="post_prandial">Posprandial</string>
 </resources>

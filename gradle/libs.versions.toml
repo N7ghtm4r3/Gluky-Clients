@@ -8,6 +8,7 @@ androidx-lifecycle = "2.8.4"
 composeHotReload = "1.0.0-alpha09"
 composeMultiplatform = "1.8.0"
 glukycore = "1.0.0"
+jetlime = "3.0.1"
 kotlin = "2.1.21"
 kotlinx-coroutines = "1.10.2"
 equinox = "1.1.2"
@@ -23,6 +24,7 @@ glukycore = { module = "com.tecknobit.glukycore:glukycore", version.ref = "gluky
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+jetlime = { module = "io.github.pushpalroy:jetlime", version.ref = "jetlime" }
 kotlinx-coroutinesSwing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version.ref = "kotlinx-coroutines" }
 equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref = "equinox" }
 equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinox" }

@@ -74,6 +74,7 @@ class MealsScreenViewModel : EquinoxViewModel(
                     annotationDate = currentTimestamp(),
                     content = "",
                     glycemia = 80,
+                    postPrandialGlycemia = 50,
                     insulinUnits = 2
                 ),
                 morningSnack = Meal(
@@ -82,6 +83,7 @@ class MealsScreenViewModel : EquinoxViewModel(
                     annotationDate = currentTimestamp(),
                     content = "",
                     glycemia = 80,
+                    postPrandialGlycemia = 50,
                     insulinUnits = 2
                 ),
                 lunch = Meal(
@@ -90,6 +92,7 @@ class MealsScreenViewModel : EquinoxViewModel(
                     annotationDate = currentTimestamp(),
                     content = "",
                     glycemia = 80,
+                    postPrandialGlycemia = 50,
                     insulinUnits = 2
                 ),
                 afternoonSnack = Meal(
@@ -98,6 +101,7 @@ class MealsScreenViewModel : EquinoxViewModel(
                     annotationDate = currentTimestamp(),
                     content = "",
                     glycemia = 80,
+                    postPrandialGlycemia = 50,
                     insulinUnits = 2
                 ),
                 dinner = Meal(
@@ -106,6 +110,7 @@ class MealsScreenViewModel : EquinoxViewModel(
                     annotationDate = currentTimestamp(),
                     content = "",
                     glycemia = 80,
+                    postPrandialGlycemia = -1,
                     insulinUnits = 2
                 ),
             )

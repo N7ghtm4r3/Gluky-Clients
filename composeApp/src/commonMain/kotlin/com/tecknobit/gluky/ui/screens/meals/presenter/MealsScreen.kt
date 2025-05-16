@@ -10,7 +10,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.annotations.ScreenSection
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
@@ -35,6 +37,57 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
     @Composable
     @LayoutCoordinator
     override fun ColumnScope.ScreenPageContent() {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ResponsiveContent(
+                onExpandedSizeClass = {
+                    DayPickerBar(
+                        viewModel = viewModel,
+                        currentDay = currentDay.value,
+                        mealContent = { MealDataContent() }
+                    )
+                },
+                onMediumSizeClass = {
+                    DayPickerBar(
+                        viewModel = viewModel,
+                        currentDay = currentDay.value,
+                        mealContent = { MealDataContent() }
+                    )
+                },
+                onMediumWidthExpandedHeight = {
+                    ScrollableDayPicker(
+                        viewModel = viewModel,
+                        currentDay = currentDay.value,
+                        mealContent = {
+                            MealDataContent(
+                                horizontalPadding = 16.dp
+                            )
+                        }
+                    )
+                },
+                onCompactSizeClass = {
+                    ScrollableDayPicker(
+                        viewModel = viewModel,
+                        currentDay = currentDay.value,
+                        mealContent = {
+                            MealDataContent(
+                                horizontalPadding = 16.dp
+                            )
+                        }
+                    )
+                }
+            )
+        }
+    }
+
+    @Composable
+    @ScreenSection
+    private fun MealDataContent(
+        horizontalPadding: Dp = 0.dp,
+    ) {
         SessionFlowContainer(
             modifier = Modifier
                 .fillMaxSize(),
@@ -43,64 +96,11 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
             loadingRoutine = { mealDay.value != null },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    ResponsiveContent(
-                        onExpandedSizeClass = {
-                            DayPickerBar(
-                                viewModel = viewModel,
-                                currentDay = currentDay.value,
-                                mealContent = {
-                                    MealDay(
-                                        viewModel = viewModel,
-                                        mealDay = mealDay.value!!
-                                    )
-                                }
-                            )
-                        },
-                        onMediumSizeClass = {
-                            DayPickerBar(
-                                viewModel = viewModel,
-                                currentDay = currentDay.value,
-                                mealContent = {
-                                    MealDay(
-                                        viewModel = viewModel,
-                                        mealDay = mealDay.value!!
-                                    )
-                                }
-                            )
-                        },
-                        onMediumWidthExpandedHeight = {
-                            ScrollableDayPicker(
-                                viewModel = viewModel,
-                                currentDay = currentDay.value,
-                                mealContent = {
-                                    MealDay(
-                                        viewModel = viewModel,
-                                        horizontalPadding = 16.dp,
-                                        mealDay = mealDay.value!!
-                                    )
-                                }
-                            )
-                        },
-                        onCompactSizeClass = {
-                            ScrollableDayPicker(
-                                viewModel = viewModel,
-                                currentDay = currentDay.value,
-                                mealContent = {
-                                    MealDay(
-                                        viewModel = viewModel,
-                                        horizontalPadding = 16.dp,
-                                        mealDay = mealDay.value!!
-                                    )
-                                }
-                            )
-                        }
-                    )
-                }
+                MealDay(
+                    viewModel = viewModel,
+                    horizontalPadding = horizontalPadding,
+                    mealDay = mealDay.value!!
+                )
             }
         )
     }
