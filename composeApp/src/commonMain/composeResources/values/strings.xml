@@ -35,5 +35,14 @@
     <string name="dinner">Dinner</string>
     <string name="basal_insulin">Basal insulin</string>
     <string name="noted_at">Noted at %1$s</string>
-    <string name="post_prandial">Post prandial</string>
+    <string name="pre_prandial">Pre prandial measurement</string>
+    <string name="post_prandial">Post prandial measurement</string>
+    <plurals name="administered">
+        <item quantity="one">Administered</item>
+        <item quantity="other">Administered</item>
+    </plurals>
+    <plurals name="insulin_units">
+        <item quantity="one">insulin unit</item>
+        <item quantity="other">insulin units</item>
+    </plurals>
 </resources>

@@ -35,5 +35,14 @@
     <string name="dinner">Cena</string>
     <string name="basal_insulin">Insulina basal</string>
     <string name="noted_at">Anotado a las %1$s</string>
-    <string name="post_prandial">Posprandial</string>
+    <string name="pre_prandial">Medición preprandial</string>
+    <string name="post_prandial">Medición posprandial</string>
+    <plurals name="administered">
+        <item quantity="one">Administrada</item>
+        <item quantity="other">Administrade</item>
+    </plurals>
+    <plurals name="insulin_units">
+        <item quantity="one">unidad de insulina</item>
+        <item quantity="other">unidades de insulina</item>
+    </plurals>
 </resources>

@@ -73,45 +73,43 @@ class MealsScreenViewModel : EquinoxViewModel(
                     type = BREAKFAST,
                     annotationDate = currentTimestamp(),
                     content = "",
-                    glycemia = 80,
+                    glycemia = Random.nextInt(200),
                     postPrandialGlycemia = Random.nextInt(500),
-                    insulinUnits = 2
+                    insulinUnits = Random.nextInt(20)
                 ),
                 morningSnack = Meal(
                     id = Random.nextLong().toString(),
                     type = MORNING_SNACK,
                     annotationDate = currentTimestamp(),
                     content = "",
-                    glycemia = 80,
-                    postPrandialGlycemia = Random.nextInt(200),
-                    insulinUnits = 2
+                    glycemia = Random.nextInt(200),
+                    postPrandialGlycemia = Random.nextInt(200)
                 ),
                 lunch = Meal(
                     id = Random.nextLong().toString(),
                     type = LUNCH,
                     annotationDate = currentTimestamp(),
                     content = "",
-                    glycemia = 80,
+                    glycemia = Random.nextInt(200),
                     postPrandialGlycemia = Random.nextInt(200),
-                    insulinUnits = 2
+                    insulinUnits = Random.nextInt(20)
                 ),
                 afternoonSnack = Meal(
                     id = Random.nextLong().toString(),
                     type = AFTERNOON_SNACK,
                     annotationDate = currentTimestamp(),
                     content = "",
-                    glycemia = 80,
-                    postPrandialGlycemia = Random.nextInt(200),
-                    insulinUnits = 2
+                    glycemia = Random.nextInt(200),
+                    postPrandialGlycemia = Random.nextInt(200)
                 ),
                 dinner = Meal(
                     id = Random.nextLong().toString(),
                     type = DINNER,
                     annotationDate = currentTimestamp(),
                     content = "",
-                    glycemia = 80,
+                    glycemia = Random.nextInt(200),
                     postPrandialGlycemia = -1,
-                    insulinUnits = 2
+                    insulinUnits = Random.nextInt(20)
                 ),
             )
         }

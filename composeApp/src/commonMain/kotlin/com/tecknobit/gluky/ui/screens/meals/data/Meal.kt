@@ -25,16 +25,16 @@ data class Meal(
     @SerialName(POST_PRANDIAL_GLYCEMIA_KEY)
     val postPrandialGlycemia: Int = -1,
     @SerialName(INSULIN_UNITS_KEY)
-    val insulinUnits: Int,
+    val insulinUnits: Int? = null,
 ) {
 
     companion object {
 
-        private const val NORMAL_GLYCEMIA = 80
+        private const val NORMAL_GLYCEMIA = 70
 
-        private const val MEDIUM_HIGH_GLYCEMIA = 160
+        private const val MEDIUM_HIGH_GLYCEMIA = 180
 
-        private const val HYPER_GLYCEMIA = 230
+        private const val HYPER_GLYCEMIA = 220
 
         @Composable
         fun Int.levelColor(): Color {
