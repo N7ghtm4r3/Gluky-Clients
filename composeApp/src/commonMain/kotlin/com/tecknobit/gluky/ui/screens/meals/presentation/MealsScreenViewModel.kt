@@ -74,7 +74,7 @@ class MealsScreenViewModel : EquinoxViewModel(
                     annotationDate = currentTimestamp(),
                     content = "",
                     glycemia = 80,
-                    postPrandialGlycemia = 500,
+                    postPrandialGlycemia = Random.nextInt(500),
                     insulinUnits = 2
                 ),
                 morningSnack = Meal(

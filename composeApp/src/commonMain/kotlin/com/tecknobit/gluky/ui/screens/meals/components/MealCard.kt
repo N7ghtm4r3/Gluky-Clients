@@ -23,6 +23,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.pushpal.jetlime.EventPosition
@@ -168,6 +169,7 @@ private fun CardContent(
 private fun GlycemiaStatus(
     meal: Meal,
 ) {
+    val density = LocalDensity.current
     JetLimeRow(
         modifier = Modifier
             .fillMaxWidth(),
@@ -179,6 +181,9 @@ private fun GlycemiaStatus(
                     meal.postPrandialGlycemia.levelColor()
                 )
             ),
+            itemSpacing = with(density) {
+                meal.glycemiaGap.toDp()
+            },
             contentDistance = 10.dp
         )
     ) { _, glycemia, position ->
@@ -194,21 +199,17 @@ private fun GlycemiaLevel(
     glycemia: Int,
     position: EventPosition,
 ) {
-    val glycemiaValueSettled = glycemia != -1
-    val levelColor = glycemia.levelColor()
-    JetLimeEvent(
-        style = JetLimeEventDefaults.eventStyle(
-            position = position,
-            pointRadius = 10.dp,
-            pointAnimation = if (glycemiaValueSettled)
-                null
-            else
-                JetLimeEventDefaults.pointAnimation(),
-            pointStrokeColor = levelColor,
-            pointFillColor = levelColor
-        )
-    ) {
-        if (glycemiaValueSettled) {
+    if (glycemia != -1) {
+        val levelColor = glycemia.levelColor()
+        JetLimeEvent(
+            style = JetLimeEventDefaults.eventStyle(
+                position = position,
+                pointRadius = 10.dp,
+                pointAnimation = null,
+                pointStrokeColor = levelColor,
+                pointFillColor = levelColor
+            )
+        ) {
             BadgeText(
                 badgeText = glycemia.toString(),
                 badgeColor = levelColor,

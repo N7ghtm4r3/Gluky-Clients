@@ -12,6 +12,7 @@ import com.tecknobit.glukycore.POST_PRANDIAL_GLYCEMIA_KEY
 import com.tecknobit.glukycore.enums.MeasurementType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.math.abs
 
 @Serializable
 data class Meal(
@@ -51,6 +52,11 @@ data class Meal(
 
     }
 
-    val glycemiaTrend = listOf(glycemia, postPrandialGlycemia)
+    val glycemiaTrend = if (postPrandialGlycemia != -1)
+        listOf(glycemia, postPrandialGlycemia)
+    else
+        listOf(glycemia)
+
+    val glycemiaGap = abs(glycemia - postPrandialGlycemia)
 
 }
