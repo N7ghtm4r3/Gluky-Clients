@@ -21,21 +21,25 @@ import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.pushpal.jetlime.EventPosition
 import com.pushpal.jetlime.ItemsList
 import com.pushpal.jetlime.JetLimeDefaults
 import com.pushpal.jetlime.JetLimeEvent
 import com.pushpal.jetlime.JetLimeEventDefaults
 import com.pushpal.jetlime.JetLimeRow
 import com.tecknobit.equinoxcompose.components.BadgeText
+import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.ui.icons.Apple
 import com.tecknobit.gluky.ui.icons.Snack
 import com.tecknobit.gluky.ui.icons.Syringe
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
+import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.glukycore.enums.MeasurementType
@@ -72,7 +76,7 @@ fun MealCard(
             modifier = Modifier
                 .padding(
                     all = 10.dp
-                )
+                ),
         ) {
             CardHeader(
                 meal = meal
@@ -103,17 +107,25 @@ private fun CardHeader(
         )
         Text(
             text = mealName,
-            style = AppTypography.titleLarge
+            style = AppTypography.titleLarge,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
         )
     }
     Text(
+        modifier = Modifier
+            .padding(
+                bottom = 5.dp
+            ),
         text = stringResource(
             resource = Res.string.noted_at,
             meal.annotationDate.toDateString(
                 pattern = H24_HOURS_MINUTES_PATTERN
             )
         ),
-        style = AppTypography.bodyLarge
+        style = AppTypography.bodyLarge,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
     )
 }
 
@@ -159,34 +171,51 @@ private fun GlycemiaStatus(
     JetLimeRow(
         modifier = Modifier
             .fillMaxWidth(),
-        itemsList = ItemsList(meal.getGlycemiaStatus()),
+        itemsList = ItemsList(meal.glycemiaTrend),
         style = JetLimeDefaults.rowStyle(
-            pathEffect = PathEffect.dashPathEffect(
-                intervals = floatArrayOf(30f, 30f),
-                phase = 0f,
+            lineBrush = Brush.linearGradient(
+                colors = listOf(
+                    meal.glycemia.levelColor(),
+                    meal.postPrandialGlycemia.levelColor()
+                )
             ),
-            itemSpacing = 150.dp,
             contentDistance = 10.dp
         )
-    ) { index, glycemiaValue, position ->
-        val glycemiaValueSettled = glycemiaValue != -1
-        JetLimeEvent(
-            style = JetLimeEventDefaults.eventStyle(
-                position = position,
-                pointRadius = 10.dp,
-                pointAnimation = if (glycemiaValueSettled)
-                    null
-                else
-                    JetLimeEventDefaults.pointAnimation(),
-                pointStrokeWidth = 2.dp,
-            )
-        ) {
-            if (glycemiaValueSettled) {
-                BadgeText(
-                    badgeText = glycemiaValue.toString(),
-                    badgeColor = MaterialTheme.colorScheme.error
+    ) { _, glycemia, position ->
+        GlycemiaLevel(
+            glycemia = glycemia,
+            position = position
+        )
+    }
+}
+
+@Composable
+private fun GlycemiaLevel(
+    glycemia: Int,
+    position: EventPosition,
+) {
+    val glycemiaValueSettled = glycemia != -1
+    val levelColor = glycemia.levelColor()
+    JetLimeEvent(
+        style = JetLimeEventDefaults.eventStyle(
+            position = position,
+            pointRadius = 10.dp,
+            pointAnimation = if (glycemiaValueSettled)
+                null
+            else
+                JetLimeEventDefaults.pointAnimation(),
+            pointStrokeColor = levelColor,
+            pointFillColor = levelColor
+        )
+    ) {
+        if (glycemiaValueSettled) {
+            BadgeText(
+                badgeText = glycemia.toString(),
+                badgeColor = levelColor,
+                textColor = getContrastColor(
+                    backgroundColor = levelColor
                 )
-            }
+            )
         }
     }
 }

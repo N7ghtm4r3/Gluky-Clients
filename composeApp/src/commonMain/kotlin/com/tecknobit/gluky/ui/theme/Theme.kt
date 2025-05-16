@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -102,6 +103,30 @@ fun GlukyTheme(
         typography = AppTypography,
         content = content
     )
+}
+
+@Composable
+fun green(): Color {
+    return if (applyDarkTheme())
+        greenDark
+    else
+        greenLight
+}
+
+@Composable
+fun red(): Color {
+    return if (applyDarkTheme())
+        redDark
+    else
+        redLight
+}
+
+@Composable
+fun yellow(): Color {
+    return if (applyDarkTheme())
+        yellowDark
+    else
+        yellowLight
 }
 
 /**
