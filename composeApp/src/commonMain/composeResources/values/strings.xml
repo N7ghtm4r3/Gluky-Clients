@@ -53,4 +53,8 @@
     <string name="pre_prandial">Pre prandial</string>
     <string name="post_prandial">Post prandial</string>
     <string name="blood_sugar_placeholder">e.g. 80</string>
+    <string name="insulin">Insulin</string>
+    <string name="insulin_placeholder">e.g. 10</string>
+    <string name="close">Close</string>
+    <string name="save">Save</string>
 </resources>

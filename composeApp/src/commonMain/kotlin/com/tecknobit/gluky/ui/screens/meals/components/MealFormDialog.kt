@@ -1,32 +1,41 @@
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeApi::class)
+
 package com.tecknobit.gluky.ui.screens.meals.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
+import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPicker
+import com.tecknobit.equinoxcompose.components.quantitypicker.rememberQuantityPickerState
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
@@ -36,8 +45,11 @@ import com.tecknobit.gluky.ui.theme.InputFieldShape
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.blood_sugar
 import gluky.composeapp.generated.resources.blood_sugar_placeholder
+import gluky.composeapp.generated.resources.close
+import gluky.composeapp.generated.resources.insulin
 import gluky.composeapp.generated.resources.post_prandial
 import gluky.composeapp.generated.resources.pre_prandial
+import gluky.composeapp.generated.resources.save
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -55,7 +67,7 @@ fun MealFormDialog(
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(
-                    max = 550.dp
+                    max = 750.dp
                 ),
             shape = RoundedCornerShape(
                 size = 16.dp
@@ -64,111 +76,166 @@ fun MealFormDialog(
             Column(
                 modifier = Modifier
                     .padding(
-                        horizontal = 10.dp
-                    )
-                    .padding(
-                        top = 10.dp
+                        all = 10.dp
                     )
             ) {
-                MealTitle(
-                    meal = meal,
-                    endContent = {
-                        IconButton(
-                            modifier = Modifier
-                                .size(32.dp),
-                            onClick = { show.value = false }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Close,
-                                contentDescription = ""
-                            )
-                        }
-                    }
-                )
-                GlycemiaFormSection(
+                FormTitle(
+                    show = show,
                     meal = meal
                 )
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    GlycemiaSection(
+                        viewModel = viewModel,
+                        meal = meal
+                    )
+                    InsulinSection(
+                        viewModel = viewModel,
+                        meal = meal
+                    )
+                    Button(
+                        modifier = Modifier
+                            .align(Alignment.End)
+                            .width(100.dp),
+                        onClick = {
+                            viewModel.fillMeal(
+                                meal = meal,
+                                onSave = { show.value = false }
+                            )
+                        }
+                    ) {
+                        Text(
+                            text = stringResource(Res.string.save),
+                            color = MaterialTheme.colorScheme.onPrimary
+                        )
+                    }
+                }
             }
         }
     }
 }
 
 @Composable
-private fun GlycemiaFormSection(
+private fun FormTitle(
+    show: MutableState<Boolean>,
     meal: Meal,
 ) {
-    val glycemia = remember {
-        mutableStateOf(
-            if (meal.isSettled)
-                "${meal.glycemia}"
-            else
-                ""
-        )
-    }
-    val glycemiaError = remember { mutableStateOf(false) }
-    val postPrandialGlycemia = remember {
-        mutableStateOf(
-            if (meal.isSettled)
-                "${meal.postPrandialGlycemia}"
-            else
-                ""
-        )
-    }
-    val postPrandialGlycemiaError = remember { mutableStateOf(false) }
-    Column {
-        SectionTitle(
-            title = Res.string.blood_sugar
-        )
+    MealTitle(
+        meal = meal,
+        endContent = {
+            IconButton(
+                modifier = Modifier
+                    .size(32.dp),
+                onClick = { show.value = false }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = stringResource(Res.string.close)
+                )
+            }
+        }
+    )
+}
+
+@Composable
+private fun GlycemiaSection(
+    viewModel: MealsScreenViewModel,
+    meal: Meal,
+) {
+    FormSection(
+        sectionTitle = Res.string.blood_sugar
+    ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
+            horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
+            viewModel.glycemia = remember {
+                mutableStateOf(
+                    if (meal.isSettled)
+                        meal.glycemia.toString()
+                    else
+                        ""
+                )
+            }
+            viewModel.glycemiaError = remember { mutableStateOf(false) }
             GlycemiaInputField(
-                modifier = Modifier
-                    .weight(1f),
-                glycemia = glycemia,
-                glycemiaError = glycemiaError,
-                placeholder = Res.string.pre_prandial
+                title = Res.string.pre_prandial,
+                glycemia = viewModel.glycemia,
+                glycemiaError = viewModel.glycemiaError
             )
+            viewModel.postPrandialGlycemia = remember {
+                mutableStateOf(
+                    if (meal.isSettled)
+                        meal.postPrandialGlycemia.toString()
+                    else
+                        ""
+                )
+            }
+            viewModel.postPrandialGlycemiaError = remember { mutableStateOf(false) }
             GlycemiaInputField(
-                modifier = Modifier
-                    .weight(1f),
-                glycemia = postPrandialGlycemia,
-                glycemiaError = postPrandialGlycemiaError,
-                placeholder = Res.string.post_prandial
+                title = Res.string.post_prandial,
+                glycemia = viewModel.postPrandialGlycemia,
+                glycemiaError = viewModel.postPrandialGlycemiaError
             )
         }
     }
 }
 
 @Composable
-private fun GlycemiaInputField(
-    modifier: Modifier,
+private fun RowScope.GlycemiaInputField(
+    title: StringResource,
     glycemia: MutableState<String>,
     glycemiaError: MutableState<Boolean>,
-    placeholder: StringResource,
 ) {
     Column(
-        modifier = modifier
+        modifier = Modifier
+            .weight(1f),
+        verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
         Text(
-            text = stringResource(placeholder),
-            style = AppTypography.labelLarge,
-            color = MaterialTheme.colorScheme.secondary
+            text = stringResource(title),
+            style = AppTypography.bodyLarge,
+            color = MaterialTheme.colorScheme.primary
         )
         EquinoxOutlinedTextField(
             modifier = Modifier
+                .fillMaxWidth()
                 .height(InputFieldHeight),
-            width = 150.dp,
             value = glycemia,
-            placeholder = stringResource(Res.string.blood_sugar_placeholder),
-            isError = glycemiaError,
+            placeholder = Res.string.blood_sugar_placeholder,
             shape = InputFieldShape,
-            keyboardOptions = KeyboardOptions(
-                imeAction = ImeAction.Next,
-                keyboardType = KeyboardType.Number
-            )
+            isError = glycemiaError
         )
+    }
+}
+
+@Composable
+private fun InsulinSection(
+    viewModel: MealsScreenViewModel,
+    meal: Meal,
+) {
+    FormSection(
+        sectionTitle = Res.string.insulin,
+        verticalSpacing = 5.dp
+    ) {
+        QuantityPicker(
+            state = rememberQuantityPickerState()
+        )
+    }
+}
+
+@Composable
+private fun FormSection(
+    sectionTitle: StringResource,
+    verticalSpacing: Dp = 0.dp,
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(verticalSpacing)
+    ) {
+        SectionTitle(
+            title = sectionTitle
+        )
+        content()
     }
 }

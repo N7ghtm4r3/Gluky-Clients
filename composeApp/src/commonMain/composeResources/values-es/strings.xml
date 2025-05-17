@@ -53,4 +53,8 @@
     <string name="pre_prandial">Preprandial</string>
     <string name="post_prandial">Posprandial</string>
     <string name="blood_sugar_placeholder">p. ej. 80</string>
+    <string name="insulin">Insulina</string>
+    <string name="insulin_placeholder">p. ej. 10</string>
+    <string name="close">Cerrar</string>
+    <string name="save">Guardar</string>
 </resources>

@@ -2,6 +2,7 @@ package com.tecknobit.gluky.ui.screens.meals.presentation
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.ExperimentalComposeApi
+import androidx.compose.runtime.MutableState
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
@@ -46,6 +47,14 @@ class MealsScreenViewModel : EquinoxViewModel(
         value = null
     )
     val mealDay = _mealDay.asStateFlow()
+
+    lateinit var glycemia: MutableState<String>
+
+    lateinit var glycemiaError: MutableState<Boolean>
+
+    lateinit var postPrandialGlycemia: MutableState<String>
+
+    lateinit var postPrandialGlycemiaError: MutableState<Boolean>
 
     fun computeDayValue(
         page: Int,
@@ -131,6 +140,14 @@ class MealsScreenViewModel : EquinoxViewModel(
                 ),
             )
         }
+    }
+
+    fun fillMeal(
+        meal: Meal,
+        onSave: () -> Unit,
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        onSave()
     }
 
 }
