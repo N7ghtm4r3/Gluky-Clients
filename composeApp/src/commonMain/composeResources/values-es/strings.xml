@@ -35,8 +35,8 @@
     <string name="dinner">Cena</string>
     <string name="basal_insulin">Insulina basal</string>
     <string name="noted_at">Anotado a las %1$s</string>
-    <string name="pre_prandial">Medición preprandial</string>
-    <string name="post_prandial">Medición posprandial</string>
+    <string name="pre_prandial_measurement">Medición preprandial</string>
+    <string name="post_prandial_measurement">Medición posprandial</string>
     <plurals name="administered">
         <item quantity="one">Administrada</item>
         <item quantity="other">Administrade</item>
@@ -49,4 +49,8 @@
     <string name="complete_meal">Agregar detalles de la comida</string>
     <string name="what_i_ate">Lo que comí</string>
     <string name="no_insulin_needed">Insulina no necesaria</string>
+    <string name="blood_sugar">Glucemia</string>
+    <string name="pre_prandial">Preprandial</string>
+    <string name="post_prandial">Posprandial</string>
+    <string name="blood_sugar_placeholder">p. ej. 80</string>
 </resources>

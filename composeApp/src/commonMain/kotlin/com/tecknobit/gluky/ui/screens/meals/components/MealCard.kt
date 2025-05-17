@@ -15,10 +15,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BreakfastDining
-import androidx.compose.material.icons.filled.DinnerDining
-import androidx.compose.material.icons.filled.LunchDining
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,13 +31,11 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -62,41 +56,25 @@ import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.displayFontFamily
-import com.tecknobit.gluky.ui.icons.Apple
+import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.icons.CollapseAll
 import com.tecknobit.gluky.ui.icons.FillMeal
-import com.tecknobit.gluky.ui.icons.Snack
-import com.tecknobit.gluky.ui.icons.Syringe
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
-import com.tecknobit.glukycore.enums.MeasurementType
-import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
-import com.tecknobit.glukycore.enums.MeasurementType.BASAL_INSULIN
-import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
-import com.tecknobit.glukycore.enums.MeasurementType.DINNER
-import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
-import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import com.tecknobit.refy.ui.icons.ExpandAll
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.administered
-import gluky.composeapp.generated.resources.afternoon_snack
-import gluky.composeapp.generated.resources.basal_insulin
-import gluky.composeapp.generated.resources.breakfast
 import gluky.composeapp.generated.resources.complete_meal
-import gluky.composeapp.generated.resources.dinner
 import gluky.composeapp.generated.resources.insulin_units
-import gluky.composeapp.generated.resources.lunch
-import gluky.composeapp.generated.resources.morning_snack
 import gluky.composeapp.generated.resources.no_insulin_needed
 import gluky.composeapp.generated.resources.noted_at
-import gluky.composeapp.generated.resources.post_prandial
-import gluky.composeapp.generated.resources.pre_prandial
+import gluky.composeapp.generated.resources.post_prandial_measurement
+import gluky.composeapp.generated.resources.pre_prandial_measurement
 import gluky.composeapp.generated.resources.show_meal_content
 import gluky.composeapp.generated.resources.what_i_ate
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -107,7 +85,7 @@ fun MealCard(
     viewModel: MealsScreenViewModel,
     meal: Meal,
 ) {
-    val mealContentDisplayed = rememberSaveable { mutableStateOf(false) }
+    val mealContentDisplayed = remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -123,6 +101,7 @@ fun MealCard(
                 ),
         ) {
             CardHeader(
+                viewModel = viewModel,
                 meal = meal,
                 mealContentDisplayed = mealContentDisplayed
             )
@@ -136,6 +115,7 @@ fun MealCard(
 
 @Composable
 private fun CardHeader(
+    viewModel: MealsScreenViewModel,
     meal: Meal,
     mealContentDisplayed: MutableState<Boolean>,
 ) {
@@ -145,25 +125,11 @@ private fun CardHeader(
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
+        MealTitle(
             modifier = Modifier
                 .weight(2f),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(5.dp)
-        ) {
-            val mealName = stringResource(type.text())
-            Icon(
-                imageVector = type.icon(),
-                contentDescription = mealName,
-                tint = MaterialTheme.colorScheme.primary
-            )
-            Text(
-                text = mealName,
-                style = AppTypography.titleLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-        }
+            meal = meal
+        )
         Row(
             modifier = Modifier
                 .weight(1f),
@@ -186,18 +152,22 @@ private fun CardHeader(
                 modifier = Modifier
                     .width(10.dp)
             )
+            val fillMeal = remember { mutableStateOf(false) }
             IconButton(
                 modifier = Modifier
                     .size(32.dp),
-                onClick = {
-
-                }
+                onClick = { fillMeal.value = !fillMeal.value }
             ) {
                 Icon(
                     imageVector = FillMeal,
                     contentDescription = stringResource(Res.string.complete_meal)
                 )
             }
+            MealFormDialog(
+                show = fillMeal,
+                viewModel = viewModel,
+                meal = meal
+            )
         }
     }
     Text(
@@ -215,28 +185,6 @@ private fun CardHeader(
         maxLines = 1,
         overflow = TextOverflow.Ellipsis
     )
-}
-
-private fun MeasurementType.icon(): ImageVector {
-    return when (this) {
-        BREAKFAST -> Icons.Default.BreakfastDining
-        MORNING_SNACK -> Snack
-        LUNCH -> Icons.Default.LunchDining
-        AFTERNOON_SNACK -> Apple
-        DINNER -> Icons.Default.DinnerDining
-        BASAL_INSULIN -> Syringe
-    }
-}
-
-private fun MeasurementType.text(): StringResource {
-    return when (this) {
-        BREAKFAST -> Res.string.breakfast
-        MORNING_SNACK -> Res.string.morning_snack
-        LUNCH -> Res.string.lunch
-        AFTERNOON_SNACK -> Res.string.afternoon_snack
-        DINNER -> Res.string.dinner
-        BASAL_INSULIN -> Res.string.basal_insulin
-    }
 }
 
 @Composable
@@ -315,9 +263,9 @@ private fun GlycemiaLevel(
                         Text(
                             text = stringResource(
                                 if (isPrePrandial)
-                                    Res.string.pre_prandial
+                                    Res.string.pre_prandial_measurement
                                 else
-                                    Res.string.post_prandial
+                                    Res.string.post_prandial_measurement
                             )
                         )
                     }
@@ -413,10 +361,8 @@ private fun MealContent(
         visible = mealContentDisplayed.value
     ) {
         Column {
-            Text(
-                text = stringResource(Res.string.what_i_ate),
-                style = AppTypography.titleMedium,
-                fontWeight = FontWeight.Bold
+            SectionTitle(
+                title = Res.string.what_i_ate
             )
             val mealContent = formatMealContent(
                 mealContent = meal.content
