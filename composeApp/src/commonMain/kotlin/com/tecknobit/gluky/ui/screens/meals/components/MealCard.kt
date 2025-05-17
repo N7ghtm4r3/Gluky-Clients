@@ -119,7 +119,6 @@ private fun CardHeader(
     meal: Meal,
     mealContentDisplayed: MutableState<Boolean>,
 ) {
-    val type = meal.type
     Row(
         modifier = Modifier
             .fillMaxWidth(),
@@ -298,7 +297,7 @@ private fun GlycemiaLevel(
 
 @Composable
 private fun AdministeredUnits(
-    insulinUnits: Int?,
+    insulinUnits: Int,
 ) {
     val insulinUnitsText = formatInsulinUnits(
         insulinUnits = insulinUnits
@@ -320,9 +319,9 @@ private fun AdministeredUnits(
 
 @Composable
 private fun formatInsulinUnits(
-    insulinUnits: Int?,
+    insulinUnits: Int,
 ): AnnotatedString {
-    if (insulinUnits == null)
+    if (insulinUnits == -1)
         return AnnotatedString(stringResource(Res.string.no_insulin_needed))
     val primaryColor = MaterialTheme.colorScheme.primary
     val administered = pluralStringResource(

@@ -2,6 +2,7 @@
 
 package com.tecknobit.gluky.ui.screens.meals.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -17,17 +18,22 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -47,9 +53,11 @@ import gluky.composeapp.generated.resources.blood_sugar
 import gluky.composeapp.generated.resources.blood_sugar_placeholder
 import gluky.composeapp.generated.resources.close
 import gluky.composeapp.generated.resources.insulin
+import gluky.composeapp.generated.resources.no_insulin_needed
 import gluky.composeapp.generated.resources.post_prandial
 import gluky.composeapp.generated.resources.pre_prandial
 import gluky.composeapp.generated.resources.save
+import gluky.composeapp.generated.resources.units
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -214,13 +222,44 @@ private fun InsulinSection(
     viewModel: MealsScreenViewModel,
     meal: Meal,
 ) {
+    val initialInsulinUnit = meal.insulinUnits
+    viewModel.insulinUnit = rememberQuantityPickerState(
+        initialQuantity = if (initialInsulinUnit != -1)
+            initialInsulinUnit
+        else
+            1,
+        minQuantity = 1,
+        longPressQuantity = 2
+    )
     FormSection(
         sectionTitle = Res.string.insulin,
         verticalSpacing = 5.dp
     ) {
-        QuantityPicker(
-            state = rememberQuantityPickerState()
-        )
+        var insulinNeeded by remember { mutableStateOf(true) }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(5.dp)
+        ) {
+            CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
+                Checkbox(
+                    checked = !insulinNeeded,
+                    onCheckedChange = { insulinNeeded = !insulinNeeded }
+                )
+            }
+            Text(
+                text = stringResource(Res.string.no_insulin_needed),
+                style = AppTypography.labelLarge
+            )
+        }
+        // TODO: WHEN QuantityPicker HAS INTEGRATED THE ENABLED PROPERTY REMOVE AND USE DIRECTLY THAT
+        AnimatedVisibility(
+            visible = insulinNeeded
+        ) {
+            QuantityPicker(
+                state = viewModel.insulinUnit,
+                informativeText = stringResource(Res.string.units)
+            )
+        }
     }
 }
 

@@ -57,4 +57,5 @@
     <string name="insulin_placeholder">e.g. 10</string>
     <string name="close">Close</string>
     <string name="save">Save</string>
+    <string name="units">Units</string>
 </resources>

@@ -25,7 +25,7 @@ data class Meal(
     @SerialName(POST_PRANDIAL_GLYCEMIA_KEY)
     val postPrandialGlycemia: Int = -1,
     @SerialName(INSULIN_UNITS_KEY)
-    val insulinUnits: Int? = null,
+    val insulinUnits: Int = -1,
 ) {
 
     companion object {
