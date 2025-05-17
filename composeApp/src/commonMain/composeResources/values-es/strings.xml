@@ -45,4 +45,7 @@
         <item quantity="one">unidad de insulina</item>
         <item quantity="other">unidades de insulina</item>
     </plurals>
+    <string name="show_meal_content">Mostrar contenido de la comida</string>
+    <string name="complete_meal">Agregar detalles de la comida</string>
+    <string name="what_i_ate">Lo que comí</string>
 </resources>

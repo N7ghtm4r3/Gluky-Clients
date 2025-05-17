@@ -88,6 +88,7 @@ kotlin {
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.glukycore)
                 implementation(libs.jetlime)
+                implementation(libs.richeditor.compose)
             }
         }
 

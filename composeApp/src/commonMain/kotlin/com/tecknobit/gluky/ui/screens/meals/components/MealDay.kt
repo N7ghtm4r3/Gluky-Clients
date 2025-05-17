@@ -1,11 +1,12 @@
 package com.tecknobit.gluky.ui.screens.meals.components
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -20,10 +21,11 @@ fun MealDay(
     horizontalPadding: Dp = 0.dp,
     mealDay: MealDayData,
 ) {
-    LazyVerticalGrid(
+    LazyVerticalStaggeredGrid(
         modifier = Modifier
+            .animateContentSize()
             .navigationBarsPadding(),
-        columns = GridCells.Adaptive(
+        columns = StaggeredGridCells.Adaptive(
             minSize = 350.dp
         ),
         contentPadding = PaddingValues(
@@ -31,7 +33,7 @@ fun MealDay(
             horizontal = horizontalPadding
         ),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
-        verticalArrangement = Arrangement.spacedBy(10.dp)
+        verticalItemSpacing = 10.dp
     ) {
         items(
             items = MeasurementType.meals(),

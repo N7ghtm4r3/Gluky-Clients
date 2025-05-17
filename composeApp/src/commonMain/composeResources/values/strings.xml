@@ -45,4 +45,7 @@
         <item quantity="one">insulin unit</item>
         <item quantity="other">insulin units</item>
     </plurals>
+    <string name="show_meal_content">Show meal content</string>
+    <string name="complete_meal">Add meal details</string>
+    <string name="what_i_ate">What I ate</string>
 </resources>
