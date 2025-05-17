@@ -48,4 +48,5 @@
     <string name="show_meal_content">Mostra contenuto pasto</string>
     <string name="complete_meal">Aggiungi dettagli pasto</string>
     <string name="what_i_ate">Cosa ho mangiato</string>
+    <string name="no_insulin_needed">Insulina non necessaria</string>
 </resources>

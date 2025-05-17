@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -34,6 +35,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -87,6 +89,7 @@ import gluky.composeapp.generated.resources.dinner
 import gluky.composeapp.generated.resources.insulin_units
 import gluky.composeapp.generated.resources.lunch
 import gluky.composeapp.generated.resources.morning_snack
+import gluky.composeapp.generated.resources.no_insulin_needed
 import gluky.composeapp.generated.resources.noted_at
 import gluky.composeapp.generated.resources.post_prandial
 import gluky.composeapp.generated.resources.pre_prandial
@@ -104,7 +107,7 @@ fun MealCard(
     viewModel: MealsScreenViewModel,
     meal: Meal,
 ) {
-    val mealContentDisplayed = remember { mutableStateOf(false) }
+    val mealContentDisplayed = rememberSaveable { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -245,17 +248,9 @@ private fun CardContent(
         GlycemiaStatus(
             meal = meal
         )
-        meal.insulinUnits?.let { insulinUnits ->
-            AdministeredUnits(
-                insulinUnits = insulinUnits
-            )
-        }
-        if (meal.insulinUnits == null) {
-            Text(
-                text = "Somministrazione insulina non necessaria",
-                fontSize = 18.sp
-            )
-        }
+        AdministeredUnits(
+            insulinUnits = meal.insulinUnits
+        )
         MealContent(
             meal = meal,
             mealContentDisplayed = mealContentDisplayed
@@ -355,13 +350,16 @@ private fun GlycemiaLevel(
 
 @Composable
 private fun AdministeredUnits(
-    insulinUnits: Int,
+    insulinUnits: Int?,
 ) {
     val insulinUnitsText = formatInsulinUnits(
         insulinUnits = insulinUnits
     )
     Text(
         modifier = Modifier
+            .heightIn(
+                min = 35.dp
+            )
             .padding(
                 top = 10.dp
             ),
@@ -374,8 +372,10 @@ private fun AdministeredUnits(
 
 @Composable
 private fun formatInsulinUnits(
-    insulinUnits: Int,
+    insulinUnits: Int?,
 ): AnnotatedString {
+    if (insulinUnits == null)
+        return AnnotatedString(stringResource(Res.string.no_insulin_needed))
     val primaryColor = MaterialTheme.colorScheme.primary
     val administered = pluralStringResource(
         resource = Res.plurals.administered,
