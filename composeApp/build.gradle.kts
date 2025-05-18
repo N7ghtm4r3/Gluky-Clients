@@ -86,9 +86,10 @@ kotlin {
                 implementation(libs.coil.network.ktor3)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlinx.serialization.json)
-                implementation(libs.glukycore)
                 implementation(libs.jetlime)
                 implementation(libs.richeditor.compose)
+                implementation(libs.sonner)
+                implementation(libs.glukycore)
             }
         }
 

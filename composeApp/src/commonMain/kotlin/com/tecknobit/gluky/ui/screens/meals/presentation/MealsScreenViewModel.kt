@@ -5,9 +5,13 @@ import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
+import com.dokar.sonner.Toast
+import com.dokar.sonner.ToastType
+import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPickerState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
@@ -16,9 +20,16 @@ import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
 import com.tecknobit.glukycore.enums.MeasurementType.DINNER
 import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
 import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
+import com.tecknobit.glukycore.helpers.GlukyInputsValidator.glycemiaValueIsValid
+import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.invalid_meal_content
+import gluky.composeapp.generated.resources.meal_content_cannot_be_empty
+import gluky.composeapp.generated.resources.wrong_glycemia_value
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
 import kotlin.random.Random
 
 class MealsScreenViewModel : EquinoxViewModel(
@@ -61,6 +72,8 @@ class MealsScreenViewModel : EquinoxViewModel(
     lateinit var insulinUnit: QuantityPickerState
 
     lateinit var mealContent: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>
+
+    lateinit var toaster: ToasterState
 
     fun computeDayValue(
         page: Int,
@@ -152,8 +165,61 @@ class MealsScreenViewModel : EquinoxViewModel(
         meal: Meal,
         onSave: () -> Unit,
     ) {
+        if (!areMealDataValid())
+            return
         // TODO: MAKE THE REQUEST THEN
         onSave()
+    }
+
+    private fun areMealDataValid(): Boolean {
+        if (!glycemiaValueIsValid(glycemia.value)) {
+            toastGlycemiaValueError()
+            glycemiaError.value = true
+            return false
+        }
+        if (!glycemiaValueIsValid(postPrandialGlycemia.value)) {
+            toastGlycemiaValueError()
+            postPrandialGlycemiaError.value = true
+            return false
+        }
+        if (mealContent.isEmpty()) {
+            toastError(
+                error = Res.string.meal_content_cannot_be_empty
+            )
+            return false
+        }
+        mealContent.forEach { entry ->
+            if (entry.first.value.isEmpty() || entry.second.value.isEmpty()) {
+                toastError(
+                    error = Res.string.invalid_meal_content
+                )
+                return false
+            }
+        }
+        return true
+    }
+
+    @Wrapper
+    private fun toastGlycemiaValueError() {
+        toastError(
+            error = Res.string.wrong_glycemia_value
+        )
+    }
+
+    private fun toastError(
+        error: StringResource,
+    ) {
+        viewModelScope.launch {
+            val errorMessage = getString(
+                resource = error
+            )
+            toaster.show(
+                toast = Toast(
+                    message = errorMessage,
+                    type = ToastType.Error
+                )
+            )
+        }
     }
 
 }

@@ -19,6 +19,7 @@ coilCompose = "3.1.0"
 ktor = "3.1.0"
 kotlinxSerializationJson = "1.8.1"
 richeditorCompose = "1.0.0-rc12"
+sonner = "0.3.8"
 
 [libraries]
 glukycore = { module = "com.tecknobit.glukycore:glukycore", version.ref = "glukycore" }
@@ -39,6 +40,7 @@ ktor-client-js = { module = "io.ktor:ktor-client-js", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 richeditor-compose = { module = "com.mohamedrejeb.richeditor:richeditor-compose", version.ref = "richeditorCompose" }
+sonner = { module = "io.github.dokar3:sonner", version.ref = "sonner" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

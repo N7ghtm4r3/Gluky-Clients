@@ -55,6 +55,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -62,6 +63,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.dokar.sonner.Toaster
+import com.dokar.sonner.rememberToasterState
 import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPicker
@@ -73,6 +76,8 @@ import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.InputFieldHeight
 import com.tecknobit.gluky.ui.theme.InputFieldShape
+import com.tecknobit.gluky.ui.theme.applyDarkTheme
+import com.tecknobit.glukycore.helpers.GlukyInputsValidator.glycemiaValueIsValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.add_meal_entry
 import gluky.composeapp.generated.resources.blood_sugar
@@ -102,6 +107,12 @@ fun MealFormDialog(
         show = show,
         viewModel = viewModel,
     ) {
+        viewModel.toaster = rememberToasterState()
+        Toaster(
+            state = viewModel.toaster,
+            darkTheme = applyDarkTheme(),
+            richColors = true
+        )
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
@@ -140,11 +151,13 @@ fun MealFormDialog(
                         viewModel = viewModel,
                         meal = meal
                     )
+                    val softwareKeyboardController = LocalSoftwareKeyboardController.current
                     Button(
                         modifier = Modifier
                             .align(Alignment.End)
                             .width(100.dp),
                         onClick = {
+                            softwareKeyboardController?.hide()
                             viewModel.fillMeal(
                                 meal = meal,
                                 onSave = { show.value = false }
@@ -254,9 +267,10 @@ private fun RowScope.GlycemiaInputField(
             placeholder = Res.string.blood_sugar_placeholder,
             shape = InputFieldShape,
             isError = glycemiaError,
+            validator = { glycemiaValueIsValid(it) },
             keyboardOptions = KeyboardOptions(
                 imeAction = imeAction,
-                keyboardType = KeyboardType.Number
+                keyboardType = KeyboardType.NumberPassword
             )
         )
     }
@@ -422,7 +436,8 @@ private fun LazyItemScope.MealEntry(
             trailingIcon = null,
             keyboardOptions = KeyboardOptions(
                 imeAction = ImeAction.Next
-            )
+            ),
+            validator = { it.isNotEmpty() }
         )
         EquinoxOutlinedTextField(
             modifier = Modifier
@@ -437,7 +452,8 @@ private fun LazyItemScope.MealEntry(
                     ImeAction.Done
                 else
                     ImeAction.Next
-            )
+            ),
+            validator = { it.isNotEmpty() }
         )
         Icon(
             modifier = Modifier

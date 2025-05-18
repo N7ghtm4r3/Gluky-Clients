@@ -62,4 +62,7 @@
     <string name="meal_entry_quantity_placeholder">150g</string>
     <string name="add_meal_entry">Add meal entry</string>
     <string name="remove_meal_entry">Remove meal entry</string>
+    <string name="wrong_glycemia_value">Invalid glycemia value</string>
+    <string name="meal_content_cannot_be_empty">Meal content cannot be empty</string>
+    <string name="invalid_meal_content">Invalid meal content</string>
 </resources>
