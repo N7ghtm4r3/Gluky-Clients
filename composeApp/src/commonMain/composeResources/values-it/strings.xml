@@ -65,4 +65,6 @@
     <string name="wrong_glycemia_value">Valore glicemico non valido</string>
     <string name="meal_content_cannot_be_empty">Il contenuto del pasto non può essere vuoto</string>
     <string name="invalid_meal_content">Contenuto del pasto non valido</string>
+    <string name="unfilled_day">Giorno non compilato</string>
+    <string name="fill_day">Compiliamolo!</string>
 </resources>

@@ -94,71 +94,143 @@ class MealsScreenViewModel : EquinoxViewModel(
     fun retrieveMealDay() {
         // TODO: TO MAKE THE REQUEST THEN
         viewModelScope.launch {
-            _mealDay.value = MealDayData(
-                id = Random.nextLong().toString(),
-                breakfast = Meal(
+            _mealDay.value = if (false) {
+                MealDayData(
                     id = Random.nextLong().toString(),
-                    type = BREAKFAST,
-                    annotationDate = currentTimestamp(),
-                    content = "- Latte parzialmente scremato (200 ml)\n" +
-                            "- Fette biscottate integrali (4 unità)\n" +
-                            "- Marmellata senza zuccheri aggiunti (20 g)",
-                    glycemia = Random.nextInt(200),
-                    postPrandialGlycemia = Random.nextInt(500),
-                    insulinUnits = Random.nextInt(20)
-                ),
-                morningSnack = Meal(
-                    id = Random.nextLong().toString(),
-                    type = MORNING_SNACK,
-                    annotationDate = currentTimestamp(),
-                    content = """
+                    breakfast = Meal(
+                        id = Random.nextLong().toString(),
+                        type = BREAKFAST,
+                        annotationDate = currentTimestamp(),
+                        content = "- Latte parzialmente scremato (200 ml)\n" +
+                                "- Fette biscottate integrali (4 unità)\n" +
+                                "- Marmellata senza zuccheri aggiunti (20 g)",
+                        glycemia = Random.nextInt(200),
+                        postPrandialGlycemia = Random.nextInt(500),
+                        insulinUnits = Random.nextInt(20)
+                    ),
+                    morningSnack = Meal(
+                        id = Random.nextLong().toString(),
+                        type = MORNING_SNACK,
+                        annotationDate = currentTimestamp(),
+                        content = """
                     - Yogurt greco 0% (150 g)
                     - Mandorle (10 g)
                     """.trimIndent(),
-                    glycemia = Random.nextInt(200),
-                    postPrandialGlycemia = Random.nextInt(200)
-                ),
-                lunch = Meal(
-                    id = Random.nextLong().toString(),
-                    type = LUNCH,
-                    annotationDate = currentTimestamp(),
-                    content = """
+                        glycemia = Random.nextInt(200),
+                        postPrandialGlycemia = Random.nextInt(200)
+                    ),
+                    lunch = Meal(
+                        id = Random.nextLong().toString(),
+                        type = LUNCH,
+                        annotationDate = currentTimestamp(),
+                        content = """
                     - Riso integrale (80 g)
                     - Petto di pollo alla griglia (150 g)
                     - Zucchine grigliate (200 g)
                     - Olio extravergine di oliva (10 g)
                     """.trimIndent(),
-                    glycemia = Random.nextInt(200),
-                    postPrandialGlycemia = Random.nextInt(200),
-                    insulinUnits = Random.nextInt(20)
-                ),
-                afternoonSnack = Meal(
-                    id = Random.nextLong().toString(),
-                    type = AFTERNOON_SNACK,
-                    annotationDate = currentTimestamp(),
-                    content = """
+                        glycemia = Random.nextInt(200),
+                        postPrandialGlycemia = Random.nextInt(200),
+                        insulinUnits = Random.nextInt(20)
+                    ),
+                    afternoonSnack = Meal(
+                        id = Random.nextLong().toString(),
+                        type = AFTERNOON_SNACK,
+                        annotationDate = currentTimestamp(),
+                        content = """
                     - Frutta fresca (mela) (150 g)
                     - Noci (3 unità)
                     """.trimIndent(),
-                    glycemia = Random.nextInt(200),
-                    postPrandialGlycemia = Random.nextInt(200)
-                ),
-                dinner = Meal(
-                    id = Random.nextLong().toString(),
-                    type = DINNER,
-                    annotationDate = currentTimestamp(),
-                    content = """
+                        glycemia = Random.nextInt(200),
+                        postPrandialGlycemia = Random.nextInt(200)
+                    ),
+                    dinner = Meal(
+                        id = Random.nextLong().toString(),
+                        type = DINNER,
+                        annotationDate = currentTimestamp(),
+                        content = """
                     - Filetto di salmone al forno (150 g)
                     - Patate lesse (200 g)
                     - Insalata mista (100 g)
                     - Olio extravergine di oliva (10 g)
                     """.trimIndent(),
-                    glycemia = Random.nextInt(200),
-                    postPrandialGlycemia = -1,
-                    insulinUnits = Random.nextInt(20)
-                ),
-            )
+                        glycemia = Random.nextInt(200),
+                        postPrandialGlycemia = -1,
+                        insulinUnits = Random.nextInt(20)
+                    ),
+                )
+            } else
+                null
         }
+    }
+
+    fun fillDay() {
+        // TODO: TO MAKE THE REQUEST THEN
+        val obtainedByTheRequest = MealDayData(
+            id = Random.nextLong().toString(),
+            breakfast = Meal(
+                id = Random.nextLong().toString(),
+                type = BREAKFAST,
+                annotationDate = currentTimestamp(),
+                content = "- Latte parzialmente scremato (200 ml)\n" +
+                        "- Fette biscottate integrali (4 unità)\n" +
+                        "- Marmellata senza zuccheri aggiunti (20 g)",
+                glycemia = Random.nextInt(200),
+                postPrandialGlycemia = Random.nextInt(500),
+                insulinUnits = Random.nextInt(20)
+            ),
+            morningSnack = Meal(
+                id = Random.nextLong().toString(),
+                type = MORNING_SNACK,
+                annotationDate = currentTimestamp(),
+                content = """
+                    - Yogurt greco 0% (150 g)
+                    - Mandorle (10 g)
+                    """.trimIndent(),
+                glycemia = Random.nextInt(200),
+                postPrandialGlycemia = Random.nextInt(200)
+            ),
+            lunch = Meal(
+                id = Random.nextLong().toString(),
+                type = LUNCH,
+                annotationDate = currentTimestamp(),
+                content = """
+                    - Riso integrale (80 g)
+                    - Petto di pollo alla griglia (150 g)
+                    - Zucchine grigliate (200 g)
+                    - Olio extravergine di oliva (10 g)
+                    """.trimIndent(),
+                glycemia = Random.nextInt(200),
+                postPrandialGlycemia = Random.nextInt(200),
+                insulinUnits = Random.nextInt(20)
+            ),
+            afternoonSnack = Meal(
+                id = Random.nextLong().toString(),
+                type = AFTERNOON_SNACK,
+                annotationDate = currentTimestamp(),
+                content = """
+                    - Frutta fresca (mela) (150 g)
+                    - Noci (3 unità)
+                    """.trimIndent(),
+                glycemia = Random.nextInt(200),
+                postPrandialGlycemia = Random.nextInt(200)
+            ),
+            dinner = Meal(
+                id = Random.nextLong().toString(),
+                type = DINNER,
+                annotationDate = currentTimestamp(),
+                content = """
+                    - Filetto di salmone al forno (150 g)
+                    - Patate lesse (200 g)
+                    - Insalata mista (100 g)
+                    - Olio extravergine di oliva (10 g)
+                    """.trimIndent(),
+                glycemia = Random.nextInt(200),
+                postPrandialGlycemia = -1,
+                insulinUnits = Random.nextInt(20)
+            ),
+        ) // TODO: TO USE THE REAL ONE INSTEAD
+        _mealDay.value = obtainedByTheRequest
     }
 
     fun fillMeal(

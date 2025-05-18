@@ -65,4 +65,6 @@
     <string name="wrong_glycemia_value">Invalid glycemia value</string>
     <string name="meal_content_cannot_be_empty">Meal content cannot be empty</string>
     <string name="invalid_meal_content">Invalid meal content</string>
+    <string name="unfilled_day">Unfilled day</string>
+    <string name="fill_day">Let's fill it in!</string>
 </resources>

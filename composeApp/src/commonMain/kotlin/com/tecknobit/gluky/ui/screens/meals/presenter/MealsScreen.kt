@@ -92,14 +92,14 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
             modifier = Modifier
                 .fillMaxSize(),
             state = viewModel.sessionFlowState,
-            initialLoadingRoutineDelay = 1000,
-            loadingRoutine = { mealDay.value != null },
+            initialLoadingRoutineDelay = 2000,
+            loadingRoutine = { true },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
                 MealDay(
                     viewModel = viewModel,
                     horizontalPadding = horizontalPadding,
-                    mealDay = mealDay.value!!
+                    mealDay = mealDay.value
                 )
             }
         )
