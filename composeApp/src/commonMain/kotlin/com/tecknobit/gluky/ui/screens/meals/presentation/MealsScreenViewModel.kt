@@ -23,7 +23,6 @@ import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import com.tecknobit.glukycore.helpers.GlukyInputsValidator.glycemiaValueIsValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.invalid_meal_content
-import gluky.composeapp.generated.resources.meal_content_cannot_be_empty
 import gluky.composeapp.generated.resources.wrong_glycemia_value
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -252,12 +251,6 @@ class MealsScreenViewModel : EquinoxViewModel(
         if (!glycemiaValueIsValid(postPrandialGlycemia.value)) {
             toastGlycemiaValueError()
             postPrandialGlycemiaError.value = true
-            return false
-        }
-        if (mealContent.isEmpty()) {
-            toastError(
-                error = Res.string.meal_content_cannot_be_empty
-            )
             return false
         }
         mealContent.forEach { entry ->

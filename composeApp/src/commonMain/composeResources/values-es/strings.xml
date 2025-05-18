@@ -63,7 +63,6 @@
     <string name="add_meal_entry">Añadir entrada de comida</string>
     <string name="remove_meal_entry">Eliminar entrada de comida</string>
     <string name="wrong_glycemia_value">Valor de glucemia no válido</string>
-    <string name="meal_content_cannot_be_empty">El contenido de la comida no puede estar vacío</string>
     <string name="invalid_meal_content">Contenido de la comida no válido</string>
     <string name="unfilled_day">Día no completado</string>
     <string name="fill_day">¡Vamos a completarlo!</string>
