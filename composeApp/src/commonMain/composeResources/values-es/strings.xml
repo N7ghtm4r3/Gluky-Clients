@@ -58,4 +58,8 @@
     <string name="close">Cerrar</string>
     <string name="save">Guardar</string>
     <string name="units">Unidades</string>
+    <string name="meal_entry_placeholder">p. ej. ensalada</string>
+    <string name="meal_entry_quantity_placeholder">150g</string>
+    <string name="add_meal_entry">Añadir entrada de comida</string>
+    <string name="remove_meal_entry">Eliminar entrada de comida</string>
 </resources>

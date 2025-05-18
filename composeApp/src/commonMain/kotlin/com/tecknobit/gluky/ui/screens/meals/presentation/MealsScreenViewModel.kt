@@ -3,6 +3,7 @@ package com.tecknobit.gluky.ui.screens.meals.presentation
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPickerState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
@@ -58,6 +59,8 @@ class MealsScreenViewModel : EquinoxViewModel(
     lateinit var postPrandialGlycemiaError: MutableState<Boolean>
 
     lateinit var insulinUnit: QuantityPickerState
+
+    lateinit var mealContent: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>
 
     fun computeDayValue(
         page: Int,

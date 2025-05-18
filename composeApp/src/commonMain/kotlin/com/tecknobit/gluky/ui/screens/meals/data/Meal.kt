@@ -9,9 +9,12 @@ import com.tecknobit.gluky.ui.theme.yellow
 import com.tecknobit.glukycore.ANNOTATION_DATE_KEY
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
 import com.tecknobit.glukycore.POST_PRANDIAL_GLYCEMIA_KEY
+import com.tecknobit.glukycore.RAW_CONTENT_KEY
 import com.tecknobit.glukycore.enums.MeasurementType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
 import kotlin.math.abs
 
 @Serializable
@@ -21,6 +24,8 @@ data class Meal(
     @SerialName(ANNOTATION_DATE_KEY)
     val annotationDate: Long = -1,
     val content: String = "",
+    @SerialName(RAW_CONTENT_KEY)
+    val rawContent: JsonObject = buildJsonObject { },
     val glycemia: Int = -1,
     @SerialName(POST_PRANDIAL_GLYCEMIA_KEY)
     val postPrandialGlycemia: Int = -1,

@@ -58,4 +58,8 @@
     <string name="close">Close</string>
     <string name="save">Save</string>
     <string name="units">Units</string>
+    <string name="meal_entry_placeholder">e.g. salad</string>
+    <string name="meal_entry_quantity_placeholder">150g</string>
+    <string name="add_meal_entry">Add meal entry</string>
+    <string name="remove_meal_entry">Remove meal entry</string>
 </resources>

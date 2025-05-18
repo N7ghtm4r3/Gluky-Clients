@@ -58,4 +58,8 @@
     <string name="close">Chiudi</string>
     <string name="save">Salva</string>
     <string name="units">Unità</string>
+    <string name="meal_entry_placeholder">es. insalata</string>
+    <string name="meal_entry_quantity_placeholder">150g</string>
+    <string name="add_meal_entry">Aggiungi voce pasto</string>
+    <string name="remove_meal_entry">Rimuovi voce pasto</string>
 </resources>
