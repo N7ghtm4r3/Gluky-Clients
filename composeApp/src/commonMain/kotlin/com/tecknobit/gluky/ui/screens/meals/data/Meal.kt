@@ -89,6 +89,10 @@ data class Meal(
     val glycemiaGap: Int
         get() = abs(glycemia.value - postPrandialGlycemia.value)
 
-    val isFilledYet: Boolean
-        get() = annotationDate != -1L
+    val isNotFilledYet: Boolean
+        get() = annotationDate == -1L &&
+                content.value.isEmpty() &&
+                glycemia.value == -1 &&
+                postPrandialGlycemia.value == -1 &&
+                insulinUnits.value == -1
 }

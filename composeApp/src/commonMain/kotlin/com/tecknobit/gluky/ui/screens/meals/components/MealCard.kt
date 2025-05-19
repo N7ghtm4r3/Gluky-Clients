@@ -2,6 +2,7 @@
 
 package com.tecknobit.gluky.ui.screens.meals.components
 
+import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -52,6 +54,7 @@ import com.pushpal.jetlime.JetLimeEvent
 import com.pushpal.jetlime.JetLimeEventDefaults
 import com.pushpal.jetlime.JetLimeRow
 import com.tecknobit.equinoxcompose.components.BadgeText
+import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
@@ -63,8 +66,15 @@ import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
+import com.tecknobit.gluky.ui.theme.applyDarkTheme
+import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
+import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
+import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
+import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import com.tecknobit.refy.ui.icons.ExpandAll
 import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.Res.drawable
+import gluky.composeapp.generated.resources.Res.string
 import gluky.composeapp.generated.resources.administered
 import gluky.composeapp.generated.resources.complete_meal
 import gluky.composeapp.generated.resources.insulin_units
@@ -73,8 +83,25 @@ import gluky.composeapp.generated.resources.noted_at
 import gluky.composeapp.generated.resources.post_prandial_measurement
 import gluky.composeapp.generated.resources.pre_prandial_measurement
 import gluky.composeapp.generated.resources.show_meal_content
+import gluky.composeapp.generated.resources.unfilled_afternoon_snack
+import gluky.composeapp.generated.resources.unfilled_afternoon_snack_dark
+import gluky.composeapp.generated.resources.unfilled_afternoon_snack_light
+import gluky.composeapp.generated.resources.unfilled_breakfast
+import gluky.composeapp.generated.resources.unfilled_breakfast_dark
+import gluky.composeapp.generated.resources.unfilled_breakfast_light
+import gluky.composeapp.generated.resources.unfilled_dinner
+import gluky.composeapp.generated.resources.unfilled_dinner_dark
+import gluky.composeapp.generated.resources.unfilled_dinner_light
+import gluky.composeapp.generated.resources.unfilled_lunch
+import gluky.composeapp.generated.resources.unfilled_lunch_dark
+import gluky.composeapp.generated.resources.unfilled_lunch_light
+import gluky.composeapp.generated.resources.unfilled_morning_snack
+import gluky.composeapp.generated.resources.unfilled_morning_snack_dark
+import gluky.composeapp.generated.resources.unfilled_morning_snack_light
 import gluky.composeapp.generated.resources.what_i_ate
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -134,18 +161,22 @@ private fun CardHeader(
                 .weight(1f),
             horizontalArrangement = Arrangement.End
         ) {
-            IconButton(
-                modifier = Modifier
-                    .size(32.dp),
-                onClick = { mealContentDisplayed.value = !mealContentDisplayed.value }
+            AnimatedVisibility(
+                visible = meal.content.value.isNotEmpty()
             ) {
-                Icon(
-                    imageVector = if (mealContentDisplayed.value)
-                        CollapseAll
-                    else
-                        ExpandAll,
-                    contentDescription = stringResource(Res.string.show_meal_content)
-                )
+                IconButton(
+                    modifier = Modifier
+                        .size(32.dp),
+                    onClick = { mealContentDisplayed.value = !mealContentDisplayed.value }
+                ) {
+                    Icon(
+                        imageVector = if (mealContentDisplayed.value)
+                            CollapseAll
+                        else
+                            ExpandAll,
+                        contentDescription = stringResource(string.show_meal_content)
+                    )
+                }
             }
             Spacer(
                 modifier = Modifier
@@ -159,7 +190,7 @@ private fun CardHeader(
             ) {
                 Icon(
                     imageVector = FillMeal,
-                    contentDescription = stringResource(Res.string.complete_meal)
+                    contentDescription = stringResource(string.complete_meal)
                 )
             }
             MealFormDialog(
@@ -169,21 +200,25 @@ private fun CardHeader(
             )
         }
     }
-    Text(
-        modifier = Modifier
-            .padding(
-                bottom = 5.dp
+    AnimatedVisibility(
+        visible = meal.annotationDate != -1L
+    ) {
+        Text(
+            modifier = Modifier
+                .padding(
+                    bottom = 5.dp
+                ),
+            text = stringResource(
+                resource = string.noted_at,
+                meal.annotationDate.toDateString(
+                    pattern = H24_HOURS_MINUTES_PATTERN
+                )
             ),
-        text = stringResource(
-            resource = Res.string.noted_at,
-            meal.annotationDate.toDateString(
-                pattern = H24_HOURS_MINUTES_PATTERN
-            )
-        ),
-        style = AppTypography.bodyLarge,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis
-    )
+            style = AppTypography.bodyLarge,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis
+        )
+    }
 }
 
 @Composable
@@ -191,13 +226,101 @@ private fun CardContent(
     meal: Meal,
     mealContentDisplayed: MutableState<Boolean>,
 ) {
+    AnimatedContent(
+        targetState = meal.isNotFilledYet
+    ) { isNotFilledYet ->
+        if (isNotFilledYet) {
+            UnfilledMeal(
+                meal = meal
+            )
+        } else {
+            FilledMeal(
+                meal = meal,
+                mealContentDisplayed = mealContentDisplayed
+            )
+        }
+    }
+}
+
+@Composable
+private fun UnfilledMeal(
+    meal: Meal,
+) {
+    val unfilledEmptyStateRes = remember { meal.unfilledEmptyStateRes() }
+    val title = stringResource(unfilledEmptyStateRes.first)
+    EmptyState(
+        containerModifier = Modifier
+            .fillMaxSize(),
+        lightResource = unfilledEmptyStateRes.second,
+        darkResource = unfilledEmptyStateRes.third,
+        useDarkResource = applyDarkTheme(),
+        contentDescription = title,
+        title = title,
+        titleStyle = AppTypography.bodyLarge,
+        resourceSize = 150.dp
+    )
+}
+
+private fun Meal.unfilledEmptyStateRes(): Triple<StringResource, DrawableResource, DrawableResource> {
+    return when (type) {
+        BREAKFAST -> {
+            Triple(
+                first = string.unfilled_breakfast,
+                second = drawable.unfilled_breakfast_light,
+                third = drawable.unfilled_breakfast_dark
+            )
+        }
+
+        MORNING_SNACK -> {
+            Triple(
+                first = string.unfilled_morning_snack,
+                second = drawable.unfilled_morning_snack_light,
+                third = drawable.unfilled_morning_snack_dark
+            )
+        }
+
+        LUNCH -> {
+            Triple(
+                first = string.unfilled_lunch,
+                second = drawable.unfilled_lunch_light,
+                third = drawable.unfilled_lunch_dark
+            )
+        }
+
+        AFTERNOON_SNACK -> {
+            Triple(
+                first = string.unfilled_afternoon_snack,
+                second = drawable.unfilled_afternoon_snack_light,
+                third = drawable.unfilled_afternoon_snack_dark
+            )
+        }
+
+        else -> {
+            Triple(
+                first = string.unfilled_dinner,
+                second = drawable.unfilled_dinner_light,
+                third = drawable.unfilled_dinner_dark
+            )
+        }
+    }
+}
+
+@Composable
+private fun FilledMeal(
+    meal: Meal,
+    mealContentDisplayed: MutableState<Boolean>,
+) {
     Column {
         GlycemiaStatus(
             meal = meal
         )
-        AdministeredUnits(
-            insulinUnits = meal.insulinUnits.value
-        )
+        AnimatedVisibility(
+            visible = !meal.isNotFilledYet
+        ) {
+            AdministeredUnits(
+                insulinUnits = meal.insulinUnits.value
+            )
+        }
         MealContent(
             meal = meal,
             mealContentDisplayed = mealContentDisplayed
@@ -262,9 +385,9 @@ private fun GlycemiaLevel(
                         Text(
                             text = stringResource(
                                 if (isPrePrandial)
-                                    Res.string.pre_prandial_measurement
+                                    string.pre_prandial_measurement
                                 else
-                                    Res.string.post_prandial_measurement
+                                    string.post_prandial_measurement
                             )
                         )
                     }
@@ -322,7 +445,7 @@ private fun formatInsulinUnits(
     insulinUnits: Int,
 ): AnnotatedString {
     if (insulinUnits == -1)
-        return AnnotatedString(stringResource(Res.string.no_insulin_needed))
+        return AnnotatedString(stringResource(string.no_insulin_needed))
     val primaryColor = MaterialTheme.colorScheme.primary
     val administered = pluralStringResource(
         resource = Res.plurals.administered,
@@ -361,7 +484,7 @@ private fun MealContent(
     ) {
         Column {
             SectionTitle(
-                title = Res.string.what_i_ate
+                title = string.what_i_ate
             )
             val mealContent = formatMealContent(
                 mealContent = meal.content.value

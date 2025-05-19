@@ -278,7 +278,7 @@ private fun InsulinSection(
     viewModel: MealsScreenViewModel,
     meal: Meal,
 ) {
-    val mealNotFilledYet = !meal.isFilledYet
+    val mealNotFilledYet = meal.isNotFilledYet
     val insulinUnits = meal.insulinUnits.value
     viewModel.insulinUnits = rememberQuantityPickerState(
         initialQuantity = if (mealNotFilledYet || insulinUnits == -1)

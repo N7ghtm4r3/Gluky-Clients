@@ -66,4 +66,9 @@
     <string name="invalid_meal_content">Invalid meal content</string>
     <string name="unfilled_day">Unfilled day</string>
     <string name="fill_day">Let's fill it in!</string>
+    <string name="unfilled_breakfast">Unfilled breakfast</string>
+    <string name="unfilled_morning_snack">Unfilled morning snack</string>
+    <string name="unfilled_lunch">Unfilled lunch</string>
+    <string name="unfilled_afternoon_snack">Unfilled afternoon snack</string>
+    <string name="unfilled_dinner">Unfilled dinner</string>
 </resources>

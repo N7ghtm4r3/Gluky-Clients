@@ -66,4 +66,9 @@
     <string name="invalid_meal_content">Contenuto del pasto non valido</string>
     <string name="unfilled_day">Giorno non compilato</string>
     <string name="fill_day">Compiliamolo!</string>
+    <string name="unfilled_breakfast">Colazione non compilata</string>
+    <string name="unfilled_morning_snack">Spuntino non compilato</string>
+    <string name="unfilled_lunch">Pranzo non compilato</string>
+    <string name="unfilled_afternoon_snack">Merenda non compilata</string>
+    <string name="unfilled_dinner">Cena non compilata</string>
 </resources>
