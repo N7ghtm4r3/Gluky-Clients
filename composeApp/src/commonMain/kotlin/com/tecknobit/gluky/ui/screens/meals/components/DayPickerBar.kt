@@ -77,7 +77,7 @@ private val BarShape = RoundedCornerShape(
 fun DayPickerBar(
     viewModel: MealsScreenViewModel,
     currentDay: Long,
-    mealContent: @Composable () -> Unit,
+    content: @Composable () -> Unit,
 ) {
     // Compute the window to use given the current days
     val daysWindow: MutableList<Long> = remember { mutableStateListOf() }
@@ -155,7 +155,7 @@ fun DayPickerBar(
                 state = state
             )
         }
-        mealContent()
+        content()
     }
 }
 

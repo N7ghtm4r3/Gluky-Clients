@@ -71,4 +71,6 @@
     <string name="unfilled_lunch">Déjeuner non rempli</string>
     <string name="unfilled_afternoon_snack">Collation de l'après-midi non remplie</string>
     <string name="unfilled_dinner">Dîner non rempli</string>
+    <string name="my_meals">Mes repas</string>
+    <string name="day_notes">Notes du jour</string>
 </resources>

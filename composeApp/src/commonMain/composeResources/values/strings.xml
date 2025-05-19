@@ -71,4 +71,6 @@
     <string name="unfilled_lunch">Unfilled lunch</string>
     <string name="unfilled_afternoon_snack">Unfilled afternoon snack</string>
     <string name="unfilled_dinner">Unfilled dinner</string>
+    <string name="my_meals">My meals</string>
+    <string name="day_notes">Day notes</string>
 </resources>

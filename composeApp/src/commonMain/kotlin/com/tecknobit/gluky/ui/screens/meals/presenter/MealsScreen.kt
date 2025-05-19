@@ -3,6 +3,10 @@ package com.tecknobit.gluky.ui.screens.meals.presenter
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
@@ -17,12 +21,16 @@ import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
+import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.screens.meals.components.DayPickerBar
 import com.tecknobit.gluky.ui.screens.meals.components.MealDay
 import com.tecknobit.gluky.ui.screens.meals.components.ScrollableDayPicker
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.screens.shared.GlukyScreenPage
+import com.tecknobit.gluky.ui.theme.AppTypography
+import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.my_meals
 
 @OptIn(ExperimentalComposeApi::class)
 class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
@@ -47,22 +55,22 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                     DayPickerBar(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
-                        mealContent = { MealDataContent() }
+                        content = { ScreenContent() }
                     )
                 },
                 onMediumSizeClass = {
                     DayPickerBar(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
-                        mealContent = { MealDataContent() }
+                        content = { ScreenContent() }
                     )
                 },
                 onMediumWidthExpandedHeight = {
                     ScrollableDayPicker(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
-                        mealContent = {
-                            MealDataContent(
+                        content = {
+                            ScreenContent(
                                 horizontalPadding = 16.dp
                             )
                         }
@@ -72,8 +80,8 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                     ScrollableDayPicker(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
-                        mealContent = {
-                            MealDataContent(
+                        content = {
+                            ScreenContent(
                                 horizontalPadding = 16.dp
                             )
                         }
@@ -84,8 +92,7 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
     }
 
     @Composable
-    @ScreenSection
-    private fun MealDataContent(
+    private fun ScreenContent(
         horizontalPadding: Dp = 0.dp,
     ) {
         SessionFlowContainer(
@@ -96,12 +103,38 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
             loadingRoutine = { true },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
-                MealDay(
-                    viewModel = viewModel,
-                    horizontalPadding = horizontalPadding,
-                    mealDay = mealDay.value
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                        .navigationBarsPadding()
+                ) {
+                    MyMeals(
+                        horizontalPadding = horizontalPadding
+                    )
+                }
             }
+        )
+    }
+
+    @Composable
+    @ScreenSection
+    private fun MyMeals(
+        horizontalPadding: Dp = 0.dp,
+    ) {
+        SectionTitle(
+            modifier = Modifier
+                .padding(
+                    start = 16.dp,
+                    top = 16.dp
+                ),
+            title = Res.string.my_meals,
+            style = AppTypography.titleLarge
+        )
+        MealDay(
+            viewModel = viewModel,
+            horizontalPadding = horizontalPadding,
+            mealDay = mealDay.value
         )
     }
 

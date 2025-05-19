@@ -71,4 +71,6 @@
     <string name="unfilled_lunch">Pranzo non compilato</string>
     <string name="unfilled_afternoon_snack">Merenda non compilata</string>
     <string name="unfilled_dinner">Cena non compilata</string>
+    <string name="my_meals">I miei pasti</string>
+    <string name="day_notes">Note giornaliere</string>
 </resources>

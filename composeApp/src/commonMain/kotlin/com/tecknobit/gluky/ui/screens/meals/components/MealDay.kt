@@ -7,12 +7,11 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -57,6 +56,7 @@ fun MealDay(
         mealDay?.let {
             LazyVerticalStaggeredGrid(
                 modifier = Modifier
+                    .height(750.dp)
                     .animateContentSize()
                     .navigationBarsPadding(),
                 columns = StaggeredGridCells.Adaptive(
@@ -92,8 +92,7 @@ private fun NoFilledDay(
     val title = stringResource(Res.string.unfilled_day)
     EmptyState(
         containerModifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+            .fillMaxSize(),
         lightResource = Res.drawable.no_filled_day_light,
         darkResource = Res.drawable.no_filled_day_dark,
         useDarkResource = applyDarkTheme(),
