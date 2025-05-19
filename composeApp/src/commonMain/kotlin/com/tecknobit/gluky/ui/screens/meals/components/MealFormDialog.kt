@@ -46,12 +46,10 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -209,12 +207,7 @@ private fun GlycemiaSection(
             horizontalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             viewModel.glycemia = remember {
-                mutableStateOf(
-                    if (meal.isSettled)
-                        meal.glycemia.toString()
-                    else
-                        ""
-                )
+                meal.glycemia.toInitialGlycemicValue()
             }
             viewModel.glycemiaError = remember { mutableStateOf(false) }
             GlycemiaInputField(
@@ -224,12 +217,7 @@ private fun GlycemiaSection(
                 imeAction = ImeAction.Next
             )
             viewModel.postPrandialGlycemia = remember {
-                mutableStateOf(
-                    if (meal.isSettled)
-                        meal.postPrandialGlycemia.toString()
-                    else
-                        ""
-                )
+                meal.postPrandialGlycemia.toInitialGlycemicValue()
             }
             viewModel.postPrandialGlycemiaError = remember { mutableStateOf(false) }
             GlycemiaInputField(
@@ -240,6 +228,15 @@ private fun GlycemiaSection(
             )
         }
     }
+}
+
+private fun MutableState<Int>.toInitialGlycemicValue(): MutableState<String> {
+    return mutableStateOf(
+        if (value == -1)
+            ""
+        else
+            value.toString()
+    )
 }
 
 @Composable
@@ -281,28 +278,38 @@ private fun InsulinSection(
     viewModel: MealsScreenViewModel,
     meal: Meal,
 ) {
-    val initialInsulinUnit = meal.insulinUnits
-    viewModel.insulinUnit = rememberQuantityPickerState(
-        initialQuantity = if (initialInsulinUnit != -1)
-            initialInsulinUnit
+    val mealNotFilledYet = !meal.isFilledYet
+    val insulinUnits = meal.insulinUnits.value
+    viewModel.insulinUnits = rememberQuantityPickerState(
+        initialQuantity = if (mealNotFilledYet || insulinUnits == -1)
+            1
         else
-            1,
+            insulinUnits,
         minQuantity = 1,
         longPressQuantity = 2
     )
+    viewModel.insulinNeeded = remember {
+        mutableStateOf(
+            if (mealNotFilledYet)
+                true
+            else
+                insulinUnits != -1
+        )
+    }
     FormSection(
         sectionTitle = Res.string.insulin,
         verticalSpacing = 5.dp
     ) {
-        var insulinNeeded by remember { mutableStateOf(true) }
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(5.dp)
         ) {
             CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 0.dp) {
                 Checkbox(
-                    checked = !insulinNeeded,
-                    onCheckedChange = { insulinNeeded = !insulinNeeded }
+                    checked = !viewModel.insulinNeeded.value,
+                    onCheckedChange = {
+                        viewModel.insulinNeeded.value = !viewModel.insulinNeeded.value
+                    }
                 )
             }
             Text(
@@ -312,10 +319,10 @@ private fun InsulinSection(
         }
         // TODO: WHEN QuantityPicker HAS INTEGRATED THE ENABLED PROPERTY REMOVE AND USE DIRECTLY THAT
         AnimatedVisibility(
-            visible = insulinNeeded
+            visible = viewModel.insulinNeeded.value
         ) {
             QuantityPicker(
-                state = viewModel.insulinUnit,
+                state = viewModel.insulinUnits,
                 informativeText = stringResource(Res.string.units)
             )
         }
@@ -374,7 +381,7 @@ private fun ConvertRawData(
 ) {
     viewModel.mealContent = remember { mutableStateListOf() }
     LaunchedEffect(meal.rawContent) {
-        meal.rawContent.forEach { entry ->
+        meal.rawContent.value.forEach { entry ->
             val mealEntry = Pair(
                 first = mutableStateOf(entry.key),
                 second = mutableStateOf(entry.value.treatsAsString())

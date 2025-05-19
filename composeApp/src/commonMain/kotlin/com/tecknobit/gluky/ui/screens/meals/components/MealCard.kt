@@ -196,7 +196,7 @@ private fun CardContent(
             meal = meal
         )
         AdministeredUnits(
-            insulinUnits = meal.insulinUnits
+            insulinUnits = meal.insulinUnits.value
         )
         MealContent(
             meal = meal,
@@ -217,8 +217,8 @@ private fun GlycemiaStatus(
         style = JetLimeDefaults.rowStyle(
             lineBrush = Brush.linearGradient(
                 colors = listOf(
-                    meal.glycemia.levelColor(),
-                    meal.postPrandialGlycemia.levelColor()
+                    meal.glycemia.value.levelColor(),
+                    meal.postPrandialGlycemia.value.levelColor()
                 )
             ),
             itemSpacing = with(density) {
@@ -364,7 +364,7 @@ private fun MealContent(
                 title = Res.string.what_i_ate
             )
             val mealContent = formatMealContent(
-                mealContent = meal.content
+                mealContent = meal.content.value
             )
             Text(
                 text = mealContent

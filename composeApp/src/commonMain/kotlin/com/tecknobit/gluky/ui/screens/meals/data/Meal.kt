@@ -2,17 +2,22 @@ package com.tecknobit.gluky.ui.screens.meals.data
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
 import com.tecknobit.gluky.ui.theme.green
 import com.tecknobit.gluky.ui.theme.red
 import com.tecknobit.gluky.ui.theme.yellow
 import com.tecknobit.glukycore.ANNOTATION_DATE_KEY
+import com.tecknobit.glukycore.CONTENT_KEY
+import com.tecknobit.glukycore.GLYCEMIA_KEY
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
 import com.tecknobit.glukycore.POST_PRANDIAL_GLYCEMIA_KEY
 import com.tecknobit.glukycore.RAW_CONTENT_KEY
 import com.tecknobit.glukycore.enums.MeasurementType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlin.math.abs
@@ -23,14 +28,16 @@ data class Meal(
     val type: MeasurementType,
     @SerialName(ANNOTATION_DATE_KEY)
     val annotationDate: Long = -1,
-    val content: String = "",
+    @SerialName(CONTENT_KEY)
+    private val _content: String = "",
     @SerialName(RAW_CONTENT_KEY)
-    val rawContent: JsonObject = buildJsonObject { },
-    val glycemia: Int = -1,
+    private val _rawContent: JsonObject = buildJsonObject { },
+    @SerialName(GLYCEMIA_KEY)
+    private val _glycemia: Int = -1,
     @SerialName(POST_PRANDIAL_GLYCEMIA_KEY)
-    val postPrandialGlycemia: Int = -1,
+    private val _postPrandialGlycemia: Int = -1,
     @SerialName(INSULIN_UNITS_KEY)
-    val insulinUnits: Int = -1,
+    private val _insulinUnits: Int = -1,
 ) {
 
     companion object {
@@ -45,6 +52,7 @@ data class Meal(
         fun Int.levelColor(): Color {
             if (this == -1)
                 return MaterialTheme.colorScheme.primary
+            @Suppress("ConvertTwoComparisonsToRangeCheck")
             return if (this < NORMAL_GLYCEMIA)
                 red()
             else if (this in NORMAL_GLYCEMIA..MEDIUM_HIGH_GLYCEMIA)
@@ -57,13 +65,30 @@ data class Meal(
 
     }
 
-    val glycemiaTrend = if (postPrandialGlycemia != -1)
-        listOf(glycemia, postPrandialGlycemia)
-    else
-        listOf(glycemia)
+    @Transient
+    val content: MutableState<String> = mutableStateOf(_content)
 
-    val glycemiaGap = abs(glycemia - postPrandialGlycemia)
+    @Transient
+    val rawContent: MutableState<JsonObject> = mutableStateOf(_rawContent)
 
-    val isSettled = annotationDate != -1L
+    @Transient
+    val glycemia: MutableState<Int> = mutableStateOf(_glycemia)
 
+    @Transient
+    val postPrandialGlycemia: MutableState<Int> = mutableStateOf(_postPrandialGlycemia)
+
+    @Transient
+    val insulinUnits: MutableState<Int> = mutableStateOf(_insulinUnits)
+
+    val glycemiaTrend: List<Int>
+        get() = if (postPrandialGlycemia.value != -1)
+            listOf(glycemia.value, postPrandialGlycemia.value)
+        else
+            listOf(glycemia.value)
+
+    val glycemiaGap: Int
+        get() = abs(glycemia.value - postPrandialGlycemia.value)
+
+    val isFilledYet: Boolean
+        get() = annotationDate != -1L
 }

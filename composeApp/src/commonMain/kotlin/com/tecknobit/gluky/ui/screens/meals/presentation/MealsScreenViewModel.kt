@@ -27,6 +27,8 @@ import gluky.composeapp.generated.resources.wrong_glycemia_value
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.buildJsonObject
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
 import kotlin.random.Random
@@ -68,7 +70,9 @@ class MealsScreenViewModel : EquinoxViewModel(
 
     lateinit var postPrandialGlycemiaError: MutableState<Boolean>
 
-    lateinit var insulinUnit: QuantityPickerState
+    lateinit var insulinUnits: QuantityPickerState
+
+    lateinit var insulinNeeded: MutableState<Boolean>
 
     lateinit var mealContent: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>
 
@@ -100,62 +104,62 @@ class MealsScreenViewModel : EquinoxViewModel(
                         id = Random.nextLong().toString(),
                         type = BREAKFAST,
                         annotationDate = currentTimestamp(),
-                        content = "- Latte parzialmente scremato (200 ml)\n" +
+                        _content = "- Latte parzialmente scremato (200 ml)\n" +
                                 "- Fette biscottate integrali (4 unità)\n" +
                                 "- Marmellata senza zuccheri aggiunti (20 g)",
-                        glycemia = Random.nextInt(200),
-                        postPrandialGlycemia = Random.nextInt(500),
-                        insulinUnits = Random.nextInt(20)
+                        _glycemia = Random.nextInt(200),
+                        _postPrandialGlycemia = Random.nextInt(500),
+                        _insulinUnits = Random.nextInt(20)
                     ),
                     morningSnack = Meal(
                         id = Random.nextLong().toString(),
                         type = MORNING_SNACK,
                         annotationDate = currentTimestamp(),
-                        content = """
+                        _content = """
                     - Yogurt greco 0% (150 g)
                     - Mandorle (10 g)
                     """.trimIndent(),
-                        glycemia = Random.nextInt(200),
-                        postPrandialGlycemia = Random.nextInt(200)
+                        _glycemia = Random.nextInt(200),
+                        _postPrandialGlycemia = Random.nextInt(200)
                     ),
                     lunch = Meal(
                         id = Random.nextLong().toString(),
                         type = LUNCH,
                         annotationDate = currentTimestamp(),
-                        content = """
+                        _content = """
                     - Riso integrale (80 g)
                     - Petto di pollo alla griglia (150 g)
                     - Zucchine grigliate (200 g)
                     - Olio extravergine di oliva (10 g)
                     """.trimIndent(),
-                        glycemia = Random.nextInt(200),
-                        postPrandialGlycemia = Random.nextInt(200),
-                        insulinUnits = Random.nextInt(20)
+                        _glycemia = Random.nextInt(200),
+                        _postPrandialGlycemia = Random.nextInt(200),
+                        _insulinUnits = Random.nextInt(20)
                     ),
                     afternoonSnack = Meal(
                         id = Random.nextLong().toString(),
                         type = AFTERNOON_SNACK,
                         annotationDate = currentTimestamp(),
-                        content = """
+                        _content = """
                     - Frutta fresca (mela) (150 g)
                     - Noci (3 unità)
                     """.trimIndent(),
-                        glycemia = Random.nextInt(200),
-                        postPrandialGlycemia = Random.nextInt(200)
+                        _glycemia = Random.nextInt(200),
+                        _postPrandialGlycemia = Random.nextInt(200)
                     ),
                     dinner = Meal(
                         id = Random.nextLong().toString(),
                         type = DINNER,
                         annotationDate = currentTimestamp(),
-                        content = """
+                        _content = """
                     - Filetto di salmone al forno (150 g)
                     - Patate lesse (200 g)
                     - Insalata mista (100 g)
                     - Olio extravergine di oliva (10 g)
                     """.trimIndent(),
-                        glycemia = Random.nextInt(200),
-                        postPrandialGlycemia = -1,
-                        insulinUnits = Random.nextInt(20)
+                        _glycemia = Random.nextInt(200),
+                        _postPrandialGlycemia = -1,
+                        _insulinUnits = Random.nextInt(20)
                     ),
                 )
             } else
@@ -171,62 +175,62 @@ class MealsScreenViewModel : EquinoxViewModel(
                 id = Random.nextLong().toString(),
                 type = BREAKFAST,
                 annotationDate = currentTimestamp(),
-                content = "- Latte parzialmente scremato (200 ml)\n" +
+                _content = "- Latte parzialmente scremato (200 ml)\n" +
                         "- Fette biscottate integrali (4 unità)\n" +
                         "- Marmellata senza zuccheri aggiunti (20 g)",
-                glycemia = Random.nextInt(200),
-                postPrandialGlycemia = Random.nextInt(500),
-                insulinUnits = Random.nextInt(20)
+                _glycemia = Random.nextInt(200),
+                _postPrandialGlycemia = Random.nextInt(500),
+                _insulinUnits = Random.nextInt(20)
             ),
             morningSnack = Meal(
                 id = Random.nextLong().toString(),
                 type = MORNING_SNACK,
                 annotationDate = currentTimestamp(),
-                content = """
+                _content = """
                     - Yogurt greco 0% (150 g)
                     - Mandorle (10 g)
                     """.trimIndent(),
-                glycemia = Random.nextInt(200),
-                postPrandialGlycemia = Random.nextInt(200)
+                _glycemia = Random.nextInt(200),
+                _postPrandialGlycemia = Random.nextInt(200)
             ),
             lunch = Meal(
                 id = Random.nextLong().toString(),
                 type = LUNCH,
                 annotationDate = currentTimestamp(),
-                content = """
+                _content = """
                     - Riso integrale (80 g)
                     - Petto di pollo alla griglia (150 g)
                     - Zucchine grigliate (200 g)
                     - Olio extravergine di oliva (10 g)
                     """.trimIndent(),
-                glycemia = Random.nextInt(200),
-                postPrandialGlycemia = Random.nextInt(200),
-                insulinUnits = Random.nextInt(20)
+                _glycemia = Random.nextInt(200),
+                _postPrandialGlycemia = Random.nextInt(200),
+                _insulinUnits = Random.nextInt(20)
             ),
             afternoonSnack = Meal(
                 id = Random.nextLong().toString(),
                 type = AFTERNOON_SNACK,
                 annotationDate = currentTimestamp(),
-                content = """
+                _content = """
                     - Frutta fresca (mela) (150 g)
                     - Noci (3 unità)
                     """.trimIndent(),
-                glycemia = Random.nextInt(200),
-                postPrandialGlycemia = Random.nextInt(200)
+                _glycemia = Random.nextInt(200),
+                _postPrandialGlycemia = Random.nextInt(200)
             ),
             dinner = Meal(
                 id = Random.nextLong().toString(),
                 type = DINNER,
                 annotationDate = currentTimestamp(),
-                content = """
+                _content = """
                     - Filetto di salmone al forno (150 g)
                     - Patate lesse (200 g)
                     - Insalata mista (100 g)
                     - Olio extravergine di oliva (10 g)
                     """.trimIndent(),
-                glycemia = Random.nextInt(200),
-                postPrandialGlycemia = -1,
-                insulinUnits = Random.nextInt(20)
+                _glycemia = Random.nextInt(200),
+                _postPrandialGlycemia = -1,
+                _insulinUnits = Random.nextInt(20)
             ),
         ) // TODO: TO USE THE REAL ONE INSTEAD
         _mealDay.value = obtainedByTheRequest
@@ -238,7 +242,12 @@ class MealsScreenViewModel : EquinoxViewModel(
     ) {
         if (!areMealDataValid())
             return
-        // TODO: MAKE THE REQUEST THEN
+        // TODO: MAKE THE REQUEST THEN -> MUST RETURN THE NEW RAWCONTENT AND THE CONTENT TO LOCALLY ASSIGN
+        locallyUpdateMeal(
+            meal = meal,
+            rawContent = buildJsonObject { }, // TODO: TO RETRIEVE FROM RESPONSE
+            content = "- Filetto di salmone al forno (${Random.nextInt(1000)}g)" // TODO: TO RETRIEVE FROM RESPONSE
+        )
         onSave()
     }
 
@@ -262,6 +271,28 @@ class MealsScreenViewModel : EquinoxViewModel(
             }
         }
         return true
+    }
+
+    private fun locallyUpdateMeal(
+        meal: Meal,
+        rawContent: JsonObject,
+        content: String,
+    ) {
+        meal.glycemia.value = glycemia.toNormalizedGlycemicValue()
+        meal.postPrandialGlycemia.value = postPrandialGlycemia.toNormalizedGlycemicValue()
+        meal.insulinUnits.value = if (insulinNeeded.value)
+            insulinUnits.quantityPicked
+        else
+            -1
+        meal.rawContent.value = rawContent
+        meal.content.value = content
+    }
+
+    private fun MutableState<String>.toNormalizedGlycemicValue(): Int {
+        return if (value.isEmpty())
+            -1
+        else
+            value.toInt()
     }
 
     @Wrapper
