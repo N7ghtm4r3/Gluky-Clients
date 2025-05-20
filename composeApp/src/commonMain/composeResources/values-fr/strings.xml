@@ -34,7 +34,12 @@
     <string name="afternoon_snack">Collation de l'après-midi</string>
     <string name="dinner">Dîner</string>
     <string name="basal_insulin">Insuline basale</string>
-    <string name="noted_at">Noté à %1$s</string>
+    <string name="breakfast_noted_at">Notée à %1$s</string>
+    <string name="morning_snack_noted_at">Noté à %1$s</string>
+    <string name="lunch_noted_at">Noté à %1$s</string>
+    <string name="afternoon_snack_noted_at">Noté à %1$s</string>
+    <string name="dinner_noted_at">Noté à %1$s</string>
+    <string name="basal_insulin_noted_at">Notée à %1$s</string>
     <string name="pre_prandial_measurement">Mesure préprandiale</string>
     <string name="post_prandial_measurement">Mesure postprandiale</string>
     <plurals name="administered">
@@ -46,7 +51,7 @@
         <item quantity="other">unités d'insuline</item>
     </plurals>
     <string name="show_meal_content">Afficher le contenu du repas</string>
-    <string name="complete_meal">Ajouter les détails du repas</string>
+    <string name="fill_meal">Ajouter les détails du repas</string>
     <string name="what_i_ate">Ce que j'ai mangé</string>
     <string name="no_insulin_needed">Insuline non nécessaire</string>
     <string name="blood_sugar">Glycémie</string>
@@ -73,4 +78,6 @@
     <string name="unfilled_dinner">Dîner non rempli</string>
     <string name="day_notes">Notes du jour</string>
     <string name="unfilled_basal_insulin">Insuline basale non renseignée</string>
+    <string name="fill_basal_insulin">Ajouter les détails de l'insuline basale</string>
+    <string name="glycemic_value">Valeur glycémique</string>
 </resources>

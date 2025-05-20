@@ -34,7 +34,12 @@
     <string name="afternoon_snack">Afternoon snack</string>
     <string name="dinner">Dinner</string>
     <string name="basal_insulin">Basal insulin</string>
-    <string name="noted_at">Noted at %1$s</string>
+    <string name="breakfast_noted_at">Noted at %1$s</string>
+    <string name="morning_snack_noted_at">Noted at %1$s</string>
+    <string name="lunch_noted_at">Noted at %1$s</string>
+    <string name="afternoon_snack_noted_at">Noted at %1$s</string>
+    <string name="dinner_noted_at">Noted at %1$s</string>
+    <string name="basal_insulin_noted_at">Noted at %1$s</string>
     <string name="pre_prandial_measurement">Pre prandial measurement</string>
     <string name="post_prandial_measurement">Post prandial measurement</string>
     <plurals name="administered">
@@ -46,7 +51,7 @@
         <item quantity="other">insulin units</item>
     </plurals>
     <string name="show_meal_content">Show meal content</string>
-    <string name="complete_meal">Add meal details</string>
+    <string name="fill_meal">Add meal details</string>
     <string name="what_i_ate">What I ate</string>
     <string name="no_insulin_needed">No insulin needed</string>
     <string name="blood_sugar">Blood sugar</string>
@@ -73,4 +78,6 @@
     <string name="unfilled_dinner">Unfilled dinner</string>
     <string name="day_notes">Day notes</string>
     <string name="unfilled_basal_insulin">Unfilled basal insulin</string>
+    <string name="fill_basal_insulin">Add basal insulin details</string>
+    <string name="glycemic_value">Glycemic value</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.tecknobit.gluky.ui.screens.meals.components.measurementcards
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -7,21 +9,24 @@ import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.tecknobit.gluky.ui.components.SectionTitle
+import com.tecknobit.gluky.ui.screens.meals.GlycemiaLevelBadge
 import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
-import com.tecknobit.gluky.ui.screens.meals.components.UnfilledMeasurement
 import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import com.tecknobit.glukycore.enums.MeasurementType.BASAL_INSULIN
 import gluky.composeapp.generated.resources.Res.string
-import gluky.composeapp.generated.resources.complete_meal
+import gluky.composeapp.generated.resources.fill_basal_insulin
+import gluky.composeapp.generated.resources.glycemic_value
 
 @Composable
 fun BasalInsulinCard(
     viewModel: MealsScreenViewModel,
     mealDay: MealDayData,
 ) {
+    val basalInsulin = mealDay.basalInsulin
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -35,10 +40,10 @@ fun BasalInsulinCard(
         ) {
             CardHeader(
                 viewModel = viewModel,
-                basalInsulin = mealDay.basalInsulin
+                basalInsulin = basalInsulin
             )
-            UnfilledMeasurement(
-                type = BASAL_INSULIN
+            CardContent(
+                basalInsulin = basalInsulin
             )
         }
     }
@@ -54,11 +59,46 @@ private fun CardHeader(
         type = BASAL_INSULIN,
         endContent = {
             FillItemButton(
-                contentDescription = string.complete_meal,
+                contentDescription = string.fill_basal_insulin,
                 fillDialog = { fill ->
-
+                    // TODO: TO FILL WITH RELATED DIALOG
                 }
             )
         }
     )
+}
+
+@Composable
+private fun CardContent(
+    basalInsulin: BasalInsulin,
+) {
+    CardContentImpl(
+        item = basalInsulin,
+        type = BASAL_INSULIN,
+        filledContent = {
+            FilledBasalInsulin(
+                basalInsulin = basalInsulin
+            )
+        }
+    )
+}
+
+@Composable
+private fun FilledBasalInsulin(
+    basalInsulin: BasalInsulin,
+) {
+    AnimatedVisibility(
+        visible = basalInsulin.isGlycemiaFilled
+    ) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(5.dp)
+        ) {
+            SectionTitle(
+                title = string.glycemic_value
+            )
+            GlycemiaLevelBadge(
+                glycemia = basalInsulin.glycemia.value
+            )
+        }
+    }
 }

@@ -98,7 +98,7 @@ class MealsScreenViewModel : EquinoxViewModel(
     fun retrieveMealDay() {
         // TODO: TO MAKE THE REQUEST THEN
         viewModelScope.launch {
-            _mealDay.value = if (false) {
+            _mealDay.value = if (Random.nextBoolean()) {
                 MealDayData(
                     id = Random.nextLong().toString(),
                     breakfast = Meal(
@@ -122,7 +122,9 @@ class MealsScreenViewModel : EquinoxViewModel(
                         type = DINNER
                     ),
                     basalInsulin = BasalInsulin(
-                        id = Random.nextLong().toString()
+                        id = Random.nextLong().toString(),
+                        _annotationDate = currentTimestamp(),
+                        _glycemia = Random.nextInt(100)
                     )
                 )
             } else
@@ -155,7 +157,8 @@ class MealsScreenViewModel : EquinoxViewModel(
                 type = DINNER
             ),
             basalInsulin = BasalInsulin(
-                id = Random.nextLong().toString()
+                id = Random.nextLong().toString(),
+                _glycemia = Random.nextInt(100)
             )
         ) // TODO: TO USE THE REAL ONE INSTEAD
         _mealDay.value = obtainedByTheRequest

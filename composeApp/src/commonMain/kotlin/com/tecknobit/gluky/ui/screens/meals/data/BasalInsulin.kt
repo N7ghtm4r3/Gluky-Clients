@@ -17,8 +17,11 @@ data class BasalInsulin(
     override val _insulinUnits: Int = -1,
 ) : GlukyItem() {
 
+    val isGlycemiaFilled: Boolean
+        get() = glycemia.value != -1
+
     override val isNotFilledYet: Boolean
-        get() = annotationDate.value != -1L &&
+        get() = annotationDate.value == -1L &&
                 glycemia.value == -1 &&
                 insulinUnits.value == -1
 

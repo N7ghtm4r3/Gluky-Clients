@@ -2,7 +2,6 @@
 
 package com.tecknobit.gluky.ui.screens.meals.components.measurementcards
 
-import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
@@ -50,13 +49,11 @@ import com.pushpal.jetlime.JetLimeDefaults
 import com.pushpal.jetlime.JetLimeEvent
 import com.pushpal.jetlime.JetLimeEventDefaults
 import com.pushpal.jetlime.JetLimeRow
-import com.tecknobit.equinoxcompose.components.BadgeText
-import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.icons.CollapseAll
+import com.tecknobit.gluky.ui.screens.meals.GlycemiaLevelBadge
 import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
-import com.tecknobit.gluky.ui.screens.meals.components.UnfilledMeasurement
 import com.tecknobit.gluky.ui.screens.meals.components.formdialogs.MealFormDialog
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
@@ -67,7 +64,7 @@ import com.tecknobit.refy.ui.icons.ExpandAll
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.Res.string
 import gluky.composeapp.generated.resources.administered
-import gluky.composeapp.generated.resources.complete_meal
+import gluky.composeapp.generated.resources.fill_meal
 import gluky.composeapp.generated.resources.insulin_units
 import gluky.composeapp.generated.resources.no_insulin_needed
 import gluky.composeapp.generated.resources.post_prandial_measurement
@@ -146,7 +143,7 @@ private fun CardHeader(
                         .width(10.dp)
                 )
                 FillItemButton(
-                    contentDescription = string.complete_meal,
+                    contentDescription = string.fill_meal,
                     fillDialog = { fillMeal ->
                         MealFormDialog(
                             show = fillMeal,
@@ -165,20 +162,16 @@ private fun CardContent(
     meal: Meal,
     mealContentDisplayed: MutableState<Boolean>,
 ) {
-    AnimatedContent(
-        targetState = meal.isNotFilledYet
-    ) { isNotFilledYet ->
-        if (isNotFilledYet) {
-            UnfilledMeasurement(
-                type = meal.type
-            )
-        } else {
+    CardContentImpl(
+        item = meal,
+        type = meal.type,
+        filledContent = {
             FilledMeal(
                 meal = meal,
                 mealContentDisplayed = mealContentDisplayed
             )
         }
-    }
+    )
 }
 
 @Composable
@@ -269,7 +262,7 @@ private fun GlycemiaLevel(
                     }
                 },
                 content = {
-                    BadgeText(
+                    GlycemiaLevelBadge(
                         // TODO: TO ADOPT THE BUILT-IN CALLBACK WHEN INTEGRATED
                         modifier = Modifier
                             .clip(
@@ -282,11 +275,7 @@ private fun GlycemiaLevel(
                                     tooltipState.show()
                                 }
                             },
-                        badgeText = glycemia.toString(),
-                        badgeColor = levelColor,
-                        textColor = getContrastColor(
-                            backgroundColor = levelColor
-                        )
+                        glycemia = glycemia
                     )
                 }
             )

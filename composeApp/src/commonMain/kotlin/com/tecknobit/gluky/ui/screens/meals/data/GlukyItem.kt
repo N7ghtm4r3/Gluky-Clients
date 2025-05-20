@@ -22,7 +22,7 @@ sealed class GlukyItem {
 
     val glycemia: MutableState<Int> by lazy { mutableStateOf(_glycemia) }
 
-    val insulinUnits: MutableState<Int> by lazy { mutableStateOf(_glycemia) }
+    val insulinUnits: MutableState<Int> by lazy { mutableStateOf(_insulinUnits) }
 
     abstract val isNotFilledYet: Boolean
 
