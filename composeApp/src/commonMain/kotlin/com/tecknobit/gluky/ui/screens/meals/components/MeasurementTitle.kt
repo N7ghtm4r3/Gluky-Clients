@@ -18,9 +18,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tecknobit.gluky.ui.icons.Apple
+import com.tecknobit.gluky.ui.icons.BasalInsulin
 import com.tecknobit.gluky.ui.icons.Snack
-import com.tecknobit.gluky.ui.icons.Syringe
-import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.glukycore.enums.MeasurementType
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
@@ -40,12 +39,11 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun MealTitle(
+fun MeasurementTitle(
     modifier: Modifier = Modifier,
-    meal: Meal,
+    type: MeasurementType,
     endContent: @Composable (ColumnScope.() -> Unit)? = null,
 ) {
-    val type = meal.type
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
@@ -80,7 +78,7 @@ private fun MeasurementType.icon(): ImageVector {
         LUNCH -> Icons.Default.LunchDining
         AFTERNOON_SNACK -> Apple
         DINNER -> Icons.Default.DinnerDining
-        BASAL_INSULIN -> Syringe
+        BASAL_INSULIN -> BasalInsulin
     }
 }
 

@@ -22,7 +22,7 @@ import gluky.composeapp.generated.resources.unfilled_day
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun NoFilledDay(
+fun UnfilledDay(
     viewModel: MealsScreenViewModel,
 ) {
     val title = stringResource(Res.string.unfilled_day)

@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.meals.components.measurementcards
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -31,7 +31,6 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -58,6 +57,10 @@ import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.icons.CollapseAll
+import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
+import com.tecknobit.gluky.ui.screens.meals.components.MealFormDialog
+import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
+import com.tecknobit.gluky.ui.screens.meals.components.UnfilledMeasurement
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
@@ -118,54 +121,46 @@ private fun CardHeader(
     meal: Meal,
     mealContentDisplayed: MutableState<Boolean>,
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        MealTitle(
-            modifier = Modifier
-                .weight(2f),
-            meal = meal
-        )
-        Row(
-            modifier = Modifier
-                .weight(1f),
-            horizontalArrangement = Arrangement.End
-        ) {
-            AnimatedVisibility(
-                visible = meal.content.value.isNotEmpty()
+    MeasurementTitle(
+        type = meal.type,
+        endContent = {
+            Row(
+                horizontalArrangement = Arrangement.End
             ) {
-                IconButton(
-                    modifier = Modifier
-                        .size(32.dp),
-                    onClick = { mealContentDisplayed.value = !mealContentDisplayed.value }
+                AnimatedVisibility(
+                    visible = meal.content.value.isNotEmpty()
                 ) {
-                    Icon(
-                        imageVector = if (mealContentDisplayed.value)
-                            CollapseAll
-                        else
-                            ExpandAll,
-                        contentDescription = stringResource(string.show_meal_content)
-                    )
+                    IconButton(
+                        modifier = Modifier
+                            .size(32.dp),
+                        onClick = { mealContentDisplayed.value = !mealContentDisplayed.value }
+                    ) {
+                        Icon(
+                            imageVector = if (mealContentDisplayed.value)
+                                CollapseAll
+                            else
+                                ExpandAll,
+                            contentDescription = stringResource(string.show_meal_content)
+                        )
+                    }
                 }
+                Spacer(
+                    modifier = Modifier
+                        .width(10.dp)
+                )
+                FillItemButton(
+                    contentDescription = string.complete_meal,
+                    fillDialog = { fillMeal ->
+                        MealFormDialog(
+                            show = fillMeal,
+                            viewModel = viewModel,
+                            meal = meal
+                        )
+                    }
+                )
             }
-            Spacer(
-                modifier = Modifier
-                    .width(10.dp)
-            )
-            FillItemButton(
-                contentDescription = string.complete_meal,
-                fillDialog = { fillMeal ->
-                    MealFormDialog(
-                        show = fillMeal,
-                        viewModel = viewModel,
-                        meal = meal
-                    )
-                }
-            )
         }
-    }
+    )
     AnimatedVisibility(
         visible = meal.annotationDate != -1L
     ) {

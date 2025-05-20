@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.meals.components.daypickers
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutLinearInEasing

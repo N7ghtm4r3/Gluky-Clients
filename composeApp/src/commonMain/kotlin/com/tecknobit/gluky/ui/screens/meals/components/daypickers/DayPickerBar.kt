@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalComposeApi::class)
 
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.meals.components.daypickers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

@@ -22,10 +22,10 @@ import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
-import com.tecknobit.gluky.ui.screens.meals.components.DayPickerBar
 import com.tecknobit.gluky.ui.screens.meals.components.Measurements
-import com.tecknobit.gluky.ui.screens.meals.components.NoFilledDay
-import com.tecknobit.gluky.ui.screens.meals.components.ScrollableDayPicker
+import com.tecknobit.gluky.ui.screens.meals.components.UnfilledDay
+import com.tecknobit.gluky.ui.screens.meals.components.daypickers.DayPickerBar
+import com.tecknobit.gluky.ui.screens.meals.components.daypickers.ScrollableDayPicker
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
@@ -106,7 +106,7 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                     enter = fadeIn(),
                     exit = fadeOut()
                 ) {
-                    NoFilledDay(
+                    UnfilledDay(
                         viewModel = viewModel
                     )
                 }

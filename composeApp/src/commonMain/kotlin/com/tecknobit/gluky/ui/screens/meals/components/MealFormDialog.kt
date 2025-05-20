@@ -178,8 +178,8 @@ private fun FormTitle(
     show: MutableState<Boolean>,
     meal: Meal,
 ) {
-    MealTitle(
-        meal = meal,
+    MeasurementTitle(
+        type = meal.type,
         endContent = {
             IconButton(
                 modifier = Modifier
