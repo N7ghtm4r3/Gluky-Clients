@@ -28,7 +28,7 @@ data class Meal(
     override val id: String,
     val type: MeasurementType,
     @SerialName(ANNOTATION_DATE_KEY)
-    val annotationDate: Long = -1,
+    override val annotationDate: Long = -1,
     @SerialName(CONTENT_KEY)
     private val _content: String = "",
     @SerialName(RAW_CONTENT_KEY)

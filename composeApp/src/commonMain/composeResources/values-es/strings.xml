@@ -73,4 +73,5 @@
     <string name="unfilled_dinner">Cena no completada</string>
     <string name="my_meals">Mis comidas</string>
     <string name="day_notes">Notas del día</string>
+    <string name="basal_insulin_values">Valores de insulina basal</string>
 </resources>

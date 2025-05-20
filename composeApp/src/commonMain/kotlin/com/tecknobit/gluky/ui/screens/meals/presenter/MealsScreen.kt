@@ -147,7 +147,8 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
         horizontalPadding: Dp = 0.dp,
     ) {
         ScreenSectionContainer(
-            title = Res.string.my_meals
+            title = Res.string.my_meals,
+            topPadding = 16.dp
         ) {
             MealDay(
                 viewModel = viewModel,

@@ -1,6 +1,8 @@
 package com.tecknobit.gluky.ui.screens.meals.components
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,7 +28,8 @@ fun NoFilledDay(
     val title = stringResource(Res.string.unfilled_day)
     EmptyState(
         containerModifier = Modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
         lightResource = Res.drawable.no_filled_day_light,
         darkResource = Res.drawable.no_filled_day_dark,
         useDarkResource = applyDarkTheme(),

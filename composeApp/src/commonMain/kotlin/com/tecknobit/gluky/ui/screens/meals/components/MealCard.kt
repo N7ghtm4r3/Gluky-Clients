@@ -60,7 +60,6 @@ import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.icons.CollapseAll
-import com.tecknobit.gluky.ui.icons.FillMeal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
@@ -180,21 +179,15 @@ private fun CardHeader(
                 modifier = Modifier
                     .width(10.dp)
             )
-            val fillMeal = remember { mutableStateOf(false) }
-            IconButton(
-                modifier = Modifier
-                    .size(32.dp),
-                onClick = { fillMeal.value = !fillMeal.value }
-            ) {
-                Icon(
-                    imageVector = FillMeal,
-                    contentDescription = stringResource(string.complete_meal)
-                )
-            }
-            MealFormDialog(
-                show = fillMeal,
-                viewModel = viewModel,
-                meal = meal
+            FillItemButton(
+                contentDescription = string.complete_meal,
+                fillDialog = { fillMeal ->
+                    MealFormDialog(
+                        show = fillMeal,
+                        viewModel = viewModel,
+                        meal = meal
+                    )
+                }
             )
         }
     }

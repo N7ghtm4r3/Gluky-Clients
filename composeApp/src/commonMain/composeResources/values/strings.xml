@@ -73,4 +73,5 @@
     <string name="unfilled_dinner">Unfilled dinner</string>
     <string name="my_meals">My meals</string>
     <string name="day_notes">Day notes</string>
+    <string name="basal_insulin_values">Basal insulin values</string>
 </resources>
