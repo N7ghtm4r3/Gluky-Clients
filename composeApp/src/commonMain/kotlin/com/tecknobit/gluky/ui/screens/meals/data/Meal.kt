@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+import com.tecknobit.gluky.ui.screens.shared.data.GlukyItem
 import com.tecknobit.gluky.ui.theme.green
 import com.tecknobit.gluky.ui.theme.red
 import com.tecknobit.gluky.ui.theme.yellow
@@ -24,7 +25,7 @@ import kotlin.math.abs
 
 @Serializable
 data class Meal(
-    val id: String,
+    override val id: String,
     val type: MeasurementType,
     @SerialName(ANNOTATION_DATE_KEY)
     val annotationDate: Long = -1,
@@ -38,7 +39,7 @@ data class Meal(
     private val _postPrandialGlycemia: Int = -1,
     @SerialName(INSULIN_UNITS_KEY)
     private val _insulinUnits: Int = -1,
-) {
+) : GlukyItem {
 
     companion object {
 
@@ -89,7 +90,7 @@ data class Meal(
     val glycemiaGap: Int
         get() = abs(glycemia.value - postPrandialGlycemia.value)
 
-    val isNotFilledYet: Boolean
+    override val isNotFilledYet: Boolean
         get() = annotationDate == -1L &&
                 content.value.isEmpty() &&
                 glycemia.value == -1 &&

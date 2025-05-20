@@ -28,7 +28,7 @@ import com.tecknobit.gluky.ui.screens.TMPNavigatorScreen
 import com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen
 import com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen
 import com.tecknobit.gluky.ui.screens.meals.presenter.MealsScreen
-import com.tecknobit.gluky.ui.screens.shared.GlukyScreenPage
+import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.GlukyTheme
 import gluky.composeapp.generated.resources.Res

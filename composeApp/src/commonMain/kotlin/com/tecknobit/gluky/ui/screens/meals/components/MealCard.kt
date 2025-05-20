@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -66,6 +65,7 @@ import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
+import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
 import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
@@ -117,9 +117,7 @@ fun MealCard(
         modifier = Modifier
             .fillMaxWidth()
             .animateContentSize(),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant
-        )
+        colors = GlukyCardColors
     ) {
         Column(
             modifier = Modifier

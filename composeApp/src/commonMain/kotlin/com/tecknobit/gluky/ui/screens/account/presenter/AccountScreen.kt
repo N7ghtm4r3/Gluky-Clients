@@ -3,7 +3,7 @@ package com.tecknobit.gluky.ui.screens.account.presenter
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel
-import com.tecknobit.gluky.ui.screens.shared.GlukyScreenPage
+import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
 
 class AccountScreen : GlukyScreenPage<AccountScreenViewModel>(
     viewModel = AccountScreenViewModel()

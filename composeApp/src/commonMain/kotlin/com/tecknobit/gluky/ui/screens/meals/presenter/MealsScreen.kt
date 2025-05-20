@@ -1,10 +1,12 @@
 package com.tecknobit.gluky.ui.screens.meals.presenter
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -21,15 +23,17 @@ import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
-import com.tecknobit.gluky.ui.components.SectionTitle
+import com.tecknobit.gluky.ui.screens.meals.components.BasalInsulinCard
 import com.tecknobit.gluky.ui.screens.meals.components.DayPickerBar
 import com.tecknobit.gluky.ui.screens.meals.components.MealDay
+import com.tecknobit.gluky.ui.screens.meals.components.NoFilledDay
+import com.tecknobit.gluky.ui.screens.meals.components.ScreenSectionContainer
 import com.tecknobit.gluky.ui.screens.meals.components.ScrollableDayPicker
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
-import com.tecknobit.gluky.ui.screens.shared.GlukyScreenPage
-import com.tecknobit.gluky.ui.theme.AppTypography
+import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
 import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.basal_insulin
 import gluky.composeapp.generated.resources.my_meals
 
 @OptIn(ExperimentalComposeApi::class)
@@ -103,15 +107,35 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
             loadingRoutine = { true },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                        .navigationBarsPadding()
+                AnimatedVisibility(
+                    visible = mealDay.value == null,
+                    enter = fadeIn(),
+                    exit = fadeOut()
                 ) {
-                    MyMeals(
-                        horizontalPadding = horizontalPadding
+                    NoFilledDay(
+                        viewModel = viewModel
                     )
+                }
+                AnimatedVisibility(
+                    visible = mealDay.value != null,
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    mealDay.value?.let {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .navigationBarsPadding()
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            MyMeals(
+                                horizontalPadding = horizontalPadding
+                            )
+                            BasalInsulin(
+                                horizontalPadding = horizontalPadding
+                            )
+                        }
+                    }
                 }
             }
         )
@@ -122,20 +146,31 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
     private fun MyMeals(
         horizontalPadding: Dp = 0.dp,
     ) {
-        SectionTitle(
-            modifier = Modifier
-                .padding(
-                    start = 16.dp,
-                    top = 16.dp
-                ),
-            title = Res.string.my_meals,
-            style = AppTypography.titleLarge
-        )
-        MealDay(
-            viewModel = viewModel,
-            horizontalPadding = horizontalPadding,
-            mealDay = mealDay.value
-        )
+        ScreenSectionContainer(
+            title = Res.string.my_meals
+        ) {
+            MealDay(
+                viewModel = viewModel,
+                horizontalPadding = horizontalPadding,
+                mealDay = mealDay.value!!
+            )
+        }
+    }
+
+    @Composable
+    @ScreenSection
+    private fun BasalInsulin(
+        horizontalPadding: Dp = 0.dp,
+    ) {
+        ScreenSectionContainer(
+            title = Res.string.basal_insulin
+        ) {
+            BasalInsulinCard(
+                viewModel = viewModel,
+                mealDay = mealDay.value!!,
+                horizontalPadding = horizontalPadding
+            )
+        }
     }
 
     override fun onStart() {

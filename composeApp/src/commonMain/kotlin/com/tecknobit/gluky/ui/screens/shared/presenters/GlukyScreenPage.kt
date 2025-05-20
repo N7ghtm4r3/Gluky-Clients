@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.shared
+package com.tecknobit.gluky.ui.screens.shared.presenters
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope

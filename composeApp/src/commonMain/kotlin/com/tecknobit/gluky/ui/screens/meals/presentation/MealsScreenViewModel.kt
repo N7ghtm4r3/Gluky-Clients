@@ -13,6 +13,7 @@ import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
+import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
@@ -120,6 +121,9 @@ class MealsScreenViewModel : EquinoxViewModel(
                         id = Random.nextLong().toString(),
                         type = DINNER
                     ),
+                    basalInsulin = BasalInsulin(
+                        id = Random.nextLong().toString()
+                    )
                 )
             } else
                 null
@@ -150,6 +154,9 @@ class MealsScreenViewModel : EquinoxViewModel(
                 id = Random.nextLong().toString(),
                 type = DINNER
             ),
+            basalInsulin = BasalInsulin(
+                id = Random.nextLong().toString()
+            )
         ) // TODO: TO USE THE REAL ONE INSTEAD
         _mealDay.value = obtainedByTheRequest
     }
