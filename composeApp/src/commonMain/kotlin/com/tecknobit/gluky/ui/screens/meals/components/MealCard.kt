@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -53,7 +52,6 @@ import com.pushpal.jetlime.JetLimeEvent
 import com.pushpal.jetlime.JetLimeEventDefaults
 import com.pushpal.jetlime.JetLimeRow
 import com.tecknobit.equinoxcompose.components.BadgeText
-import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
@@ -65,14 +63,8 @@ import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
-import com.tecknobit.gluky.ui.theme.applyDarkTheme
-import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
-import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
-import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
-import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import com.tecknobit.refy.ui.icons.ExpandAll
 import gluky.composeapp.generated.resources.Res
-import gluky.composeapp.generated.resources.Res.drawable
 import gluky.composeapp.generated.resources.Res.string
 import gluky.composeapp.generated.resources.administered
 import gluky.composeapp.generated.resources.complete_meal
@@ -82,25 +74,8 @@ import gluky.composeapp.generated.resources.noted_at
 import gluky.composeapp.generated.resources.post_prandial_measurement
 import gluky.composeapp.generated.resources.pre_prandial_measurement
 import gluky.composeapp.generated.resources.show_meal_content
-import gluky.composeapp.generated.resources.unfilled_afternoon_snack
-import gluky.composeapp.generated.resources.unfilled_afternoon_snack_dark
-import gluky.composeapp.generated.resources.unfilled_afternoon_snack_light
-import gluky.composeapp.generated.resources.unfilled_breakfast
-import gluky.composeapp.generated.resources.unfilled_breakfast_dark
-import gluky.composeapp.generated.resources.unfilled_breakfast_light
-import gluky.composeapp.generated.resources.unfilled_dinner
-import gluky.composeapp.generated.resources.unfilled_dinner_dark
-import gluky.composeapp.generated.resources.unfilled_dinner_light
-import gluky.composeapp.generated.resources.unfilled_lunch
-import gluky.composeapp.generated.resources.unfilled_lunch_dark
-import gluky.composeapp.generated.resources.unfilled_lunch_light
-import gluky.composeapp.generated.resources.unfilled_morning_snack
-import gluky.composeapp.generated.resources.unfilled_morning_snack_dark
-import gluky.composeapp.generated.resources.unfilled_morning_snack_light
 import gluky.composeapp.generated.resources.what_i_ate
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.DrawableResource
-import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -221,76 +196,13 @@ private fun CardContent(
         targetState = meal.isNotFilledYet
     ) { isNotFilledYet ->
         if (isNotFilledYet) {
-            UnfilledMeal(
-                meal = meal
+            UnfilledMeasurement(
+                type = meal.type
             )
         } else {
             FilledMeal(
                 meal = meal,
                 mealContentDisplayed = mealContentDisplayed
-            )
-        }
-    }
-}
-
-@Composable
-private fun UnfilledMeal(
-    meal: Meal,
-) {
-    val unfilledEmptyStateRes = remember { meal.unfilledEmptyStateRes() }
-    val title = stringResource(unfilledEmptyStateRes.first)
-    EmptyState(
-        containerModifier = Modifier
-            .fillMaxSize(),
-        lightResource = unfilledEmptyStateRes.second,
-        darkResource = unfilledEmptyStateRes.third,
-        useDarkResource = applyDarkTheme(),
-        contentDescription = title,
-        title = title,
-        titleStyle = AppTypography.bodyLarge,
-        resourceSize = 150.dp
-    )
-}
-
-private fun Meal.unfilledEmptyStateRes(): Triple<StringResource, DrawableResource, DrawableResource> {
-    return when (type) {
-        BREAKFAST -> {
-            Triple(
-                first = string.unfilled_breakfast,
-                second = drawable.unfilled_breakfast_light,
-                third = drawable.unfilled_breakfast_dark
-            )
-        }
-
-        MORNING_SNACK -> {
-            Triple(
-                first = string.unfilled_morning_snack,
-                second = drawable.unfilled_morning_snack_light,
-                third = drawable.unfilled_morning_snack_dark
-            )
-        }
-
-        LUNCH -> {
-            Triple(
-                first = string.unfilled_lunch,
-                second = drawable.unfilled_lunch_light,
-                third = drawable.unfilled_lunch_dark
-            )
-        }
-
-        AFTERNOON_SNACK -> {
-            Triple(
-                first = string.unfilled_afternoon_snack,
-                second = drawable.unfilled_afternoon_snack_light,
-                third = drawable.unfilled_afternoon_snack_dark
-            )
-        }
-
-        else -> {
-            Triple(
-                first = string.unfilled_dinner,
-                second = drawable.unfilled_dinner_light,
-                third = drawable.unfilled_dinner_dark
             )
         }
     }

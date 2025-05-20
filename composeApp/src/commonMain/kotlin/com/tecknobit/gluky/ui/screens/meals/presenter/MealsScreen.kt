@@ -18,23 +18,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.tecknobit.equinoxcompose.annotations.ScreenSection
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
-import com.tecknobit.gluky.ui.screens.meals.components.BasalInsulinCard
 import com.tecknobit.gluky.ui.screens.meals.components.DayPickerBar
-import com.tecknobit.gluky.ui.screens.meals.components.MealDay
+import com.tecknobit.gluky.ui.screens.meals.components.Measurements
 import com.tecknobit.gluky.ui.screens.meals.components.NoFilledDay
-import com.tecknobit.gluky.ui.screens.meals.components.ScreenSectionContainer
 import com.tecknobit.gluky.ui.screens.meals.components.ScrollableDayPicker
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
-import gluky.composeapp.generated.resources.Res
-import gluky.composeapp.generated.resources.basal_insulin
-import gluky.composeapp.generated.resources.my_meals
 
 @OptIn(ExperimentalComposeApi::class)
 class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
@@ -128,50 +122,16 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                                 .navigationBarsPadding()
                                 .verticalScroll(rememberScrollState())
                         ) {
-                            MyMeals(
-                                horizontalPadding = horizontalPadding
-                            )
-                            BasalInsulin(
-                                horizontalPadding = horizontalPadding
+                            Measurements(
+                                viewModel = viewModel,
+                                horizontalPadding = horizontalPadding,
+                                mealDay = mealDay.value!!
                             )
                         }
                     }
                 }
             }
         )
-    }
-
-    @Composable
-    @ScreenSection
-    private fun MyMeals(
-        horizontalPadding: Dp = 0.dp,
-    ) {
-        ScreenSectionContainer(
-            title = Res.string.my_meals,
-            topPadding = 16.dp
-        ) {
-            MealDay(
-                viewModel = viewModel,
-                horizontalPadding = horizontalPadding,
-                mealDay = mealDay.value!!
-            )
-        }
-    }
-
-    @Composable
-    @ScreenSection
-    private fun BasalInsulin(
-        horizontalPadding: Dp = 0.dp,
-    ) {
-        ScreenSectionContainer(
-            title = Res.string.basal_insulin
-        ) {
-            BasalInsulinCard(
-                viewModel = viewModel,
-                mealDay = mealDay.value!!,
-                horizontalPadding = horizontalPadding
-            )
-        }
     }
 
     override fun onStart() {

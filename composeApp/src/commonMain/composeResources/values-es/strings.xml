@@ -71,7 +71,6 @@
     <string name="unfilled_lunch">Almuerzo no completado</string>
     <string name="unfilled_afternoon_snack">Tentempié de la tarde no completado</string>
     <string name="unfilled_dinner">Cena no completada</string>
-    <string name="my_meals">Mis comidas</string>
     <string name="day_notes">Notas del día</string>
-    <string name="basal_insulin_values">Valores de insulina basal</string>
+    <string name="unfilled_basal_insulin">Insulina basal sin completar</string>
 </resources>

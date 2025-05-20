@@ -11,19 +11,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.annotations.ScreenSection
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.glukycore.enums.MeasurementType
 
 @Composable
-fun MealDay(
+@ScreenSection
+fun Measurements(
     viewModel: MealsScreenViewModel,
     horizontalPadding: Dp = 0.dp,
     mealDay: MealDayData,
 ) {
     LazyVerticalStaggeredGrid(
         modifier = Modifier
-            .height(500.dp)
+            .height(750.dp)
             .animateContentSize(),
         columns = StaggeredGridCells.Adaptive(
             minSize = 350.dp
@@ -44,6 +46,12 @@ fun MealDay(
                 meal = mealDay.getMealByType(
                     type = type
                 )
+            )
+        }
+        item {
+            BasalInsulinCard(
+                viewModel = viewModel,
+                mealDay = mealDay
             )
         }
     }
