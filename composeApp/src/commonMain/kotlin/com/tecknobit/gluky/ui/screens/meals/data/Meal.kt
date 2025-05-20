@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
-import com.tecknobit.gluky.ui.screens.shared.data.GlukyItem
 import com.tecknobit.gluky.ui.theme.green
 import com.tecknobit.gluky.ui.theme.red
 import com.tecknobit.gluky.ui.theme.yellow
@@ -28,18 +27,18 @@ data class Meal(
     override val id: String,
     val type: MeasurementType,
     @SerialName(ANNOTATION_DATE_KEY)
-    override val annotationDate: Long = -1,
+    override val _annotationDate: Long = -1,
     @SerialName(CONTENT_KEY)
     private val _content: String = "",
     @SerialName(RAW_CONTENT_KEY)
     private val _rawContent: JsonObject = buildJsonObject { },
     @SerialName(GLYCEMIA_KEY)
-    private val _glycemia: Int = -1,
+    override val _glycemia: Int = -1,
     @SerialName(POST_PRANDIAL_GLYCEMIA_KEY)
     private val _postPrandialGlycemia: Int = -1,
     @SerialName(INSULIN_UNITS_KEY)
-    private val _insulinUnits: Int = -1,
-) : GlukyItem {
+    override val _insulinUnits: Int = -1,
+) : GlukyItem() {
 
     companion object {
 
@@ -73,13 +72,7 @@ data class Meal(
     val rawContent: MutableState<JsonObject> = mutableStateOf(_rawContent)
 
     @Transient
-    val glycemia: MutableState<Int> = mutableStateOf(_glycemia)
-
-    @Transient
     val postPrandialGlycemia: MutableState<Int> = mutableStateOf(_postPrandialGlycemia)
-
-    @Transient
-    val insulinUnits: MutableState<Int> = mutableStateOf(_insulinUnits)
 
     val glycemiaTrend: List<Int>
         get() = if (postPrandialGlycemia.value != -1)
@@ -91,9 +84,10 @@ data class Meal(
         get() = abs(glycemia.value - postPrandialGlycemia.value)
 
     override val isNotFilledYet: Boolean
-        get() = annotationDate == -1L &&
+        get() = annotationDate.value == -1L &&
                 content.value.isEmpty() &&
                 glycemia.value == -1 &&
                 postPrandialGlycemia.value == -1 &&
                 insulinUnits.value == -1
+
 }

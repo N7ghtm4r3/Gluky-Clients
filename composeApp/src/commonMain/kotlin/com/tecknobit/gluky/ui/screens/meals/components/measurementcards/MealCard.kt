@@ -52,15 +52,12 @@ import com.pushpal.jetlime.JetLimeEventDefaults
 import com.pushpal.jetlime.JetLimeRow
 import com.tecknobit.equinoxcompose.components.BadgeText
 import com.tecknobit.equinoxcompose.components.getContrastColor
-import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
-import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.icons.CollapseAll
 import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
-import com.tecknobit.gluky.ui.screens.meals.components.MealFormDialog
-import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.meals.components.UnfilledMeasurement
+import com.tecknobit.gluky.ui.screens.meals.components.formdialogs.MealFormDialog
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
@@ -73,7 +70,6 @@ import gluky.composeapp.generated.resources.administered
 import gluky.composeapp.generated.resources.complete_meal
 import gluky.composeapp.generated.resources.insulin_units
 import gluky.composeapp.generated.resources.no_insulin_needed
-import gluky.composeapp.generated.resources.noted_at
 import gluky.composeapp.generated.resources.post_prandial_measurement
 import gluky.composeapp.generated.resources.pre_prandial_measurement
 import gluky.composeapp.generated.resources.show_meal_content
@@ -121,7 +117,8 @@ private fun CardHeader(
     meal: Meal,
     mealContentDisplayed: MutableState<Boolean>,
 ) {
-    MeasurementTitle(
+    CardHeaderContent(
+        item = meal,
         type = meal.type,
         endContent = {
             Row(
@@ -161,25 +158,6 @@ private fun CardHeader(
             }
         }
     )
-    AnimatedVisibility(
-        visible = meal.annotationDate != -1L
-    ) {
-        Text(
-            modifier = Modifier
-                .padding(
-                    bottom = 5.dp
-                ),
-            text = stringResource(
-                resource = string.noted_at,
-                meal.annotationDate.toDateString(
-                    pattern = H24_HOURS_MINUTES_PATTERN
-                )
-            ),
-            style = AppTypography.bodyLarge,
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis
-        )
-    }
 }
 
 @Composable

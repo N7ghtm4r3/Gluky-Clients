@@ -203,6 +203,7 @@ class MealsScreenViewModel : EquinoxViewModel(
         rawContent: JsonObject,
         content: String,
     ) {
+        meal.annotationDate.value = currentTimestamp()
         meal.glycemia.value = glycemia.toNormalizedGlycemicValue()
         meal.postPrandialGlycemia.value = postPrandialGlycemia.toNormalizedGlycemicValue()
         meal.insulinUnits.value = if (insulinNeeded.value)

@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeApi::class)
 
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.meals.components.formdialogs
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
@@ -69,6 +69,7 @@ import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPicker
 import com.tecknobit.equinoxcompose.components.quantitypicker.rememberQuantityPickerState
 import com.tecknobit.equinoxcore.json.treatsAsString
 import com.tecknobit.gluky.ui.components.SectionTitle
+import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography

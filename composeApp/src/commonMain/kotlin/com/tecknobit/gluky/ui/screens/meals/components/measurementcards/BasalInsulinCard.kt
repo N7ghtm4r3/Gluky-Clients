@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
-import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.meals.components.UnfilledMeasurement
 import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
@@ -50,7 +49,8 @@ private fun CardHeader(
     viewModel: MealsScreenViewModel,
     basalInsulin: BasalInsulin,
 ) {
-    MeasurementTitle(
+    CardHeaderContent(
+        item = basalInsulin,
         type = BASAL_INSULIN,
         endContent = {
             FillItemButton(
@@ -61,5 +61,4 @@ private fun CardHeader(
             )
         }
     )
-
 }
