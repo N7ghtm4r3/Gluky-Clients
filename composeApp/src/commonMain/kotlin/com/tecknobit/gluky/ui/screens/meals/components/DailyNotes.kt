@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import com.mohamedrejeb.richeditor.model.rememberRichTextState
 import com.mohamedrejeb.richeditor.ui.material3.RichText
 import com.tecknobit.equinoxcompose.components.EquinoxTextField
+import com.tecknobit.gluky.helpers.ScreenMonitor
 import com.tecknobit.gluky.ui.icons.EditItem
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
@@ -63,6 +64,7 @@ fun DailyNotes(
     mealDay: MealDayData,
 ) {
     if (state.isVisible) {
+        ScreenMonitor.keepScreenAwake()
         ModalBottomSheet(
             modifier = Modifier
                 .fillMaxHeight(),
@@ -88,7 +90,8 @@ fun DailyNotes(
                 content = content
             )
         }
-    }
+    } else
+        ScreenMonitor.allowScreenSleeps()
 }
 
 @Composable
