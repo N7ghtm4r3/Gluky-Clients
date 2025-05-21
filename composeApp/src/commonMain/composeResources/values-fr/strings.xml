@@ -76,8 +76,11 @@
     <string name="unfilled_lunch">Déjeuner non rempli</string>
     <string name="unfilled_afternoon_snack">Collation de l'après-midi non remplie</string>
     <string name="unfilled_dinner">Dîner non rempli</string>
-    <string name="day_notes">Notes du jour</string>
+    <string name="daily_notes">Notes du jour</string>
     <string name="unfilled_basal_insulin">Insuline basale non renseignée</string>
     <string name="fill_basal_insulin">Ajouter les détails de l'insuline basale</string>
     <string name="glycemic_value">Valeur glycémique</string>
+    <string name="edit_daily_notes">Modifier les notes quotidiennes</string>
+    <string name="my_daily_notes">Mes notes quotidiennes...</string>
+    <string name="on_editing">Vous modifiez</string>
 </resources>

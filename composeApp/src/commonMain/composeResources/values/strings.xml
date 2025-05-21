@@ -76,8 +76,11 @@
     <string name="unfilled_lunch">Unfilled lunch</string>
     <string name="unfilled_afternoon_snack">Unfilled afternoon snack</string>
     <string name="unfilled_dinner">Unfilled dinner</string>
-    <string name="day_notes">Day notes</string>
+    <string name="daily_notes">Daily notes</string>
     <string name="unfilled_basal_insulin">Unfilled basal insulin</string>
     <string name="fill_basal_insulin">Add basal insulin details</string>
     <string name="glycemic_value">Glycemic value</string>
+    <string name="edit_daily_notes">Edit daily notes</string>
+    <string name="my_daily_notes">My daily notes...</string>
+    <string name="on_editing">You're editing</string>
 </resources>

@@ -4,8 +4,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
+import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
@@ -24,27 +27,41 @@ abstract class GlukyScreenPage<V : EquinoxViewModel>(
     @OptIn(ExperimentalComposeApi::class)
     @Composable
     override fun ArrangeScreenContent() {
-        Column(
-            modifier = Modifier
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Scaffold(
+            floatingActionButton = { FABContent() },
+            snackbarHost = {
+                SnackbarHost(
+                    hostState = viewModel.snackbarHostState!!
+                )
+            }
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxHeight()
-                    .then(
-                        if (useResponsiveWidth)
-                            Modifier.responsiveMaxWidth()
-                        else
-                            Modifier
-                    )
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                ScreenPageContent()
+                Column(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .then(
+                            if (useResponsiveWidth)
+                                Modifier.responsiveMaxWidth()
+                            else
+                                Modifier
+                        )
+                ) {
+                    ScreenPageContent()
+                }
             }
         }
     }
 
     @Composable
     protected abstract fun ColumnScope.ScreenPageContent()
+
+    @Composable
+    @NonRestartableComposable
+    protected open fun FABContent() {
+    }
 
 }

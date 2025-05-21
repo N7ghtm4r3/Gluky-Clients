@@ -2,6 +2,7 @@ package com.tecknobit.gluky.ui.screens.meals.data
 
 import com.tecknobit.glukycore.AFTERNOON_SNACK_KEY
 import com.tecknobit.glukycore.BASAL_INSULIN_KEY
+import com.tecknobit.glukycore.DAILY_NOTES_KEY
 import com.tecknobit.glukycore.MORNING_SNACK_KEY
 import com.tecknobit.glukycore.enums.MeasurementType
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
@@ -24,6 +25,8 @@ data class MealDayData(
     val dinner: Meal,
     @SerialName(BASAL_INSULIN_KEY)
     val basalInsulin: BasalInsulin,
+    @SerialName(DAILY_NOTES_KEY)
+    var dailyNotes: String = "",
 ) {
 
     fun getMealByType(

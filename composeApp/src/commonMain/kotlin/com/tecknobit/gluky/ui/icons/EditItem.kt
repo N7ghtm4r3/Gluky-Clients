@@ -8,12 +8,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-val FillMeal: ImageVector
+val EditItem: ImageVector
     get() {
-        if (_FillMeal != null) {
-            return _FillMeal!!
+        if (_EditItem != null) {
+            return _EditItem!!
         }
-        _FillMeal = ImageVector.Builder(
+        _EditItem = ImageVector.Builder(
             name = "FillMeal",
             defaultWidth = 24.dp,
             defaultHeight = 24.dp,
@@ -68,8 +68,8 @@ val FillMeal: ImageVector
             }
         }.build()
 
-        return _FillMeal!!
+        return _EditItem!!
     }
 
 @Suppress("ObjectPropertyName")
-private var _FillMeal: ImageVector? = null
+private var _EditItem: ImageVector? = null

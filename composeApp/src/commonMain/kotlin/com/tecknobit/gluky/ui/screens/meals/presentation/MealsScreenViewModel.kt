@@ -290,4 +290,13 @@ class MealsScreenViewModel : EquinoxViewModel(
         }
     }
 
+    fun saveDailyNotes(
+        content: String,
+        onSave: () -> Unit,
+    ) {
+        // TODO: MAKE THE REQUEST THEN
+        _mealDay.value!!.dailyNotes = content
+        onSave()
+    }
+
 }

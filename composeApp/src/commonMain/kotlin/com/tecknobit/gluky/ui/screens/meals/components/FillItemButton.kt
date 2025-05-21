@@ -9,7 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.tecknobit.gluky.ui.icons.FillMeal
+import com.tecknobit.gluky.ui.icons.EditItem
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -25,7 +25,7 @@ fun FillItemButton(
         onClick = { fill.value = !fill.value }
     ) {
         Icon(
-            imageVector = FillMeal,
+            imageVector = EditItem,
             contentDescription = stringResource(contentDescription)
         )
     }

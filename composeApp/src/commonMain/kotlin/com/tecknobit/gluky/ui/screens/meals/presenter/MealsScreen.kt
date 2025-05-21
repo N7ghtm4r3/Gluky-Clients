@@ -1,6 +1,7 @@
 package com.tecknobit.gluky.ui.screens.meals.presenter
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
@@ -9,11 +10,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.NoteAlt
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
@@ -22,6 +31,8 @@ import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
+import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
+import com.tecknobit.gluky.ui.screens.meals.components.DailyNotes
 import com.tecknobit.gluky.ui.screens.meals.components.Measurements
 import com.tecknobit.gluky.ui.screens.meals.components.UnfilledDay
 import com.tecknobit.gluky.ui.screens.meals.components.daypickers.DayPickerBar
@@ -29,8 +40,15 @@ import com.tecknobit.gluky.ui.screens.meals.components.daypickers.ScrollableDayP
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
+import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.daily_notes
+import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalComposeApi::class)
+@OptIn(
+    ExperimentalComposeApi::class, ExperimentalSharedTransitionApi::class,
+    ExperimentalMaterial3Api::class
+)
 class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
     viewModel = MealsScreenViewModel(),
     useResponsiveWidth = false
@@ -132,6 +150,52 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                 }
             }
         )
+    }
+
+    @Composable
+    override fun FABContent() {
+        AnimatedVisibility(
+            visible = mealDay.value != null
+        ) {
+            mealDay.value?.let {
+                val dailyNotes = stringResource(Res.string.daily_notes)
+                val state = rememberModalBottomSheetState(
+                    skipPartiallyExpanded = true,
+                    confirmValueChange = { false }
+                )
+                val scope = rememberCoroutineScope()
+                ExtendedFloatingActionButton(
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    expanded = responsiveAssignment(
+                        onExpandedSizeClass = { true },
+                        onMediumSizeClass = { false },
+                        onCompactSizeClass = { false }
+                    ),
+                    icon = {
+                        Icon(
+                            imageVector = Icons.Default.NoteAlt,
+                            contentDescription = dailyNotes
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = dailyNotes
+                        )
+                    },
+                    onClick = {
+                        scope.launch {
+                            state.show()
+                        }
+                    }
+                )
+                DailyNotes(
+                    state = state,
+                    scope = scope,
+                    viewModel = viewModel,
+                    mealDay = mealDay.value!!
+                )
+            }
+        }
     }
 
     override fun onStart() {

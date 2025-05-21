@@ -27,7 +27,7 @@ fun Measurements(
 ) {
     LazyVerticalStaggeredGrid(
         modifier = Modifier
-            .height(750.dp)
+            .height(500.dp)
             .animateContentSize(),
         columns = StaggeredGridCells.Adaptive(
             minSize = 350.dp
