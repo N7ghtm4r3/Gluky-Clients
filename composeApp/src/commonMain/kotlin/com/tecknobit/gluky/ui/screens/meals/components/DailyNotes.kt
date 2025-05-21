@@ -36,7 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.mohamedrejeb.richeditor.model.rememberRichTextState
 import com.mohamedrejeb.richeditor.ui.material3.RichText
@@ -72,13 +72,15 @@ fun DailyNotes(
                 }
             }
         ) {
-            val isEditing = remember { mutableStateOf(mealDay.dailyNotes.isEmpty()) }
-            val content = remember { mutableStateOf(mealDay.dailyNotes) }
+            val dailyNotes = mealDay.dailyNotes
+            val isEditing = remember { mutableStateOf(dailyNotes.isEmpty()) }
+            val content = remember { mutableStateOf(dailyNotes) }
             SheetHeader(
                 state = state,
                 scope = scope,
                 viewModel = viewModel,
                 isEditing = isEditing,
+                dailyNotes = dailyNotes,
                 content = content
             )
             NotesContent(
@@ -95,6 +97,7 @@ private fun SheetHeader(
     scope: CoroutineScope,
     viewModel: MealsScreenViewModel,
     isEditing: MutableState<Boolean>,
+    dailyNotes: String,
     content: MutableState<String>,
 ) {
     Row(
@@ -133,12 +136,19 @@ private fun SheetHeader(
                     if (isEditing.value) {
                         viewModel.saveDailyNotes(
                             content = content.value,
-                            onSave = { isEditing.value = false }
+                            onSave = {
+                                isEditing.value = false
+                                if (content.value.isEmpty()) {
+                                    scope.launch {
+                                        state.hide()
+                                    }
+                                }
+                            }
                         )
                     } else
                         isEditing.value = true
                 },
-                enabled = content.value.isNotEmpty()
+                enabled = content.value.isNotEmpty() || dailyNotes.isNotEmpty()
             ) {
                 AnimatedContent(
                     targetState = isEditing.value
@@ -211,7 +221,7 @@ private fun EditNotes(
         placeholder = stringResource(Res.string.my_daily_notes),
         maxLines = Int.MAX_VALUE,
         keyboardOptions = KeyboardOptions(
-            imeAction = ImeAction.Done
+            capitalization = KeyboardCapitalization.Sentences
         )
     )
 }
