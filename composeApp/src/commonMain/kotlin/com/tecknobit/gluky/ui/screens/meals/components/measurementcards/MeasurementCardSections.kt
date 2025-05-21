@@ -4,12 +4,21 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
@@ -25,14 +34,18 @@ import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
 import com.tecknobit.glukycore.enums.MeasurementType.DINNER
 import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
 import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
+import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.Res.drawable
 import gluky.composeapp.generated.resources.Res.string
+import gluky.composeapp.generated.resources.administered
 import gluky.composeapp.generated.resources.afternoon_snack_noted_at
 import gluky.composeapp.generated.resources.basal_insulin_noted_at
 import gluky.composeapp.generated.resources.breakfast_noted_at
 import gluky.composeapp.generated.resources.dinner_noted_at
+import gluky.composeapp.generated.resources.insulin_units
 import gluky.composeapp.generated.resources.lunch_noted_at
 import gluky.composeapp.generated.resources.morning_snack_noted_at
+import gluky.composeapp.generated.resources.no_insulin_needed
 import gluky.composeapp.generated.resources.unfilled_afternoon_snack
 import gluky.composeapp.generated.resources.unfilled_afternoon_snack_dark
 import gluky.composeapp.generated.resources.unfilled_afternoon_snack_light
@@ -53,6 +66,7 @@ import gluky.composeapp.generated.resources.unfilled_morning_snack_dark
 import gluky.composeapp.generated.resources.unfilled_morning_snack_light
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
@@ -180,6 +194,62 @@ private fun MeasurementType.unfilledEmptyStateRes(): Triple<StringResource, Draw
                 second = drawable.unfilled_basal_insulin_light,
                 third = drawable.unfilled_basal_insulin_dark
             )
+        }
+    }
+}
+
+@Composable
+internal fun AdministeredInsulinUnits(
+    insulinUnits: Int,
+) {
+    val insulinUnitsText = formatInsulinUnits(
+        insulinUnits = insulinUnits
+    )
+    Text(
+        modifier = Modifier
+            .heightIn(
+                min = 35.dp
+            )
+            .padding(
+                top = 10.dp
+            ),
+        text = insulinUnitsText,
+        style = AppTypography.bodyLarge,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+    )
+}
+
+@Composable
+private fun formatInsulinUnits(
+    insulinUnits: Int,
+): AnnotatedString {
+    if (insulinUnits == -1)
+        return AnnotatedString(stringResource(string.no_insulin_needed))
+    val primaryColor = MaterialTheme.colorScheme.primary
+    val administered = pluralStringResource(
+        resource = Res.plurals.administered,
+        insulinUnits
+    )
+    val insulinUnitsText = pluralStringResource(
+        resource = Res.plurals.insulin_units,
+        insulinUnits
+    )
+    return remember(insulinUnits) {
+        buildAnnotatedString {
+            append(administered)
+            append(" ")
+            withStyle(
+                style = SpanStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
+                    color = primaryColor
+                )
+            ) {
+                append(insulinUnits.toString())
+            }
+            append(" ")
+            append(insulinUnitsText)
         }
     }
 }

@@ -14,6 +14,7 @@ import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
 import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
+import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
@@ -180,11 +181,8 @@ class MealsScreenViewModel : EquinoxViewModel(
     }
 
     private fun areMealDataValid(): Boolean {
-        if (!glycemiaValueIsValid(glycemia.value)) {
-            toastGlycemiaValueError()
-            glycemiaError.value = true
+        if (!isGlycemiaValueValid())
             return false
-        }
         if (!glycemiaValueIsValid(postPrandialGlycemia.value)) {
             toastGlycemiaValueError()
             postPrandialGlycemiaError.value = true
@@ -206,17 +204,62 @@ class MealsScreenViewModel : EquinoxViewModel(
         rawContent: JsonObject,
         content: String,
     ) {
-        meal.annotationDate.value = currentTimestamp()
-        meal.glycemia.value = glycemia.toNormalizedGlycemicValue()
+        locallyUpdateGlukyItem(
+            item = meal
+        )
         meal.postPrandialGlycemia.value = postPrandialGlycemia.toNormalizedGlycemicValue()
-        meal.insulinUnits.value = if (insulinNeeded.value)
-            insulinUnits.quantityPicked
-        else
-            -1
         meal.rawContent.value = rawContent
         meal.content.value = content
     }
 
+    fun fillBasalInsulin(
+        basalInsulin: BasalInsulin,
+        onSave: () -> Unit,
+    ) {
+        if (!areBasalInsulinDataValid())
+            return
+        // TODO: TO MAKE THE REQUEST THEN 
+        locallyUpdateBasalInsulin(
+            basalInsulin = basalInsulin
+        )
+        onSave()
+    }
+
+    @Wrapper
+    private fun areBasalInsulinDataValid(): Boolean {
+        return isGlycemiaValueValid()
+    }
+
+    private fun isGlycemiaValueValid(): Boolean {
+        return if (!glycemiaValueIsValid(glycemia.value)) {
+            toastGlycemiaValueError()
+            glycemiaError.value = true
+            false
+        } else
+            true
+    }
+
+    @Wrapper
+    private fun locallyUpdateBasalInsulin(
+        basalInsulin: BasalInsulin,
+    ) {
+        locallyUpdateGlukyItem(
+            item = basalInsulin
+        )
+    }
+
+    private fun locallyUpdateGlukyItem(
+        item: GlukyItem,
+    ) {
+        if (item.annotationDate.value == -1L)
+            item.annotationDate.value = currentTimestamp()
+        item.glycemia.value = glycemia.toNormalizedGlycemicValue()
+        item.insulinUnits.value = if (insulinNeeded.value)
+            insulinUnits.quantityPicked
+        else
+            -1
+    }
+    
     private fun MutableState<String>.toNormalizedGlycemicValue(): Int {
         return if (value.isEmpty())
             -1

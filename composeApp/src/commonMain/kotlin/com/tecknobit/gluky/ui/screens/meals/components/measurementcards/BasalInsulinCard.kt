@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.screens.meals.GlycemiaLevelBadge
 import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
+import com.tecknobit.gluky.ui.screens.meals.components.formdialogs.BasalInsulinFormDialog
 import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
@@ -61,7 +62,11 @@ private fun CardHeader(
             FillItemButton(
                 contentDescription = string.fill_basal_insulin,
                 fillDialog = { fill ->
-                    // TODO: TO FILL WITH RELATED DIALOG
+                    BasalInsulinFormDialog(
+                        show = fill,
+                        viewModel = viewModel,
+                        basalInsulin = basalInsulin
+                    )
                 }
             )
         }
@@ -85,6 +90,20 @@ private fun CardContent(
 
 @Composable
 private fun FilledBasalInsulin(
+    basalInsulin: BasalInsulin,
+) {
+    Column {
+        GlycemiaLevelSection(
+            basalInsulin = basalInsulin
+        )
+        AdministeredInsulinUnits(
+            insulinUnits = basalInsulin.insulinUnits.value
+        )
+    }
+}
+
+@Composable
+private fun GlycemiaLevelSection(
     basalInsulin: BasalInsulin,
 ) {
     AnimatedVisibility(

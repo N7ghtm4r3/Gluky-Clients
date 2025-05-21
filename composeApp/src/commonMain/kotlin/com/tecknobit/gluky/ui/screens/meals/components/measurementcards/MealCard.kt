@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -39,10 +38,8 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.pushpal.jetlime.EventPosition
 import com.pushpal.jetlime.ItemsList
 import com.pushpal.jetlime.JetLimeDefaults
@@ -58,21 +55,15 @@ import com.tecknobit.gluky.ui.screens.meals.components.formdialogs.MealFormDialo
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
-import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import com.tecknobit.refy.ui.icons.ExpandAll
-import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.Res.string
-import gluky.composeapp.generated.resources.administered
 import gluky.composeapp.generated.resources.fill_meal
-import gluky.composeapp.generated.resources.insulin_units
-import gluky.composeapp.generated.resources.no_insulin_needed
 import gluky.composeapp.generated.resources.post_prandial_measurement
 import gluky.composeapp.generated.resources.pre_prandial_measurement
 import gluky.composeapp.generated.resources.show_meal_content
 import gluky.composeapp.generated.resources.what_i_ate
 import kotlinx.coroutines.launch
-import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
 private val quantityRegex = Regex("""\((.*?)\)""")
@@ -183,13 +174,9 @@ private fun FilledMeal(
         GlycemiaStatus(
             meal = meal
         )
-        AnimatedVisibility(
-            visible = !meal.isNotFilledYet
-        ) {
-            AdministeredUnits(
-                insulinUnits = meal.insulinUnits.value
-            )
-        }
+        AdministeredInsulinUnits(
+            insulinUnits = meal.insulinUnits.value
+        )
         MealContent(
             meal = meal,
             mealContentDisplayed = mealContentDisplayed
@@ -279,62 +266,6 @@ private fun GlycemiaLevel(
                     )
                 }
             )
-        }
-    }
-}
-
-@Composable
-private fun AdministeredUnits(
-    insulinUnits: Int,
-) {
-    val insulinUnitsText = formatInsulinUnits(
-        insulinUnits = insulinUnits
-    )
-    Text(
-        modifier = Modifier
-            .heightIn(
-                min = 35.dp
-            )
-            .padding(
-                top = 10.dp
-            ),
-        text = insulinUnitsText,
-        style = AppTypography.bodyLarge,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis
-    )
-}
-
-@Composable
-private fun formatInsulinUnits(
-    insulinUnits: Int,
-): AnnotatedString {
-    if (insulinUnits == -1)
-        return AnnotatedString(stringResource(string.no_insulin_needed))
-    val primaryColor = MaterialTheme.colorScheme.primary
-    val administered = pluralStringResource(
-        resource = Res.plurals.administered,
-        insulinUnits
-    )
-    val insulinUnitsText = pluralStringResource(
-        resource = Res.plurals.insulin_units,
-        insulinUnits
-    )
-    return remember(insulinUnits) {
-        buildAnnotatedString {
-            append(administered)
-            append(" ")
-            withStyle(
-                style = SpanStyle(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp,
-                    color = primaryColor
-                )
-            ) {
-                append(insulinUnits.toString())
-            }
-            append(" ")
-            append(insulinUnitsText)
         }
     }
 }
