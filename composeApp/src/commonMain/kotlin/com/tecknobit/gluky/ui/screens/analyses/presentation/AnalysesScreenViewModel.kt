@@ -10,6 +10,7 @@ import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaTrendDataSet
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay.ALL
+import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_WEEK
 import kotlinx.coroutines.delay
@@ -48,6 +49,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                 GlycemicTrendData()
             else {
                 GlycemicTrendData(
+                    labelType = COMPUTE_MONTH,
                     firstSet = GlycemiaTrendDataSet(
                         maxGlycemicValue = Random.nextInt(300),
                         minGlycemicValue = Random.nextInt(100),
@@ -77,12 +79,12 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         mediumInsulinValue = Random.nextDouble(),
                         set = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1750601328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1750601328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             )
@@ -97,62 +99,62 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         mediumInsulinValue = Random.nextDouble(),
                         set = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753193328000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             )
@@ -167,57 +169,57 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         mediumInsulinValue = Random.nextDouble(),
                         set = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1755871728000,
                                 value = Random.nextInt(100),
                                 insulinUnits = Random.nextInt(20)
                             )

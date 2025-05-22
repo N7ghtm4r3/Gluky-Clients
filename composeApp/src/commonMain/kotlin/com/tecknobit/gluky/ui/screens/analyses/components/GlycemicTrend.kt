@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
+import com.tecknobit.equinoxcore.annotations.Returner
+import com.tecknobit.gluky.helpers.asMonth
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
@@ -34,13 +36,20 @@ import com.tecknobit.gluky.ui.theme.ChartLine4Light
 import com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
+import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
+import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_WEEK
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.choose_another_period
 import gluky.composeapp.generated.resources.empty_sets_dark
 import gluky.composeapp.generated.resources.empty_sets_light
+import gluky.composeapp.generated.resources.first_week
+import gluky.composeapp.generated.resources.fourth_week
 import gluky.composeapp.generated.resources.no_data_available
+import gluky.composeapp.generated.resources.second_week
+import gluky.composeapp.generated.resources.third_week
 import ir.ehsannarmani.compose_charts.LineChart
+import ir.ehsannarmani.compose_charts.extensions.format
 import ir.ehsannarmani.compose_charts.models.AnimationMode
 import ir.ehsannarmani.compose_charts.models.DividerProperties
 import ir.ehsannarmani.compose_charts.models.DotProperties
@@ -52,11 +61,16 @@ import ir.ehsannarmani.compose_charts.models.PopupProperties
 import ir.ehsannarmani.compose_charts.models.StrokeStyle
 import org.jetbrains.compose.resources.stringResource
 
-private val axisProperties = GridProperties.AxisProperties(
+private val AxisProperties = GridProperties.AxisProperties(
     style = StrokeStyle.Dashed()
 )
 
-private val popupProperties = PopupProperties(
+private val LabelStyle
+    @Composable get() = AppTypography.labelLarge.copy(
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+    )
+
+private val PopupProperties = PopupProperties(
     textStyle = TextStyle.Default.copy(
         color = Color.White,
         fontSize = 12.sp
@@ -98,9 +112,11 @@ fun GlycemicTrend(
             lightLineColors
         var chartWidth by remember { mutableStateOf(0.dp) }
         val density = LocalDensity.current
+        val labelsHelper = glycemicTrendData.getLabels()
         val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
             glycemicTrendData.toChartData(
-                colors = colors
+                colors = colors,
+                labels = labelsHelper
             )
         }
         LineChart(
@@ -116,22 +132,21 @@ fun GlycemicTrend(
                     }
                 },
             labelHelperProperties = LabelHelperProperties(
-                enabled = glycemicTrendData.labels.isNotEmpty(),
-                textStyle = AppTypography.labelLarge.copy(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
+                enabled = glycemicTrendData.labelType != null,
+                textStyle = LabelStyle
             ),
             indicatorProperties = HorizontalIndicatorProperties(
-                enabled = false
+                textStyle = LabelStyle,
+                contentBuilder = { it.format(0) }
             ),
             gridProperties = GridProperties(
-                xAxisProperties = axisProperties,
-                yAxisProperties = axisProperties
+                xAxisProperties = AxisProperties,
+                yAxisProperties = AxisProperties
             ),
             dividerProperties = DividerProperties(
                 enabled = false
             ),
-            popupProperties = popupProperties,
+            popupProperties = PopupProperties,
             animationMode = AnimationMode.Together(
                 delayBuilder = { it * 500L }
             ),
@@ -171,8 +186,35 @@ private fun EmptySets(
     )
 }
 
+@Returner
+@Composable
+private fun GlycemicTrendData.getLabels(): Array<String> {
+    return when (labelType) {
+        COMPUTE_WEEK -> {
+            arrayOf(
+                stringResource(Res.string.first_week),
+                stringResource(Res.string.second_week),
+                stringResource(Res.string.third_week),
+                stringResource(Res.string.fourth_week)
+            )
+        }
+
+        COMPUTE_MONTH -> {
+            val dates = mutableListOf<Long>()
+            sets.forEach { dataSet ->
+                val firstEntry = dataSet.set.first()
+                dates.add(firstEntry.date)
+            }
+            return Array(dates.size) { index -> stringResource(dates[index].asMonth()) }
+        }
+
+        else -> arrayOf("")
+    }
+}
+
 private fun GlycemicTrendData.toChartData(
     colors: Array<Color>,
+    labels: Array<String>,
 ): List<Line> {
     val lines = mutableListOf<Line>()
     sets.forEachIndexed { index, dataSet ->
@@ -180,7 +222,7 @@ private fun GlycemicTrendData.toChartData(
         val lineColor = colors[index]
         lines.add(
             Line(
-                label = "Temperature",
+                label = labels[index],
                 values = set.map { it.value.toDouble() },
                 color = SolidColor(lineColor),
                 curvedEdges = false,

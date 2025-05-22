@@ -2,6 +2,7 @@ package com.tecknobit.gluky.ui.screens.analyses.data
 
 import com.tecknobit.glukycore.FIRST_SET_KEY
 import com.tecknobit.glukycore.FOURTH_SET_KEY
+import com.tecknobit.glukycore.GLYCEMIC_LABEL_TYPE_KEY
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
 import com.tecknobit.glukycore.MAX_GLYCEMIC_VALUE_KEY
 import com.tecknobit.glukycore.MAX_INSULIN_VALUE_KEY
@@ -11,7 +12,7 @@ import com.tecknobit.glukycore.MIN_GLYCEMIC_VALUE_KEY
 import com.tecknobit.glukycore.MIN_INSULIN_VALUE_KEY
 import com.tecknobit.glukycore.SECOND_SET_KEY
 import com.tecknobit.glukycore.THIRD_SET_KEY
-import com.tecknobit.glukycore.enums.GlycemicTrendLabel
+import com.tecknobit.glukycore.enums.GlycemicTrendLabelType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -25,11 +26,11 @@ data class GlycemicTrendData(
     val thirdSet: GlycemiaTrendDataSet? = null,
     @SerialName(FOURTH_SET_KEY)
     val fourthSet: GlycemiaTrendDataSet? = null,
+    @SerialName(GLYCEMIC_LABEL_TYPE_KEY)
+    val labelType: GlycemicTrendLabelType? = null,
 ) {
 
     val sets: MutableList<GlycemiaTrendDataSet> = mutableListOf()
-
-    val labels: MutableList<GlycemicTrendLabel?> = mutableListOf()
 
     init {
         firstSet.ifIsNotNullAppend()
@@ -42,16 +43,12 @@ data class GlycemicTrendData(
         if (this == null)
             return
         sets.add(this)
-        label?.let {
-            labels.add(it)
-        }
     }
 
 }
 
 @Serializable
 data class GlycemiaTrendDataSet(
-    val label: GlycemicTrendLabel? = null,
     @SerialName(MAX_GLYCEMIC_VALUE_KEY)
     val maxGlycemicValue: Int,
     @SerialName(MIN_GLYCEMIC_VALUE_KEY)

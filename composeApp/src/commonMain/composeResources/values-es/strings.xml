@@ -89,4 +89,8 @@
     <string name="three_months">3M</string>
     <string name="four_months">4M</string>
     <string name="choose_another_period">Prueba otro período</string>
+    <string name="first_week">Primera semana</string>
+    <string name="second_week">Segunda semana</string>
+    <string name="third_week">Tercera semana</string>
+    <string name="fourth_week">Cuarta semana</string>
 </resources>

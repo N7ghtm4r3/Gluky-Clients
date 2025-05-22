@@ -40,27 +40,12 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
-import com.tecknobit.equinoxcore.annotations.FutureEquinoxApi
-import com.tecknobit.equinoxcore.time.TimeFormatter.toLocalDate
+import com.tecknobit.gluky.helpers.asMonth
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.INITIAL_SELECTED_DAY
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.MAX_LOADABLE_DAYS
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.ONE_DAY_MILLIS
 import com.tecknobit.gluky.ui.theme.AppTypography
-import gluky.composeapp.generated.resources.Res
-import gluky.composeapp.generated.resources.april
-import gluky.composeapp.generated.resources.august
-import gluky.composeapp.generated.resources.december
-import gluky.composeapp.generated.resources.february
-import gluky.composeapp.generated.resources.january
-import gluky.composeapp.generated.resources.july
-import gluky.composeapp.generated.resources.june
-import gluky.composeapp.generated.resources.march
-import gluky.composeapp.generated.resources.may
-import gluky.composeapp.generated.resources.november
-import gluky.composeapp.generated.resources.october
-import gluky.composeapp.generated.resources.september
-import kotlinx.datetime.Month
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -212,33 +197,3 @@ private fun PickerBar(
     }
 }
 
-@FutureEquinoxApi(
-    protoBehavior = """
-        Actually is implemented to return just in for languages but will be extended to all the 
-        languages supported by Equinox
-    """,
-    releaseVersion = "1.1.3",
-    additionalNotes = """
-        - Warn about is temporary method until the official kotlinx's one will be released
-        - Check whether the best name is this or something like asMonth or anyone else
-        - Check if overload this method with the @Composable one to return directly the currentDay as String
-        - To allow to return uppercase and lowercase 
-    """
-)
-private fun Long.asMonth(): StringResource {
-    val month = this.toLocalDate().month
-    return when (month) {
-        Month.JANUARY -> Res.string.january
-        Month.FEBRUARY -> Res.string.february
-        Month.MARCH -> Res.string.march
-        Month.APRIL -> Res.string.april
-        Month.MAY -> Res.string.may
-        Month.JUNE -> Res.string.june
-        Month.JULY -> Res.string.july
-        Month.AUGUST -> Res.string.august
-        Month.SEPTEMBER -> Res.string.september
-        Month.OCTOBER -> Res.string.october
-        Month.NOVEMBER -> Res.string.november
-        else -> Res.string.december
-    }
-}
