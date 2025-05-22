@@ -15,6 +15,7 @@ kotlinx-coroutines = "1.10.2"
 equinox = "1.1.2"
 equinox-navigation = "1.0.1"
 kotlinxDatetime = "0.6.2"
+material3WindowSizeClass = "1.7.3"
 precompose = "1.7.0-alpha03"
 coilCompose = "3.1.0"
 ktor = "3.1.0"
@@ -34,6 +35,7 @@ equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref 
 equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinox" }
 equinox-navigation = { module = "io.github.n7ghtm4r3:equinox-navigation", version.ref = "equinox-navigation" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
+material3-window-size-class1 = { module = "org.jetbrains.compose.material3:material3-window-size-class", version.ref = "material3WindowSizeClass" }
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "ktor" }

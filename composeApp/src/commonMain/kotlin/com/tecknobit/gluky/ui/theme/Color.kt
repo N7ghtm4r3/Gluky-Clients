@@ -74,11 +74,29 @@ val surfaceContainerDark = Color(0xFF1B211F)
 val surfaceContainerHighDark = Color(0xFF252B29)
 val surfaceContainerHighestDark = Color(0xFF303634)
 
-val greenLight = Color(0xFF4CAF50)
-val greenDark = Color(0xFF81C784)
+val GreenLight = Color(0xFF4CAF50)
+val GreenDark = Color(0xFF81C784)
 
-val redLight = Color(0xFFE53935)
-val redDark = Color(0xFFEF9A9A)
+val RedLight = Color(0xFFE53935)
+val RedDark = Color(0xFFEF9A9A)
 
-val yellowLight = Color(0xFFFBC02D)
-val yellowDark = Color(0xFFFFF176)
+val YellowLight = Color(0xFFFBC02D)
+val YellowDark = Color(0xFFFFF176)
+
+val ChartLine1Light = Color(0xFF2EBFA5)
+val ChartLine1Dark = Color(0xFF73E0CD)
+
+val ChartLine2Light = Color(0xFF5BC0EB)
+val ChartLine2Dark = Color(0xFFA1DFFC)
+
+val ChartLine3Light = Color(0xFF4ECDC4)
+val ChartLine3Dark = Color(0xFFAAF0EA)
+
+val ChartLine4Light = Color(0xFF009688)
+val ChartLine4Dark = Color(0xFF4DB6AC)
+
+val ChartLine5Light = Color(0xFF26A69A)
+val ChartLine5Dark = Color(0xFF80CBC4)
+
+val ChartLine6Light = Color(0xFF00ACC1)
+val ChartLine6Dark = Color(0xFF4DD0E1)

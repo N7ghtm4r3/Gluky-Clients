@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
-import com.tecknobit.gluky.ui.theme.AppTypography
+import com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.fill_day
@@ -35,9 +35,7 @@ fun UnfilledDay(
         useDarkResource = applyDarkTheme(),
         contentDescription = title,
         title = title,
-        titleStyle = AppTypography.headlineSmall.copy(
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        ),
+        titleStyle = EmptyStateTitleStyle,
         action = {
             Button(
                 onClick = { viewModel.fillDay() }

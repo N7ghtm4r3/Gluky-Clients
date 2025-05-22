@@ -108,25 +108,25 @@ fun GlukyTheme(
 @Composable
 fun green(): Color {
     return if (applyDarkTheme())
-        greenDark
+        GreenDark
     else
-        greenLight
+        GreenLight
 }
 
 @Composable
 fun red(): Color {
     return if (applyDarkTheme())
-        redDark
+        RedDark
     else
-        redLight
+        RedLight
 }
 
 @Composable
 fun yellow(): Color {
     return if (applyDarkTheme())
-        yellowDark
+        YellowDark
     else
-        yellowLight
+        YellowLight
 }
 
 /**

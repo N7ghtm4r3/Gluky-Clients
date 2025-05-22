@@ -83,4 +83,5 @@
     <string name="edit_daily_notes">Modifica note giornaliere</string>
     <string name="my_daily_notes">Le mie note giornaliere...</string>
     <string name="on_editing">Stai modificando</string>
+    <string name="no_data_available">Nessun dato disponibile</string>
 </resources>
