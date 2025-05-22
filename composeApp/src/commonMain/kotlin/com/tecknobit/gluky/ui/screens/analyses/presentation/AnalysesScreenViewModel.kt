@@ -45,7 +45,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         // TODO: TO MAKE THE REQUEST THEN APPLYING FILTERS
         viewModelScope.launch {
             delay(2000)
-            _glycemicTrendData.value = if (false)
+            _glycemicTrendData.value = if (Random.nextBoolean())
                 GlycemicTrendData()
             else {
                 GlycemicTrendData(

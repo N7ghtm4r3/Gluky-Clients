@@ -1,16 +1,33 @@
 package com.tecknobit.gluky.ui.screens.analyses.components
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -94,26 +111,79 @@ fun GlycemicTrend(
     glycemicTrendPeriod: GlycemicTrendPeriod,
     glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
 ) {
-    if (glycemicTrendData.sets.isEmpty()) {
-        EmptySets(
-            viewModel = viewModel,
-            glycemicTrendPeriod = glycemicTrendPeriod,
-            glycemicTrendGroupingDay = glycemicTrendGroupingDay
+    AnimatedContent(
+        targetState = glycemicTrendData.sets.isEmpty(),
+        transitionSpec = { fadeIn().togetherWith(fadeOut()) }
+    ) { isEmpty ->
+        if (isEmpty) {
+            EmptySets(
+                viewModel = viewModel,
+                glycemicTrendPeriod = glycemicTrendPeriod,
+                glycemicTrendGroupingDay = glycemicTrendGroupingDay
+            )
+        } else {
+            ChartContent(
+                glycemicTrendData = glycemicTrendData,
+                glycemicTrendPeriod = glycemicTrendPeriod,
+                glycemicTrendGroupingDay = glycemicTrendGroupingDay
+            )
+        }
+    }
+}
+
+@Composable
+private fun EmptySets(
+    viewModel: AnalysesScreenViewModel,
+    glycemicTrendPeriod: GlycemicTrendPeriod,
+    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
+) {
+    val title = stringResource(Res.string.no_data_available)
+    EmptyState(
+        containerModifier = Modifier
+            .fillMaxSize(),
+        lightResource = Res.drawable.empty_sets_light,
+        darkResource = Res.drawable.empty_sets_dark,
+        title = title,
+        contentDescription = title,
+        titleStyle = EmptyStateTitleStyle,
+        action = {
+            GlycemicTrendPeriodSelector(
+                viewModel = viewModel,
+                glycemicTrendPeriod = glycemicTrendPeriod
+            )
+        },
+        subTitle = stringResource(Res.string.choose_another_period),
+        resourceSize = responsiveAssignment(
+            onExpandedSizeClass = { 350.dp },
+            onMediumWidthExpandedHeight = { 350.dp },
+            onMediumSizeClass = { 300.dp },
+            onCompactSizeClass = { 250.dp }
         )
-    } else {
+    )
+}
+
+@Composable
+private fun ChartContent(
+    glycemicTrendData: GlycemicTrendData,
+    glycemicTrendPeriod: GlycemicTrendPeriod,
+    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
+) {
+    Column {
         val colors = if (applyDarkTheme())
             darkLineColors
         else
             lightLineColors
         var chartWidth by remember { mutableStateOf(0.dp) }
         val density = LocalDensity.current
-        val labelsHelper = glycemicTrendData.getLabels()
         val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
             glycemicTrendData.toChartData(
-                colors = colors,
-                labels = labelsHelper
+                colors = colors
             )
         }
+        ChartLegend(
+            glycemicTrendData = glycemicTrendData,
+            colors = colors
+        )
         LineChart(
             modifier = Modifier
                 .padding(
@@ -127,8 +197,7 @@ fun GlycemicTrend(
                     }
                 },
             labelHelperProperties = LabelHelperProperties(
-                enabled = glycemicTrendData.labelType != null,
-                textStyle = LabelStyle
+                enabled = false,
             ),
             indicatorProperties = HorizontalIndicatorProperties(
                 textStyle = LabelStyle,
@@ -165,34 +234,44 @@ fun GlycemicTrend(
 }
 
 @Composable
-private fun EmptySets(
-    viewModel: AnalysesScreenViewModel,
-    glycemicTrendPeriod: GlycemicTrendPeriod,
-    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
+@NonRestartableComposable
+private fun ChartLegend(
+    glycemicTrendData: GlycemicTrendData,
+    colors: Array<Color>,
 ) {
-    val title = stringResource(Res.string.no_data_available)
-    EmptyState(
-        containerModifier = Modifier
-            .fillMaxSize(),
-        lightResource = Res.drawable.empty_sets_light,
-        darkResource = Res.drawable.empty_sets_dark,
-        title = title,
-        contentDescription = title,
-        titleStyle = EmptyStateTitleStyle,
-        action = {
-            GlycemicTrendPeriodSelector(
-                viewModel = viewModel,
-                glycemicTrendPeriod = glycemicTrendPeriod
-            )
-        },
-        subTitle = stringResource(Res.string.choose_another_period),
-        resourceSize = responsiveAssignment(
-            onExpandedSizeClass = { 350.dp },
-            onMediumWidthExpandedHeight = { 350.dp },
-            onMediumSizeClass = { 300.dp },
-            onCompactSizeClass = { 250.dp }
-        )
-    )
+    val labels = glycemicTrendData.getLabels()
+    if (labels.isNotEmpty()) {
+        LazyRow(
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            itemsIndexed(
+                items = labels,
+                key = { _, label -> label }
+            ) { index, label ->
+                Row(
+                    modifier = Modifier
+                        .padding(
+                            horizontal = 10.dp
+                        ),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(5.dp)
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .size(12.dp)
+                            .clip(CircleShape)
+                            .background(colors[index])
+                    )
+                    Text(
+                        text = label,
+                        style = LabelStyle
+                    )
+                }
+            }
+        }
+    }
 }
 
 @Returner
@@ -217,13 +296,12 @@ private fun GlycemicTrendData.getLabels(): Array<String> {
             return Array(dates.size) { index -> stringResource(dates[index].asMonth()) }
         }
 
-        else -> arrayOf("")
+        else -> emptyArray()
     }
 }
 
 private fun GlycemicTrendData.toChartData(
     colors: Array<Color>,
-    labels: Array<String>,
 ): List<Line> {
     val lines = mutableListOf<Line>()
     sets.forEachIndexed { index, dataSet ->
@@ -231,7 +309,7 @@ private fun GlycemicTrendData.toChartData(
         val lineColor = colors[index]
         lines.add(
             Line(
-                label = labels[index],
+                label = "",
                 values = set.map { it.value.toDouble() },
                 color = SolidColor(lineColor),
                 curvedEdges = false,
