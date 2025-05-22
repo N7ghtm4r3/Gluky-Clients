@@ -54,175 +54,171 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         maxGlycemicValue = Random.nextInt(300),
                         minGlycemicValue = Random.nextInt(100),
                         mediumGlycemicValue = Random.nextDouble(),
-                        maxInsulinValue = Random.nextInt(300),
-                        minInsulinValue = Random.nextInt(150),
-                        mediumInsulinValue = Random.nextDouble(),
+
+
                         set = listOf(
                             GlycemiaPoint(
                                 date = TimeFormatter.currentTimestamp(),
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = TimeFormatter.currentTimestamp(),
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            )
+
+                                )
                         )
                     ),
                     secondSet = GlycemiaTrendDataSet(
                         maxGlycemicValue = Random.nextInt(300),
                         minGlycemicValue = Random.nextInt(100),
                         mediumGlycemicValue = Random.nextDouble(),
-                        maxInsulinValue = Random.nextInt(300),
-                        minInsulinValue = Random.nextInt(150),
-                        mediumInsulinValue = Random.nextDouble(),
+
+
                         set = listOf(
                             GlycemiaPoint(
                                 date = 1750601328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1750601328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            )
+
+                                )
                         )
                     ),
                     thirdSet = GlycemiaTrendDataSet(
                         maxGlycemicValue = Random.nextInt(300),
                         minGlycemicValue = Random.nextInt(100),
                         mediumGlycemicValue = Random.nextDouble(),
-                        maxInsulinValue = Random.nextInt(300),
-                        minInsulinValue = Random.nextInt(150),
-                        mediumInsulinValue = Random.nextDouble(),
+
+
                         set = listOf(
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1753193328000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            )
+
+                                )
                         )
                     ),
                     fourthSet = GlycemiaTrendDataSet(
                         maxGlycemicValue = Random.nextInt(300),
                         minGlycemicValue = Random.nextInt(100),
                         mediumGlycemicValue = Random.nextDouble(),
-                        maxInsulinValue = Random.nextInt(300),
-                        minInsulinValue = Random.nextInt(150),
-                        mediumInsulinValue = Random.nextDouble(),
+
+
                         set = listOf(
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            ),
+
+                                ),
                             GlycemiaPoint(
                                 date = 1755871728000,
                                 value = Random.nextInt(100),
-                                insulinUnits = Random.nextInt(20)
-                            )
+
+                                )
                         )
                     )
                 )

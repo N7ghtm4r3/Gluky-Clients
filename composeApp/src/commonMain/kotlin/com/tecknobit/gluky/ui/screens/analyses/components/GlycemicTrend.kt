@@ -16,11 +16,14 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcore.annotations.Returner
+import com.tecknobit.equinoxcore.time.TimeFormatter.EUROPEAN_DATE_PATTERN
+import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.helpers.asMonth
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
@@ -69,14 +72,6 @@ private val LabelStyle
     @Composable get() = AppTypography.labelLarge.copy(
         color = MaterialTheme.colorScheme.onSurfaceVariant
     )
-
-private val PopupProperties = PopupProperties(
-    textStyle = TextStyle.Default.copy(
-        color = Color.White,
-        fontSize = 12.sp
-    ),
-    //contentBuilder = {  }
-)
 
 private val lightLineColors = arrayOf(
     ChartLine1Light,
@@ -146,7 +141,21 @@ fun GlycemicTrend(
             dividerProperties = DividerProperties(
                 enabled = false
             ),
-            popupProperties = PopupProperties,
+            popupProperties = PopupProperties(
+                textStyle = TextStyle.Default.copy(
+                    color = Color.White,
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                ),
+                contentBuilder = { dataIndex, valueIndex, value ->
+                    useContentBuilder(
+                        glycemicTrendData = glycemicTrendData,
+                        dataIndex = dataIndex,
+                        valueIndex = valueIndex,
+                        value = value
+                    )
+                }
+            ),
             animationMode = AnimationMode.Together(
                 delayBuilder = { it * 500L }
             ),
@@ -237,4 +246,28 @@ private fun GlycemicTrendData.toChartData(
         )
     }
     return lines
+}
+
+private fun useContentBuilder(
+    glycemicTrendData: GlycemicTrendData,
+    dataIndex: Int,
+    valueIndex: Int,
+    value: Double,
+): String {
+    val dataSet = glycemicTrendData.getSpecifiedSet(
+        index = dataIndex
+    )!!
+    val set = dataSet.set
+    val pointIndex = if (valueIndex > set.lastIndex)
+        set.lastIndex
+    else
+        dataIndex
+    return """
+        ${
+        set[pointIndex].date.toDateString(
+            pattern = EUROPEAN_DATE_PATTERN
+        )
+    }
+        ${value.format(0)}
+    """.trimIndent()
 }

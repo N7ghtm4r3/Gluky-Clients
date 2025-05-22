@@ -3,13 +3,9 @@ package com.tecknobit.gluky.ui.screens.analyses.data
 import com.tecknobit.glukycore.FIRST_SET_KEY
 import com.tecknobit.glukycore.FOURTH_SET_KEY
 import com.tecknobit.glukycore.GLYCEMIC_LABEL_TYPE_KEY
-import com.tecknobit.glukycore.INSULIN_UNITS_KEY
 import com.tecknobit.glukycore.MAX_GLYCEMIC_VALUE_KEY
-import com.tecknobit.glukycore.MAX_INSULIN_VALUE_KEY
 import com.tecknobit.glukycore.MEDIUM_GLYCEMIC_VALUE_KEY
-import com.tecknobit.glukycore.MEDIUM_INSULIN_VALUE_KEY
 import com.tecknobit.glukycore.MIN_GLYCEMIC_VALUE_KEY
-import com.tecknobit.glukycore.MIN_INSULIN_VALUE_KEY
 import com.tecknobit.glukycore.SECOND_SET_KEY
 import com.tecknobit.glukycore.THIRD_SET_KEY
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType
@@ -39,6 +35,18 @@ data class GlycemicTrendData(
         fourthSet.ifIsNotNullAppend()
     }
 
+    fun getSpecifiedSet(
+        index: Int,
+    ): GlycemiaTrendDataSet? {
+        return when (index) {
+            0 -> firstSet
+            1 -> secondSet
+            2 -> thirdSet
+            3 -> fourthSet
+            else -> null
+        }
+    }
+
     private fun GlycemiaTrendDataSet?.ifIsNotNullAppend() {
         if (this == null)
             return
@@ -55,12 +63,6 @@ data class GlycemiaTrendDataSet(
     val minGlycemicValue: Int,
     @SerialName(MEDIUM_GLYCEMIC_VALUE_KEY)
     val mediumGlycemicValue: Double,
-    @SerialName(MAX_INSULIN_VALUE_KEY)
-    val maxInsulinValue: Int,
-    @SerialName(MIN_INSULIN_VALUE_KEY)
-    val minInsulinValue: Int,
-    @SerialName(MEDIUM_INSULIN_VALUE_KEY)
-    val mediumInsulinValue: Double,
     val set: List<GlycemiaPoint>,
 )
 
@@ -68,6 +70,4 @@ data class GlycemiaTrendDataSet(
 data class GlycemiaPoint(
     val date: Long,
     val value: Int,
-    @SerialName(INSULIN_UNITS_KEY)
-    val insulinUnits: Int,
 )
