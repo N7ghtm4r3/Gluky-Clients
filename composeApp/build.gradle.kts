@@ -89,6 +89,7 @@ kotlin {
                 implementation(libs.jetlime)
                 implementation(libs.richeditor.compose)
                 implementation(libs.sonner)
+                implementation(libs.compose.charts)
                 implementation(libs.glukycore)
             }
         }

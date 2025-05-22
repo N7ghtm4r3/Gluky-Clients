@@ -1,7 +1,6 @@
 package com.tecknobit.gluky.ui.screens.meals.presenter
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
@@ -45,10 +44,7 @@ import gluky.composeapp.generated.resources.daily_notes
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
-@OptIn(
-    ExperimentalComposeApi::class, ExperimentalSharedTransitionApi::class,
-    ExperimentalMaterial3Api::class
-)
+@OptIn(ExperimentalComposeApi::class, ExperimentalMaterial3Api::class)
 class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
     viewModel = MealsScreenViewModel(),
     useResponsiveWidth = false
