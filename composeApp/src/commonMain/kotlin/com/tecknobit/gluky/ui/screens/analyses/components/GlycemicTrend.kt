@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.utilities.currentSizeClass
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
-import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaTrendData
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
 import com.tecknobit.gluky.ui.theme.ChartLine1Light
@@ -30,7 +30,10 @@ import com.tecknobit.gluky.ui.theme.ChartLine6Dark
 import com.tecknobit.gluky.ui.theme.ChartLine6Light
 import com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
+import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
+import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.choose_another_period
 import gluky.composeapp.generated.resources.empty_sets_dark
 import gluky.composeapp.generated.resources.empty_sets_light
 import gluky.composeapp.generated.resources.no_data_available
@@ -50,13 +53,17 @@ private val darkLineColors = arrayOf(
 )
 
 @Composable
-fun GlycemiaTrend(
+fun GlycemicTrend(
     viewModel: AnalysesScreenViewModel,
-    glycemiaTrendData: GlycemiaTrendData,
+    glycemicTrendData: GlycemicTrendData,
+    glycemicTrendPeriod: GlycemicTrendPeriod,
+    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
 ) {
-    if (glycemiaTrendData.sets.isEmpty()) {
+    if (glycemicTrendData.sets.isEmpty()) {
         EmptySets(
-            viewModel = viewModel
+            viewModel = viewModel,
+            glycemicTrendPeriod = glycemicTrendPeriod,
+            glycemicTrendGroupingDay = glycemicTrendGroupingDay
         )
     } else {
         val colors = if (applyDarkTheme())
@@ -64,7 +71,7 @@ fun GlycemiaTrend(
         else
             lightLineColors
         val chartData = remember(currentSizeClass()) {
-            glycemiaTrendData.toChartData(
+            glycemicTrendData.toChartData(
                 colors = colors
             )
         }
@@ -86,6 +93,8 @@ fun GlycemiaTrend(
 @Composable
 private fun EmptySets(
     viewModel: AnalysesScreenViewModel,
+    glycemicTrendPeriod: GlycemicTrendPeriod,
+    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
 ) {
     val title = stringResource(Res.string.no_data_available)
     EmptyState(
@@ -96,6 +105,13 @@ private fun EmptySets(
         title = title,
         contentDescription = title,
         titleStyle = EmptyStateTitleStyle,
+        action = {
+            GlycemicTrendPeriodSelector(
+                viewModel = viewModel,
+                glycemicTrendPeriod = glycemicTrendPeriod
+            )
+        },
+        subTitle = stringResource(Res.string.choose_another_period),
         resourceSize = responsiveAssignment(
             onExpandedSizeClass = { 350.dp },
             onMediumWidthExpandedHeight = { 350.dp },
@@ -105,7 +121,7 @@ private fun EmptySets(
     )
 }
 
-private fun GlycemiaTrendData.toChartData(
+private fun GlycemicTrendData.toChartData(
     colors: Array<Color>,
 ): List<Line> {
     val lines = mutableListOf<Line>()

@@ -84,4 +84,9 @@
     <string name="my_daily_notes">Mes notes quotidiennes...</string>
     <string name="on_editing">Vous modifiez</string>
     <string name="no_data_available">Aucune donnée disponible</string>
+    <string name="one_week">1S</string>
+    <string name="one_month">1M</string>
+    <string name="three_months">3M</string>
+    <string name="six_months">6M</string>
+    <string name="choose_another_period">Essayez une autre période</string>
 </resources>

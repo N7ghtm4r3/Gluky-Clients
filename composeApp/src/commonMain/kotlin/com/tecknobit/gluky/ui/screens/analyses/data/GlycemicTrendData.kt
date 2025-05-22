@@ -18,7 +18,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GlycemiaTrendData(
+data class GlycemicTrendData(
     @SerialName(FIRST_SET_KEY)
     val firstSet: GlycemiaTrendDataSet? = null,
     @SerialName(SECOND_SET_KEY)

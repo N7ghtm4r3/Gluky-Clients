@@ -12,10 +12,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
-import com.tecknobit.gluky.ui.screens.analyses.components.GlycemiaTrend
-import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaTrendData
+import com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrend
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
+import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
+import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.analyses
 
@@ -24,7 +26,11 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     title = Res.string.analyses
 ) {
 
-    private lateinit var glycemiaTrendData: State<GlycemiaTrendData?>
+    private lateinit var glycemicTrendData: State<GlycemicTrendData?>
+
+    private lateinit var glycemicTrendPeriod: State<GlycemicTrendPeriod>
+
+    private lateinit var glycemicTrendGroupingDay: State<GlycemicTrendGroupingDay>
 
     @Composable
     override fun ColumnScope.ScreenPageContent() {
@@ -33,12 +39,14 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
                 .fillMaxSize(),
             state = viewModel.sessionFlowState,
             initialLoadingRoutineDelay = 2000,
-            loadingRoutine = { glycemiaTrendData.value != null },
+            loadingRoutine = { glycemicTrendData.value != null },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
-                GlycemiaTrend(
+                GlycemicTrend(
                     viewModel = viewModel,
-                    glycemiaTrendData = glycemiaTrendData.value!!
+                    glycemicTrendData = glycemicTrendData.value!!,
+                    glycemicTrendPeriod = glycemicTrendPeriod.value,
+                    glycemicTrendGroupingDay = glycemicTrendGroupingDay.value
                 )
             }
         )
@@ -55,7 +63,9 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     @Composable
     override fun CollectStates() {
         viewModel.sessionFlowState = rememberSessionFlowState()
-        glycemiaTrendData = viewModel.glycemiaTrendData.collectAsState()
+        glycemicTrendData = viewModel.glycemicTrendData.collectAsState()
+        glycemicTrendPeriod = viewModel.glycemicTrendPeriod.collectAsState()
+        glycemicTrendGroupingDay = viewModel.glycemicTrendGroupingDay.collectAsState()
     }
 
 }
