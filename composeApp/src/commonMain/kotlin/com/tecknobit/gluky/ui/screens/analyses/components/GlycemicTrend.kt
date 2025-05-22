@@ -1,24 +1,28 @@
-@file:OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
-
 package com.tecknobit.gluky.ui.screens.analyses.components
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EmptyState
-import com.tecknobit.equinoxcompose.utilities.currentSizeClass
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
+import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
 import com.tecknobit.gluky.ui.theme.ChartLine1Light
 import com.tecknobit.gluky.ui.theme.ChartLine2Dark
@@ -27,10 +31,6 @@ import com.tecknobit.gluky.ui.theme.ChartLine3Dark
 import com.tecknobit.gluky.ui.theme.ChartLine3Light
 import com.tecknobit.gluky.ui.theme.ChartLine4Dark
 import com.tecknobit.gluky.ui.theme.ChartLine4Light
-import com.tecknobit.gluky.ui.theme.ChartLine5Dark
-import com.tecknobit.gluky.ui.theme.ChartLine5Light
-import com.tecknobit.gluky.ui.theme.ChartLine6Dark
-import com.tecknobit.gluky.ui.theme.ChartLine6Light
 import com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
@@ -46,6 +46,7 @@ import ir.ehsannarmani.compose_charts.models.DividerProperties
 import ir.ehsannarmani.compose_charts.models.DotProperties
 import ir.ehsannarmani.compose_charts.models.GridProperties
 import ir.ehsannarmani.compose_charts.models.HorizontalIndicatorProperties
+import ir.ehsannarmani.compose_charts.models.LabelHelperProperties
 import ir.ehsannarmani.compose_charts.models.Line
 import ir.ehsannarmani.compose_charts.models.PopupProperties
 import ir.ehsannarmani.compose_charts.models.StrokeStyle
@@ -64,13 +65,17 @@ private val popupProperties = PopupProperties(
 )
 
 private val lightLineColors = arrayOf(
-    ChartLine1Light, ChartLine2Light, ChartLine3Light,
-    ChartLine4Light, ChartLine5Light, ChartLine6Light
+    ChartLine1Light,
+    ChartLine2Light,
+    ChartLine3Light,
+    ChartLine4Light
 )
 
 private val darkLineColors = arrayOf(
-    ChartLine1Dark, ChartLine2Dark, ChartLine3Dark,
-    ChartLine4Dark, ChartLine5Dark, ChartLine6Dark
+    ChartLine1Dark,
+    ChartLine2Dark,
+    ChartLine3Dark,
+    ChartLine4Dark
 )
 
 @Composable
@@ -91,21 +96,31 @@ fun GlycemicTrend(
             darkLineColors
         else
             lightLineColors
-        val chartData =
-            remember(currentSizeClass(), glycemicTrendPeriod, glycemicTrendGroupingDay) {
+        var chartWidth by remember { mutableStateOf(0.dp) }
+        val density = LocalDensity.current
+        val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
             glycemicTrendData.toChartData(
                 colors = colors
             )
         }
         LineChart(
             modifier = Modifier
-                /*.onGloballyPositioned {
-                    with(density) {
-                        width = it.size.width.toDp()
-                    }
-                }*/
+                .padding(
+                    top = 16.dp
+                )
                 .fillMaxWidth()
-                .height(150.dp),
+                .height(250.dp)
+                .onGloballyPositioned {
+                    with(density) {
+                        chartWidth = it.size.width.toDp()
+                    }
+                },
+            labelHelperProperties = LabelHelperProperties(
+                enabled = glycemicTrendData.labels.isNotEmpty(),
+                textStyle = AppTypography.labelLarge.copy(
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            ),
             indicatorProperties = HorizontalIndicatorProperties(
                 enabled = false
             ),

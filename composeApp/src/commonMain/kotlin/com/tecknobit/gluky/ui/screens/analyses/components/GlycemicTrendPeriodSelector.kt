@@ -10,14 +10,14 @@ import androidx.compose.runtime.Composable
 import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
+import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.FOUR_MONTHS
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_WEEK
-import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.SIX_MONTHS
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.THREE_MONTHS
 import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.four_months
 import gluky.composeapp.generated.resources.one_month
 import gluky.composeapp.generated.resources.one_week
-import gluky.composeapp.generated.resources.six_months
 import gluky.composeapp.generated.resources.three_months
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -59,6 +59,6 @@ private fun GlycemicTrendPeriod.text(): StringResource {
         ONE_WEEK -> Res.string.one_week
         ONE_MONTH -> Res.string.one_month
         THREE_MONTHS -> Res.string.three_months
-        SIX_MONTHS -> Res.string.six_months
+        FOUR_MONTHS -> Res.string.four_months
     }
 }

@@ -90,7 +90,6 @@ kotlin {
                 implementation(libs.richeditor.compose)
                 implementation(libs.sonner)
                 implementation(libs.compose.charts)
-                implementation(libs.material3.window.size)
                 implementation(libs.glukycore)
             }
         }

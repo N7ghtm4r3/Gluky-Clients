@@ -83,23 +83,14 @@ val RedDark = Color(0xFFEF9A9A)
 val YellowLight = Color(0xFFFBC02D)
 val YellowDark = Color(0xFFFFF176)
 
-val ChartLine1Light = Color(0xFF8BC34A)
-val ChartLine1Dark = Color(0xFF689F38)
+val ChartLine1Light = Color(0xFF4A90E2)
+val ChartLine1Dark = Color(0xFF1C5DA3)
 
-val ChartLine2Light = Color(0xFFFFC107)
-val ChartLine2Dark = Color(0xFFFFA000)
+val ChartLine2Light = Color(0xFFE26D5C)
+val ChartLine2Dark = Color(0xFFB04335)
 
-val ChartLine3Light = Color(0xFF9C27B0)
-val ChartLine3Dark = Color(0xFF7B1FA2)
+val ChartLine3Light = Color(0xFFF0A500)
+val ChartLine3Dark = Color(0xFFC37C00)
 
-val ChartLine4Light = Color(0xFFFF9800)
-val ChartLine4Dark = Color(0xFFF57C00)
-
-val ChartLine5Light = Color(0xFF03A9F4)
-val ChartLine5Dark = Color(0xFF0288D1)
-
-val ChartLine6Light = Color(0xFF795548)
-val ChartLine6Dark = Color(0xFF5D4037)
-
-
-
+val ChartLine4Light = Color(0xFF4CB944)
+val ChartLine4Dark = Color(0xFF2E7D32)
