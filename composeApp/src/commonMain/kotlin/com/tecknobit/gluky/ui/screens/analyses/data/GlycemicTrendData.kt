@@ -61,15 +61,15 @@ data class GlycemicTrendData(
 @Serializable
 data class GlycemiaTrendDataSet(
     @SerialName(MAX_GLYCEMIC_VALUE_KEY)
-    val maxGlycemicValue: Double,
+    val maxGlycemicValue: Int,
     @SerialName(MIN_GLYCEMIC_VALUE_KEY)
-    val minGlycemicValue: Double,
+    val minGlycemicValue: Int,
     @SerialName(MEDIUM_GLYCEMIC_VALUE_KEY)
     val mediumGlycemicValue: Double,
     @SerialName(MAX_INSULIN_VALUE_KEY)
-    val maxInsulinValue: Double,
+    val maxInsulinValue: Int,
     @SerialName(MIN_INSULIN_VALUE_KEY)
-    val minInsulinValue: Double,
+    val minInsulinValue: Int,
     @SerialName(MEDIUM_INSULIN_VALUE_KEY)
     val mediumInsulinValue: Double,
     val set: List<GlycemiaPoint>,
@@ -92,7 +92,7 @@ data class GlycemiaTrendDataSet(
 @Serializable
 data class GlycemiaPoint(
     val date: Long,
-    val value: Double,
+    val value: Int,
     @SerialName(INSULIN_UNITS_KEY)
     val insulinUnits: Int,
 )

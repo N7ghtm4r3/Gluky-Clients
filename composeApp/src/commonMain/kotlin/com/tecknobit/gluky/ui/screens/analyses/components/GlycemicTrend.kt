@@ -4,13 +4,16 @@ package com.tecknobit.gluky.ui.screens.analyses.components
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.utilities.currentSizeClass
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
@@ -38,9 +41,27 @@ import gluky.composeapp.generated.resources.empty_sets_dark
 import gluky.composeapp.generated.resources.empty_sets_light
 import gluky.composeapp.generated.resources.no_data_available
 import ir.ehsannarmani.compose_charts.LineChart
+import ir.ehsannarmani.compose_charts.models.AnimationMode
+import ir.ehsannarmani.compose_charts.models.DividerProperties
+import ir.ehsannarmani.compose_charts.models.DotProperties
+import ir.ehsannarmani.compose_charts.models.GridProperties
+import ir.ehsannarmani.compose_charts.models.HorizontalIndicatorProperties
 import ir.ehsannarmani.compose_charts.models.Line
-import ir.ehsannarmani.compose_charts.models.ZeroLineProperties
+import ir.ehsannarmani.compose_charts.models.PopupProperties
+import ir.ehsannarmani.compose_charts.models.StrokeStyle
 import org.jetbrains.compose.resources.stringResource
+
+private val axisProperties = GridProperties.AxisProperties(
+    style = StrokeStyle.Dashed()
+)
+
+private val popupProperties = PopupProperties(
+    textStyle = TextStyle.Default.copy(
+        color = Color.White,
+        fontSize = 12.sp
+    ),
+    //contentBuilder = {  }
+)
 
 private val lightLineColors = arrayOf(
     ChartLine1Light, ChartLine2Light, ChartLine3Light,
@@ -70,22 +91,36 @@ fun GlycemicTrend(
             darkLineColors
         else
             lightLineColors
-        val chartData = remember(currentSizeClass()) {
+        val chartData =
+            remember(currentSizeClass(), glycemicTrendPeriod, glycemicTrendGroupingDay) {
             glycemicTrendData.toChartData(
                 colors = colors
             )
         }
         LineChart(
             modifier = Modifier
-                .fillMaxWidth(),
-            data = chartData,
-            zeroLineProperties = ZeroLineProperties(
-                enabled = true,
-                color = SolidColor(Color.Red),
-                zType = ZeroLineProperties.ZType.Above
+                /*.onGloballyPositioned {
+                    with(density) {
+                        width = it.size.width.toDp()
+                    }
+                }*/
+                .fillMaxWidth()
+                .height(150.dp),
+            indicatorProperties = HorizontalIndicatorProperties(
+                enabled = false
             ),
-            minValue = -20.0,
-            maxValue = 100.0
+            gridProperties = GridProperties(
+                xAxisProperties = axisProperties,
+                yAxisProperties = axisProperties
+            ),
+            dividerProperties = DividerProperties(
+                enabled = false
+            ),
+            popupProperties = popupProperties,
+            animationMode = AnimationMode.Together(
+                delayBuilder = { it * 500L }
+            ),
+            data = chartData
         )
     }
 }
@@ -126,11 +161,21 @@ private fun GlycemicTrendData.toChartData(
 ): List<Line> {
     val lines = mutableListOf<Line>()
     sets.forEachIndexed { index, dataSet ->
+        val set = dataSet.set
+        val lineColor = colors[index]
         lines.add(
             Line(
                 label = "Temperature",
-                values = dataSet.set.map { it.value },
-                color = SolidColor(colors[index])
+                values = set.map { it.value.toDouble() },
+                color = SolidColor(lineColor),
+                curvedEdges = false,
+                dotProperties = DotProperties(
+                    enabled = true,
+                    color = SolidColor(Color.White),
+                    strokeWidth = 2.dp,
+                    radius = 3.dp,
+                    strokeColor = SolidColor(lineColor),
+                )
             )
         )
     }
