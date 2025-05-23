@@ -8,32 +8,21 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.CalendarMonth
-import androidx.compose.material3.DateRangePicker
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcore.annotations.Returner
-import com.tecknobit.equinoxcore.time.TimeFormatter
-import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
-import com.tecknobit.gluky.ui.theme.DialogShape
-import com.tecknobit.gluky.ui.theme.useDialogSize
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay.FRIDAY
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay.MONDAY
@@ -65,7 +54,6 @@ import gluky.composeapp.generated.resources.tuesday
 import gluky.composeapp.generated.resources.wednesday
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
-import kotlin.math.abs
 
 @Composable
 fun GroupingDayChip(
@@ -233,63 +221,8 @@ fun CustomPeriodButton(
     }
     CustomPeriodPicker(
         show = show,
+        viewModel = viewModel,
         glycemicTrendData = glycemicTrendData,
         trendPeriod = trendPeriod
     )
-}
-
-@Composable
-private fun CustomPeriodPicker(
-    show: MutableState<Boolean>,
-    glycemicTrendData: GlycemicTrendData,
-    trendPeriod: GlycemicTrendPeriod,
-) {
-    EquinoxDialog(
-        show = show
-    ) {
-        val datesValidator = remember {
-            DatesValidator(
-                trendPeriod = trendPeriod
-            )
-        }
-        val rangePickerState = rememberDateRangePickerState(
-            initialSelectedStartDateMillis = glycemicTrendData.firstAvailableDate(),
-            initialSelectedEndDateMillis = glycemicTrendData.lastAvailableDate(),
-            selectableDates = datesValidator
-        )
-        LaunchedEffect(rangePickerState.selectedStartDateMillis) {
-            datesValidator.initialSelectedDate = rangePickerState.selectedStartDateMillis
-            println(datesValidator.initialSelectedDate?.toDateString())
-        }
-        DateRangePicker(
-            modifier = Modifier
-                .useDialogSize()
-                .clip(DialogShape),
-            state = rangePickerState
-        )
-    }
-}
-
-private class DatesValidator(
-    private val trendPeriod: GlycemicTrendPeriod,
-) : SelectableDates {
-
-    private val currentTimestamp = TimeFormatter.currentTimestamp()
-
-    var initialSelectedDate: Long? = currentTimestamp
-        set(value) {
-            value?.let {
-                field = value
-            }
-        }
-
-    override fun isSelectableDate(
-        utcTimeMillis: Long,
-    ): Boolean {
-        return if (utcTimeMillis > currentTimestamp)
-            false
-        else
-            abs(initialSelectedDate!! - utcTimeMillis) <= trendPeriod.millis
-    }
-
 }

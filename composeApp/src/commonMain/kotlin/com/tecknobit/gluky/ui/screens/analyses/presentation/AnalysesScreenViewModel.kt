@@ -3,16 +3,19 @@ package com.tecknobit.gluky.ui.screens.analyses.presentation
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
+import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaTrendDataSet
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
+import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,10 +24,14 @@ import kotlin.random.Random
 
 class AnalysesScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
-) {
+), ToastsLauncher {
 
     @OptIn(ExperimentalComposeApi::class)
     lateinit var sessionFlowState: SessionFlowState
+
+    override lateinit var toasterState: ToasterState
+
+    override var scope: CoroutineScope = viewModelScope
 
     private val _glycemicTrendData = MutableStateFlow<GlycemicTrendData?>(
         value = null

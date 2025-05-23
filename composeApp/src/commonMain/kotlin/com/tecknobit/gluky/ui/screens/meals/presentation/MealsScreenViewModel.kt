@@ -5,8 +5,6 @@ import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
-import com.dokar.sonner.Toast
-import com.dokar.sonner.ToastType
 import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPickerState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
@@ -17,6 +15,7 @@ import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
+import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
 import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
 import com.tecknobit.glukycore.enums.MeasurementType.DINNER
@@ -26,18 +25,17 @@ import com.tecknobit.glukycore.helpers.GlukyInputsValidator.glycemiaValueIsValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.invalid_meal_content
 import gluky.composeapp.generated.resources.wrong_glycemia_value
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
-import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.getString
 import kotlin.random.Random
 
 class MealsScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
-) {
+), ToastsLauncher {
 
     companion object {
 
@@ -51,6 +49,10 @@ class MealsScreenViewModel : EquinoxViewModel(
 
     @OptIn(ExperimentalComposeApi::class)
     lateinit var sessionFlowState: SessionFlowState
+
+    override lateinit var toasterState: ToasterState
+
+    override var scope: CoroutineScope = viewModelScope
 
     private val _currentDay = MutableStateFlow(
         value = currentTimestamp()
@@ -77,8 +79,6 @@ class MealsScreenViewModel : EquinoxViewModel(
     lateinit var insulinNeeded: MutableState<Boolean>
 
     lateinit var mealContent: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>
-
-    lateinit var toaster: ToasterState
 
     fun computeDayValue(
         page: Int,
@@ -272,22 +272,6 @@ class MealsScreenViewModel : EquinoxViewModel(
         toastError(
             error = Res.string.wrong_glycemia_value
         )
-    }
-
-    private fun toastError(
-        error: StringResource,
-    ) {
-        viewModelScope.launch {
-            val errorMessage = getString(
-                resource = error
-            )
-            toaster.show(
-                toast = Toast(
-                    message = errorMessage,
-                    type = ToastType.Error
-                )
-            )
-        }
     }
 
     fun saveDailyNotes(

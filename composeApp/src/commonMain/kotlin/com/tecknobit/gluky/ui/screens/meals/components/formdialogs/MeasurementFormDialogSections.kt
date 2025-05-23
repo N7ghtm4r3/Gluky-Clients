@@ -76,9 +76,9 @@ internal fun MeasurementFormDialogContainer(
         show = show,
         viewModel = viewModel,
     ) {
-        viewModel.toaster = rememberToasterState()
+        viewModel.toasterState = rememberToasterState()
         Toaster(
-            state = viewModel.toaster,
+            state = viewModel.toasterState,
             darkTheme = applyDarkTheme(),
             richColors = true
         )
