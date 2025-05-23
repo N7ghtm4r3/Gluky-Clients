@@ -9,7 +9,7 @@ import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaTrendDataSet
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
-import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay.ALL
+import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_WEEK
@@ -36,8 +36,8 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     )
     val glycemicTrendPeriod = _glycemicTrendPeriod.asStateFlow()
 
-    private val _glycemicTrendGroupingDay = MutableStateFlow(
-        value = ALL
+    private val _glycemicTrendGroupingDay = MutableStateFlow<GlycemicTrendGroupingDay?>(
+        value = null
     )
     val glycemicTrendGroupingDay = _glycemicTrendGroupingDay.asStateFlow()
 
@@ -45,7 +45,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         // TODO: TO MAKE THE REQUEST THEN APPLYING FILTERS
         viewModelScope.launch {
             delay(2000)
-            _glycemicTrendData.value = if (Random.nextBoolean())
+            _glycemicTrendData.value = if (false)
                 GlycemicTrendData()
             else {
                 GlycemicTrendData(
@@ -224,6 +224,13 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                 )
             }
         }
+    }
+
+    fun selectGlycemicGroupingDay(
+        groupingDay: GlycemicTrendGroupingDay,
+    ) {
+        _glycemicTrendGroupingDay.value = groupingDay
+        retrieveGlycemiaTrendData()
     }
 
     fun selectGlycemicTrendPeriod(

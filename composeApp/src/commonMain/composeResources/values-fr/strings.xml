@@ -93,4 +93,12 @@
     <string name="second_week">Deuxième semaine</string>
     <string name="third_week">Troisième semaine</string>
     <string name="fourth_week">Quatrième semaine</string>
+    <string name="sunday">Dimanche</string>
+    <string name="monday">Lundi</string>
+    <string name="tuesday">Mardi</string>
+    <string name="wednesday">Mercredi</string>
+    <string name="thursday">Jeudi</string>
+    <string name="friday">Vendredi</string>
+    <string name="saturday">Samedi</string>
+    <string name="select_grouping_day">Choisissez un jour pour regrouper</string>
 </resources>

@@ -109,7 +109,7 @@ fun GlycemicTrend(
     viewModel: AnalysesScreenViewModel,
     glycemicTrendData: GlycemicTrendData,
     glycemicTrendPeriod: GlycemicTrendPeriod,
-    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
+    glycemicTrendGroupingDay: GlycemicTrendGroupingDay?,
 ) {
     AnimatedContent(
         targetState = glycemicTrendData.sets.isEmpty(),
@@ -118,8 +118,7 @@ fun GlycemicTrend(
         if (isEmpty) {
             EmptySets(
                 viewModel = viewModel,
-                glycemicTrendPeriod = glycemicTrendPeriod,
-                glycemicTrendGroupingDay = glycemicTrendGroupingDay
+                glycemicTrendPeriod = glycemicTrendPeriod
             )
         } else {
             ChartContent(
@@ -135,7 +134,6 @@ fun GlycemicTrend(
 private fun EmptySets(
     viewModel: AnalysesScreenViewModel,
     glycemicTrendPeriod: GlycemicTrendPeriod,
-    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
 ) {
     val title = stringResource(Res.string.no_data_available)
     EmptyState(
@@ -166,7 +164,7 @@ private fun EmptySets(
 private fun ChartContent(
     glycemicTrendData: GlycemicTrendData,
     glycemicTrendPeriod: GlycemicTrendPeriod,
-    glycemicTrendGroupingDay: GlycemicTrendGroupingDay,
+    glycemicTrendGroupingDay: GlycemicTrendGroupingDay?,
 ) {
     Column {
         val colors = if (applyDarkTheme())

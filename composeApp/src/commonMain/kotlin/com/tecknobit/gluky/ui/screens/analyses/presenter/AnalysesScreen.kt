@@ -41,7 +41,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
 
     private lateinit var glycemicTrendPeriod: State<GlycemicTrendPeriod>
 
-    private lateinit var glycemicTrendGroupingDay: State<GlycemicTrendGroupingDay>
+    private lateinit var glycemicTrendGroupingDay: State<GlycemicTrendGroupingDay?>
 
     @Composable
     override fun ColumnScope.ScreenPageContent() {
