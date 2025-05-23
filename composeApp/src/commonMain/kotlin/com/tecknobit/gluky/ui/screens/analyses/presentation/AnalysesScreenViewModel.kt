@@ -55,8 +55,11 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     )
     val glycemicTrendGroupingDay = _glycemicTrendGroupingDay.asStateFlow()
 
-    fun retrieveGlycemiaTrendData() {
-        // TODO: TO MAKE THE REQUEST THEN APPLYING FILTERS
+    fun retrieveGlycemiaTrendData(
+        from: Long? = null,
+        to: Long? = null,
+    ) {
+        // TODO: TO MAKE THE REQUEST AND APPLYING FILTERS
         viewModelScope.launch {
             delay(2000)
             _glycemicTrendData.value = if (false)
@@ -266,7 +269,10 @@ class AnalysesScreenViewModel : EquinoxViewModel(
             )
             return
         }
-        retrieveGlycemiaTrendData()
+        retrieveGlycemiaTrendData(
+            from = state.selectedStartDateMillis,
+            to = state.selectedEndDateMillis
+        )
         onApply()
     }
 

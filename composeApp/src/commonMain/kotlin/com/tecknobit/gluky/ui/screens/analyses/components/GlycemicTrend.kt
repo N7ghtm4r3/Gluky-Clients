@@ -173,7 +173,12 @@ private fun ChartContent(
             lightLineColors
         var chartWidth by remember { mutableStateOf(0.dp) }
         val density = LocalDensity.current
-        val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
+        val chartData = remember(
+            chartWidth,
+            glycemicTrendData.sets,
+            glycemicTrendPeriod,
+            glycemicTrendGroupingDay
+        ) {
             glycemicTrendData.toChartData(
                 colors = colors
             )
