@@ -109,4 +109,6 @@
     <string name="four_months_extended">4 mesi</string>
     <string name="select_range_period">Scegli un intervallo di tempo</string>
     <string name="select_custom_range_period">Scegli un intervallo di tempo personalizzato</string>
+    <string name="select_range">Seleziona intervallo</string>
+    <string name="wrong_custom_range">Intervallo non valido, il massimo consentito è %1$s</string>
 </resources>

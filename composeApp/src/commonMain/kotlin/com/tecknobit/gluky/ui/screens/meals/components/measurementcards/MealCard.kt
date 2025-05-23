@@ -49,6 +49,7 @@ import com.pushpal.jetlime.JetLimeRow
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.icons.CollapseAll
+import com.tecknobit.gluky.ui.icons.ExpandAll
 import com.tecknobit.gluky.ui.screens.meals.GlycemiaLevelBadge
 import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
 import com.tecknobit.gluky.ui.screens.meals.components.formdialogs.MealFormDialog
@@ -56,7 +57,6 @@ import com.tecknobit.gluky.ui.screens.meals.data.Meal
 import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
-import com.tecknobit.refy.ui.icons.ExpandAll
 import gluky.composeapp.generated.resources.Res.string
 import gluky.composeapp.generated.resources.fill_meal
 import gluky.composeapp.generated.resources.post_prandial_measurement

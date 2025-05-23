@@ -109,4 +109,6 @@
     <string name="four_months_extended">4 mois</string>
     <string name="select_range_period">Choisissez une période</string>
     <string name="select_custom_range_period">Choisissez une plage horaire personnalisée</string>
+    <string name="select_range">Sélectionnez une plage</string>
+    <string name="wrong_custom_range">Plage non valide, le maximum autorisé est %1$s</string>
 </resources>

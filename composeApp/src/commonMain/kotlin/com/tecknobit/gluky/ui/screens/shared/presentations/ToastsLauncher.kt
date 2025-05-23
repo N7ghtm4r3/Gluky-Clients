@@ -16,10 +16,12 @@ interface ToastsLauncher {
 
     fun toastError(
         error: StringResource,
+        vararg formatArgs: Any,
     ) {
         scope.launch {
             val errorMessage = getString(
-                resource = error
+                resource = error,
+                *formatArgs
             )
             toasterState.show(
                 toast = Toast(

@@ -9,13 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,6 +40,7 @@ import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPicker
 import com.tecknobit.equinoxcompose.components.quantitypicker.rememberQuantityPickerState
+import com.tecknobit.gluky.ui.components.SaveButton
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
@@ -59,7 +58,6 @@ import gluky.composeapp.generated.resources.blood_sugar_placeholder
 import gluky.composeapp.generated.resources.close
 import gluky.composeapp.generated.resources.insulin
 import gluky.composeapp.generated.resources.no_insulin_needed
-import gluky.composeapp.generated.resources.save
 import gluky.composeapp.generated.resources.units
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -105,20 +103,14 @@ internal fun MeasurementFormDialogContainer(
                     content = content
                 )
                 val softwareKeyboardController = LocalSoftwareKeyboardController.current
-                Button(
+                SaveButton(
                     modifier = Modifier
-                        .align(Alignment.End)
-                        .width(100.dp),
-                    onClick = {
+                        .align(Alignment.End),
+                    save = {
                         softwareKeyboardController?.hide()
                         save()
                     }
-                ) {
-                    Text(
-                        text = stringResource(Res.string.save),
-                        color = MaterialTheme.colorScheme.onPrimary
-                    )
-                }
+                )
             }
         }
     }

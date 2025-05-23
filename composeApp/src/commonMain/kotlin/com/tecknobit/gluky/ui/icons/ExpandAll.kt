@@ -1,4 +1,4 @@
-package com.tecknobit.refy.ui.icons
+package com.tecknobit.gluky.ui.icons
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType

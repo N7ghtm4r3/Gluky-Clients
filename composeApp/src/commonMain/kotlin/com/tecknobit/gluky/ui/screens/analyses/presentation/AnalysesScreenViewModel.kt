@@ -1,5 +1,9 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.tecknobit.gluky.ui.screens.analyses.presentation
 
+import androidx.compose.material3.DateRangePickerState
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
@@ -15,6 +19,8 @@ import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
+import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.wrong_custom_range
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -245,6 +251,30 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     ) {
         _glycemicTrendPeriod.value = period
         retrieveGlycemiaTrendData()
+    }
+
+    fun applyCustomTrendPeriod(
+        state: DateRangePickerState,
+        allowedPeriod: String,
+        onApply: () -> Unit,
+    ) {
+        if (!isCustomPeriodValid(state)) {
+            toastError(
+                error = Res.string.wrong_custom_range,
+                allowedPeriod
+            )
+            return
+        }
+        retrieveGlycemiaTrendData()
+        onApply()
+    }
+
+    private fun isCustomPeriodValid(
+        state: DateRangePickerState,
+    ): Boolean {
+        val initialDate = state.selectedStartDateMillis ?: 0
+        val endDate = state.selectedEndDateMillis ?: 0
+        return ((endDate - initialDate) <= _glycemicTrendPeriod.value.millis)
     }
 
 }
