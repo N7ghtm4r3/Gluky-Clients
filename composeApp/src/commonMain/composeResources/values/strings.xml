@@ -108,4 +108,5 @@
     <string name="three_months_extended">3 months</string>
     <string name="four_months_extended">4 months</string>
     <string name="select_range_period">Choose a period range</string>
+    <string name="select_custom_range_period">Choose a custom period range</string>
 </resources>

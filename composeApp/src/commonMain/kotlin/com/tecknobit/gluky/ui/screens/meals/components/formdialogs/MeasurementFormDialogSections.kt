@@ -7,12 +7,10 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -49,9 +47,11 @@ import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
+import com.tecknobit.gluky.ui.theme.DialogShape
 import com.tecknobit.gluky.ui.theme.InputFieldHeight
 import com.tecknobit.gluky.ui.theme.InputFieldShape
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
+import com.tecknobit.gluky.ui.theme.useDialogSize
 import com.tecknobit.glukycore.enums.MeasurementType
 import com.tecknobit.glukycore.helpers.GlukyInputsValidator.glycemiaValueIsValid
 import gluky.composeapp.generated.resources.Res
@@ -84,13 +84,8 @@ internal fun MeasurementFormDialogContainer(
         )
         Surface(
             modifier = Modifier
-                .fillMaxWidth()
-                .heightIn(
-                    max = 750.dp
-                ),
-            shape = RoundedCornerShape(
-                size = 16.dp
-            ),
+                .useDialogSize(),
+            shape = DialogShape,
             color = MaterialTheme.colorScheme.surfaceContainerLowest
         ) {
             Column(

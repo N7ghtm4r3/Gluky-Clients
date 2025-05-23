@@ -53,6 +53,14 @@ data class GlycemicTrendData(
         sets.add(this)
     }
 
+    fun firstAvailableDate(): Long? {
+        return firstSet?.set?.first()?.date
+    }
+
+    fun lastAvailableDate(): Long? {
+        return firstSet?.set?.last()?.date
+    }
+
 }
 
 @Serializable

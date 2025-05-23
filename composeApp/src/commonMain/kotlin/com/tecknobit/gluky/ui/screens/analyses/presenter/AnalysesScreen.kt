@@ -89,7 +89,9 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
                 horizontalAlignment = Alignment.End
             ) {
                 CustomPeriodButton(
-                    viewModel = viewModel
+                    viewModel = viewModel,
+                    glycemicTrendData = glycemicTrendData.value!!,
+                    trendPeriod = glycemicTrendPeriod.value
                 )
             }
         }

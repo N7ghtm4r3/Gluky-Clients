@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.tecknobit.gluky.ui.screens.analyses.components
 
 import androidx.compose.foundation.layout.Column
@@ -6,19 +8,32 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material3.DateRangePicker
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcore.annotations.Returner
+import com.tecknobit.equinoxcore.time.TimeFormatter
+import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
+import com.tecknobit.gluky.ui.theme.DialogShape
+import com.tecknobit.gluky.ui.theme.useDialogSize
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay.FRIDAY
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay.MONDAY
@@ -40,6 +55,7 @@ import gluky.composeapp.generated.resources.monday
 import gluky.composeapp.generated.resources.one_month_extended
 import gluky.composeapp.generated.resources.one_week_extended
 import gluky.composeapp.generated.resources.saturday
+import gluky.composeapp.generated.resources.select_custom_range_period
 import gluky.composeapp.generated.resources.select_grouping_day
 import gluky.composeapp.generated.resources.select_range_period
 import gluky.composeapp.generated.resources.sunday
@@ -49,6 +65,7 @@ import gluky.composeapp.generated.resources.tuesday
 import gluky.composeapp.generated.resources.wednesday
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
+import kotlin.math.abs
 
 @Composable
 fun GroupingDayChip(
@@ -131,7 +148,7 @@ fun TrendPeriodChip(
             onClick = { select.value = !select.value },
             label = {
                 Text(
-                    text = stringResource(trendPeriod.text())
+                    text = stringResource(trendPeriod.extendedText())
                 )
             },
             trailingIcon = {
@@ -166,7 +183,7 @@ private fun TrendPeriodDropdownMenu(
                 },
                 text = {
                     Text(
-                        text = stringResource(period.text())
+                        text = stringResource(period.extendedText())
                     )
                 }
             )
@@ -175,7 +192,7 @@ private fun TrendPeriodDropdownMenu(
 }
 
 @Returner
-private fun GlycemicTrendPeriod.text(): StringResource {
+private fun GlycemicTrendPeriod.extendedText(): StringResource {
     return when (this) {
         ONE_WEEK -> Res.string.one_week_extended
         ONE_MONTH -> Res.string.one_month_extended
@@ -202,15 +219,77 @@ private fun FiltersDropdownMenu(
 @Composable
 fun CustomPeriodButton(
     viewModel: AnalysesScreenViewModel,
+    glycemicTrendData: GlycemicTrendData,
+    trendPeriod: GlycemicTrendPeriod,
 ) {
+    val show = remember { mutableStateOf(false) }
     IconButton(
-        onClick = {
-
-        }
+        onClick = { show.value = !show.value }
     ) {
         Icon(
             imageVector = Icons.Default.CalendarMonth,
-            contentDescription = ""
+            contentDescription = stringResource(Res.string.select_custom_range_period)
         )
     }
+    CustomPeriodPicker(
+        show = show,
+        glycemicTrendData = glycemicTrendData,
+        trendPeriod = trendPeriod
+    )
+}
+
+@Composable
+private fun CustomPeriodPicker(
+    show: MutableState<Boolean>,
+    glycemicTrendData: GlycemicTrendData,
+    trendPeriod: GlycemicTrendPeriod,
+) {
+    EquinoxDialog(
+        show = show
+    ) {
+        val datesValidator = remember {
+            DatesValidator(
+                trendPeriod = trendPeriod
+            )
+        }
+        val rangePickerState = rememberDateRangePickerState(
+            initialSelectedStartDateMillis = glycemicTrendData.firstAvailableDate(),
+            initialSelectedEndDateMillis = glycemicTrendData.lastAvailableDate(),
+            selectableDates = datesValidator
+        )
+        LaunchedEffect(rangePickerState.selectedStartDateMillis) {
+            datesValidator.initialSelectedDate = rangePickerState.selectedStartDateMillis
+            println(datesValidator.initialSelectedDate?.toDateString())
+        }
+        DateRangePicker(
+            modifier = Modifier
+                .useDialogSize()
+                .clip(DialogShape),
+            state = rangePickerState
+        )
+    }
+}
+
+private class DatesValidator(
+    private val trendPeriod: GlycemicTrendPeriod,
+) : SelectableDates {
+
+    private val currentTimestamp = TimeFormatter.currentTimestamp()
+
+    var initialSelectedDate: Long? = currentTimestamp
+        set(value) {
+            value?.let {
+                field = value
+            }
+        }
+
+    override fun isSelectableDate(
+        utcTimeMillis: Long,
+    ): Boolean {
+        return if (utcTimeMillis > currentTimestamp)
+            false
+        else
+            abs(initialSelectedDate!! - utcTimeMillis) <= trendPeriod.millis
+    }
+
 }

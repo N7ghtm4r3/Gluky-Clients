@@ -93,6 +93,7 @@
     <string name="second_week">Seconda settimana</string>
     <string name="third_week">Terza settimana</string>
     <string name="fourth_week">Quarta settimana</string>
+    <string name="all">Tutto</string>
     <string name="sunday">Domenica</string>
     <string name="monday">Lunedì</string>
     <string name="tuesday">Martedì</string>
@@ -107,4 +108,5 @@
     <string name="three_months_extended">3 mesi</string>
     <string name="four_months_extended">4 mesi</string>
     <string name="select_range_period">Scegli un intervallo di tempo</string>
+    <string name="select_custom_range_period">Scegli un intervallo di tempo personalizzato</string>
 </resources>
