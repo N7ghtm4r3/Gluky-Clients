@@ -9,6 +9,7 @@ import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPickerState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
 import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
@@ -180,6 +181,7 @@ class MealsScreenViewModel : EquinoxViewModel(
         onSave()
     }
 
+    @Validator
     private fun areMealDataValid(): Boolean {
         if (!isGlycemiaValueValid())
             return false
@@ -226,10 +228,12 @@ class MealsScreenViewModel : EquinoxViewModel(
     }
 
     @Wrapper
+    @Validator
     private fun areBasalInsulinDataValid(): Boolean {
         return isGlycemiaValueValid()
     }
 
+    @Validator
     private fun isGlycemiaValueValid(): Boolean {
         return if (!glycemiaValueIsValid(glycemia.value)) {
             toastGlycemiaValueError()

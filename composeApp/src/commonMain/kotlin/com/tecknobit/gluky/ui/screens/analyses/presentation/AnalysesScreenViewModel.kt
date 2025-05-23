@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaTrendDataSet
@@ -269,6 +270,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         onApply()
     }
 
+    @Validator
     private fun isCustomPeriodValid(
         state: DateRangePickerState,
     ): Boolean {
