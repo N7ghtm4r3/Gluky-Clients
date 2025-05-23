@@ -102,4 +102,10 @@
     <string name="friday">Friday</string>
     <string name="saturday">Saturday</string>
     <string name="select_grouping_day">Choose a day to group by</string>
+    <string name="period">Period</string>
+    <string name="one_week_extended">1 week</string>
+    <string name="one_month_extended">1 month</string>
+    <string name="three_months_extended">3 months</string>
+    <string name="four_months_extended">4 months</string>
+    <string name="select_range_period">Choose a period range</string>
 </resources>

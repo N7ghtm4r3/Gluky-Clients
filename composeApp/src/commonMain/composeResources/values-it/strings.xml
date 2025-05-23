@@ -101,4 +101,10 @@
     <string name="friday">Venerdì</string>
     <string name="saturday">Sabato</string>
     <string name="select_grouping_day">Scegli un giorno per raggruppare</string>
+    <string name="period">Periodo</string>
+    <string name="one_week_extended">1 settimana</string>
+    <string name="one_month_extended">1 mese</string>
+    <string name="three_months_extended">3 mesi</string>
+    <string name="four_months_extended">4 mesi</string>
+    <string name="select_range_period">Scegli un intervallo di tempo</string>
 </resources>

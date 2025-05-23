@@ -12,7 +12,7 @@ import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
-import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_WEEK
+import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -32,7 +32,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     val glycemicTrendData = _glycemicTrendData.asStateFlow()
 
     private val _glycemicTrendPeriod = MutableStateFlow(
-        value = ONE_WEEK
+        value = ONE_MONTH
     )
     val glycemicTrendPeriod = _glycemicTrendPeriod.asStateFlow()
 
