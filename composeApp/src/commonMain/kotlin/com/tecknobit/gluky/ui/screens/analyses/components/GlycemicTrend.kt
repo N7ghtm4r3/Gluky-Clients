@@ -1,15 +1,10 @@
 package com.tecknobit.gluky.ui.screens.analyses.components
 
-import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -36,14 +31,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tecknobit.equinoxcompose.components.EmptyState
-import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.time.TimeFormatter.EUROPEAN_DATE_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.helpers.asMonth
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
-import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
 import com.tecknobit.gluky.ui.theme.ChartLine1Light
@@ -53,19 +45,14 @@ import com.tecknobit.gluky.ui.theme.ChartLine3Dark
 import com.tecknobit.gluky.ui.theme.ChartLine3Light
 import com.tecknobit.gluky.ui.theme.ChartLine4Dark
 import com.tecknobit.gluky.ui.theme.ChartLine4Light
-import com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_WEEK
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import gluky.composeapp.generated.resources.Res
-import gluky.composeapp.generated.resources.choose_another_period
-import gluky.composeapp.generated.resources.empty_sets_dark
-import gluky.composeapp.generated.resources.empty_sets_light
 import gluky.composeapp.generated.resources.first_week
 import gluky.composeapp.generated.resources.fourth_week
-import gluky.composeapp.generated.resources.no_data_available
 import gluky.composeapp.generated.resources.second_week
 import gluky.composeapp.generated.resources.third_week
 import ir.ehsannarmani.compose_charts.LineChart
@@ -106,62 +93,6 @@ private val darkLineColors = arrayOf(
 
 @Composable
 fun GlycemicTrend(
-    viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendData,
-    glycemicTrendPeriod: GlycemicTrendPeriod,
-    glycemicTrendGroupingDay: GlycemicTrendGroupingDay?,
-) {
-    AnimatedContent(
-        targetState = glycemicTrendData.sets.isEmpty(),
-        transitionSpec = { fadeIn().togetherWith(fadeOut()) }
-    ) { isEmpty ->
-        if (isEmpty) {
-            EmptySets(
-                viewModel = viewModel,
-                glycemicTrendPeriod = glycemicTrendPeriod
-            )
-        } else {
-            ChartContent(
-                glycemicTrendData = glycemicTrendData,
-                glycemicTrendPeriod = glycemicTrendPeriod,
-                glycemicTrendGroupingDay = glycemicTrendGroupingDay
-            )
-        }
-    }
-}
-
-@Composable
-private fun EmptySets(
-    viewModel: AnalysesScreenViewModel,
-    glycemicTrendPeriod: GlycemicTrendPeriod,
-) {
-    val title = stringResource(Res.string.no_data_available)
-    EmptyState(
-        containerModifier = Modifier
-            .fillMaxSize(),
-        lightResource = Res.drawable.empty_sets_light,
-        darkResource = Res.drawable.empty_sets_dark,
-        title = title,
-        contentDescription = title,
-        titleStyle = EmptyStateTitleStyle,
-        action = {
-            GlycemicTrendPeriodSelector(
-                viewModel = viewModel,
-                glycemicTrendPeriod = glycemicTrendPeriod
-            )
-        },
-        subTitle = stringResource(Res.string.choose_another_period),
-        resourceSize = responsiveAssignment(
-            onExpandedSizeClass = { 350.dp },
-            onMediumWidthExpandedHeight = { 350.dp },
-            onMediumSizeClass = { 300.dp },
-            onCompactSizeClass = { 250.dp }
-        )
-    )
-}
-
-@Composable
-private fun ChartContent(
     glycemicTrendData: GlycemicTrendData,
     glycemicTrendPeriod: GlycemicTrendPeriod,
     glycemicTrendGroupingDay: GlycemicTrendGroupingDay?,
@@ -173,12 +104,7 @@ private fun ChartContent(
             lightLineColors
         var chartWidth by remember { mutableStateOf(0.dp) }
         val density = LocalDensity.current
-        val chartData = remember(
-            chartWidth,
-            glycemicTrendData.sets,
-            glycemicTrendPeriod,
-            glycemicTrendGroupingDay
-        ) {
+        val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
             glycemicTrendData.toChartData(
                 colors = colors
             )

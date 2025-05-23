@@ -15,6 +15,7 @@ import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaTrendDataSet
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
@@ -40,7 +41,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
 
     override var scope: CoroutineScope = viewModelScope
 
-    private val _glycemicTrendData = MutableStateFlow<GlycemicTrendData?>(
+    private val _glycemicTrendData = MutableStateFlow<GlycemicTrendDataContainer?>(
         value = null
     )
     val glycemicTrendData = _glycemicTrendData.asStateFlow()
@@ -62,182 +63,835 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         // TODO: TO MAKE THE REQUEST AND APPLYING FILTERS
         viewModelScope.launch {
             delay(2000)
-            _glycemicTrendData.value = if (false)
-                GlycemicTrendData()
+            _glycemicTrendData.value = if (Random.nextBoolean())
+                GlycemicTrendDataContainer()
             else {
-                GlycemicTrendData(
-                    labelType = COMPUTE_MONTH,
-                    firstSet = GlycemiaTrendDataSet(
-                        maxGlycemicValue = Random.nextInt(300),
-                        minGlycemicValue = Random.nextInt(100),
-                        mediumGlycemicValue = Random.nextDouble(),
+                GlycemicTrendDataContainer(
+                    breakfast = GlycemicTrendData(
+                        labelType = COMPUTE_MONTH,
+                        firstSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
+                                    ),
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
-                        set = listOf(
-                            GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100),
+                                    )
+                            )
+                        ),
+                        secondSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
+                                    )
+                            )
+                        ),
+                        thirdSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        fourthSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
                                 )
+                            )
                         )
                     ),
-                    secondSet = GlycemiaTrendDataSet(
-                        maxGlycemicValue = Random.nextInt(300),
-                        minGlycemicValue = Random.nextInt(100),
-                        mediumGlycemicValue = Random.nextDouble(),
+                    morningSnack = GlycemicTrendData(
+                        labelType = COMPUTE_MONTH,
+                        firstSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
+                                    ),
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
-                        set = listOf(
-                            GlycemiaPoint(
-                                date = 1750601328000,
-                                value = Random.nextInt(100),
+                                    )
+                            )
+                        ),
+                        secondSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1750601328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
+                                    )
+                            )
+                        ),
+                        thirdSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        fourthSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
                                 )
+                            )
                         )
                     ),
-                    thirdSet = GlycemiaTrendDataSet(
-                        maxGlycemicValue = Random.nextInt(300),
-                        minGlycemicValue = Random.nextInt(100),
-                        mediumGlycemicValue = Random.nextDouble(),
+                    lunch = GlycemicTrendData(
+                        labelType = COMPUTE_MONTH,
+                        firstSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
+                                    ),
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
-                        set = listOf(
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    )
+                            )
+                        ),
+                        secondSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    )
+                            )
+                        ),
+                        thirdSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1753193328000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        fourthSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
                                 )
+                            )
                         )
                     ),
-                    fourthSet = GlycemiaTrendDataSet(
-                        maxGlycemicValue = Random.nextInt(300),
-                        minGlycemicValue = Random.nextInt(100),
-                        mediumGlycemicValue = Random.nextDouble(),
+                    afternoonSnack = GlycemicTrendData(
+                        labelType = COMPUTE_MONTH,
+                        firstSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
+                                    ),
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
 
-                        set = listOf(
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    )
+                            )
+                        ),
+                        secondSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    )
+                            )
+                        ),
+                        thirdSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
-                                ),
-                            GlycemiaPoint(
-                                date = 1755871728000,
-                                value = Random.nextInt(100),
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
 
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        fourthSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
                                 )
+                            )
                         )
-                    )
+                    ),
+                    dinner = GlycemicTrendData(
+                        labelType = COMPUTE_MONTH,
+                        firstSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        secondSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        thirdSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        fourthSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            set = listOf(
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+                                )
+                            )
+                        )
+                    ),
                 )
             }
         }

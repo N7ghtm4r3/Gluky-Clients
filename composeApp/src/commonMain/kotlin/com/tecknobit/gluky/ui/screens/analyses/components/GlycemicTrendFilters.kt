@@ -22,7 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.gluky.helpers.extendedText
-import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay.FRIDAY
@@ -190,7 +190,7 @@ private fun FiltersDropdownMenu(
 @Composable
 fun CustomPeriodButton(
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendData,
+    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
 ) {
     val show = remember { mutableStateOf(false) }

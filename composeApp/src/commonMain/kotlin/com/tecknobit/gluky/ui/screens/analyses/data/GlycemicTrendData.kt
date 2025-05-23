@@ -1,16 +1,64 @@
 package com.tecknobit.gluky.ui.screens.analyses.data
 
+import com.tecknobit.glukycore.AFTERNOON_SNACK_KEY
 import com.tecknobit.glukycore.FIRST_SET_KEY
 import com.tecknobit.glukycore.FOURTH_SET_KEY
 import com.tecknobit.glukycore.GLYCEMIC_LABEL_TYPE_KEY
 import com.tecknobit.glukycore.MAX_GLYCEMIC_VALUE_KEY
 import com.tecknobit.glukycore.MEDIUM_GLYCEMIC_VALUE_KEY
 import com.tecknobit.glukycore.MIN_GLYCEMIC_VALUE_KEY
+import com.tecknobit.glukycore.MORNING_SNACK_KEY
 import com.tecknobit.glukycore.SECOND_SET_KEY
 import com.tecknobit.glukycore.THIRD_SET_KEY
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType
+import com.tecknobit.glukycore.enums.MeasurementType
+import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
+import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
+import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
+import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+
+@Serializable
+data class GlycemicTrendDataContainer(
+    val breakfast: GlycemicTrendData? = null,
+    @SerialName(MORNING_SNACK_KEY)
+    val morningSnack: GlycemicTrendData? = null,
+    val lunch: GlycemicTrendData? = null,
+    @SerialName(AFTERNOON_SNACK_KEY)
+    val afternoonSnack: GlycemicTrendData? = null,
+    val dinner: GlycemicTrendData? = null,
+) {
+
+    fun dataAvailable(): Boolean {
+        return breakfast != null &&
+                morningSnack != null &&
+                lunch != null &&
+                afternoonSnack != null &&
+                dinner != null
+    }
+
+    fun firstAvailableDate(): Long? {
+        return breakfast?.firstSet?.set?.first()?.date
+    }
+
+    fun lastAvailableDate(): Long? {
+        return breakfast?.firstSet?.set?.last()?.date
+    }
+
+    fun getRelatedSet(
+        type: MeasurementType,
+    ): GlycemicTrendData? {
+        return when (type) {
+            BREAKFAST -> breakfast
+            MORNING_SNACK -> morningSnack
+            LUNCH -> lunch
+            AFTERNOON_SNACK -> afternoonSnack
+            else -> dinner
+        }
+    }
+
+}
 
 @Serializable
 data class GlycemicTrendData(
@@ -51,14 +99,6 @@ data class GlycemicTrendData(
         if (this == null)
             return
         sets.add(this)
-    }
-
-    fun firstAvailableDate(): Long? {
-        return firstSet?.set?.first()?.date
-    }
-
-    fun lastAvailableDate(): Long? {
-        return firstSet?.set?.last()?.date
     }
 
 }

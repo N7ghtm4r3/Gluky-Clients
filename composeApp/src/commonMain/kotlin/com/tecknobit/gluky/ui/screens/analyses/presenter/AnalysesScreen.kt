@@ -2,13 +2,19 @@
 
 package com.tecknobit.gluky.ui.screens.analyses.presenter
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
@@ -21,14 +27,16 @@ import com.tecknobit.equinoxcompose.annotations.ScreenSection
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodButton
+import com.tecknobit.gluky.ui.screens.analyses.components.EmptyTrendData
 import com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrend
 import com.tecknobit.gluky.ui.screens.analyses.components.GroupingDayChip
 import com.tecknobit.gluky.ui.screens.analyses.components.TrendPeriodChip
-import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
+import com.tecknobit.glukycore.enums.MeasurementType
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.analyses
 
@@ -37,7 +45,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     title = Res.string.analyses
 ) {
 
-    private lateinit var glycemicTrendData: State<GlycemicTrendData?>
+    private lateinit var glycemicTrendData: State<GlycemicTrendDataContainer?>
 
     private lateinit var glycemicTrendPeriod: State<GlycemicTrendPeriod>
 
@@ -53,15 +61,23 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
             loadingRoutine = { glycemicTrendData.value != null },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    AnimatedVisibility(
-                        visible = glycemicTrendData.value!!.sets.isNotEmpty()
-                    ) {
-                        FiltersSection()
+                AnimatedContent(
+                    targetState = glycemicTrendData.value!!.dataAvailable(),
+                    transitionSpec = { fadeIn().togetherWith(fadeOut()) }
+                ) { dataAvailable ->
+                    if (dataAvailable) {
+                        Column(
+                            verticalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
+                            FiltersSection()
+                            ChartsSection()
+                        }
+                    } else {
+                        EmptyTrendData(
+                            viewModel = viewModel,
+                            glycemicTrendPeriod = glycemicTrendPeriod.value
+                        )
                     }
-                    ChartsSection()
                 }
             }
         )
@@ -100,12 +116,25 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     @Composable
     @ScreenSection
     private fun ChartsSection() {
-        GlycemicTrend(
-            viewModel = viewModel,
-            glycemicTrendData = glycemicTrendData.value!!,
-            glycemicTrendPeriod = glycemicTrendPeriod.value,
-            glycemicTrendGroupingDay = glycemicTrendGroupingDay.value
-        )
+        LazyColumn(
+            modifier = Modifier
+                .navigationBarsPadding(),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            items(
+                items = MeasurementType.meals(),
+                key = { mealType -> mealType }
+            ) { mealType ->
+                val mealTrendSet = glycemicTrendData.value!!.getRelatedSet(mealType)
+                mealTrendSet?.let { trendSet ->
+                    GlycemicTrend(
+                        glycemicTrendData = trendSet,
+                        glycemicTrendPeriod = glycemicTrendPeriod.value,
+                        glycemicTrendGroupingDay = glycemicTrendGroupingDay.value
+                    )
+                }
+            }
+        }
     }
 
     override fun onStart() {

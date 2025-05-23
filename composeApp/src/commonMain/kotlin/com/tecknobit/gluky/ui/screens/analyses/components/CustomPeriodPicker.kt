@@ -36,7 +36,7 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.gluky.helpers.extendedText
 import com.tecknobit.gluky.ui.components.SaveButton
-import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.DialogShape
@@ -54,7 +54,7 @@ import org.jetbrains.compose.resources.stringResource
 fun CustomPeriodPicker(
     show: MutableState<Boolean>,
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendData,
+    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
 ) {
     ResponsiveContent(
@@ -103,7 +103,7 @@ fun CustomPeriodPicker(
 private fun PeriodPickerDialog(
     show: MutableState<Boolean>,
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendData,
+    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
 ) {
     EquinoxDialog(
@@ -130,7 +130,7 @@ private fun PeriodPickerBottomSheet(
     state: SheetState,
     scope: CoroutineScope,
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendData,
+    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
 ) {
     if (state.isVisible) {
@@ -177,7 +177,7 @@ private fun PeriodPickerContent(
     modifier: Modifier = Modifier,
     colors: DatePickerColors = DatePickerDefaults.colors(),
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendData,
+    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
     onSave: () -> Unit,
 ) {
