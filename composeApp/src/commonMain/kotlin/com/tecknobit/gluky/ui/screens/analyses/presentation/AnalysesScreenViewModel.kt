@@ -21,6 +21,8 @@ import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
 import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.open
+import gluky.composeapp.generated.resources.report_created
 import gluky.composeapp.generated.resources.wrong_custom_range
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
@@ -54,6 +56,11 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         value = null
     )
     val glycemicTrendGroupingDay = _glycemicTrendGroupingDay.asStateFlow()
+
+    private val _creatingReport = MutableStateFlow(
+        value = false
+    )
+    val creatingReport = _creatingReport.asStateFlow()
 
     fun retrieveGlycemiaTrendData(
         from: Long? = null,
@@ -409,8 +416,23 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         return ((endDate - initialDate) <= _glycemicTrendPeriod.value.millis)
     }
 
-    fun createReport() {
+    fun createReport(
+        onCreated: () -> Unit,
+    ) {
         // TODO: MAKE THE REQUEST THEN DOWNLOAD FROM THE URL RETURNED
+        _creatingReport.value = true
+        viewModelScope.launch {
+            delay(2000L) // TODO: TO REMOVE
+            _creatingReport.value = false
+            onCreated()
+            showSnackbarMessage(
+                message = Res.string.report_created,
+                actionLabel = Res.string.open,
+                onActionPerformed = {
+                    // TODO: OPEN THE FILE
+                }
+            )
+        }
     }
 
 }

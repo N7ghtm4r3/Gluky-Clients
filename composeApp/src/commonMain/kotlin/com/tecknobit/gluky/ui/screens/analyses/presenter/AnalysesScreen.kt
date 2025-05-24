@@ -23,6 +23,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -34,6 +36,7 @@ import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
 import com.tecknobit.gluky.ui.icons.Report
 import com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodButton
 import com.tecknobit.gluky.ui.screens.analyses.components.EmptyTrendData
+import com.tecknobit.gluky.ui.screens.analyses.components.GlycemicReportDialog
 import com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrend
 import com.tecknobit.gluky.ui.screens.analyses.components.GroupingDayChip
 import com.tecknobit.gluky.ui.screens.analyses.components.TrendPeriodChip
@@ -150,7 +153,8 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
         awaitNullItemLoaded(
             itemToWait = glycemicTrendData.value
         ) {
-            val createReport = stringResource(Res.string.create_report)
+            val createReportTitle = stringResource(Res.string.create_report)
+            val createReport = remember { mutableStateOf(false) }
             ExtendedFloatingActionButton(
                 containerColor = MaterialTheme.colorScheme.primary,
                 expanded = responsiveAssignment(
@@ -161,15 +165,19 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
                 icon = {
                     Icon(
                         imageVector = Report,
-                        contentDescription = createReport
+                        contentDescription = createReportTitle
                     )
                 },
                 text = {
                     Text(
-                        text = createReport
+                        text = createReportTitle
                     )
                 },
-                onClick = { viewModel.createReport() }
+                onClick = { createReport.value = !createReport.value }
+            )
+            GlycemicReportDialog(
+                show = createReport,
+                viewModel = viewModel
             )
         }
     }
