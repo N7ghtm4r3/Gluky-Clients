@@ -118,4 +118,5 @@
     <string name="afternoon_snack_info_chart">Postprandial glycemic values recorded for the afternoon snack are shown</string>
     <string name="dinner_info_chart">Postprandial glycemic values recorded for the dinner meal are shown</string>
     <string name="basal_insulin_info_chart">Glycemic values recorded before administering basal insulin are shown</string>
+    <string name="create_report">Create report</string>
 </resources>

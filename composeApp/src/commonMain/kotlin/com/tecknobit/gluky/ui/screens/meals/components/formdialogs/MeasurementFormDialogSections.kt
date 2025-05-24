@@ -40,9 +40,9 @@ import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPicker
 import com.tecknobit.equinoxcompose.components.quantitypicker.rememberQuantityPickerState
+import com.tecknobit.gluky.ui.components.MeasurementTitle
 import com.tecknobit.gluky.ui.components.SaveButton
 import com.tecknobit.gluky.ui.components.SectionTitle
-import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
 import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography

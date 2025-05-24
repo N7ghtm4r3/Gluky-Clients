@@ -118,4 +118,5 @@
     <string name="afternoon_snack_info_chart">Sono mostrati i valori glicemici post-prandiali registrati per lo spuntino del pomeriggio</string>
     <string name="dinner_info_chart">Sono mostrati i valori glicemici post-prandiali registrati per la cena</string>
     <string name="basal_insulin_info_chart">Sono mostrati i valori glicemici registrati prima dell'insulina basale</string>
+    <string name="create_report">Crea relazione</string>
 </resources>

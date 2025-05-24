@@ -1105,4 +1105,8 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         return ((endDate - initialDate) <= _glycemicTrendPeriod.value.millis)
     }
 
+    fun createReport() {
+        // TODO: MAKE THE REQUEST THEN DOWNLOAD FROM THE URL RETURNED
+    }
+
 }

@@ -15,7 +15,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.State
@@ -26,6 +29,9 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.annotations.ScreenSection
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
+import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
+import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
+import com.tecknobit.gluky.ui.icons.Report
 import com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodButton
 import com.tecknobit.gluky.ui.screens.analyses.components.EmptyTrendData
 import com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrend
@@ -39,6 +45,8 @@ import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.MeasurementType
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.analyses
+import gluky.composeapp.generated.resources.create_report
+import org.jetbrains.compose.resources.stringResource
 
 class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     viewModel = AnalysesScreenViewModel(),
@@ -135,6 +143,35 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
                     )
                 }
             }
+        }
+    }
+
+    @Composable
+    override fun FABContent() {
+        awaitNullItemLoaded(
+            itemToWait = glycemicTrendData.value
+        ) {
+            val createReport = stringResource(Res.string.create_report)
+            ExtendedFloatingActionButton(
+                containerColor = MaterialTheme.colorScheme.primary,
+                expanded = responsiveAssignment(
+                    onExpandedSizeClass = { true },
+                    onMediumSizeClass = { false },
+                    onCompactSizeClass = { false }
+                ),
+                icon = {
+                    Icon(
+                        imageVector = Report,
+                        contentDescription = createReport
+                    )
+                },
+                text = {
+                    Text(
+                        text = createReport
+                    )
+                },
+                onClick = { viewModel.createReport() }
+            )
         }
     }
 

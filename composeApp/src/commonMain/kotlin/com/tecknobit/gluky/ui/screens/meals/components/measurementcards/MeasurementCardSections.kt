@@ -23,7 +23,7 @@ import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
-import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
+import com.tecknobit.gluky.ui.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.applyDarkTheme

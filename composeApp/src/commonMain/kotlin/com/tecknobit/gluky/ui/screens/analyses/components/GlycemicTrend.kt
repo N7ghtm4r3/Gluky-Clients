@@ -48,8 +48,8 @@ import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.time.TimeFormatter.EUROPEAN_DATE_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.helpers.asMonth
+import com.tecknobit.gluky.ui.components.MeasurementTitle
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
-import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
 import com.tecknobit.gluky.ui.theme.ChartLine1Light

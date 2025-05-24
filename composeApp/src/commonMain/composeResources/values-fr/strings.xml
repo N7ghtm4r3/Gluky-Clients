@@ -118,4 +118,5 @@
     <string name="afternoon_snack_info_chart">Les valeurs glycémiques postprandiales enregistrées pour la collation de l'après-midi sont affichées</string>
     <string name="dinner_info_chart">Les valeurs glycémiques postprandiales enregistrées pour le dîner sont affichées</string>
     <string name="basal_insulin_info_chart">Les valeurs glycémiques enregistrées avant l’insuline basale sont affichées</string>
+    <string name="create_report">Créer un rapport</string>
 </resources>

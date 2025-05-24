@@ -118,4 +118,5 @@
     <string name="afternoon_snack_info_chart">Se muestran los valores glucémicos posprandiales registrados para la merienda de la tarde</string>
     <string name="dinner_info_chart">Se muestran los valores glucémicos posprandiales registrados para la cena</string>
     <string name="basal_insulin_info_chart">Se muestran los valores glucémicos registrados antes de la insulina basal</string>
+    <string name="create_report">Crear informe</string>
 </resources>

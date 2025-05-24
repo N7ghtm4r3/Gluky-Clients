@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
