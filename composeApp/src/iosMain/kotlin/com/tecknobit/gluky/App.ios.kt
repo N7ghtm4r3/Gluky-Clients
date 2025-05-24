@@ -20,7 +20,7 @@ actual fun CheckForUpdatesAndLaunch() {
 }
 
 /**
- * Method to set locale language for the application
+ * Method to points locale language for the application
  */
 actual fun setUserLanguage() {
     // TODO: TO SET 

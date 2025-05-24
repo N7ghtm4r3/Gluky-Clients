@@ -1,6 +1,7 @@
 package com.tecknobit.gluky.ui.screens.analyses.data
 
 import com.tecknobit.glukycore.AFTERNOON_SNACK_KEY
+import com.tecknobit.glukycore.BASAL_INSULIN_KEY
 import com.tecknobit.glukycore.FIRST_SET_KEY
 import com.tecknobit.glukycore.FOURTH_SET_KEY
 import com.tecknobit.glukycore.GLYCEMIC_LABEL_TYPE_KEY
@@ -13,7 +14,9 @@ import com.tecknobit.glukycore.THIRD_SET_KEY
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType
 import com.tecknobit.glukycore.enums.MeasurementType
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
+import com.tecknobit.glukycore.enums.MeasurementType.BASAL_INSULIN
 import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
+import com.tecknobit.glukycore.enums.MeasurementType.DINNER
 import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
 import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import kotlinx.serialization.SerialName
@@ -28,6 +31,8 @@ data class GlycemicTrendDataContainer(
     @SerialName(AFTERNOON_SNACK_KEY)
     val afternoonSnack: GlycemicTrendData? = null,
     val dinner: GlycemicTrendData? = null,
+    @SerialName(BASAL_INSULIN_KEY)
+    val basalInsulin: GlycemicTrendData? = null,
 ) {
 
     fun dataAvailable(): Boolean {
@@ -39,11 +44,11 @@ data class GlycemicTrendDataContainer(
     }
 
     fun firstAvailableDate(): Long? {
-        return breakfast?.firstSet?.set?.first()?.date
+        return breakfast?.firstSet?.points?.first()?.date
     }
 
     fun lastAvailableDate(): Long? {
-        return breakfast?.firstSet?.set?.last()?.date
+        return breakfast?.firstSet?.points?.last()?.date
     }
 
     fun getRelatedSet(
@@ -54,7 +59,8 @@ data class GlycemicTrendDataContainer(
             MORNING_SNACK -> morningSnack
             LUNCH -> lunch
             AFTERNOON_SNACK -> afternoonSnack
-            else -> dinner
+            DINNER -> dinner
+            BASAL_INSULIN -> basalInsulin
         }
     }
 
@@ -111,7 +117,7 @@ data class GlycemiaTrendDataSet(
     val minGlycemicValue: Int,
     @SerialName(MEDIUM_GLYCEMIC_VALUE_KEY)
     val mediumGlycemicValue: Double,
-    val set: List<GlycemiaPoint>,
+    val points: List<GlycemiaPoint>,
 )
 
 @Serializable

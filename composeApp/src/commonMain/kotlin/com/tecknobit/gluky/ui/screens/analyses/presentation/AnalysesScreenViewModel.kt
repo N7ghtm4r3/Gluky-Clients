@@ -63,7 +63,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         // TODO: TO MAKE THE REQUEST AND APPLYING FILTERS
         viewModelScope.launch {
             delay(2000)
-            _glycemicTrendData.value = if (Random.nextBoolean())
+            _glycemicTrendData.value = if (false)
                 GlycemicTrendDataContainer()
             else {
                 GlycemicTrendDataContainer(
@@ -73,7 +73,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = TimeFormatter.currentTimestamp(),
                                     value = Random.nextInt(100),
@@ -90,7 +90,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1750601328000,
                                     value = Random.nextInt(100),
@@ -107,7 +107,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1753193328000,
                                     value = Random.nextInt(100),
@@ -174,7 +174,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1755871728000,
                                     value = Random.nextInt(100),
@@ -238,7 +238,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = TimeFormatter.currentTimestamp(),
                                     value = Random.nextInt(100),
@@ -255,7 +255,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1750601328000,
                                     value = Random.nextInt(100),
@@ -272,7 +272,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1753193328000,
                                     value = Random.nextInt(100),
@@ -339,7 +339,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1755871728000,
                                     value = Random.nextInt(100),
@@ -403,7 +403,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = TimeFormatter.currentTimestamp(),
                                     value = Random.nextInt(100),
@@ -420,7 +420,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1750601328000,
                                     value = Random.nextInt(100),
@@ -437,7 +437,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1753193328000,
                                     value = Random.nextInt(100),
@@ -504,7 +504,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1755871728000,
                                     value = Random.nextInt(100),
@@ -568,7 +568,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = TimeFormatter.currentTimestamp(),
                                     value = Random.nextInt(100),
@@ -585,7 +585,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1750601328000,
                                     value = Random.nextInt(100),
@@ -602,7 +602,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1753193328000,
                                     value = Random.nextInt(100),
@@ -669,7 +669,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1755871728000,
                                     value = Random.nextInt(100),
@@ -733,7 +733,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = TimeFormatter.currentTimestamp(),
                                     value = Random.nextInt(100),
@@ -750,7 +750,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1750601328000,
                                     value = Random.nextInt(100),
@@ -767,7 +767,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1753193328000,
                                     value = Random.nextInt(100),
@@ -834,7 +834,173 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             maxGlycemicValue = Random.nextInt(300),
                             minGlycemicValue = Random.nextInt(100),
                             mediumGlycemicValue = Random.nextDouble(),
-                            set = listOf(
+                            points = listOf(
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1755871728000,
+                                    value = Random.nextInt(100),
+                                )
+                            )
+                        )
+                    ),
+
+                    basalInsulin = GlycemicTrendData(
+                        labelType = COMPUTE_MONTH,
+                        firstSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            points = listOf(
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = TimeFormatter.currentTimestamp(),
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        secondSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            points = listOf(
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1750601328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        thirdSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            points = listOf(
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    ),
+                                GlycemiaPoint(
+                                    date = 1753193328000,
+                                    value = Random.nextInt(100),
+
+                                    )
+                            )
+                        ),
+                        fourthSet = GlycemiaTrendDataSet(
+                            maxGlycemicValue = Random.nextInt(300),
+                            minGlycemicValue = Random.nextInt(100),
+                            mediumGlycemicValue = Random.nextDouble(),
+                            points = listOf(
                                 GlycemiaPoint(
                                     date = 1755871728000,
                                     value = Random.nextInt(100),

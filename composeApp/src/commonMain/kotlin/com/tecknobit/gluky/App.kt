@@ -120,7 +120,7 @@ fun startSession() {
 }
 
 /**
- * Method to set locale language for the application
+ * Method to points locale language for the application
  *
  */
 expect fun setUserLanguage()

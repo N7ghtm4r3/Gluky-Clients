@@ -119,15 +119,16 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
         LazyColumn(
             modifier = Modifier
                 .navigationBarsPadding(),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(
-                items = MeasurementType.meals(),
-                key = { mealType -> mealType }
-            ) { mealType ->
-                val mealTrendSet = glycemicTrendData.value!!.getRelatedSet(mealType)
-                mealTrendSet?.let { trendSet ->
+                items = MeasurementType.entries.toList(),
+                key = { type -> type }
+            ) { type ->
+                val glycemicTrendSet = glycemicTrendData.value!!.getRelatedSet(type)
+                glycemicTrendSet?.let { trendSet ->
                     GlycemicTrend(
+                        type = type,
                         glycemicTrendData = trendSet,
                         glycemicTrendPeriod = glycemicTrendPeriod.value,
                         glycemicTrendGroupingDay = glycemicTrendGroupingDay.value

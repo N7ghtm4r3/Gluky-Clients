@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.tecknobit.gluky.ui.screens.analyses.components
 
 import androidx.compose.foundation.background
@@ -12,13 +14,24 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +49,7 @@ import com.tecknobit.equinoxcore.time.TimeFormatter.EUROPEAN_DATE_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.helpers.asMonth
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
+import com.tecknobit.gluky.ui.screens.meals.components.MeasurementTitle
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
 import com.tecknobit.gluky.ui.theme.ChartLine1Light
@@ -45,11 +59,13 @@ import com.tecknobit.gluky.ui.theme.ChartLine3Dark
 import com.tecknobit.gluky.ui.theme.ChartLine3Light
 import com.tecknobit.gluky.ui.theme.ChartLine4Dark
 import com.tecknobit.gluky.ui.theme.ChartLine4Light
+import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_WEEK
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
+import com.tecknobit.glukycore.enums.MeasurementType
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.first_week
 import gluky.composeapp.generated.resources.fourth_week
@@ -66,6 +82,7 @@ import ir.ehsannarmani.compose_charts.models.LabelHelperProperties
 import ir.ehsannarmani.compose_charts.models.Line
 import ir.ehsannarmani.compose_charts.models.PopupProperties
 import ir.ehsannarmani.compose_charts.models.StrokeStyle
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
 private val AxisProperties = GridProperties.AxisProperties(
@@ -93,73 +110,137 @@ private val darkLineColors = arrayOf(
 
 @Composable
 fun GlycemicTrend(
+    type: MeasurementType,
     glycemicTrendData: GlycemicTrendData,
     glycemicTrendPeriod: GlycemicTrendPeriod,
     glycemicTrendGroupingDay: GlycemicTrendGroupingDay?,
 ) {
-    Column {
-        val colors = if (applyDarkTheme())
-            darkLineColors
-        else
-            lightLineColors
-        var chartWidth by remember { mutableStateOf(0.dp) }
-        val density = LocalDensity.current
-        val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
-            glycemicTrendData.toChartData(
-                colors = colors
-            )
-        }
-        ChartLegend(
-            glycemicTrendData = glycemicTrendData,
-            colors = colors
-        )
-        LineChart(
+    Card(
+        colors = GlukyCardColors
+    ) {
+        Column(
             modifier = Modifier
                 .padding(
-                    top = 16.dp
+                    horizontal = 10.dp,
+                    vertical = 5.dp
                 )
-                .fillMaxWidth()
-                .height(250.dp)
-                .onGloballyPositioned {
-                    with(density) {
-                        chartWidth = it.size.width.toDp()
+        ) {
+            val colors = if (applyDarkTheme())
+                darkLineColors
+            else
+                lightLineColors
+            var chartWidth by remember { mutableStateOf(0.dp) }
+            val density = LocalDensity.current
+            val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
+                glycemicTrendData.toChartData(
+                    colors = colors
+                )
+            }
+            ChartHeader(
+                type = type,
+                glycemicTrendData = glycemicTrendData,
+                colors = colors
+            )
+            LineChart(
+                modifier = Modifier
+                    .padding(
+                        horizontal = 16.dp
+                    )
+                    .padding(
+                        top = 10.dp,
+                        bottom = 11.dp
+                    )
+                    .fillMaxWidth()
+                    .height(250.dp)
+                    .onGloballyPositioned {
+                        with(density) {
+                            chartWidth = it.size.width.toDp()
+                        }
+                    },
+                labelHelperProperties = LabelHelperProperties(
+                    enabled = false,
+                ),
+                indicatorProperties = HorizontalIndicatorProperties(
+                    textStyle = LabelStyle,
+                    contentBuilder = { it.format(0) }
+                ),
+                gridProperties = GridProperties(
+                    xAxisProperties = AxisProperties,
+                    yAxisProperties = AxisProperties
+                ),
+                dividerProperties = DividerProperties(
+                    enabled = false
+                ),
+                popupProperties = PopupProperties(
+                    textStyle = TextStyle.Default.copy(
+                        color = Color.White,
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    ),
+                    contentBuilder = { dataIndex, valueIndex, value ->
+                        useContentBuilder(
+                            glycemicTrendData = glycemicTrendData,
+                            dataIndex = dataIndex,
+                            valueIndex = valueIndex,
+                            value = value
+                        )
+                    }
+                ),
+                animationMode = AnimationMode.Together(
+                    delayBuilder = { it * 500L }
+                ),
+                data = chartData
+            )
+        }
+    }
+}
+
+@Composable
+private fun ChartHeader(
+    type: MeasurementType,
+    glycemicTrendData: GlycemicTrendData,
+    colors: Array<Color>,
+) {
+    MeasurementTitle(
+        modifier = Modifier
+            .padding(
+                start = 6.dp
+            ),
+        type = type,
+        endContent = {
+            val tooltipState = rememberTooltipState()
+            val scope = rememberCoroutineScope()
+            TooltipBox(
+                positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
+                state = tooltipState,
+                tooltip = {
+                    PlainTooltip {
+                        Text(
+                            text = "aaa"
+                        )
                     }
                 },
-            labelHelperProperties = LabelHelperProperties(
-                enabled = false,
-            ),
-            indicatorProperties = HorizontalIndicatorProperties(
-                textStyle = LabelStyle,
-                contentBuilder = { it.format(0) }
-            ),
-            gridProperties = GridProperties(
-                xAxisProperties = AxisProperties,
-                yAxisProperties = AxisProperties
-            ),
-            dividerProperties = DividerProperties(
-                enabled = false
-            ),
-            popupProperties = PopupProperties(
-                textStyle = TextStyle.Default.copy(
-                    color = Color.White,
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                ),
-                contentBuilder = { dataIndex, valueIndex, value ->
-                    useContentBuilder(
-                        glycemicTrendData = glycemicTrendData,
-                        dataIndex = dataIndex,
-                        valueIndex = valueIndex,
-                        value = value
-                    )
+                content = {
+                    IconButton(
+                        onClick = {
+                            scope.launch {
+                                tooltipState.show()
+                            }
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = ""
+                        )
+                    }
                 }
-            ),
-            animationMode = AnimationMode.Together(
-                delayBuilder = { it * 500L }
-            ),
-            data = chartData
-        )
-    }
+            )
+        }
+    )
+    ChartLegend(
+        glycemicTrendData = glycemicTrendData,
+        colors = colors
+    )
 }
 
 @Composable
@@ -219,7 +300,7 @@ private fun GlycemicTrendData.getLabels(): Array<String> {
         COMPUTE_MONTH -> {
             val dates = mutableListOf<Long>()
             sets.forEach { dataSet ->
-                val firstEntry = dataSet.set.first()
+                val firstEntry = dataSet.points.first()
                 dates.add(firstEntry.date)
             }
             return Array(dates.size) { index -> stringResource(dates[index].asMonth()) }
@@ -234,7 +315,7 @@ private fun GlycemicTrendData.toChartData(
 ): List<Line> {
     val lines = mutableListOf<Line>()
     sets.forEachIndexed { index, dataSet ->
-        val set = dataSet.set
+        val set = dataSet.points
         val lineColor = colors[index]
         lines.add(
             Line(
@@ -264,7 +345,7 @@ private fun useContentBuilder(
     val dataSet = glycemicTrendData.getSpecifiedSet(
         index = dataIndex
     )!!
-    val set = dataSet.set
+    val set = dataSet.points
     val pointIndex = if (valueIndex > set.lastIndex)
         set.lastIndex
     else

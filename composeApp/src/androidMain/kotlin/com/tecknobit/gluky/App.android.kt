@@ -44,7 +44,7 @@ actual fun CloseApplicationOnNavBack() {
 }
 
 /**
- * Method to set locale language for the application
+ * Method to points locale language for the application
  *
  */
 actual fun setUserLanguage() {
