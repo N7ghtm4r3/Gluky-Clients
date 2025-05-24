@@ -35,13 +35,14 @@ lateinit var imageLoader: ImageLoader
 fun ProfilePic(
     modifier: Modifier = Modifier,
     size: Dp,
+    borderWidth: Dp = 1.dp,
     onClick: () -> Unit,
 ) {
     AsyncImage(
         modifier = modifier
             .clip(CircleShape)
             .border(
-                width = 1.dp,
+                width = borderWidth,
                 color = MaterialTheme.colorScheme.inversePrimary,
                 shape = CircleShape
             )

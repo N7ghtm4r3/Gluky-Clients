@@ -8,6 +8,7 @@ androidx-lifecycle = "2.8.4"
 composeCharts = "0.1.7"
 composeHotReload = "1.0.0-alpha09"
 composeMultiplatform = "1.8.0"
+filekit = "0.10.0-beta04"
 glukycore = "1.0.0"
 jetlime = "3.0.1"
 kotlin = "2.1.21"
@@ -24,6 +25,8 @@ sonner = "0.3.8"
 
 [libraries]
 compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "composeCharts" }
+filekit-core = { module = "io.github.vinceglb:filekit-core", version.ref = "filekit" }
+filekit-dialogs-compose = { module = "io.github.vinceglb:filekit-dialogs-compose", version.ref = "filekit" }
 glukycore = { module = "com.tecknobit.glukycore:glukycore", version.ref = "glukycore" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 androidx-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "androidx-lifecycle" }

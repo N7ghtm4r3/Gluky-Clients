@@ -6,6 +6,9 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.*
+import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.*
+import com.tecknobit.gluky.localUser
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -136,10 +139,9 @@ fun yellow(): Color {
  */
 @Composable
 fun applyDarkTheme(): Boolean {
-    // TODO: TO SET
-    /*return when (localUser.theme) {
+    return when (localUser.theme) {
         Dark -> true
-        Light -> false*/
-    /*Auto -> */return isSystemInDarkTheme()
-    //}
+        Light -> false
+        Auto -> isSystemInDarkTheme()
+    }
 }

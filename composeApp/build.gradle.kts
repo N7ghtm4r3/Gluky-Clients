@@ -90,6 +90,8 @@ kotlin {
                 implementation(libs.richeditor.compose)
                 implementation(libs.sonner)
                 implementation(libs.compose.charts)
+                implementation(libs.filekit.core)
+                implementation(libs.filekit.dialogs.compose)
                 implementation(libs.glukycore)
             }
         }

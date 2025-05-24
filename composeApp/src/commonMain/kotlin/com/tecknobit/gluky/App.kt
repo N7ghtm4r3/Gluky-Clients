@@ -7,6 +7,7 @@ import coil3.compose.LocalPlatformContext
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
+import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
 import com.tecknobit.gluky.helpers.customHttpClient
 import com.tecknobit.gluky.ui.components.imageLoader
 import com.tecknobit.gluky.ui.screens.home.HomeScreen
@@ -35,6 +36,10 @@ lateinit var navigator: Navigator
 const val SPLASHSCREEN = "SPLASHSCREEN"
 
 const val HOME_SCREEN = "HomeScreen"
+
+val localUser = EquinoxLocalUser(
+    localStoragePath = "Gluky"
+)
 
 @Composable
 fun App() {
