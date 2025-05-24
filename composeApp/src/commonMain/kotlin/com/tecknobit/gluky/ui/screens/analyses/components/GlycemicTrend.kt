@@ -412,7 +412,7 @@ private fun useContentBuilder(
     val pointIndex = if (valueIndex > points.lastIndex)
         points.lastIndex
     else
-        dataIndex
+        valueIndex
     return """
         ${
         points[pointIndex].date.toDateString(

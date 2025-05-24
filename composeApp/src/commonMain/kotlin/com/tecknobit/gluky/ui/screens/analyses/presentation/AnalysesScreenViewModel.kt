@@ -100,36 +100,33 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         ),
                         secondSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1750780858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1750780858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         thirdSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753372858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1753372858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         fourthSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1756051258000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1756051258000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         )
                     ),
                     morningSnack = GlycemicTrendData(
@@ -159,36 +156,33 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         ),
                         secondSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1750780858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1750780858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         thirdSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753372858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1753372858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         fourthSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1756051258000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1756051258000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         )
                     ),
                     afternoonSnack = GlycemicTrendData(
@@ -218,36 +212,33 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         ),
                         secondSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1750780858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1750780858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         thirdSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753372858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1753372858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         fourthSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1756051258000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1756051258000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         )
                     ),
                     dinner = GlycemicTrendData(
@@ -277,36 +268,33 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         ),
                         secondSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1750780858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1750780858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         thirdSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753372858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1753372858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         fourthSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1756051258000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1756051258000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         )
                     ),
 
@@ -337,36 +325,33 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                         ),
                         secondSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1750780858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1750780858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         thirdSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1753372858000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1753372858000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         ),
                         fourthSet = listOf(
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
+                                date = 1756051258000,
                                 value = Random.nextInt(100).toDouble(),
                             ),
                             GlycemiaPoint(
-                                date = TimeFormatter.currentTimestamp(),
-                                value = Random.nextInt(100).toDouble(),
-
-                                )
+                                date = 1756051258000,
+                                value = Random.nextInt(100).toDouble()
+                            )
                         )
                     ),
                 )
