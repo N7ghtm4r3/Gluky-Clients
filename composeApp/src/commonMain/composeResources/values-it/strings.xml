@@ -146,4 +146,10 @@
     <string name="change_language">Cambia la lingua</string>
     <string name="change_theme">Cambia tema</string>
     <string name="new_password">Nuova password</string>
+    <string name="sign_up">Iscriviti</string>
+    <string name="sign_in">Login</string>
+    <string name="have_an_account">Hai un account?</string>
+    <string name="are_you_new_to_gluky">Sei nuov su Gluky?</string>
+    <string name="welcome_back">Bentornat</string>
+    <string name="hello">Ciao</string>
 </resources>

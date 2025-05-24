@@ -10,6 +10,7 @@ import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
 import com.tecknobit.gluky.helpers.customHttpClient
 import com.tecknobit.gluky.ui.components.imageLoader
+import com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen
 import com.tecknobit.gluky.ui.screens.home.HomeScreen
 import com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen
 import gluky.composeapp.generated.resources.Res
@@ -33,9 +34,11 @@ lateinit var bodyFontFamily: FontFamily
 
 lateinit var navigator: Navigator
 
-const val SPLASHSCREEN = "SPLASHSCREEN"
+const val SPLASHSCREEN = "SplashScreen"
 
 const val HOME_SCREEN = "HomeScreen"
+
+const val AUTH_SCREEN = "AuthScreen"
 
 val localUser = EquinoxLocalUser(
     localStoragePath = "Gluky"
@@ -69,6 +72,11 @@ fun App() {
                 route = SPLASHSCREEN
             ) {
                 Splashscreen().ShowContent()
+            }
+            scene(
+                route = AUTH_SCREEN
+            ) {
+                AuthScreen().ShowContent()
             }
             scene(
                 route = HOME_SCREEN
@@ -121,7 +129,7 @@ fun startSession() {
 //        HOME_SCREEN
 //    } else
 //        AUTH_SCREEN
-    navigator.navigate(HOME_SCREEN)
+    navigator.navigate(AUTH_SCREEN)
 }
 
 /**
