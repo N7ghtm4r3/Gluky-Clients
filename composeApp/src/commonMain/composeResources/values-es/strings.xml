@@ -119,4 +119,9 @@
     <string name="dinner_info_chart">Se muestran los valores glucémicos posprandiales registrados para la cena</string>
     <string name="basal_insulin_info_chart">Se muestran los valores glucémicos registrados antes de la insulina basal</string>
     <string name="create_report">Crear informe</string>
+    <string name="statistics">Estadísticas</string>
+    <string name="lower_glycemia">Glucemia más baja</string>
+    <string name="average_glycemia">Glucemia media</string>
+    <string name="higher_glycemia">Glucemia más alta</string>
+    <string name="show_statistics">Mostrar estadísticas</string>
 </resources>

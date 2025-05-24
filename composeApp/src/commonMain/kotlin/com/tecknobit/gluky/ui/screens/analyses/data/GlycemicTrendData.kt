@@ -1,13 +1,13 @@
 package com.tecknobit.gluky.ui.screens.analyses.data
 
 import com.tecknobit.glukycore.AFTERNOON_SNACK_KEY
+import com.tecknobit.glukycore.AVERAGE_GLYCEMIA_KEY
 import com.tecknobit.glukycore.BASAL_INSULIN_KEY
 import com.tecknobit.glukycore.FIRST_SET_KEY
 import com.tecknobit.glukycore.FOURTH_SET_KEY
 import com.tecknobit.glukycore.GLYCEMIC_LABEL_TYPE_KEY
-import com.tecknobit.glukycore.MAX_GLYCEMIC_VALUE_KEY
-import com.tecknobit.glukycore.MEDIUM_GLYCEMIC_VALUE_KEY
-import com.tecknobit.glukycore.MIN_GLYCEMIC_VALUE_KEY
+import com.tecknobit.glukycore.HIGHER_GLYCEMIA_KEY
+import com.tecknobit.glukycore.LOWER_GLYCEMIA_KEY
 import com.tecknobit.glukycore.MORNING_SNACK_KEY
 import com.tecknobit.glukycore.SECOND_SET_KEY
 import com.tecknobit.glukycore.THIRD_SET_KEY
@@ -35,20 +35,43 @@ data class GlycemicTrendDataContainer(
     val basalInsulin: GlycemicTrendData? = null,
 ) {
 
+    val availableSets: MutableList<MeasurementType> = mutableListOf()
+
+    init {
+        breakfast.ifIsNotNullAppend(
+            type = BREAKFAST
+        )
+        morningSnack.ifIsNotNullAppend(
+            type = MORNING_SNACK
+        )
+        lunch.ifIsNotNullAppend(
+            type = LUNCH
+        )
+        afternoonSnack.ifIsNotNullAppend(
+            type = AFTERNOON_SNACK
+        )
+        dinner.ifIsNotNullAppend(
+            type = DINNER
+        )
+        basalInsulin.ifIsNotNullAppend(
+            type = BASAL_INSULIN
+        )
+    }
+
     fun dataAvailable(): Boolean {
-        return breakfast != null &&
-                morningSnack != null &&
-                lunch != null &&
-                afternoonSnack != null &&
+        return breakfast != null ||
+                morningSnack != null ||
+                lunch != null ||
+                afternoonSnack != null ||
                 dinner != null
     }
 
-    fun firstAvailableDate(): Long? {
-        return breakfast?.firstSet?.points?.first()?.date
-    }
-
-    fun lastAvailableDate(): Long? {
-        return breakfast?.firstSet?.points?.last()?.date
+    private fun GlycemicTrendData?.ifIsNotNullAppend(
+        type: MeasurementType,
+    ) {
+        if (this == null)
+            return
+        availableSets.add(type)
     }
 
     fun getRelatedSet(
@@ -64,23 +87,37 @@ data class GlycemicTrendDataContainer(
         }
     }
 
+    fun firstAvailableDate(): Long? {
+        return breakfast?.firstSet?.first()?.date
+    }
+
+    fun lastAvailableDate(): Long? {
+        return breakfast?.firstSet?.last()?.date
+    }
+
 }
 
 @Serializable
 data class GlycemicTrendData(
+    @SerialName(HIGHER_GLYCEMIA_KEY)
+    val higherGlycemia: GlycemiaPoint,
+    @SerialName(LOWER_GLYCEMIA_KEY)
+    val lowerGlycemia: GlycemiaPoint,
+    @SerialName(AVERAGE_GLYCEMIA_KEY)
+    val averageGlycemia: GlycemiaPoint,
     @SerialName(FIRST_SET_KEY)
-    val firstSet: GlycemiaTrendDataSet? = null,
+    val firstSet: List<GlycemiaPoint>? = null,
     @SerialName(SECOND_SET_KEY)
-    val secondSet: GlycemiaTrendDataSet? = null,
+    val secondSet: List<GlycemiaPoint>? = null,
     @SerialName(THIRD_SET_KEY)
-    val thirdSet: GlycemiaTrendDataSet? = null,
+    val thirdSet: List<GlycemiaPoint>? = null,
     @SerialName(FOURTH_SET_KEY)
-    val fourthSet: GlycemiaTrendDataSet? = null,
+    val fourthSet: List<GlycemiaPoint>? = null,
     @SerialName(GLYCEMIC_LABEL_TYPE_KEY)
     val labelType: GlycemicTrendLabelType? = null,
 ) {
 
-    val sets: MutableList<GlycemiaTrendDataSet> = mutableListOf()
+    val sets: MutableList<List<GlycemiaPoint>> = mutableListOf()
 
     init {
         firstSet.ifIsNotNullAppend()
@@ -91,7 +128,7 @@ data class GlycemicTrendData(
 
     fun getSpecifiedSet(
         index: Int,
-    ): GlycemiaTrendDataSet? {
+    ): List<GlycemiaPoint>? {
         return when (index) {
             0 -> firstSet
             1 -> secondSet
@@ -101,7 +138,7 @@ data class GlycemicTrendData(
         }
     }
 
-    private fun GlycemiaTrendDataSet?.ifIsNotNullAppend() {
+    private fun List<GlycemiaPoint>?.ifIsNotNullAppend() {
         if (this == null)
             return
         sets.add(this)
@@ -110,18 +147,7 @@ data class GlycemicTrendData(
 }
 
 @Serializable
-data class GlycemiaTrendDataSet(
-    @SerialName(MAX_GLYCEMIC_VALUE_KEY)
-    val maxGlycemicValue: Int,
-    @SerialName(MIN_GLYCEMIC_VALUE_KEY)
-    val minGlycemicValue: Int,
-    @SerialName(MEDIUM_GLYCEMIC_VALUE_KEY)
-    val mediumGlycemicValue: Double,
-    val points: List<GlycemiaPoint>,
-)
-
-@Serializable
 data class GlycemiaPoint(
     val date: Long,
-    val value: Int,
+    val value: Double,
 )

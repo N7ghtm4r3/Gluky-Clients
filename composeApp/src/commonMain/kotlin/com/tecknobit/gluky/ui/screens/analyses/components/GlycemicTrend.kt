@@ -2,11 +2,15 @@
 
 package com.tecknobit.gluky.ui.screens.analyses.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,6 +21,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -27,6 +32,7 @@ import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,7 +47,9 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcore.annotations.Returner
@@ -49,6 +57,9 @@ import com.tecknobit.equinoxcore.time.TimeFormatter.EUROPEAN_DATE_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.helpers.asMonth
 import com.tecknobit.gluky.ui.components.MeasurementTitle
+import com.tecknobit.gluky.ui.components.SectionTitle
+import com.tecknobit.gluky.ui.components.ToggleButton
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
@@ -59,7 +70,6 @@ import com.tecknobit.gluky.ui.theme.ChartLine3Dark
 import com.tecknobit.gluky.ui.theme.ChartLine3Light
 import com.tecknobit.gluky.ui.theme.ChartLine4Dark
 import com.tecknobit.gluky.ui.theme.ChartLine4Light
-import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
@@ -72,17 +82,22 @@ import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
 import com.tecknobit.glukycore.enums.MeasurementType.DINNER
 import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
 import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
-import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.Res.string
 import gluky.composeapp.generated.resources.afternoon_snack_info_chart
+import gluky.composeapp.generated.resources.average_glycemia
 import gluky.composeapp.generated.resources.basal_insulin_info_chart
 import gluky.composeapp.generated.resources.breakfast_info_chart
 import gluky.composeapp.generated.resources.dinner_info_chart
 import gluky.composeapp.generated.resources.first_week
 import gluky.composeapp.generated.resources.fourth_week
+import gluky.composeapp.generated.resources.higher_glycemia
 import gluky.composeapp.generated.resources.info_chart
+import gluky.composeapp.generated.resources.lower_glycemia
 import gluky.composeapp.generated.resources.lunch_info_chart
 import gluky.composeapp.generated.resources.morning_snack_info_chart
 import gluky.composeapp.generated.resources.second_week
+import gluky.composeapp.generated.resources.show_statistics
+import gluky.composeapp.generated.resources.statistics
 import gluky.composeapp.generated.resources.third_week
 import ir.ehsannarmani.compose_charts.LineChart
 import ir.ehsannarmani.compose_charts.extensions.format
@@ -130,7 +145,11 @@ fun GlycemicTrend(
     glycemicTrendGroupingDay: GlycemicTrendGroupingDay?,
 ) {
     Card(
-        colors = GlukyCardColors
+        modifier = Modifier
+            .animateContentSize(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainer
+        )
     ) {
         Column(
             modifier = Modifier
@@ -143,6 +162,13 @@ fun GlycemicTrend(
                 darkLineColors
             else
                 lightLineColors
+            val statsDisplayed = remember { mutableStateOf(false) }
+            ChartHeader(
+                type = type,
+                statsDisplayed = statsDisplayed,
+                glycemicTrendData = glycemicTrendData,
+                colors = colors
+            )
             var chartWidth by remember { mutableStateOf(0.dp) }
             val density = LocalDensity.current
             val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
@@ -150,19 +176,11 @@ fun GlycemicTrend(
                     colors = colors
                 )
             }
-            ChartHeader(
-                type = type,
-                glycemicTrendData = glycemicTrendData,
-                colors = colors
-            )
             LineChart(
                 modifier = Modifier
                     .padding(
-                        horizontal = 16.dp
-                    )
-                    .padding(
-                        top = 10.dp,
-                        bottom = 11.dp
+                        horizontal = 16.dp,
+                        vertical = 10.dp
                     )
                     .fillMaxWidth()
                     .height(250.dp)
@@ -205,6 +223,10 @@ fun GlycemicTrend(
                 ),
                 data = chartData
             )
+            TrendStats(
+                statsDisplayed = statsDisplayed,
+                glycemiaTrendData = glycemicTrendData
+            )
         }
     }
 }
@@ -212,6 +234,7 @@ fun GlycemicTrend(
 @Composable
 private fun ChartHeader(
     type: MeasurementType,
+    statsDisplayed: MutableState<Boolean>,
     glycemicTrendData: GlycemicTrendData,
     colors: Array<Color>,
 ) {
@@ -222,9 +245,17 @@ private fun ChartHeader(
             ),
         type = type,
         endContent = {
-            InfoChart(
-                type = type
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                ToggleButton(
+                    expanded = statsDisplayed,
+                    contentDescription = string.show_statistics
+                )
+                InfoChart(
+                    type = type
+                )
+            }
         }
     )
     ChartLegend(
@@ -259,7 +290,7 @@ private fun InfoChart(
             ) {
                 Icon(
                     imageVector = Icons.Default.Info,
-                    contentDescription = stringResource(Res.string.info_chart)
+                    contentDescription = stringResource(string.info_chart)
                 )
             }
         }
@@ -268,12 +299,12 @@ private fun InfoChart(
 
 private fun MeasurementType.infoText(): StringResource {
     return when (this) {
-        BREAKFAST -> Res.string.breakfast_info_chart
-        MORNING_SNACK -> Res.string.morning_snack_info_chart
-        LUNCH -> Res.string.lunch_info_chart
-        AFTERNOON_SNACK -> Res.string.afternoon_snack_info_chart
-        DINNER -> Res.string.dinner_info_chart
-        BASAL_INSULIN -> Res.string.basal_insulin_info_chart
+        BREAKFAST -> string.breakfast_info_chart
+        MORNING_SNACK -> string.morning_snack_info_chart
+        LUNCH -> string.lunch_info_chart
+        AFTERNOON_SNACK -> string.afternoon_snack_info_chart
+        DINNER -> string.dinner_info_chart
+        BASAL_INSULIN -> string.basal_insulin_info_chart
     }
 }
 
@@ -292,7 +323,7 @@ private fun ChartLegend(
         ) {
             itemsIndexed(
                 items = labels,
-                key = { _, label -> label }
+                key = { index, label -> label + index } // TODO: TO REMOVE (+ INDEX) 
             ) { index, label ->
                 Row(
                     modifier = Modifier
@@ -324,17 +355,17 @@ private fun GlycemicTrendData.getLabels(): Array<String> {
     return when (labelType) {
         COMPUTE_WEEK -> {
             arrayOf(
-                stringResource(Res.string.first_week),
-                stringResource(Res.string.second_week),
-                stringResource(Res.string.third_week),
-                stringResource(Res.string.fourth_week)
+                stringResource(string.first_week),
+                stringResource(string.second_week),
+                stringResource(string.third_week),
+                stringResource(string.fourth_week)
             )
         }
 
         COMPUTE_MONTH -> {
             val dates = mutableListOf<Long>()
             sets.forEach { dataSet ->
-                val firstEntry = dataSet.points.first()
+                val firstEntry = dataSet.first()
                 dates.add(firstEntry.date)
             }
             return Array(dates.size) { index -> stringResource(dates[index].asMonth()) }
@@ -348,13 +379,12 @@ private fun GlycemicTrendData.toChartData(
     colors: Array<Color>,
 ): List<Line> {
     val lines = mutableListOf<Line>()
-    sets.forEachIndexed { index, dataSet ->
-        val set = dataSet.points
+    sets.forEachIndexed { index, points ->
         val lineColor = colors[index]
         lines.add(
             Line(
                 label = "",
-                values = set.map { it.value.toDouble() },
+                values = points.map { it.value },
                 color = SolidColor(lineColor),
                 curvedEdges = false,
                 dotProperties = DotProperties(
@@ -376,20 +406,111 @@ private fun useContentBuilder(
     valueIndex: Int,
     value: Double,
 ): String {
-    val dataSet = glycemicTrendData.getSpecifiedSet(
+    val points = glycemicTrendData.getSpecifiedSet(
         index = dataIndex
     )!!
-    val set = dataSet.points
-    val pointIndex = if (valueIndex > set.lastIndex)
-        set.lastIndex
+    val pointIndex = if (valueIndex > points.lastIndex)
+        points.lastIndex
     else
         dataIndex
     return """
         ${
-        set[pointIndex].date.toDateString(
+        points[pointIndex].date.toDateString(
             pattern = EUROPEAN_DATE_PATTERN
         )
     }
         ${value.format(0)}
     """.trimIndent()
+}
+
+@Composable
+private fun TrendStats(
+    statsDisplayed: MutableState<Boolean>,
+    glycemiaTrendData: GlycemicTrendData,
+) {
+    AnimatedVisibility(
+        visible = statsDisplayed.value
+    ) {
+        Column {
+            SectionTitle(
+                title = string.statistics
+            )
+            LazyRow(
+                contentPadding = PaddingValues(
+                    vertical = 5.dp
+                ),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                item {
+                    StatsTile(
+                        stat = glycemiaTrendData.higherGlycemia,
+                        header = string.higher_glycemia
+                    )
+                }
+                item {
+                    StatsTile(
+                        stat = glycemiaTrendData.lowerGlycemia,
+                        header = string.lower_glycemia
+                    )
+                }
+                item {
+                    StatsTile(
+                        stat = glycemiaTrendData.averageGlycemia,
+                        decimalPlaces = 2,
+                        header = string.average_glycemia
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun StatsTile(
+    stat: GlycemiaPoint,
+    decimalPlaces: Int = 0,
+    header: StringResource,
+) {
+    Card(
+        modifier = Modifier
+            .size(
+                width = 125.dp,
+                height = 75.dp
+            ),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = stat.value.format(
+                    decimalPlaces = decimalPlaces
+                ),
+                style = AppTypography.titleLarge,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                text = stringResource(header),
+                style = AppTypography.labelMedium,
+                color = MaterialTheme.colorScheme.primary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                text = stat.date.toDateString(
+                    pattern = EUROPEAN_DATE_PATTERN
+                ),
+                style = AppTypography.labelSmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+    }
 }

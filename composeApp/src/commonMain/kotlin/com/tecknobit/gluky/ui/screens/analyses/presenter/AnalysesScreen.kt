@@ -42,7 +42,6 @@ import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewMo
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
-import com.tecknobit.glukycore.enums.MeasurementType
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.analyses
 import gluky.composeapp.generated.resources.create_report
@@ -130,7 +129,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(
-                items = MeasurementType.entries.toList(),
+                items = glycemicTrendData.value!!.availableSets,
                 key = { type -> type }
             ) { type ->
                 val glycemicTrendSet = glycemicTrendData.value!!.getRelatedSet(type)
