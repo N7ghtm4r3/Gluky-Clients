@@ -111,4 +111,11 @@
     <string name="select_custom_range_period">Choisissez une plage horaire personnalisée</string>
     <string name="select_range">Sélectionnez une plage</string>
     <string name="wrong_custom_range">Plage non valide, le maximum autorisé est %1$s</string>
+    <string name="info_chart">Informations sur le graphique affiché</string>
+    <string name="breakfast_info_chart">Les valeurs glycémiques postprandiales enregistrées pour le petit-déjeuner sont affichées</string>
+    <string name="morning_snack_info_chart">Les valeurs glycémiques postprandiales enregistrées pour la collation du matin sont affichées</string>
+    <string name="lunch_info_chart">Les valeurs glycémiques postprandiales enregistrées pour le déjeuner sont affichées</string>
+    <string name="afternoon_snack_info_chart">Les valeurs glycémiques postprandiales enregistrées pour la collation de l'après-midi sont affichées</string>
+    <string name="dinner_info_chart">Les valeurs glycémiques postprandiales enregistrées pour le dîner sont affichées</string>
+    <string name="basal_insulin_info_chart">Les valeurs glycémiques enregistrées avant l’insuline basale sont affichées</string>
 </resources>

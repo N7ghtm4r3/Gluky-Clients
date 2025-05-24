@@ -21,7 +21,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.RichTooltip
 import androidx.compose.material3.Text
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
@@ -66,9 +66,22 @@ import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_WEEK
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.MeasurementType
+import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
+import com.tecknobit.glukycore.enums.MeasurementType.BASAL_INSULIN
+import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
+import com.tecknobit.glukycore.enums.MeasurementType.DINNER
+import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
+import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.afternoon_snack_info_chart
+import gluky.composeapp.generated.resources.basal_insulin_info_chart
+import gluky.composeapp.generated.resources.breakfast_info_chart
+import gluky.composeapp.generated.resources.dinner_info_chart
 import gluky.composeapp.generated.resources.first_week
 import gluky.composeapp.generated.resources.fourth_week
+import gluky.composeapp.generated.resources.info_chart
+import gluky.composeapp.generated.resources.lunch_info_chart
+import gluky.composeapp.generated.resources.morning_snack_info_chart
 import gluky.composeapp.generated.resources.second_week
 import gluky.composeapp.generated.resources.third_week
 import ir.ehsannarmani.compose_charts.LineChart
@@ -83,6 +96,7 @@ import ir.ehsannarmani.compose_charts.models.Line
 import ir.ehsannarmani.compose_charts.models.PopupProperties
 import ir.ehsannarmani.compose_charts.models.StrokeStyle
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
 private val AxisProperties = GridProperties.AxisProperties(
@@ -208,32 +222,8 @@ private fun ChartHeader(
             ),
         type = type,
         endContent = {
-            val tooltipState = rememberTooltipState()
-            val scope = rememberCoroutineScope()
-            TooltipBox(
-                positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
-                state = tooltipState,
-                tooltip = {
-                    PlainTooltip {
-                        Text(
-                            text = "aaa"
-                        )
-                    }
-                },
-                content = {
-                    IconButton(
-                        onClick = {
-                            scope.launch {
-                                tooltipState.show()
-                            }
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Info,
-                            contentDescription = ""
-                        )
-                    }
-                }
+            InfoChart(
+                type = type
             )
         }
     )
@@ -241,6 +231,50 @@ private fun ChartHeader(
         glycemicTrendData = glycemicTrendData,
         colors = colors
     )
+}
+
+@Composable
+private fun InfoChart(
+    type: MeasurementType,
+) {
+    val tooltipState = rememberTooltipState()
+    val scope = rememberCoroutineScope()
+    TooltipBox(
+        positionProvider = TooltipDefaults.rememberRichTooltipPositionProvider(),
+        state = tooltipState,
+        tooltip = {
+            RichTooltip {
+                Text(
+                    text = stringResource(type.infoText())
+                )
+            }
+        },
+        content = {
+            IconButton(
+                onClick = {
+                    scope.launch {
+                        tooltipState.show()
+                    }
+                }
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Info,
+                    contentDescription = stringResource(Res.string.info_chart)
+                )
+            }
+        }
+    )
+}
+
+private fun MeasurementType.infoText(): StringResource {
+    return when (this) {
+        BREAKFAST -> Res.string.breakfast_info_chart
+        MORNING_SNACK -> Res.string.morning_snack_info_chart
+        LUNCH -> Res.string.lunch_info_chart
+        AFTERNOON_SNACK -> Res.string.afternoon_snack_info_chart
+        DINNER -> Res.string.dinner_info_chart
+        BASAL_INSULIN -> Res.string.basal_insulin_info_chart
+    }
 }
 
 @Composable

@@ -84,7 +84,7 @@ private val darkScheme = darkColorScheme(
 )
 
 /**
- * Method to points the Gluky theme to the content
+ * Method to set the Gluky theme to the content
  *
  * @param darkTheme Whether to use the dark or light theme
  * @param content The content to display

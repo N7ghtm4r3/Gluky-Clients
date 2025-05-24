@@ -111,4 +111,11 @@
     <string name="select_custom_range_period">Elija un rango de tiempo personalizado</string>
     <string name="select_range">Selecciona un rango</string>
     <string name="wrong_custom_range">Rango no válido, el máximo permitido es %1$s</string>
+    <string name="info_chart">Información sobre el gráfico mostrado</string>
+    <string name="breakfast_info_chart">Se muestran los valores glucémicos posprandiales registrados para el desayuno</string>
+    <string name="morning_snack_info_chart">Se muestran los valores glucémicos posprandiales registrados para la merienda de la mañana</string>
+    <string name="lunch_info_chart">Se muestran los valores glucémicos posprandiales registrados para el almuerzo</string>
+    <string name="afternoon_snack_info_chart">Se muestran los valores glucémicos posprandiales registrados para la merienda de la tarde</string>
+    <string name="dinner_info_chart">Se muestran los valores glucémicos posprandiales registrados para la cena</string>
+    <string name="basal_insulin_info_chart">Se muestran los valores glucémicos registrados antes de la insulina basal</string>
 </resources>

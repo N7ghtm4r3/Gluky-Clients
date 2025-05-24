@@ -111,4 +111,11 @@
     <string name="select_custom_range_period">Choose a custom period range</string>
     <string name="select_range">Select range</string>
     <string name="wrong_custom_range">Invalid range, the maximum allowed is %1$s</string>
+    <string name="info_chart">Info on the chart displayed</string>
+    <string name="breakfast_info_chart">Postprandial glycemic values recorded for the breakfast meal are shown</string>
+    <string name="morning_snack_info_chart">Postprandial glycemic values recorded for the morning snack are shown</string>
+    <string name="lunch_info_chart">Postprandial glycemic values recorded for the lunch meal are shown</string>
+    <string name="afternoon_snack_info_chart">Postprandial glycemic values recorded for the afternoon snack are shown</string>
+    <string name="dinner_info_chart">Postprandial glycemic values recorded for the dinner meal are shown</string>
+    <string name="basal_insulin_info_chart">Glycemic values recorded before administering basal insulin are shown</string>
 </resources>
