@@ -44,6 +44,7 @@ val localUser = EquinoxLocalUser(
     localStoragePath = "Gluky"
 )
 
+// TODO: TO SET AMETISTA 
 @Composable
 fun App() {
     displayFontFamily = FontFamily(Font(Res.font.fredoka))

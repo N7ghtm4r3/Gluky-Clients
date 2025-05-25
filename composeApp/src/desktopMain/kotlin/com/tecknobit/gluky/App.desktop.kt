@@ -2,6 +2,18 @@ package com.tecknobit.gluky
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.tecknobit.gluky.ui.theme.GlukyTheme
+import com.tecknobit.octocatkdu.OctocatKDUConfig
+import com.tecknobit.octocatkdu.UpdaterDialog
+import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.app_name
+import gluky.composeapp.generated.resources.app_version
+import org.jetbrains.compose.resources.stringResource
+import java.util.Locale
 
 /**
  * Method to check whether are available any updates for each platform and then launch the application
@@ -10,8 +22,7 @@ import androidx.compose.runtime.NonRestartableComposable
  */
 @Composable
 actual fun CheckForUpdatesAndLaunch() {
-    // TODO: TO SET
-    /*GliderTheme {
+    GlukyTheme {
         var launchApp by remember { mutableStateOf(true) }
         UpdaterDialog(
             config = OctocatKDUConfig(
@@ -24,9 +35,7 @@ actual fun CheckForUpdatesAndLaunch() {
         )
         if (launchApp)
             startSession()
-    }*/
-
-    startSession()
+    }
 }
 
 /**

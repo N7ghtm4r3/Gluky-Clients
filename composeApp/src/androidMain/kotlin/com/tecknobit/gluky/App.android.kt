@@ -3,6 +3,12 @@ package com.tecknobit.gluky
 import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
+import com.google.android.play.core.appupdate.AppUpdateOptions
+import com.google.android.play.core.install.model.AppUpdateType
+import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
+import com.google.android.play.core.ktx.isImmediateUpdateAllowed
+import com.tecknobit.gluky.MainActivity.Companion.appUpdateManager
+import com.tecknobit.gluky.MainActivity.Companion.launcher
 import moe.tlaster.precompose.navigation.BackHandler
 
 /**
@@ -13,22 +19,20 @@ import moe.tlaster.precompose.navigation.BackHandler
 @Composable
 @NonRestartableComposable
 actual fun CheckForUpdatesAndLaunch() {
-    // TODO: TO SET 
-//    appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
-//        val isUpdateAvailable = info.updateAvailability() == UPDATE_AVAILABLE
-//        val isUpdateSupported = info.isImmediateUpdateAllowed
-//        if (isUpdateAvailable && isUpdateSupported) {
-//            appUpdateManager.startUpdateFlowForResult(
-//                info,
-//                launcher,
-//                AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build()
-//            )
-//        } else
-//            startSession()
-//    }.addOnFailureListener {
-//        startSession()
-//    }
-    startSession()
+    appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
+        val isUpdateAvailable = info.updateAvailability() == UPDATE_AVAILABLE
+        val isUpdateSupported = info.isImmediateUpdateAllowed
+        if (isUpdateAvailable && isUpdateSupported) {
+            appUpdateManager.startUpdateFlowForResult(
+                info,
+                launcher,
+                AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build()
+            )
+        } else
+            startSession()
+    }.addOnFailureListener {
+        startSession()
+    }
 }
 
 /**

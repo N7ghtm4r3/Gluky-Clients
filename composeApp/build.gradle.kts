@@ -1,9 +1,14 @@
-
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Pkg
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
-
+import java.util.UUID
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -11,13 +16,15 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.dokka)
     kotlin("plugin.serialization") version "2.0.20"
 }
 
 kotlin {
     androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_18)
+            jvmTarget.set(JvmTarget.JVM_22)
         }
     }
 
@@ -33,8 +40,9 @@ kotlin {
     }
 
     jvm("desktop") {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_18)
+            jvmTarget.set(JvmTarget.JVM_22)
         }
     }
 
@@ -65,6 +73,10 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.app.update)
+            implementation(libs.app.update.ktx)
+            implementation(libs.review)
+            implementation(libs.review.ktx)
         }
 
         val commonMain by getting {
@@ -100,6 +112,7 @@ kotlin {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.octocatkdu)
         }
 
         val iosX64Main by getting
@@ -146,8 +159,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.VERSION_22
+        targetCompatibility = JavaVersion.VERSION_22
     }
 }
 
@@ -158,12 +171,61 @@ dependencies {
 compose.desktop {
     application {
         mainClass = "com.tecknobit.gluky.MainKt"
-
-        // TODO: TO SET
         nativeDistributions {
-            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "com.tecknobit.gluky"
+            targetFormats(Deb, Pkg, Exe)
+            modules(
+                "java.compiler",
+                "java.instrument",
+                "java.management",
+                "java.net.http",
+                "java.prefs",
+                "java.rmi",
+                "java.scripting",
+                "java.security.jgss",
+                "java.sql.rowset",
+                "jdk.jfr",
+                "jdk.unsupported",
+                "jdk.security.auth"
+            )
+            packageName = "Gluky"
             packageVersion = "1.0.0"
+            version = "1.0.0"
+            description = "A daily tracker for glucose levels and meals"
+            copyright = "© 2025 Tecknobit"
+            vendor = "Tecknobit"
+            licenseFile.set(project.file("src/desktopMain/resources/LICENSE"))
+            macOS {
+                bundleID = "com.tecknobit.gluky"
+                iconFile.set(project.file("src/desktopMain/resources/logo.icns"))
+            }
+            windows {
+                iconFile.set(project.file("src/desktopMain/resources/logo.ico"))
+                upgradeUuid = UUID.randomUUID().toString()
+            }
+            linux {
+                iconFile.set(project.file("src/desktopMain/resources/logo.png"))
+                packageName = "com-tecknobit-gluky"
+                debMaintainer = "infotecknobitcompany@gmail.com"
+                appRelease = "1.0.0"
+                appCategory = "PERSONALIZATION"
+                rpmLicenseType = "APACHE2"
+            }
         }
+        buildTypes.release.proguard {
+            configurationFiles.from(project.file("src/desktopMain/resources/compose-desktop.pro"))
+            obfuscate.set(true)
+        }
+    }
+}
+
+tasks.withType<DokkaTask>().configureEach {
+    dokkaSourceSets {
+        moduleName.set("Gluky")
+        outputDirectory.set(layout.projectDirectory.dir("../docs"))
+    }
+
+    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+        customAssets = listOf(file("../docs/logo-icon.svg"))
+        footerMessage = "(c) 2025 Tecknobit"
     }
 }
