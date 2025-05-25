@@ -12,6 +12,7 @@ import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
+import com.tecknobit.gluky.helpers.KReviewer
 import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
 import com.tecknobit.gluky.ui.screens.meals.data.Meal
@@ -163,7 +164,10 @@ class MealsScreenViewModel : EquinoxViewModel(
                 _glycemia = Random.nextInt(100)
             )
         ) // TODO: TO USE THE REAL ONE INSTEAD
-        _mealDay.value = obtainedByTheRequest
+        val kReviewer = KReviewer()
+        kReviewer.reviewInApp {
+            _mealDay.value = obtainedByTheRequest
+        }
     }
 
     fun fillMeal(

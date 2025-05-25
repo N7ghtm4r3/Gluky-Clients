@@ -12,6 +12,7 @@ import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.time.TimeFormatter
+import com.tecknobit.gluky.helpers.KReviewer
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
@@ -414,7 +415,10 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                 message = Res.string.report_created,
                 actionLabel = Res.string.open,
                 onActionPerformed = {
-                    // TODO: OPEN THE FILE
+                    val kReviewer = KReviewer()
+                    kReviewer.reviewInApp {
+                        // TODO: OPEN THE FILE
+                    }
                 }
             )
         }
