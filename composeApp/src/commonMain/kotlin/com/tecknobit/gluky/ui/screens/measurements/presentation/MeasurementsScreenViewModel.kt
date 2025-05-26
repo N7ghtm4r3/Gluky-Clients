@@ -15,7 +15,7 @@ import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
 import com.tecknobit.gluky.helpers.KReviewer
 import com.tecknobit.gluky.ui.screens.measurements.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
-import com.tecknobit.gluky.ui.screens.measurements.data.GlukyItem
+import com.tecknobit.gluky.ui.screens.measurements.data.GlycemicMeasurementItem
 import com.tecknobit.gluky.ui.screens.measurements.data.Meal
 import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
@@ -257,7 +257,7 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     }
 
     private fun locallyUpdateGlukyItem(
-        item: GlukyItem,
+        item: GlycemicMeasurementItem,
     ) {
         if (item.annotationDate.value == -1L)
             item.annotationDate.value = currentTimestamp()

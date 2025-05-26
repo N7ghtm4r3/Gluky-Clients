@@ -15,7 +15,7 @@ data class BasalInsulin(
     override val _glycemia: Int = -1,
     @SerialName(INSULIN_UNITS_KEY)
     override val _insulinUnits: Int = -1,
-) : GlukyItem() {
+) : GlycemicMeasurementItem() {
 
     val isGlycemiaFilled: Boolean
         get() = glycemia.value != -1

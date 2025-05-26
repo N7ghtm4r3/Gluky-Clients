@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed class GlukyItem {
+sealed class GlycemicMeasurementItem {
 
     protected abstract val id: String
 

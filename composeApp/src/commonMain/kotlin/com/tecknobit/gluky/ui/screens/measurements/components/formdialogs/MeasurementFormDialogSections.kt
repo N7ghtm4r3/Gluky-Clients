@@ -43,7 +43,7 @@ import com.tecknobit.equinoxcompose.components.quantitypicker.rememberQuantityPi
 import com.tecknobit.gluky.ui.components.MeasurementTitle
 import com.tecknobit.gluky.ui.components.SaveButton
 import com.tecknobit.gluky.ui.components.SectionTitle
-import com.tecknobit.gluky.ui.screens.measurements.data.GlukyItem
+import com.tecknobit.gluky.ui.screens.measurements.data.GlycemicMeasurementItem
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.DialogShape
@@ -185,7 +185,7 @@ internal fun GlycemiaInputField(
 @Composable
 internal fun InsulinSection(
     viewModel: MeasurementsScreenViewModel,
-    item: GlukyItem,
+    item: GlycemicMeasurementItem,
 ) {
     val mealNotFilledYet = item.isNotFilledYet
     val insulinUnits = item.insulinUnits.value

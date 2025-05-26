@@ -24,7 +24,7 @@ import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.ui.components.MeasurementTitle
-import com.tecknobit.gluky.ui.screens.measurements.data.GlukyItem
+import com.tecknobit.gluky.ui.screens.measurements.data.GlycemicMeasurementItem
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.MeasurementType
@@ -71,7 +71,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 internal fun CardHeaderContent(
-    item: GlukyItem,
+    item: GlycemicMeasurementItem,
     type: MeasurementType,
     endContent: @Composable (ColumnScope.() -> Unit)? = null,
 ) {
@@ -110,7 +110,7 @@ private fun MeasurementType.notedString(): StringResource {
 
 @Composable
 internal fun CardContentImpl(
-    item: GlukyItem,
+    item: GlycemicMeasurementItem,
     type: MeasurementType,
     filledContent: @Composable () -> Unit,
 ) {

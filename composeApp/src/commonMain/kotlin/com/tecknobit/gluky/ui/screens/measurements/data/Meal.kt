@@ -38,7 +38,7 @@ data class Meal(
     private val _postPrandialGlycemia: Int = -1,
     @SerialName(INSULIN_UNITS_KEY)
     override val _insulinUnits: Int = -1,
-) : GlukyItem() {
+) : GlycemicMeasurementItem() {
 
     companion object {
 
