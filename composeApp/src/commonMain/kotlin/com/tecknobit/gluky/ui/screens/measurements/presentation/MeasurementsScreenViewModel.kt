@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.presentation
+package com.tecknobit.gluky.ui.screens.measurements.presentation
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.ExperimentalComposeApi
@@ -13,10 +13,10 @@ import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
 import com.tecknobit.gluky.helpers.KReviewer
-import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
-import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
-import com.tecknobit.gluky.ui.screens.meals.data.Meal
-import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
+import com.tecknobit.gluky.ui.screens.measurements.data.BasalInsulin
+import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
+import com.tecknobit.gluky.ui.screens.measurements.data.GlukyItem
+import com.tecknobit.gluky.ui.screens.measurements.data.Meal
 import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
 import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
@@ -35,7 +35,7 @@ import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlin.random.Random
 
-class MealsScreenViewModel : EquinoxViewModel(
+class MeasurementsScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
 ), ToastsLauncher {
 
@@ -63,10 +63,10 @@ class MealsScreenViewModel : EquinoxViewModel(
 
     private var previousPage = INITIAL_SELECTED_DAY
 
-    private val _mealDay = MutableStateFlow<MealDayData?>(
+    private val _dailyMeasurements = MutableStateFlow<DailyMeasurements?>(
         value = null
     )
-    val mealDay = _mealDay.asStateFlow()
+    val dailyMeasurements = _dailyMeasurements.asStateFlow()
 
     lateinit var glycemia: MutableState<String>
 
@@ -88,21 +88,21 @@ class MealsScreenViewModel : EquinoxViewModel(
         val offset = page - previousPage
         _currentDay.value += (ONE_DAY_MILLIS * offset)
         previousPage = page
-        retrieveMealDay()
+        retrieveDailyMeasurements()
     }
 
     fun setCurrentDay(
         millis: Long,
     ) {
         _currentDay.value = millis
-        retrieveMealDay()
+        retrieveDailyMeasurements()
     }
 
-    fun retrieveMealDay() {
+    fun retrieveDailyMeasurements() {
         // TODO: TO MAKE THE REQUEST THEN
         viewModelScope.launch {
-            _mealDay.value = if (Random.nextBoolean()) {
-                MealDayData(
+            _dailyMeasurements.value = if (Random.nextBoolean()) {
+                DailyMeasurements(
                     id = Random.nextLong().toString(),
                     breakfast = Meal(
                         id = Random.nextLong().toString(),
@@ -137,7 +137,7 @@ class MealsScreenViewModel : EquinoxViewModel(
 
     fun fillDay() {
         // TODO: TO MAKE THE REQUEST THEN
-        val obtainedByTheRequest = MealDayData(
+        val obtainedByTheRequest = DailyMeasurements(
             id = Random.nextLong().toString(),
             breakfast = Meal(
                 id = Random.nextLong().toString(),
@@ -166,7 +166,7 @@ class MealsScreenViewModel : EquinoxViewModel(
         ) // TODO: TO USE THE REAL ONE INSTEAD
         val kReviewer = KReviewer()
         kReviewer.reviewInApp {
-            _mealDay.value = obtainedByTheRequest
+            _dailyMeasurements.value = obtainedByTheRequest
         }
     }
 
@@ -176,7 +176,7 @@ class MealsScreenViewModel : EquinoxViewModel(
     ) {
         if (!areMealDataValid())
             return
-        // TODO: MAKE THE REQUEST THEN -> MUST RETURN THE NEW RAWCONTENT AND THE CONTENT TO LOCALLY ASSIGN
+        // TODO: TO MAKE THE REQUEST THEN -> MUST RETURN THE NEW RAWCONTENT AND THE CONTENT TO LOCALLY ASSIGN
         locallyUpdateMeal(
             meal = meal,
             rawContent = buildJsonObject { }, // TODO: TO RETRIEVE FROM RESPONSE
@@ -286,8 +286,8 @@ class MealsScreenViewModel : EquinoxViewModel(
         content: String,
         onSave: () -> Unit,
     ) {
-        // TODO: MAKE THE REQUEST THEN
-        _mealDay.value!!.dailyNotes = content
+        // TODO: TO MAKE THE REQUEST THEN
+        _dailyMeasurements.value!!.dailyNotes = content
         onSave()
     }
 

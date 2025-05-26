@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.data
+package com.tecknobit.gluky.ui.screens.measurements.data
 
 import com.tecknobit.glukycore.AFTERNOON_SNACK_KEY
 import com.tecknobit.glukycore.BASAL_INSULIN_KEY
@@ -14,7 +14,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MealDayData(
+data class DailyMeasurements(
     val id: String,
     val breakfast: Meal,
     @SerialName(MORNING_SNACK_KEY)

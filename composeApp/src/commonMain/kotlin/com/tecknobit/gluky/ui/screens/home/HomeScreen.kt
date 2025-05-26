@@ -27,7 +27,7 @@ import com.tecknobit.gluky.ui.icons.Meals
 import com.tecknobit.gluky.ui.screens.TMPNavigatorScreen
 import com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen
 import com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen
-import com.tecknobit.gluky.ui.screens.meals.presenter.MealsScreen
+import com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.GlukyTheme
@@ -170,7 +170,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
      */
     override fun Int.tabContent(): GlukyScreenPage<*> {
         return when (this) {
-            0 -> MealsScreen()
+            0 -> MeasurementsScreen()
             1 -> AnalysesScreen()
             else -> AccountScreen()
         }

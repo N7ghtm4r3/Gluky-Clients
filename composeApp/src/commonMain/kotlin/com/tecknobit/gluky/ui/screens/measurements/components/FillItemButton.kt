@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.measurements.components
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon

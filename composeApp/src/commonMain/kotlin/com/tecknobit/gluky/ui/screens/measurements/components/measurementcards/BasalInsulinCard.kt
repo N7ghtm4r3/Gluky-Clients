@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components.measurementcards
+package com.tecknobit.gluky.ui.screens.measurements.components.measurementcards
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
@@ -10,12 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.gluky.ui.components.SectionTitle
-import com.tecknobit.gluky.ui.screens.meals.GlycemiaLevelBadge
-import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
-import com.tecknobit.gluky.ui.screens.meals.components.formdialogs.BasalInsulinFormDialog
-import com.tecknobit.gluky.ui.screens.meals.data.BasalInsulin
-import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.components.FillItemButton
+import com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge
+import com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.BasalInsulinFormDialog
+import com.tecknobit.gluky.ui.screens.measurements.data.BasalInsulin
+import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import com.tecknobit.glukycore.enums.MeasurementType.BASAL_INSULIN
 import gluky.composeapp.generated.resources.Res.string
@@ -24,10 +24,10 @@ import gluky.composeapp.generated.resources.glycemic_value
 
 @Composable
 fun BasalInsulinCard(
-    viewModel: MealsScreenViewModel,
-    mealDay: MealDayData,
+    viewModel: MeasurementsScreenViewModel,
+    dailyMeasurements: DailyMeasurements,
 ) {
-    val basalInsulin = mealDay.basalInsulin
+    val basalInsulin = dailyMeasurements.basalInsulin
     Card(
         modifier = Modifier
             .fillMaxWidth(),
@@ -52,7 +52,7 @@ fun BasalInsulinCard(
 
 @Composable
 private fun CardHeader(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     basalInsulin: BasalInsulin,
 ) {
     CardHeaderContent(

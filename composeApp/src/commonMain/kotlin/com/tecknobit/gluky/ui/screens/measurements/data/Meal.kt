@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.data
+package com.tecknobit.gluky.ui.screens.measurements.data
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable

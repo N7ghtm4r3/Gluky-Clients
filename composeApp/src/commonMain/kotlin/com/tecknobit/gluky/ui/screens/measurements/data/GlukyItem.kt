@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.data
+package com.tecknobit.gluky.ui.screens.measurements.data
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf

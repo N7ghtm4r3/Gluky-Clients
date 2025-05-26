@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.presenter
+package com.tecknobit.gluky.ui.screens.measurements.presenter
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -31,13 +31,13 @@ import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
-import com.tecknobit.gluky.ui.screens.meals.components.DailyNotes
-import com.tecknobit.gluky.ui.screens.meals.components.Measurements
-import com.tecknobit.gluky.ui.screens.meals.components.UnfilledDay
-import com.tecknobit.gluky.ui.screens.meals.components.daypickers.DayPickerBar
-import com.tecknobit.gluky.ui.screens.meals.components.daypickers.ScrollableDayPicker
-import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.components.DailyNotes
+import com.tecknobit.gluky.ui.screens.measurements.components.Measurements
+import com.tecknobit.gluky.ui.screens.measurements.components.UnfilledDay
+import com.tecknobit.gluky.ui.screens.measurements.components.daypickers.DayPickerBar
+import com.tecknobit.gluky.ui.screens.measurements.components.daypickers.ScrollableDayPicker
+import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.daily_notes
@@ -45,14 +45,14 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalComposeApi::class, ExperimentalMaterial3Api::class)
-class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
-    viewModel = MealsScreenViewModel(),
+class MeasurementsScreen : GlukyScreenPage<MeasurementsScreenViewModel>(
+    viewModel = MeasurementsScreenViewModel(),
     useResponsiveWidth = false
 ) {
 
     private lateinit var currentDay: State<Long>
 
-    private lateinit var mealDay: State<MealDayData?>
+    private lateinit var dailyMeasurements: State<DailyMeasurements?>
 
     @Composable
     @LayoutCoordinator
@@ -116,7 +116,7 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
                 AnimatedVisibility(
-                    visible = mealDay.value == null,
+                    visible = dailyMeasurements.value == null,
                     enter = fadeIn(),
                     exit = fadeOut()
                 ) {
@@ -125,11 +125,11 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                     )
                 }
                 AnimatedVisibility(
-                    visible = mealDay.value != null,
+                    visible = dailyMeasurements.value != null,
                     enter = fadeIn(),
                     exit = fadeOut()
                 ) {
-                    mealDay.value?.let {
+                    dailyMeasurements.value?.let {
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -139,7 +139,7 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                             Measurements(
                                 viewModel = viewModel,
                                 horizontalPadding = horizontalPadding,
-                                mealDay = mealDay.value!!
+                                dailyMeasurements = dailyMeasurements.value!!
                             )
                         }
                     }
@@ -151,9 +151,9 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
     @Composable
     override fun FABContent() {
         AnimatedVisibility(
-            visible = mealDay.value != null
+            visible = dailyMeasurements.value != null
         ) {
-            mealDay.value?.let {
+            dailyMeasurements.value?.let {
                 val dailyNotes = stringResource(Res.string.daily_notes)
                 val state = rememberModalBottomSheetState(
                     skipPartiallyExpanded = true,
@@ -188,7 +188,7 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
                     state = state,
                     scope = scope,
                     viewModel = viewModel,
-                    mealDay = mealDay.value!!
+                    mealDay = dailyMeasurements.value!!
                 )
             }
         }
@@ -196,7 +196,7 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
 
     override fun onStart() {
         super.onStart()
-        viewModel.retrieveMealDay()
+        viewModel.retrieveDailyMeasurements()
     }
 
     /**
@@ -205,7 +205,7 @@ class MealsScreen : GlukyScreenPage<MealsScreenViewModel>(
     @Composable
     override fun CollectStates() {
         currentDay = viewModel.currentDay.collectAsState()
-        mealDay = viewModel.mealDay.collectAsState()
+        dailyMeasurements = viewModel.dailyMeasurements.collectAsState()
         viewModel.sessionFlowState = rememberSessionFlowState()
     }
 

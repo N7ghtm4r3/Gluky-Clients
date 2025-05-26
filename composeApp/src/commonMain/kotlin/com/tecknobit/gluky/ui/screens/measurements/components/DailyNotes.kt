@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.measurements.components
 
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
@@ -43,8 +43,8 @@ import com.mohamedrejeb.richeditor.ui.material3.RichText
 import com.tecknobit.equinoxcompose.components.EquinoxTextField
 import com.tecknobit.gluky.helpers.ScreenMonitor
 import com.tecknobit.gluky.ui.icons.EditItem
-import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.daily_notes
@@ -60,8 +60,8 @@ import org.jetbrains.compose.resources.stringResource
 fun DailyNotes(
     state: SheetState,
     scope: CoroutineScope,
-    viewModel: MealsScreenViewModel,
-    mealDay: MealDayData,
+    viewModel: MeasurementsScreenViewModel,
+    mealDay: DailyMeasurements,
 ) {
     if (state.isVisible) {
         ScreenMonitor.keepScreenAwake()
@@ -98,7 +98,7 @@ fun DailyNotes(
 private fun SheetHeader(
     state: SheetState,
     scope: CoroutineScope,
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     isEditing: MutableState<Boolean>,
     dailyNotes: String,
     content: MutableState<String>,

@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalComposeApi::class)
 
-package com.tecknobit.gluky.ui.screens.meals.components.daypickers
+package com.tecknobit.gluky.ui.screens.measurements.components.daypickers
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -41,10 +41,10 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CO
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
 import com.tecknobit.gluky.helpers.asMonth
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.INITIAL_SELECTED_DAY
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.MAX_LOADABLE_DAYS
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.ONE_DAY_MILLIS
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.INITIAL_SELECTED_DAY
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.MAX_LOADABLE_DAYS
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.ONE_DAY_MILLIS
 import com.tecknobit.gluky.ui.theme.AppTypography
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -60,7 +60,7 @@ private val BarShape = RoundedCornerShape(
     classes = [EXPANDED_CONTENT, MEDIUM_EXPANDED_CONTENT]
 )
 fun DayPickerBar(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     currentDay: Long,
     content: @Composable () -> Unit,
 ) {
@@ -155,7 +155,7 @@ private fun computeDayMillis(
 @Composable
 private fun PickerBar(
     modifier: Modifier = Modifier,
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     daysWindow: List<Long>,
     currentMonth: MutableState<StringResource>,
     currentDay: Long,

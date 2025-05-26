@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components.daypickers
+package com.tecknobit.gluky.ui.screens.measurements.components.daypickers
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -35,9 +35,9 @@ import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.COMPACT_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.INITIAL_SELECTED_DAY
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel.Companion.MAX_LOADABLE_DAYS
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.INITIAL_SELECTED_DAY
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.MAX_LOADABLE_DAYS
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 import kotlin.math.min
@@ -48,7 +48,7 @@ import kotlin.math.min
     classes = [MEDIUM_EXPANDED_CONTENT, COMPACT_CONTENT]
 )
 fun ScrollableDayPicker(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     currentDay: Long,
     content: @Composable () -> Unit,
 ) {
@@ -150,7 +150,7 @@ private fun PickerControls(
 @Composable
 private fun PickerPanel(
     state: PagerState,
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     currentDay: Long,
 ) {
     HorizontalPager(

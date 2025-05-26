@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.measurements.components
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
@@ -12,18 +12,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.annotations.ScreenSection
-import com.tecknobit.gluky.ui.screens.meals.components.measurementcards.BasalInsulinCard
-import com.tecknobit.gluky.ui.screens.meals.components.measurementcards.MealCard
-import com.tecknobit.gluky.ui.screens.meals.data.MealDayData
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.components.measurementcards.BasalInsulinCard
+import com.tecknobit.gluky.ui.screens.measurements.components.measurementcards.MealCard
+import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.glukycore.enums.MeasurementType
 
 @Composable
 @ScreenSection
 fun Measurements(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     horizontalPadding: Dp = 0.dp,
-    mealDay: MealDayData,
+    dailyMeasurements: DailyMeasurements,
 ) {
     LazyVerticalStaggeredGrid(
         modifier = Modifier
@@ -45,7 +45,7 @@ fun Measurements(
         ) { type ->
             MealCard(
                 viewModel = viewModel,
-                meal = mealDay.getMealByType(
+                meal = dailyMeasurements.getMealByType(
                     type = type
                 )
             )
@@ -53,7 +53,7 @@ fun Measurements(
         item {
             BasalInsulinCard(
                 viewModel = viewModel,
-                mealDay = mealDay
+                dailyMeasurements = dailyMeasurements
             )
         }
     }

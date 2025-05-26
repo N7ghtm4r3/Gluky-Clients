@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package com.tecknobit.gluky.ui.screens.meals.components.measurementcards
+package com.tecknobit.gluky.ui.screens.measurements.components.measurementcards
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
@@ -45,12 +45,12 @@ import com.pushpal.jetlime.JetLimeRow
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.components.ToggleButton
-import com.tecknobit.gluky.ui.screens.meals.GlycemiaLevelBadge
-import com.tecknobit.gluky.ui.screens.meals.components.FillItemButton
-import com.tecknobit.gluky.ui.screens.meals.components.formdialogs.MealFormDialog
-import com.tecknobit.gluky.ui.screens.meals.data.Meal
-import com.tecknobit.gluky.ui.screens.meals.data.Meal.Companion.levelColor
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.components.FillItemButton
+import com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge
+import com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.MealFormDialog
+import com.tecknobit.gluky.ui.screens.measurements.data.Meal
+import com.tecknobit.gluky.ui.screens.measurements.data.Meal.Companion.levelColor
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import gluky.composeapp.generated.resources.Res.string
 import gluky.composeapp.generated.resources.fill_meal
@@ -65,7 +65,7 @@ private val quantityRegex = Regex("""\((.*?)\)""")
 
 @Composable
 fun MealCard(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     meal: Meal,
 ) {
     val mealContentDisplayed = remember { mutableStateOf(false) }
@@ -96,7 +96,7 @@ fun MealCard(
 
 @Composable
 private fun CardHeader(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     meal: Meal,
     mealContentDisplayed: MutableState<Boolean>,
 ) {

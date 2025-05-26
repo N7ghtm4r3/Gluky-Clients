@@ -405,7 +405,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     fun createReport(
         onCreated: () -> Unit,
     ) {
-        // TODO: MAKE THE REQUEST THEN DOWNLOAD FROM THE URL RETURNED
+        // TODO: TO MAKE THE REQUEST THEN DOWNLOAD FROM THE URL RETURNED
         _creatingReport.value = true
         viewModelScope.launch {
             delay(2000L) // TODO: TO REMOVE

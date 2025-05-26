@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.data
+package com.tecknobit.gluky.ui.screens.measurements.data
 
 import com.tecknobit.glukycore.ANNOTATION_DATE_KEY
 import com.tecknobit.glukycore.GLYCEMIA_KEY

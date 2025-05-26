@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components.formdialogs
+package com.tecknobit.gluky.ui.screens.measurements.components.formdialogs
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
@@ -43,8 +43,8 @@ import com.tecknobit.equinoxcompose.components.quantitypicker.rememberQuantityPi
 import com.tecknobit.gluky.ui.components.MeasurementTitle
 import com.tecknobit.gluky.ui.components.SaveButton
 import com.tecknobit.gluky.ui.components.SectionTitle
-import com.tecknobit.gluky.ui.screens.meals.data.GlukyItem
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.data.GlukyItem
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.DialogShape
 import com.tecknobit.gluky.ui.theme.InputFieldHeight
@@ -65,7 +65,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun MeasurementFormDialogContainer(
     show: MutableState<Boolean>,
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     type: MeasurementType,
     content: @Composable ColumnScope.() -> Unit,
     save: () -> Unit,
@@ -184,7 +184,7 @@ internal fun GlycemiaInputField(
 @OptIn(ExperimentalComposeApi::class)
 @Composable
 internal fun InsulinSection(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     item: GlukyItem,
 ) {
     val mealNotFilledYet = item.isNotFilledYet

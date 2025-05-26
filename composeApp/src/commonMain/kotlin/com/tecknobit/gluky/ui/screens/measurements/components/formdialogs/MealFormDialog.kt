@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeApi::class)
 
-package com.tecknobit.gluky.ui.screens.meals.components.formdialogs
+package com.tecknobit.gluky.ui.screens.measurements.components.formdialogs
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
@@ -42,8 +42,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcore.json.treatsAsString
-import com.tecknobit.gluky.ui.screens.meals.data.Meal
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.data.Meal
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.InputFieldHeight
 import com.tecknobit.gluky.ui.theme.InputFieldShape
 import gluky.composeapp.generated.resources.Res
@@ -61,7 +61,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun MealFormDialog(
     show: MutableState<Boolean>,
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     meal: Meal,
 ) {
     MeasurementFormDialogContainer(
@@ -93,7 +93,7 @@ fun MealFormDialog(
 
 @Composable
 private fun GlycemiaSection(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     meal: Meal,
 ) {
     FormSection(
@@ -132,7 +132,7 @@ private fun GlycemiaSection(
 
 @Composable
 private fun MealContentSection(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     meal: Meal,
 ) {
     ConvertRawData(
@@ -177,7 +177,7 @@ private fun MealContentSection(
 
 @Composable
 private fun ConvertRawData(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     meal: Meal,
 ) {
     viewModel.mealContent = remember { mutableStateListOf() }
@@ -194,7 +194,7 @@ private fun ConvertRawData(
 
 @Composable
 private fun AddMealEntryButton(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     lazyListState: LazyListState,
 ) {
     val scope = rememberCoroutineScope()
@@ -224,7 +224,7 @@ private fun AddMealEntryButton(
 
 @Composable
 private fun LazyItemScope.MealEntry(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
     mealEntry: Pair<MutableState<String>, MutableState<String>>,
     index: Int,
 ) {

@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components
+package com.tecknobit.gluky.ui.screens.measurements.components
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.rememberScrollState
@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EmptyState
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
-import com.tecknobit.gluky.ui.screens.meals.presentation.MealsScreenViewModel
+import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import gluky.composeapp.generated.resources.Res
@@ -23,7 +23,7 @@ import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun UnfilledDay(
-    viewModel: MealsScreenViewModel,
+    viewModel: MeasurementsScreenViewModel,
 ) {
     val title = stringResource(Res.string.unfilled_day)
     EmptyState(

@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.meals.components.daypickers
+package com.tecknobit.gluky.ui.screens.measurements.components.daypickers
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
