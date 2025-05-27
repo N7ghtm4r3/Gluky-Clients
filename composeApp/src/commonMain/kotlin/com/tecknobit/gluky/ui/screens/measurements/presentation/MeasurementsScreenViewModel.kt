@@ -207,7 +207,7 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         meal: Meal,
         rawContent: JsonObject,
     ) {
-        locallyUpdateGlukyItem(
+        locallyUpdateGlycemicMeasurementItem(
             item = meal
         )
         meal.postPrandialGlycemia.value = postPrandialGlycemia.toNormalizedGlycemicValue()
@@ -247,12 +247,12 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     private fun locallyUpdateBasalInsulin(
         basalInsulin: BasalInsulin,
     ) {
-        locallyUpdateGlukyItem(
+        locallyUpdateGlycemicMeasurementItem(
             item = basalInsulin
         )
     }
 
-    private fun locallyUpdateGlukyItem(
+    private fun locallyUpdateGlycemicMeasurementItem(
         item: GlycemicMeasurementItem,
     ) {
         if (item.annotationDate.value == -1L)
