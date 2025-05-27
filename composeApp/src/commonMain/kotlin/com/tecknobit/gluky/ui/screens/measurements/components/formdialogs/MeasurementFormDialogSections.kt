@@ -52,7 +52,7 @@ import com.tecknobit.gluky.ui.theme.InputFieldShape
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.gluky.ui.theme.useDialogSize
 import com.tecknobit.glukycore.enums.MeasurementType
-import com.tecknobit.glukycore.helpers.GlukyInputsValidator.glycemiaValueIsValid
+import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isGlycemiaValueValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.blood_sugar_placeholder
 import gluky.composeapp.generated.resources.close
@@ -172,7 +172,7 @@ internal fun GlycemiaInputField(
             placeholder = Res.string.blood_sugar_placeholder,
             shape = InputFieldShape,
             isError = glycemiaError,
-            validator = { glycemiaValueIsValid(it) },
+            validator = { isGlycemiaValueValid(it) },
             keyboardOptions = KeyboardOptions(
                 imeAction = imeAction,
                 keyboardType = KeyboardType.NumberPassword

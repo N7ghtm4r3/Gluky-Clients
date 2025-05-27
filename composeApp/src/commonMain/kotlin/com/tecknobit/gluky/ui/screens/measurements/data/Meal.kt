@@ -3,13 +3,15 @@ package com.tecknobit.gluky.ui.screens.measurements.data
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+import com.tecknobit.equinoxcore.json.treatsAsString
 import com.tecknobit.gluky.ui.theme.green
 import com.tecknobit.gluky.ui.theme.red
 import com.tecknobit.gluky.ui.theme.yellow
 import com.tecknobit.glukycore.ANNOTATION_DATE_KEY
-import com.tecknobit.glukycore.CONTENT_KEY
 import com.tecknobit.glukycore.GLYCEMIA_KEY
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
 import com.tecknobit.glukycore.POST_PRANDIAL_GLYCEMIA_KEY
@@ -28,8 +30,6 @@ data class Meal(
     val type: MeasurementType,
     @SerialName(ANNOTATION_DATE_KEY)
     override val _annotationDate: Long = -1,
-    @SerialName(CONTENT_KEY)
-    private val _content: String = "",
     @SerialName(RAW_CONTENT_KEY)
     private val _rawContent: JsonObject = buildJsonObject { },
     @SerialName(GLYCEMIA_KEY)
@@ -66,10 +66,26 @@ data class Meal(
     }
 
     @Transient
-    val content: MutableState<String> = mutableStateOf(_content)
+    val rawContent: MutableState<JsonObject> = mutableStateOf(_rawContent)
 
     @Transient
-    val rawContent: MutableState<JsonObject> = mutableStateOf(_rawContent)
+    val content: State<String> = derivedStateOf {
+        rawContent.prettyText()
+    }
+
+    private fun MutableState<JsonObject>.prettyText(): String {
+        val prettyText = StringBuilder()
+        val lastKey = value.entries.lastOrNull()?.key
+        lastKey?.let {
+            value.forEach { entry ->
+                val key = entry.key
+                prettyText.append("- $key (${entry.value.treatsAsString()})")
+                if (key != lastKey)
+                    prettyText.append("\n")
+            }
+        }
+        return prettyText.toString()
+    }
 
     @Transient
     val postPrandialGlycemia: MutableState<Int> = mutableStateOf(_postPrandialGlycemia)

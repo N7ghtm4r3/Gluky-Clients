@@ -23,7 +23,6 @@ import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
 import com.tecknobit.glukycore.enums.MeasurementType.DINNER
 import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
 import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
-import com.tecknobit.glukycore.helpers.GlukyInputsValidator.glycemiaValueIsValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.invalid_meal_content
 import gluky.composeapp.generated.resources.wrong_glycemia_value
@@ -180,7 +179,6 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         locallyUpdateMeal(
             meal = meal,
             rawContent = buildJsonObject { }, // TODO: TO RETRIEVE FROM RESPONSE
-            content = "- Filetto di salmone al forno (${Random.nextInt(1000)}g)" // TODO: TO RETRIEVE FROM RESPONSE
         )
         onSave()
     }
@@ -189,7 +187,7 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     private fun areMealDataValid(): Boolean {
         if (!isGlycemiaValueValid())
             return false
-        if (!glycemiaValueIsValid(postPrandialGlycemia.value)) {
+        if (!isGlycemiaValueValid(postPrandialGlycemia.value)) {
             toastGlycemiaValueError()
             postPrandialGlycemiaError.value = true
             return false
@@ -208,14 +206,12 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     private fun locallyUpdateMeal(
         meal: Meal,
         rawContent: JsonObject,
-        content: String,
     ) {
         locallyUpdateGlukyItem(
             item = meal
         )
         meal.postPrandialGlycemia.value = postPrandialGlycemia.toNormalizedGlycemicValue()
         meal.rawContent.value = rawContent
-        meal.content.value = content
     }
 
     fun fillBasalInsulin(
@@ -239,7 +235,7 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
 
     @Validator
     private fun isGlycemiaValueValid(): Boolean {
-        return if (!glycemiaValueIsValid(glycemia.value)) {
+        return if (!isGlycemiaValueValid(glycemia.value)) {
             toastGlycemiaValueError()
             glycemiaError.value = true
             false
