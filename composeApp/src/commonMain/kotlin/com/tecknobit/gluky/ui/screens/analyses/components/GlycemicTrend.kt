@@ -8,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -53,6 +54,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcore.annotations.Returner
+import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.EUROPEAN_DATE_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.helpers.asMonth
@@ -366,7 +368,7 @@ private fun GlycemicTrendData.getLabels(): Array<String> {
             val dates = mutableListOf<Long>()
             sets.forEach { dataSet ->
                 val firstEntry = dataSet.first()
-                dates.add(firstEntry.date!!)
+                dates.add(firstEntry.date)
             }
             return Array(dates.size) { index -> stringResource(dates[index].asMonth()) }
         }
@@ -415,7 +417,7 @@ private fun useContentBuilder(
         valueIndex
     return """
         ${
-        points[pointIndex].date!!.toDateString(
+        points[pointIndex].date.toDateString(
             pattern = EUROPEAN_DATE_PATTERN
         )
     }
@@ -456,7 +458,6 @@ private fun TrendStats(
                 item {
                     StatsTile(
                         stat = glycemiaTrendData.averageGlycemia,
-                        decimalPlaces = 2,
                         header = string.average_glycemia
                     )
                 }
@@ -465,11 +466,35 @@ private fun TrendStats(
     }
 }
 
+@Wrapper
 @Composable
 private fun StatsTile(
     stat: GlycemiaPoint,
-    decimalPlaces: Int = 0,
     header: StringResource,
+) {
+    StatsTile(
+        stat = stat.value,
+        decimalPlaces = 0,
+        header = header,
+        extraContent = {
+            Text(
+                text = stat.date.toDateString(
+                    pattern = EUROPEAN_DATE_PATTERN
+                ),
+                style = AppTypography.labelSmall,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+    )
+}
+
+@Composable
+private fun StatsTile(
+    stat: Double,
+    decimalPlaces: Int = 2,
+    header: StringResource,
+    extraContent: @Composable (ColumnScope.() -> Unit)? = null,
 ) {
     Card(
         modifier = Modifier
@@ -488,7 +513,7 @@ private fun StatsTile(
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = stat.value.format(
+                text = stat.format(
                     decimalPlaces = decimalPlaces
                 ),
                 style = AppTypography.titleLarge,
@@ -503,16 +528,7 @@ private fun StatsTile(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-            stat.date?.let { date ->
-                Text(
-                    text = date.toDateString(
-                        pattern = EUROPEAN_DATE_PATTERN
-                    ),
-                    style = AppTypography.labelSmall,
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
-                )
-            }
+            extraContent?.invoke(this)
         }
     }
 }

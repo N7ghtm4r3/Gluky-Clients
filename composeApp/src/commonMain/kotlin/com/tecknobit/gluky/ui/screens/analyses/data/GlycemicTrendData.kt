@@ -104,7 +104,7 @@ data class GlycemicTrendData(
     @SerialName(LOWER_GLYCEMIA_KEY)
     val lowerGlycemia: GlycemiaPoint,
     @SerialName(AVERAGE_GLYCEMIA_KEY)
-    val averageGlycemia: GlycemiaPoint,
+    val averageGlycemia: Double,
     @SerialName(FIRST_SET_KEY)
     val firstSet: List<GlycemiaPoint>? = null,
     @SerialName(SECOND_SET_KEY)
@@ -148,6 +148,6 @@ data class GlycemicTrendData(
 
 @Serializable
 data class GlycemiaPoint(
-    val date: Long? = null,
+    val date: Long,
     val value: Double,
 )

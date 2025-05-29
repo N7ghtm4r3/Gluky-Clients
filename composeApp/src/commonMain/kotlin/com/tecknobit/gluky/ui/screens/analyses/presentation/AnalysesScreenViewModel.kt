@@ -86,9 +86,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
-                        averageGlycemia = GlycemiaPoint(
-                            value = Random.nextInt(100).toDouble(),
-                        ),
+                        averageGlycemia = Random.nextInt(100).toDouble(),
                         firstSet = listOf(
                                 GlycemiaPoint(
                                     date = TimeFormatter.currentTimestamp(),
@@ -141,9 +139,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
-                        averageGlycemia = GlycemiaPoint(
-                            value = Random.nextInt(100).toDouble(),
-                        ),
+                        averageGlycemia = Random.nextInt(100).toDouble(),
                         firstSet = listOf(
                             GlycemiaPoint(
                                 date = TimeFormatter.currentTimestamp(),
@@ -196,9 +192,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
-                        averageGlycemia = GlycemiaPoint(
-                            value = Random.nextInt(100).toDouble(),
-                        ),
+                        averageGlycemia = Random.nextInt(100).toDouble(),
                         firstSet = listOf(
                             GlycemiaPoint(
                                 date = TimeFormatter.currentTimestamp(),
@@ -251,9 +245,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
-                        averageGlycemia = GlycemiaPoint(
-                            value = Random.nextInt(100).toDouble(),
-                        ),
+                        averageGlycemia = Random.nextInt(100).toDouble(),
                         firstSet = listOf(
                             GlycemiaPoint(
                                 date = TimeFormatter.currentTimestamp(),
@@ -307,9 +299,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
-                        averageGlycemia = GlycemiaPoint(
-                            value = Random.nextInt(100).toDouble(),
-                        ),
+                        averageGlycemia = Random.nextInt(100).toDouble(),
                         firstSet = listOf(
                             GlycemiaPoint(
                                 date = TimeFormatter.currentTimestamp(),
