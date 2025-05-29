@@ -11,6 +11,7 @@ import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Validator
+import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.gluky.helpers.KReviewer
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
@@ -21,6 +22,7 @@ import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendLabelType.COMPUTE_MONTH
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
+import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isCustomTrendPeriodValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.open
 import gluky.composeapp.generated.resources.report_created
@@ -43,10 +45,10 @@ class AnalysesScreenViewModel : EquinoxViewModel(
 
     override var scope: CoroutineScope = viewModelScope
 
-    private val _glycemicTrendData = MutableStateFlow<GlycemicTrendDataContainer?>(
+    private val _glycemicTrend = MutableStateFlow<GlycemicTrendDataContainer?>(
         value = null
     )
-    val glycemicTrendData = _glycemicTrendData.asStateFlow()
+    val glycemicTrend = _glycemicTrend.asStateFlow()
 
     private val _glycemicTrendPeriod = MutableStateFlow(
         value = ONE_MONTH
@@ -63,14 +65,14 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     )
     val creatingReport = _creatingReport.asStateFlow()
 
-    fun retrieveGlycemiaTrendData(
+    fun retrieveGlycemicTrend(
         from: Long? = null,
         to: Long? = null,
     ) {
         // TODO: TO MAKE THE REQUEST AND APPLYING FILTERS
         viewModelScope.launch {
             delay(2000)
-            _glycemicTrendData.value = if (false)
+            _glycemicTrend.value = if (false)
                 GlycemicTrendDataContainer()
             else {
                 GlycemicTrendDataContainer(
@@ -85,7 +87,6 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             value = Random.nextInt(100).toDouble(),
                         ),
                         averageGlycemia = GlycemiaPoint(
-                            date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
                         firstSet = listOf(
@@ -141,7 +142,6 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             value = Random.nextInt(100).toDouble(),
                         ),
                         averageGlycemia = GlycemiaPoint(
-                            date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
                         firstSet = listOf(
@@ -197,7 +197,6 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             value = Random.nextInt(100).toDouble(),
                         ),
                         averageGlycemia = GlycemiaPoint(
-                            date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
                         firstSet = listOf(
@@ -253,7 +252,6 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             value = Random.nextInt(100).toDouble(),
                         ),
                         averageGlycemia = GlycemiaPoint(
-                            date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
                         firstSet = listOf(
@@ -310,7 +308,6 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                             value = Random.nextInt(100).toDouble(),
                         ),
                         averageGlycemia = GlycemiaPoint(
-                            date = TimeFormatter.currentTimestamp(),
                             value = Random.nextInt(100).toDouble(),
                         ),
                         firstSet = listOf(
@@ -364,14 +361,14 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         groupingDay: GlycemicTrendGroupingDay,
     ) {
         _glycemicTrendGroupingDay.value = groupingDay
-        retrieveGlycemiaTrendData()
+        retrieveGlycemicTrend()
     }
 
     fun selectGlycemicTrendPeriod(
         period: GlycemicTrendPeriod,
     ) {
         _glycemicTrendPeriod.value = period
-        retrieveGlycemiaTrendData()
+        retrieveGlycemicTrend()
     }
 
     fun applyCustomTrendPeriod(
@@ -386,20 +383,23 @@ class AnalysesScreenViewModel : EquinoxViewModel(
             )
             return
         }
-        retrieveGlycemiaTrendData(
+        retrieveGlycemicTrend(
             from = state.selectedStartDateMillis,
             to = state.selectedEndDateMillis
         )
         onApply()
     }
 
+    @Wrapper
     @Validator
     private fun isCustomPeriodValid(
         state: DateRangePickerState,
     ): Boolean {
-        val initialDate = state.selectedStartDateMillis ?: 0
-        val endDate = state.selectedEndDateMillis ?: 0
-        return ((endDate - initialDate) <= _glycemicTrendPeriod.value.millis)
+        return isCustomTrendPeriodValid(
+            from = state.selectedStartDateMillis,
+            to = state.selectedEndDateMillis,
+            period = _glycemicTrendPeriod.value
+        )
     }
 
     fun createReport(

@@ -366,7 +366,7 @@ private fun GlycemicTrendData.getLabels(): Array<String> {
             val dates = mutableListOf<Long>()
             sets.forEach { dataSet ->
                 val firstEntry = dataSet.first()
-                dates.add(firstEntry.date)
+                dates.add(firstEntry.date!!)
             }
             return Array(dates.size) { index -> stringResource(dates[index].asMonth()) }
         }
@@ -415,7 +415,7 @@ private fun useContentBuilder(
         valueIndex
     return """
         ${
-        points[pointIndex].date.toDateString(
+        points[pointIndex].date!!.toDateString(
             pattern = EUROPEAN_DATE_PATTERN
         )
     }
@@ -503,14 +503,16 @@ private fun StatsTile(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-            Text(
-                text = stat.date.toDateString(
-                    pattern = EUROPEAN_DATE_PATTERN
-                ),
-                style = AppTypography.labelSmall,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
+            stat.date?.let { date ->
+                Text(
+                    text = date.toDateString(
+                        pattern = EUROPEAN_DATE_PATTERN
+                    ),
+                    style = AppTypography.labelSmall,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
         }
     }
 }

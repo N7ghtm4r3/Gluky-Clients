@@ -55,7 +55,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     title = Res.string.analyses
 ) {
 
-    private lateinit var glycemicTrendData: State<GlycemicTrendDataContainer?>
+    private lateinit var glycemicTrend: State<GlycemicTrendDataContainer?>
 
     private lateinit var glycemicTrendPeriod: State<GlycemicTrendPeriod>
 
@@ -68,11 +68,11 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
                 .fillMaxSize(),
             state = viewModel.sessionFlowState,
             initialLoadingRoutineDelay = 2000,
-            loadingRoutine = { glycemicTrendData.value != null },
+            loadingRoutine = { glycemicTrend.value != null },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
                 AnimatedContent(
-                    targetState = glycemicTrendData.value!!.dataAvailable(),
+                    targetState = glycemicTrend.value!!.dataAvailable(),
                     transitionSpec = { fadeIn().togetherWith(fadeOut()) }
                 ) { dataAvailable ->
                     if (dataAvailable) {
@@ -116,7 +116,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
             ) {
                 CustomPeriodButton(
                     viewModel = viewModel,
-                    glycemicTrendData = glycemicTrendData.value!!,
+                    glycemicTrendData = glycemicTrend.value!!,
                     trendPeriod = glycemicTrendPeriod.value
                 )
             }
@@ -132,10 +132,10 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             items(
-                items = glycemicTrendData.value!!.availableSets,
+                items = glycemicTrend.value!!.availableSets,
                 key = { type -> type }
             ) { type ->
-                val glycemicTrendSet = glycemicTrendData.value!!.getRelatedSet(type)
+                val glycemicTrendSet = glycemicTrend.value!!.getRelatedSet(type)
                 glycemicTrendSet?.let { trendSet ->
                     GlycemicTrend(
                         type = type,
@@ -151,7 +151,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     @Composable
     override fun FABContent() {
         awaitNullItemLoaded(
-            itemToWait = glycemicTrendData.value
+            itemToWait = glycemicTrend.value
         ) {
             val createReportTitle = stringResource(Res.string.create_report)
             val createReport = remember { mutableStateOf(false) }
@@ -184,7 +184,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
 
     override fun onStart() {
         super.onStart()
-        viewModel.retrieveGlycemiaTrendData()
+        viewModel.retrieveGlycemicTrend()
     }
 
     /**
@@ -193,7 +193,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     @Composable
     override fun CollectStates() {
         viewModel.sessionFlowState = rememberSessionFlowState()
-        glycemicTrendData = viewModel.glycemicTrendData.collectAsState()
+        glycemicTrend = viewModel.glycemicTrend.collectAsState()
         glycemicTrendPeriod = viewModel.glycemicTrendPeriod.collectAsState()
         glycemicTrendGroupingDay = viewModel.glycemicTrendGroupingDay.collectAsState()
     }

@@ -23,6 +23,7 @@ import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
 import com.tecknobit.glukycore.enums.MeasurementType.DINNER
 import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
 import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
+import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isGlycemiaValueValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.invalid_meal_content
 import gluky.composeapp.generated.resources.wrong_glycemia_value
@@ -185,7 +186,7 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
 
     @Validator
     private fun areMealDataValid(): Boolean {
-        if (!isGlycemiaValueValid())
+        if (!isGlycemicValueValid())
             return false
         if (!isGlycemiaValueValid(postPrandialGlycemia.value)) {
             toastGlycemiaValueError()
@@ -230,11 +231,11 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     @Wrapper
     @Validator
     private fun areBasalInsulinDataValid(): Boolean {
-        return isGlycemiaValueValid()
+        return isGlycemicValueValid()
     }
 
     @Validator
-    private fun isGlycemiaValueValid(): Boolean {
+    private fun isGlycemicValueValid(): Boolean {
         return if (!isGlycemiaValueValid(glycemia.value)) {
             toastGlycemiaValueError()
             glycemiaError.value = true

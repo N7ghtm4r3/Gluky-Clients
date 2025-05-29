@@ -148,6 +148,6 @@ data class GlycemicTrendData(
 
 @Serializable
 data class GlycemiaPoint(
-    val date: Long,
+    val date: Long? = null,
     val value: Double,
 )
