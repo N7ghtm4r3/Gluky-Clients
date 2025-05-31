@@ -13,7 +13,10 @@ import com.tecknobit.gluky.ui.theme.red
 import com.tecknobit.gluky.ui.theme.yellow
 import com.tecknobit.glukycore.ANNOTATION_DATE_KEY
 import com.tecknobit.glukycore.GLYCEMIA_KEY
+import com.tecknobit.glukycore.HYPER_GLYCEMIA
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
+import com.tecknobit.glukycore.MEDIUM_HIGH_GLYCEMIA
+import com.tecknobit.glukycore.NORMAL_GLYCEMIA
 import com.tecknobit.glukycore.POST_PRANDIAL_GLYCEMIA_KEY
 import com.tecknobit.glukycore.RAW_CONTENT_KEY
 import com.tecknobit.glukycore.enums.MeasurementType
@@ -41,12 +44,6 @@ data class Meal(
 ) : GlycemicMeasurementItem() {
 
     companion object {
-
-        private const val NORMAL_GLYCEMIA = 70
-
-        private const val MEDIUM_HIGH_GLYCEMIA = 180
-
-        private const val HYPER_GLYCEMIA = 220
 
         @Composable
         fun Int.levelColor(): Color {
