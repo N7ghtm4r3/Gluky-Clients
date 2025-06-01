@@ -6,6 +6,8 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.app_name
+import gluky.composeapp.generated.resources.logo
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 fun main() = application {
@@ -14,7 +16,8 @@ fun main() = application {
         title = stringResource(Res.string.app_name),
         state = WindowState(
             placement = WindowPlacement.Maximized
-        )
+        ),
+        icon = painterResource(Res.drawable.logo)
     ) {
         App()
     }
