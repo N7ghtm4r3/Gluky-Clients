@@ -120,12 +120,12 @@ class AccountScreen : GlukyScreenPage<AccountScreenViewModel>(
                     )
             ) {
                 Text(
-                    text = localUser.completeName.ifBlank { "Mario Rossi" }, // TODO: TO REMOVE
+                    text = localUser.completeName,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
                 Text(
-                    text = viewModel.email.value.ifEmpty { "mario@rossi.it" }, // TODO: TO REMOVE
+                    text = viewModel.email.value,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = AppTypography.labelMedium
@@ -154,6 +154,7 @@ class AccountScreen : GlukyScreenPage<AccountScreenViewModel>(
             }
         }
         ProfilePic(
+            profilePic = viewModel.profilePic.value,
             size = 100.dp,
             borderWidth = 1.5.dp,
             onClick = { launcher.launch() }

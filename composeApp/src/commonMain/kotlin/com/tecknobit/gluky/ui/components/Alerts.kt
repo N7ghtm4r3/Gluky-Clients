@@ -83,6 +83,7 @@ fun DeleteAccount(
         text = Res.string.delete_warn_text,
         confirmAction = {
             viewModel.deleteAccount {
+                show.value = false
                 navigator.navigate(SPLASHSCREEN)
             }
         }

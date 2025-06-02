@@ -36,6 +36,7 @@ lateinit var imageLoader: ImageLoader
 @Composable
 fun ProfilePic(
     modifier: Modifier = Modifier,
+    profilePic: String = localUser.profilePic,
     size: Dp,
     borderWidth: Dp = 1.dp,
     onClick: () -> Unit,
@@ -53,7 +54,7 @@ fun ProfilePic(
                 onClick()
             },
         model = ImageRequest.Builder(LocalPlatformContext.current)
-            .data(localUser.profilePic)
+            .data(profilePic)
             .crossfade(true)
             .crossfade(500)
             .build(),
