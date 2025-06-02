@@ -16,7 +16,10 @@ import coil3.compose.AsyncImage
 import coil3.compose.LocalPlatformContext
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import kotlin.random.Random
+import com.tecknobit.gluky.localUser
+import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.logo
+import org.jetbrains.compose.resources.painterResource
 
 /**
  * `imageLoader` the image loader used by coil library to load the image and by-passing the https self-signed certificates
@@ -24,10 +27,9 @@ import kotlin.random.Random
 lateinit var imageLoader: ImageLoader
 
 /**
- * Custom [AsyncImage] used to display the profile pic of the [localUser] or the member of a team
+ * Custom [AsyncImage] used to display the profile pic of the [com.tecknobit.gluky.localUser] or the member of a team
  *
  * @param modifier The modifier to apply to the component
- * @param profilePic The data of the profile pic to display
  * @param size The size of the profile pic
  * @param onClick The action to execute when the component has been clicked
  */
@@ -51,15 +53,13 @@ fun ProfilePic(
                 onClick()
             },
         model = ImageRequest.Builder(LocalPlatformContext.current)
-            //.data(localUser.profilePic) TODO: USE THIS INSTEAD
-            .data("https://picsum.photos/id/${Random.nextInt(100)}/200/300")
+            .data(localUser.profilePic)
             .crossfade(true)
             .crossfade(500)
             .build(),
         imageLoader = imageLoader,
         contentScale = ContentScale.Crop,
-        // TODO: TO SET
-        // error = painterResource(Res.drawable.logo),
+        error = painterResource(Res.drawable.logo),
         contentDescription = "User profile picture"
     )
 }

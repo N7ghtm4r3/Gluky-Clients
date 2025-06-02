@@ -95,9 +95,12 @@ fun DayPickerBar(
      selected day */
     val currentMonth = remember { mutableStateOf(currentDay.asMonth()) }
     LaunchedEffect(state) {
+        val currentDayMonth = currentDay.asMonth()
         snapshotFlow { state.firstVisibleItemIndex }
             .collect {
-                currentMonth.value = daysWindow[it].asMonth()
+                val firstVisibleDayMonth = daysWindow[it].asMonth()
+                if (currentDayMonth != currentMonth.value)
+                    currentMonth.value = firstVisibleDayMonth
             }
     }
     Column(
