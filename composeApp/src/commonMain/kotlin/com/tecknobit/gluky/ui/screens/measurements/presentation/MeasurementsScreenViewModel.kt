@@ -211,11 +211,24 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     ) {
         if (!areBasalInsulinDataValid())
             return
-        // TODO: TO MAKE THE REQUEST THEN 
-        locallyUpdateBasalInsulin(
-            basalInsulin = basalInsulin
-        )
-        onSave()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    fillBasalInsulin(
+                        targetDay = _currentDay.value,
+                        glycemia = glycemia.value,
+                        insulinUnits = insulinUnits.quantityPicked,
+                    )
+                },
+                onSuccess = {
+                    locallyUpdateBasalInsulin(
+                        basalInsulin = basalInsulin
+                    )
+                    onSave()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
     @Wrapper

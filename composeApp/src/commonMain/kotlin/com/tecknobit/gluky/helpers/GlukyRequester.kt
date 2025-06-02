@@ -8,6 +8,7 @@ import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.helpers.LANGUAGE_KEY
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.BACKEND_URL
+import com.tecknobit.glukycore.BASAL_INSULIN_KEY
 import com.tecknobit.glukycore.CONTENT_KEY
 import com.tecknobit.glukycore.GLYCEMIA_KEY
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
@@ -109,6 +110,24 @@ class GlukyRequester(
             mealsUrl += "/$mealType"
         }
         return mealsUrl
+    }
+
+    suspend fun fillBasalInsulin(
+        targetDay: Long,
+        glycemia: String,
+        insulinUnits: Int,
+    ): JsonObject {
+        val payload = buildJsonObject {
+            put(GLYCEMIA_KEY, glycemia)
+            put(INSULIN_UNITS_KEY, insulinUnits)
+        }
+        return execPut(
+            endpoint = assembleMeasurementsUrl(
+                targetDay = targetDay,
+                customPath = BASAL_INSULIN_KEY
+            ),
+            payload = payload
+        )
     }
 
     @Assembler
