@@ -82,10 +82,12 @@ fun DeleteAccount(
         titleStyle = titleStyle,
         text = Res.string.delete_warn_text,
         confirmAction = {
-            viewModel.deleteAccount {
-                show.value = false
-                navigator.navigate(SPLASHSCREEN)
-            }
+            viewModel.deleteAccount(
+                onDelete = {
+                    show.value = false
+                    navigator.navigate(SPLASHSCREEN)
+                }
+            )
         }
     )
 }
