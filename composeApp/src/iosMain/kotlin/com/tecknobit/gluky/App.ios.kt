@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
 import kotlinx.coroutines.delay
+import platform.Foundation.NSLocale
+import platform.Foundation.NSUserDefaults
 
 /**
  * Method to check whether are available any updates for each platform and then launch the application
@@ -23,15 +25,14 @@ actual fun CheckForUpdatesAndLaunch() {
  * Method to points locale language for the application
  */
 actual fun setUserLanguage() {
-    // TODO: TO SET 
-//    val locale = NSLocale(
-//        localeIdentifier = localUser.language
-//    )
-//    NSUserDefaults.standardUserDefaults.setObject(
-//        value = locale,
-//        forKey = "AppleLanguages"
-//    )
-//    NSUserDefaults.standardUserDefaults.synchronize()
+    val locale = NSLocale(
+        localeIdentifier = localUser.language
+    )
+    NSUserDefaults.standardUserDefaults.setObject(
+        value = locale,
+        forKey = "AppleLanguages"
+    )
+    NSUserDefaults.standardUserDefaults.synchronize()
 }
 
 /**

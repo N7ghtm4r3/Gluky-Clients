@@ -8,6 +8,9 @@ import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
+import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
+import com.tecknobit.equinoxcore.network.sendRequest
+import com.tecknobit.gluky.helpers.GlukyRequester
 import com.tecknobit.gluky.helpers.customHttpClient
 import com.tecknobit.gluky.ui.components.imageLoader
 import com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen
@@ -16,6 +19,8 @@ import com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.comicneue
 import gluky.composeapp.generated.resources.fredoka
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.Navigator
@@ -33,6 +38,8 @@ lateinit var displayFontFamily: FontFamily
 lateinit var bodyFontFamily: FontFamily
 
 lateinit var navigator: Navigator
+
+lateinit var requester: GlukyRequester
 
 const val SPLASHSCREEN = "SplashScreen"
 
@@ -101,36 +108,34 @@ expect fun CheckForUpdatesAndLaunch()
  *
  */
 fun startSession() {
-    // TODO: TO SET
-//    requester = GliderRequester(
-//        host = localUser.hostAddress,
-//        userId = localUser.userId,
-//        userToken = localUser.userToken,
-//        deviceId = localUser.deviceId
-//    )
-//    setUserLanguage()
-//    val route = if (localUser.isAuthenticated) {
-//        MainScope().launch {
-//            requester.sendRequest(
-//                request = { getCustomDynamicAccountData() },
-//                onSuccess = { response ->
-//                    localUser.updateDynamicAccountData(
-//                        dynamicData = response.toResponseData()
-//                    )
-//                    setUserLanguage()
-//                },
-//                onFailure = {
-//                    localUser.clear()
-//                    requester.clearSession()
-//                    navigator.navigate(AUTH_SCREEN)
-//                },
-//                onConnectionError = { }
-//            )
-//        }
-//        HOME_SCREEN
-//    } else
-//        AUTH_SCREEN
-    navigator.navigate(AUTH_SCREEN)
+    requester = GlukyRequester(
+        userId = localUser.userId,
+        userToken = localUser.userToken,
+        debugMode = true // TODO: TO REMOVE
+    )
+    setUserLanguage()
+    val route = if (localUser.isAuthenticated) {
+        MainScope().launch {
+            requester.sendRequest(
+                request = { getDynamicAccountData() },
+                onSuccess = { response ->
+                    localUser.updateDynamicAccountData(
+                        dynamicData = response.toResponseData()
+                    )
+                    setUserLanguage()
+                },
+                onFailure = {
+                    localUser.clear()
+                    requester.clearSession()
+                    navigator.navigate(AUTH_SCREEN)
+                },
+                onConnectionError = { }
+            )
+        }
+        HOME_SCREEN
+    } else
+        AUTH_SCREEN
+    navigator.navigate(route)
 }
 
 /**

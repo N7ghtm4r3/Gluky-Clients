@@ -52,6 +52,5 @@ actual fun CloseApplicationOnNavBack() {
  *
  */
 actual fun setUserLanguage() {
-    // TODO: TO SET
-    // Locale.setDefault(Locale.forLanguageTag(localUser.language))
+    Locale.setDefault(Locale.forLanguageTag(localUser.language))
 }

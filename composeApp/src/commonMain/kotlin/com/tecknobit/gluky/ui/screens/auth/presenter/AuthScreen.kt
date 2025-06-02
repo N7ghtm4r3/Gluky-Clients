@@ -286,7 +286,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                     ),
                     onClick = {
                         softwareKeyboardController?.hide()
-                        viewModel.fakeAuth() // TODO: TO USE THE REAL auth METHOD
+                        viewModel.auth()
                     }
                 ) {
                     Text(

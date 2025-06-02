@@ -7,9 +7,11 @@ import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
 import com.google.android.play.core.ktx.isImmediateUpdateAllowed
+import com.tecknobit.equinoxcore.utilities.AppContext
 import com.tecknobit.gluky.MainActivity.Companion.appUpdateManager
 import com.tecknobit.gluky.MainActivity.Companion.launcher
 import moe.tlaster.precompose.navigation.BackHandler
+import java.util.Locale
 
 /**
  * Method to check whether are available any updates for each platform and then launch the application
@@ -52,11 +54,10 @@ actual fun CloseApplicationOnNavBack() {
  *
  */
 actual fun setUserLanguage() {
-    // TODO: TO SET 
-//    val locale = Locale(localUser.language)
-//    Locale.setDefault(locale)
-//    val context = AppContext.get()
-//    val config = context.resources.configuration
-//    config.setLocale(locale)
-//    context.createConfigurationContext(config)
+    val locale = Locale(localUser.language)
+    Locale.setDefault(locale)
+    val context = AppContext.get()
+    val config = context.resources.configuration
+    config.setLocale(locale)
+    context.createConfigurationContext(config)
 }

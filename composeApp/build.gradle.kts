@@ -17,6 +17,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
     alias(libs.plugins.dokka)
+    alias(libs.plugins.buildconfig)
     kotlin("plugin.serialization") version "2.0.20"
 }
 
@@ -135,6 +136,7 @@ kotlin {
         }
 
     }
+    jvmToolchain(18)
 }
 
 android {
@@ -228,4 +230,13 @@ tasks.withType<DokkaTask>().configureEach {
         customAssets = listOf(file("../docs/logo-icon.svg"))
         footerMessage = "(c) 2025 Tecknobit"
     }
+}
+
+buildConfig {
+    className("GlukyConfig")
+    packageName("com.tecknobit.gluky")
+    buildConfigField<String>(
+        name = "BACKEND_URL",
+        value = project.findProperty("backend_url").toString()
+    )
 }

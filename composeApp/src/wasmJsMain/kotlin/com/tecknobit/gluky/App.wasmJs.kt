@@ -3,6 +3,7 @@ package com.tecknobit.gluky
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
+import kotlinx.browser.document
 import kotlinx.coroutines.delay
 
 /**
@@ -23,8 +24,7 @@ actual fun CheckForUpdatesAndLaunch() {
  * Method to points locale language for the application
  */
 actual fun setUserLanguage() {
-    // TODO: TO SET
-//    document.documentElement?.setAttribute("lang", localUser.language)
+    document.documentElement?.setAttribute("lang", localUser.language)
 }
 
 /**
