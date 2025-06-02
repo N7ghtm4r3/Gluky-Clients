@@ -47,6 +47,16 @@ class GlukyRequester(
         )
     }
 
+    suspend fun fillDay(
+        targetDay: Long,
+    ): JsonObject {
+        return execPut(
+            endpoint = assembleMeasurementsUrl(
+                targetDay = targetDay
+            )
+        )
+    }
+
     @Assembler
     private fun assembleMeasurementsUrl(
         targetDay: Long,

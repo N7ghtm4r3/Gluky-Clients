@@ -12,6 +12,7 @@ import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.network.Requester.Companion.toNullableResponseData
+import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
 import com.tecknobit.gluky.helpers.KReviewer
@@ -21,11 +22,6 @@ import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
 import com.tecknobit.gluky.ui.screens.measurements.data.GlycemicMeasurementItem
 import com.tecknobit.gluky.ui.screens.measurements.data.Meal
 import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
-import com.tecknobit.glukycore.enums.MeasurementType.AFTERNOON_SNACK
-import com.tecknobit.glukycore.enums.MeasurementType.BREAKFAST
-import com.tecknobit.glukycore.enums.MeasurementType.DINNER
-import com.tecknobit.glukycore.enums.MeasurementType.LUNCH
-import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isGlycemiaValueValid
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.invalid_meal_content
@@ -38,7 +34,6 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.decodeFromJsonElement
-import kotlin.random.Random
 
 class MeasurementsScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
@@ -131,37 +126,21 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     }
 
     fun fillDay() {
-        // TODO: TO MAKE THE REQUEST THEN
-        val obtainedByTheRequest = DailyMeasurements(
-            id = Random.nextLong().toString(),
-            breakfast = Meal(
-                id = Random.nextLong().toString(),
-                type = BREAKFAST
-            ),
-            morningSnack = Meal(
-                id = Random.nextLong().toString(),
-                type = MORNING_SNACK
-            ),
-            lunch = Meal(
-                id = Random.nextLong().toString(),
-                type = LUNCH
-            ),
-            afternoonSnack = Meal(
-                id = Random.nextLong().toString(),
-                type = AFTERNOON_SNACK
-            ),
-            dinner = Meal(
-                id = Random.nextLong().toString(),
-                type = DINNER
-            ),
-            basalInsulin = BasalInsulin(
-                id = Random.nextLong().toString(),
-                _glycemia = Random.nextInt(100)
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    fillDay(
+                        targetDay = currentDay.value
+                    )
+                },
+                onSuccess = {
+                    val kReviewer = KReviewer()
+                    kReviewer.reviewInApp {
+                        _dailyMeasurements.value = Json.decodeFromJsonElement(it.toResponseData())
+                    }
+                },
+                onFailure = { showSnackbarMessage(it) }
             )
-        ) // TODO: TO USE THE REAL ONE INSTEAD
-        val kReviewer = KReviewer()
-        kReviewer.reviewInApp {
-            _dailyMeasurements.value = obtainedByTheRequest
         }
     }
 
