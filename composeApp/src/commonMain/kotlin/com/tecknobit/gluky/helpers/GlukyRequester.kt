@@ -10,6 +10,7 @@ import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.BACKEND_URL
 import com.tecknobit.glukycore.BASAL_INSULIN_KEY
 import com.tecknobit.glukycore.CONTENT_KEY
+import com.tecknobit.glukycore.DAILY_NOTES_KEY
 import com.tecknobit.glukycore.GLYCEMIA_KEY
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
 import com.tecknobit.glukycore.MEALS_KEY
@@ -36,6 +37,12 @@ class GlukyRequester(
     debugMode = debugMode,
     connectionErrorMessage = DEFAULT_CONNECTION_ERROR_MESSAGE
 ) {
+
+    private companion object {
+
+        const val TARGET_DAY_PATTERN = "dd-MM-yyyy"
+
+    }
 
     // TODO: TO REMOVE WHEN LANGUAGE PARAMETER IMPLEMENTED BUILT-IN
     @CustomParametersOrder(LANGUAGE_KEY)
@@ -130,13 +137,29 @@ class GlukyRequester(
         )
     }
 
+    suspend fun saveDailyNotes(
+        targetDay: Long,
+        content: String,
+    ): JsonObject {
+        val payload = buildJsonObject {
+            put(DAILY_NOTES_KEY, content)
+        }
+        return execPut(
+            endpoint = assembleMeasurementsUrl(
+                targetDay = targetDay,
+                customPath = DAILY_NOTES_KEY
+            ),
+            payload = payload
+        )
+    }
+
     @Assembler
     private fun assembleMeasurementsUrl(
         targetDay: Long,
         customPath: String? = null,
     ): String {
         var subEndpoint = targetDay.toDateString(
-            pattern = "dd-MM-yyyy"
+            pattern = TARGET_DAY_PATTERN
         )
         customPath?.let { path ->
             subEndpoint += "/$path"

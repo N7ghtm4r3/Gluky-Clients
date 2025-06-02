@@ -286,9 +286,21 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         content: String,
         onSave: () -> Unit,
     ) {
-        // TODO: TO MAKE THE REQUEST THEN
-        _dailyMeasurements.value!!.dailyNotes = content
-        onSave()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    saveDailyNotes(
+                        targetDay = _currentDay.value,
+                        content = content
+                    )
+                },
+                onSuccess = {
+                    _dailyMeasurements.value!!.dailyNotes = content
+                    onSave()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
 }
