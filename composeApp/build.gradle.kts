@@ -235,6 +235,7 @@ tasks.withType<DokkaTask>().configureEach {
 buildConfig {
     className("GlukyConfig")
     packageName("com.tecknobit.gluky")
+    useKotlinOutput { topLevelConstants = true }
     buildConfigField<String>(
         name = "BACKEND_URL",
         value = project.findProperty("backend_url").toString()

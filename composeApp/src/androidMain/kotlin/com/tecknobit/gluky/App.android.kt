@@ -7,6 +7,7 @@ import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability.UPDATE_AVAILABLE
 import com.google.android.play.core.ktx.isImmediateUpdateAllowed
+import com.tecknobit.equinoxcompose.utilities.getCurrentLocaleLanguage
 import com.tecknobit.equinoxcore.utilities.AppContext
 import com.tecknobit.gluky.MainActivity.Companion.appUpdateManager
 import com.tecknobit.gluky.MainActivity.Companion.launcher
@@ -54,7 +55,11 @@ actual fun CloseApplicationOnNavBack() {
  *
  */
 actual fun setUserLanguage() {
-    val locale = Locale(localUser.language)
+    // TODO: TO REMOVE THIS WORKAROUND AND USE DIRECTLY localUser.language
+    val language = localUser.language.ifBlank {
+        getCurrentLocaleLanguage()
+    }
+    val locale = Locale(language)
     Locale.setDefault(locale)
     val context = AppContext.get()
     val config = context.resources.configuration

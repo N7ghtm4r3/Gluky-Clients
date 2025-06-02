@@ -50,6 +50,7 @@ import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isNameValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isSurnameValid
+import com.tecknobit.gluky.BACKEND_URL
 import com.tecknobit.gluky.CloseApplicationOnNavBack
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.screens.auth.presentation.AuthScreenViewModel
@@ -334,7 +335,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
     @Composable
     override fun CollectStates() {
         viewModel.isSignUp = remember { mutableStateOf(false) }
-        viewModel.host = remember { mutableStateOf("") }
+        viewModel.host = remember { mutableStateOf(BACKEND_URL) }
         viewModel.hostError = remember { mutableStateOf(false) }
         viewModel.serverSecret = remember { mutableStateOf("") }
         viewModel.serverSecretError = remember { mutableStateOf(false) }
