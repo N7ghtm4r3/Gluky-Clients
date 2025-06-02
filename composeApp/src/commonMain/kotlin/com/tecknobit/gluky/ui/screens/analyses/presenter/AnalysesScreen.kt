@@ -20,7 +20,6 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.State
@@ -149,8 +148,8 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
                 glycemicTrendSet?.let { trendSet ->
                     if (trendSet.hasDataAvailable()) {
                         GlycemicTrend(
-                            viewModel = viewModel,
                             type = type,
+                            glycemicTrendDataContainer = glycemicTrend.value!!,
                             glycemicTrendData = trendSet,
                             glycemicTrendPeriod = glycemicTrendPeriod.value,
                             glycemicTrendGroupingDay = glycemicTrendGroupingDay.value
@@ -209,7 +208,6 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
         glycemicTrend = viewModel.glycemicTrend.collectAsState()
         glycemicTrendPeriod = viewModel.glycemicTrendPeriod.collectAsState()
         glycemicTrendGroupingDay = viewModel.glycemicTrendGroupingDay.collectAsState()
-        viewModel.rangePickerState = rememberDateRangePickerState()
     }
 
 }

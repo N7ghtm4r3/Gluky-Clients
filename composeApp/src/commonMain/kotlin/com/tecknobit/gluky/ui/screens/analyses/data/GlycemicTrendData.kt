@@ -33,6 +33,8 @@ data class GlycemicTrendDataContainer(
     val dinner: GlycemicTrendData? = null,
     @SerialName(BASAL_INSULIN_KEY)
     val basalInsulin: GlycemicTrendData? = null,
+    val from: Long = -1,
+    val to: Long = -1,
 ) {
 
     val availableSets: MutableList<MeasurementType> = mutableListOf()
@@ -87,22 +89,6 @@ data class GlycemicTrendDataContainer(
         }
     }
 
-    fun firstAvailableDate(): Long? {
-        return breakfast?.firstSet?.first()?.date
-    }
-
-    fun lastAvailableDate(): Long? {
-        return breakfast?.firstSet?.last()?.date
-    }
-
-    private fun getBiggerSet(): GlycemicTrendData? {
-        val biggerSetSize = 0
-        availableSets.forEach { set ->
-            
-        }
-        return null
-    }
-
 }
 
 @Serializable
@@ -147,13 +133,13 @@ data class GlycemicTrendData(
     }
 
     fun hasDataAvailable(): Boolean {
-        var higherSet = 0
+        var biggestSet = 0
         sets.forEach { set ->
             val setSize = set.size
-            if (setSize > higherSet)
-                higherSet = setSize
+            if (setSize > biggestSet)
+                biggestSet = setSize
         }
-        return higherSet > 1
+        return biggestSet > 1
     }
 
     private fun List<GlycemiaPoint>?.ifIsNotNullAppend() {

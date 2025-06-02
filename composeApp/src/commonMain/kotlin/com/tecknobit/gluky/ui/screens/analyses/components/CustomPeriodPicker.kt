@@ -181,9 +181,9 @@ private fun PeriodPickerContent(
     trendPeriod: GlycemicTrendPeriod,
     onSave: () -> Unit,
 ) {
-    viewModel.rangePickerState = rememberDateRangePickerState(
-        initialSelectedStartDateMillis = glycemicTrendData.firstAvailableDate(),
-        initialSelectedEndDateMillis = glycemicTrendData.lastAvailableDate(),
+    val rangePickerState = rememberDateRangePickerState(
+        initialSelectedStartDateMillis = glycemicTrendData.from,
+        initialSelectedEndDateMillis = glycemicTrendData.to,
         selectableDates = DatesValidator
     )
     val trendPeriodString = stringResource(trendPeriod.extendedText())
@@ -191,7 +191,7 @@ private fun PeriodPickerContent(
         modifier = modifier
             .useDialogSize(),
         colors = colors,
-        state = viewModel.rangePickerState,
+        state = rangePickerState,
         showModeToggle = false,
         title = {
             Row(
@@ -217,6 +217,7 @@ private fun PeriodPickerContent(
                         save = {
                             viewModel.applyCustomTrendPeriod(
                                 allowedPeriod = trendPeriodString,
+                                rangePickerState = rangePickerState,
                                 onApply = onSave
                             )
                         }

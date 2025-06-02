@@ -60,8 +60,6 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     )
     val glycemicTrendGroupingDay = _glycemicTrendGroupingDay.asStateFlow()
 
-    lateinit var rangePickerState: DateRangePickerState
-
     private val _creatingReport = MutableStateFlow(
         value = false
     )
@@ -110,6 +108,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     }
 
     fun applyCustomTrendPeriod(
+        rangePickerState: DateRangePickerState,
         allowedPeriod: String,
         onApply: () -> Unit,
     ) {

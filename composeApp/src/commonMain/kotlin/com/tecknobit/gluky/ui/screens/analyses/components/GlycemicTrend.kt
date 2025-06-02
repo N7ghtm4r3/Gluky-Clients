@@ -63,7 +63,7 @@ import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.components.ToggleButton
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
-import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
+import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
 import com.tecknobit.gluky.ui.theme.ChartLine1Light
@@ -142,8 +142,8 @@ private val darkLineColors = arrayOf(
 
 @Composable
 fun GlycemicTrend(
-    viewModel: AnalysesScreenViewModel,
     type: MeasurementType,
+    glycemicTrendDataContainer: GlycemicTrendDataContainer,
     glycemicTrendData: GlycemicTrendData,
     glycemicTrendPeriod: GlycemicTrendPeriod,
     glycemicTrendGroupingDay: GlycemicTrendGroupingDay?,
@@ -179,8 +179,8 @@ fun GlycemicTrend(
                 chartWidth,
                 glycemicTrendPeriod,
                 glycemicTrendGroupingDay,
-                viewModel.rangePickerState.selectedStartDateMillis,
-                viewModel.rangePickerState.selectedEndDateMillis
+                glycemicTrendDataContainer.from,
+                glycemicTrendDataContainer.to
             ) {
                 glycemicTrendData.toChartData(
                     colors = colors
