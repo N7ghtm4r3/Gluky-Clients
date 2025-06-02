@@ -13,7 +13,6 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
@@ -24,12 +23,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.tecknobit.equinoxcompose.resources.retry
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
+import com.tecknobit.gluky.ui.components.RetryButton
 import com.tecknobit.gluky.ui.screens.measurements.components.DailyNotes
 import com.tecknobit.gluky.ui.screens.measurements.components.Measurements
 import com.tecknobit.gluky.ui.screens.measurements.components.UnfilledDay
@@ -110,6 +109,7 @@ class MeasurementsScreen : GlukyScreenPage<MeasurementsScreenViewModel>(
             modifier = Modifier
                 .fillMaxSize(),
             state = viewModel.sessionFlowState,
+            initialLoadingRoutineDelay = 1000,
             loadingRoutine = { true },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
@@ -137,13 +137,11 @@ class MeasurementsScreen : GlukyScreenPage<MeasurementsScreenViewModel>(
                 }
             },
             retryFailedFlowContent = {
-                TextButton(
-                    onClick = { viewModel.retrieveDailyMeasurements() }
-                ) {
-                    Text(
-                        text = stringResource(com.tecknobit.equinoxcompose.resources.Res.string.retry)
-                    )
-                }
+                RetryButton(
+                    retryAction = {
+                        viewModel.retrieveDailyMeasurements()
+                    }
+                )
             }
         )
     }

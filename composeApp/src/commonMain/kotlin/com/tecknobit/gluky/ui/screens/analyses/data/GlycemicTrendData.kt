@@ -59,11 +59,11 @@ data class GlycemicTrendDataContainer(
     }
 
     fun dataAvailable(): Boolean {
-        return breakfast != null ||
-                morningSnack != null ||
-                lunch != null ||
-                afternoonSnack != null ||
-                dinner != null
+        return ((breakfast != null && breakfast.hasDataAvailable()) ||
+                (morningSnack != null && morningSnack.hasDataAvailable()) ||
+                (lunch != null && lunch.hasDataAvailable()) ||
+                (afternoonSnack != null && afternoonSnack.hasDataAvailable()) ||
+                (dinner != null && dinner.hasDataAvailable()))
     }
 
     private fun GlycemicTrendData?.ifIsNotNullAppend(
@@ -93,6 +93,14 @@ data class GlycemicTrendDataContainer(
 
     fun lastAvailableDate(): Long? {
         return breakfast?.firstSet?.last()?.date
+    }
+
+    private fun getBiggerSet(): GlycemicTrendData? {
+        val biggerSetSize = 0
+        availableSets.forEach { set ->
+            
+        }
+        return null
     }
 
 }
@@ -136,6 +144,16 @@ data class GlycemicTrendData(
             3 -> fourthSet
             else -> null
         }
+    }
+
+    fun hasDataAvailable(): Boolean {
+        var higherSet = 0
+        sets.forEach { set ->
+            val setSize = set.size
+            if (setSize > higherSet)
+                higherSet = setSize
+        }
+        return higherSet > 1
     }
 
     private fun List<GlycemiaPoint>?.ifIsNotNullAppend() {

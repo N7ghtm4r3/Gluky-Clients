@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalComposeApi::class)
+@file:OptIn(ExperimentalComposeApi::class, ExperimentalMaterial3Api::class)
 
 package com.tecknobit.gluky.ui.screens.analyses.presenter
 
@@ -15,10 +15,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.State
@@ -33,6 +35,7 @@ import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
 import com.tecknobit.equinoxcompose.utilities.responsiveAssignment
+import com.tecknobit.gluky.ui.components.RetryButton
 import com.tecknobit.gluky.ui.icons.Report
 import com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodButton
 import com.tecknobit.gluky.ui.screens.analyses.components.EmptyTrendData
@@ -67,7 +70,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
             modifier = Modifier
                 .fillMaxSize(),
             state = viewModel.sessionFlowState,
-            initialLoadingRoutineDelay = 2000,
+            initialLoadingRoutineDelay = 1000,
             loadingRoutine = { glycemicTrend.value != null },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
@@ -89,6 +92,13 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
                         )
                     }
                 }
+            },
+            retryFailedFlowContent = {
+                RetryButton(
+                    retryAction = {
+                        viewModel.retrieveGlycemicTrend()
+                    }
+                )
             }
         )
     }
@@ -137,12 +147,15 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
             ) { type ->
                 val glycemicTrendSet = glycemicTrend.value!!.getRelatedSet(type)
                 glycemicTrendSet?.let { trendSet ->
-                    GlycemicTrend(
-                        type = type,
-                        glycemicTrendData = trendSet,
-                        glycemicTrendPeriod = glycemicTrendPeriod.value,
-                        glycemicTrendGroupingDay = glycemicTrendGroupingDay.value
-                    )
+                    if (trendSet.hasDataAvailable()) {
+                        GlycemicTrend(
+                            viewModel = viewModel,
+                            type = type,
+                            glycemicTrendData = trendSet,
+                            glycemicTrendPeriod = glycemicTrendPeriod.value,
+                            glycemicTrendGroupingDay = glycemicTrendGroupingDay.value
+                        )
+                    }
                 }
             }
         }
@@ -196,6 +209,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
         glycemicTrend = viewModel.glycemicTrend.collectAsState()
         glycemicTrendPeriod = viewModel.glycemicTrendPeriod.collectAsState()
         glycemicTrendGroupingDay = viewModel.glycemicTrendGroupingDay.collectAsState()
+        viewModel.rangePickerState = rememberDateRangePickerState()
     }
 
 }

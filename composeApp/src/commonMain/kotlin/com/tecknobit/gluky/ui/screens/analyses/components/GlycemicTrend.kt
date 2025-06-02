@@ -63,6 +63,7 @@ import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.components.ToggleButton
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData
+import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.ChartLine1Dark
 import com.tecknobit.gluky.ui.theme.ChartLine1Light
@@ -141,6 +142,7 @@ private val darkLineColors = arrayOf(
 
 @Composable
 fun GlycemicTrend(
+    viewModel: AnalysesScreenViewModel,
     type: MeasurementType,
     glycemicTrendData: GlycemicTrendData,
     glycemicTrendPeriod: GlycemicTrendPeriod,
@@ -173,7 +175,13 @@ fun GlycemicTrend(
             )
             var chartWidth by remember { mutableStateOf(0.dp) }
             val density = LocalDensity.current
-            val chartData = remember(chartWidth, glycemicTrendPeriod, glycemicTrendGroupingDay) {
+            val chartData = remember(
+                chartWidth,
+                glycemicTrendPeriod,
+                glycemicTrendGroupingDay,
+                viewModel.rangePickerState.selectedStartDateMillis,
+                viewModel.rangePickerState.selectedEndDateMillis
+            ) {
                 glycemicTrendData.toChartData(
                     colors = colors
                 )
@@ -325,7 +333,7 @@ private fun ChartLegend(
         ) {
             itemsIndexed(
                 items = labels,
-                key = { index, label -> label + index } // TODO: TO REMOVE (+ INDEX) 
+                key = { _, label -> label }
             ) { index, label ->
                 Row(
                     modifier = Modifier

@@ -11,12 +11,19 @@ import com.tecknobit.gluky.BACKEND_URL
 import com.tecknobit.glukycore.BASAL_INSULIN_KEY
 import com.tecknobit.glukycore.CONTENT_KEY
 import com.tecknobit.glukycore.DAILY_NOTES_KEY
+import com.tecknobit.glukycore.FROM_DATE_KEY
 import com.tecknobit.glukycore.GLYCEMIA_KEY
+import com.tecknobit.glukycore.GLYCEMIC_TREND_GROUPING_DAY_KEY
+import com.tecknobit.glukycore.GLYCEMIC_TREND_PERIOD_KEY
 import com.tecknobit.glukycore.INSULIN_UNITS_KEY
 import com.tecknobit.glukycore.MEALS_KEY
 import com.tecknobit.glukycore.MEASUREMENTS_KEY
 import com.tecknobit.glukycore.POST_PRANDIAL_GLYCEMIA_KEY
+import com.tecknobit.glukycore.TO_DATE_KEY
+import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
+import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.MeasurementType
+import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.ANALYSES_ENDPOINT
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
@@ -166,6 +173,39 @@ class GlukyRequester(
         }
         return assembleCustomEndpointPath(
             customEndpoint = MEASUREMENTS_KEY,
+            subEndpoint = subEndpoint
+        )
+    }
+
+    suspend fun getGlycemicTrend(
+        period: GlycemicTrendPeriod,
+        groupingDay: GlycemicTrendGroupingDay?,
+        from: Long?,
+        to: Long?,
+    ): JsonObject {
+        val query = buildJsonObject {
+            put(GLYCEMIC_TREND_PERIOD_KEY, period.name)
+            groupingDay?.let { day ->
+                put(GLYCEMIC_TREND_GROUPING_DAY_KEY, day.name)
+            }
+            from?.let {
+                put(FROM_DATE_KEY, from)
+                put(TO_DATE_KEY, to)
+            }
+        }
+        return execGet(
+            endpoint = assembleAnalysesUrl(),
+            query = query
+        )
+    }
+
+
+    @Assembler
+    private fun assembleAnalysesUrl(
+        subEndpoint: String = "",
+    ): String {
+        return assembleCustomEndpointPath(
+            customEndpoint = ANALYSES_ENDPOINT,
             subEndpoint = subEndpoint
         )
     }
