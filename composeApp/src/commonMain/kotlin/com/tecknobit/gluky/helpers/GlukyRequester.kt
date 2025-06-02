@@ -1,9 +1,12 @@
 package com.tecknobit.gluky.helpers
 
 import com.tecknobit.equinoxcompose.network.EquinoxRequester
+import com.tecknobit.equinoxcore.annotations.Assembler
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.helpers.LANGUAGE_KEY
+import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.BACKEND_URL
+import com.tecknobit.glukycore.MEASUREMENTS_KEY
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.encodeToJsonElement
@@ -32,6 +35,28 @@ class GlukyRequester(
         val payload = super.getSignInPayload(email, password, *custom).toMutableMap()
         payload[LANGUAGE_KEY] = Json.encodeToJsonElement(custom[0].toString())
         return Json.encodeToJsonElement(payload).jsonObject
+    }
+
+    suspend fun getDailyMeasurements(
+        targetDay: Long,
+    ): JsonObject {
+        return execGet(
+            endpoint = assembleMeasurementsUrl(
+                targetDay = targetDay
+            )
+        )
+    }
+
+    @Assembler
+    private fun assembleMeasurementsUrl(
+        targetDay: Long,
+    ): String {
+        return assembleCustomEndpointPath(
+            customEndpoint = MEASUREMENTS_KEY,
+            subEndpoint = targetDay.toDateString(
+                pattern = "dd-MM-yyyy"
+            )
+        )
     }
 
 }

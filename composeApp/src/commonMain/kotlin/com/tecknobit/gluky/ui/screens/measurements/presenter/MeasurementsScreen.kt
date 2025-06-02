@@ -6,9 +6,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.NoteAlt
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -16,6 +13,7 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
@@ -26,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.resources.retry
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
@@ -111,7 +110,6 @@ class MeasurementsScreen : GlukyScreenPage<MeasurementsScreenViewModel>(
             modifier = Modifier
                 .fillMaxSize(),
             state = viewModel.sessionFlowState,
-            initialLoadingRoutineDelay = 2000,
             loadingRoutine = { true },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
@@ -130,19 +128,21 @@ class MeasurementsScreen : GlukyScreenPage<MeasurementsScreenViewModel>(
                     exit = fadeOut()
                 ) {
                     dailyMeasurements.value?.let {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .navigationBarsPadding()
-                                .verticalScroll(rememberScrollState())
-                        ) {
-                            Measurements(
-                                viewModel = viewModel,
-                                horizontalPadding = horizontalPadding,
-                                dailyMeasurements = dailyMeasurements.value!!
-                            )
-                        }
+                        Measurements(
+                            viewModel = viewModel,
+                            horizontalPadding = horizontalPadding,
+                            dailyMeasurements = dailyMeasurements.value!!
+                        )
                     }
+                }
+            },
+            retryFailedFlowContent = {
+                TextButton(
+                    onClick = { viewModel.retrieveDailyMeasurements() }
+                ) {
+                    Text(
+                        text = stringResource(com.tecknobit.equinoxcompose.resources.Res.string.retry)
+                    )
                 }
             }
         )

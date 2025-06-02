@@ -23,8 +23,8 @@ import com.tecknobit.glukycore.enums.MeasurementType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.buildJsonObject
 import kotlin.math.abs
 
 @Serializable
@@ -34,7 +34,7 @@ data class Meal(
     @SerialName(ANNOTATION_DATE_KEY)
     override val _annotationDate: Long = -1,
     @SerialName(RAW_CONTENT_KEY)
-    private val _rawContent: JsonObject = buildJsonObject { },
+    private val _rawContent: String = "",
     @SerialName(GLYCEMIA_KEY)
     override val _glycemia: Int = -1,
     @SerialName(POST_PRANDIAL_GLYCEMIA_KEY)
@@ -63,7 +63,9 @@ data class Meal(
     }
 
     @Transient
-    val rawContent: MutableState<JsonObject> = mutableStateOf(_rawContent)
+    val rawContent: MutableState<JsonObject> = mutableStateOf(
+        Json.decodeFromString(_rawContent)
+    )
 
     @Transient
     val content: State<String> = derivedStateOf {

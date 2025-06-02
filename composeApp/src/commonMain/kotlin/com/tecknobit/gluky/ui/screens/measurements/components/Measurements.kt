@@ -3,7 +3,8 @@ package com.tecknobit.gluky.ui.screens.measurements.components
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.lazy.staggeredgrid.items
@@ -27,8 +28,9 @@ fun Measurements(
 ) {
     LazyVerticalStaggeredGrid(
         modifier = Modifier
-            .height(750.dp)
-            .animateContentSize(),
+            .fillMaxSize()
+            .animateContentSize()
+            .navigationBarsPadding(),
         columns = StaggeredGridCells.Adaptive(
             minSize = 350.dp
         ),
