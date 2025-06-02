@@ -32,7 +32,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.decodeFromJsonElement
 
 class MeasurementsScreenViewModel : EquinoxViewModel(
@@ -104,7 +103,7 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
             requester.sendRequest(
                 request = {
                     getDailyMeasurements(
-                        targetDay = currentDay.value
+                        targetDay = _currentDay.value
                     )
                 },
                 onSuccess = {
@@ -130,7 +129,7 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
             requester.sendRequest(
                 request = {
                     fillDay(
-                        targetDay = currentDay.value
+                        targetDay = _currentDay.value
                     )
                 },
                 onSuccess = {
@@ -150,12 +149,29 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     ) {
         if (!areMealDataValid())
             return
-        // TODO: TO MAKE THE REQUEST THEN -> MUST RETURN THE NEW RAWCONTENT AND THE CONTENT TO LOCALLY ASSIGN
-        locallyUpdateMeal(
-            meal = meal,
-            rawContent = buildJsonObject { }, // TODO: TO RETRIEVE FROM RESPONSE
-        )
-        onSave()
+        viewModelScope.launch {
+            requester.sendRequest(
+                request = {
+                    fillMeal(
+                        targetDay = _currentDay.value,
+                        mealType = meal.type,
+                        glycemia = glycemia.value,
+                        postPrandialGlycemia = postPrandialGlycemia.value,
+                        insulinUnits = insulinUnits.quantityPicked,
+                        content = mealContent
+                    )
+                },
+                onSuccess = {
+                    val rawContent: JsonObject = Json.decodeFromJsonElement(it.toResponseData())
+                    locallyUpdateMeal(
+                        meal = meal,
+                        rawContent = rawContent,
+                    )
+                    onSave()
+                },
+                onFailure = { showSnackbarMessage(it) }
+            )
+        }
     }
 
     @Validator
