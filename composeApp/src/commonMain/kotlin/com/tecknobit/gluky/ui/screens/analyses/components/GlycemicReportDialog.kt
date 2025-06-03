@@ -30,7 +30,7 @@ fun GlycemicReportDialog(
     viewModel: AnalysesScreenViewModel,
 ) {
     if (show.value) {
-        val creatingReport by viewModel.creatingReport.collectAsState()
+        val generatingReport by viewModel.generatingReport.collectAsState()
         AlertDialog(
             modifier = Modifier
                 .widthIn(
@@ -43,7 +43,7 @@ fun GlycemicReportDialog(
                 )
             },
             onDismissRequest = {
-                if (!creatingReport)
+                if (!generatingReport)
                     show.value = false
             },
             title = {
@@ -60,7 +60,7 @@ fun GlycemicReportDialog(
             },
             dismissButton = {
                 AnimatedVisibility(
-                    visible = !creatingReport
+                    visible = !generatingReport
                 ) {
                     TextButton(
                         onClick = { show.value = false }
@@ -78,11 +78,11 @@ fun GlycemicReportDialog(
                             onGenerated = { show.value = false }
                         )
                     },
-                    enabled = !creatingReport
+                    enabled = !generatingReport
                 ) {
                     Text(
                         text = stringResource(
-                            if (creatingReport)
+                            if (generatingReport)
                                 Res.string.creating
                             else
                                 com.tecknobit.equinoxcompose.resources.Res.string.confirm

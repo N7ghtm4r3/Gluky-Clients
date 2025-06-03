@@ -14,6 +14,8 @@ import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
+import com.tecknobit.gluky.helpers.KReviewer
+import com.tecknobit.gluky.helpers.openReport
 import com.tecknobit.gluky.requester
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.analyses.data.Report
@@ -23,7 +25,10 @@ import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
 import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isCustomTrendPeriodValid
 import gluky.composeapp.generated.resources.Res
+import gluky.composeapp.generated.resources.open
+import gluky.composeapp.generated.resources.report_created
 import gluky.composeapp.generated.resources.wrong_custom_range
+import io.github.vinceglb.filekit.PlatformFile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -57,10 +62,10 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     )
     val glycemicTrendGroupingDay = _glycemicTrendGroupingDay.asStateFlow()
 
-    private val _creatingReport = MutableStateFlow(
+    private val _generatingReport = MutableStateFlow(
         value = false
     )
-    val creatingReport = _creatingReport.asStateFlow()
+    val generatingReport = _generatingReport.asStateFlow()
 
     lateinit var customPeriodPickerState: DateRangePickerState
 
@@ -142,7 +147,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         viewModelScope.launch {
             requester.sendRequest(
                 request = {
-                    _creatingReport.value = true
+                    _generatingReport.value = true
                     generateReport(
                         period = _glycemicTrendPeriod.value,
                         groupingDay = _glycemicTrendGroupingDay.value,
@@ -158,7 +163,7 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                     )
                 },
                 onFailure = {
-                    _creatingReport.value = false
+                    _generatingReport.value = false
                     onGenerated()
                     showSnackbarMessage(it)
                 }
@@ -172,25 +177,35 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         report: Report,
         onDownloadCompleted: () -> Unit,
     ) {
-
         viewModelScope.launch {
             requester.downloadReport(
-                report = report
+                report = report,
+                onDownloadCompleted = { reportFile ->
+                    _generatingReport.value = false
+                    onDownloadCompleted()
+                    completedSnackMessage(
+                        reportFile = reportFile
+                    )
+                }
             )
         }
+    }
 
-        /*_creatingReport.value = false
-        onDownloadCompleted()
+    private fun completedSnackMessage(
+        reportFile: PlatformFile,
+    ) {
         showSnackbarMessage(
             message = Res.string.report_created,
             actionLabel = Res.string.open,
             onActionPerformed = {
                 val kReviewer = KReviewer()
                 kReviewer.reviewInApp {
-                    // TODO: OPEN THE FILE
+                    openReport(
+                        reportFile = reportFile
+                    )
                 }
             }
-        )*/
+        )
     }
 
 }

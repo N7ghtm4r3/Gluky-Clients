@@ -6,6 +6,7 @@ import com.tecknobit.equinoxcore.annotations.Assembler
 import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.helpers.LANGUAGE_KEY
+import com.tecknobit.equinoxcore.network.EquinoxBaseEndpointsSet.Companion.BASE_EQUINOX_ENDPOINT
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.BACKEND_URL
 import com.tecknobit.gluky.ui.screens.analyses.data.Report
@@ -26,6 +27,7 @@ import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.MeasurementType
 import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.ANALYSES_ENDPOINT
 import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.REPORTS_ENDPOINT
+import io.github.vinceglb.filekit.PlatformFile
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
@@ -219,18 +221,6 @@ class GlukyRequester(
         )
     }
 
-    suspend fun downloadReport(
-        report: Report,
-    ) {
-        val reportBytes: ByteArray = ktorClient.get(
-            urlString = "$host/${report.reportUrl}"
-        ).body()
-        saveReport(
-            reportBytes = reportBytes,
-            reportName = report.name
-        )
-    }
-
     @Assembler
     private fun createPeriodQuery(
         period: GlycemicTrendPeriod,
@@ -257,6 +247,20 @@ class GlukyRequester(
         return assembleCustomEndpointPath(
             customEndpoint = ANALYSES_ENDPOINT,
             subEndpoint = subEndpoint
+        )
+    }
+
+    suspend fun downloadReport(
+        report: Report,
+        onDownloadCompleted: (PlatformFile) -> Unit,
+    ) {
+        val reportBytes: ByteArray = ktorClient.get(
+            urlString = host.removeSuffix(BASE_EQUINOX_ENDPOINT) + "/" + report.reportUrl
+        ).body()
+        saveReport(
+            reportBytes = reportBytes,
+            reportName = report.name,
+            onDownloadCompleted = onDownloadCompleted
         )
     }
 
