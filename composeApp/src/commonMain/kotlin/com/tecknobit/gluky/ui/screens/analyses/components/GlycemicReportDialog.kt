@@ -74,8 +74,8 @@ fun GlycemicReportDialog(
             confirmButton = {
                 TextButton(
                     onClick = {
-                        viewModel.createReport(
-                            onCreated = { show.value = false }
+                        viewModel.generateReport(
+                            onGenerated = { show.value = false }
                         )
                     },
                     enabled = !creatingReport

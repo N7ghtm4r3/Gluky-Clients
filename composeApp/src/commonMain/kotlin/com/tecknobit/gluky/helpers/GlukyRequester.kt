@@ -8,6 +8,7 @@ import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.helpers.LANGUAGE_KEY
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.BACKEND_URL
+import com.tecknobit.gluky.ui.screens.analyses.data.Report
 import com.tecknobit.glukycore.BASAL_INSULIN_KEY
 import com.tecknobit.glukycore.CONTENT_KEY
 import com.tecknobit.glukycore.DAILY_NOTES_KEY
@@ -24,6 +25,9 @@ import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.MeasurementType
 import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.ANALYSES_ENDPOINT
+import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.REPORTS_ENDPOINT
+import io.ktor.client.call.body
+import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
@@ -183,7 +187,58 @@ class GlukyRequester(
         from: Long?,
         to: Long?,
     ): JsonObject {
-        val query = buildJsonObject {
+        val query = createPeriodQuery(
+            period = period,
+            groupingDay = groupingDay,
+            from = from,
+            to = to
+        )
+        return execGet(
+            endpoint = assembleAnalysesUrl(),
+            query = query
+        )
+    }
+
+    suspend fun generateReport(
+        period: GlycemicTrendPeriod,
+        groupingDay: GlycemicTrendGroupingDay?,
+        from: Long?,
+        to: Long?,
+    ): JsonObject {
+        val query = createPeriodQuery(
+            period = period,
+            groupingDay = groupingDay,
+            from = from,
+            to = to
+        )
+        return execGet(
+            endpoint = assembleAnalysesUrl(
+                subEndpoint = REPORTS_ENDPOINT.removePrefix("/")
+            ),
+            query = query
+        )
+    }
+
+    suspend fun downloadReport(
+        report: Report,
+    ) {
+        val reportBytes: ByteArray = ktorClient.get(
+            urlString = "$host/${report.reportUrl}"
+        ).body()
+        saveReport(
+            reportBytes = reportBytes,
+            reportName = report.name
+        )
+    }
+
+    @Assembler
+    private fun createPeriodQuery(
+        period: GlycemicTrendPeriod,
+        groupingDay: GlycemicTrendGroupingDay?,
+        from: Long?,
+        to: Long?,
+    ): JsonObject {
+        return buildJsonObject {
             put(GLYCEMIC_TREND_PERIOD_KEY, period.name)
             groupingDay?.let { day ->
                 put(GLYCEMIC_TREND_GROUPING_DAY_KEY, day.name)
@@ -193,12 +248,7 @@ class GlukyRequester(
                 put(TO_DATE_KEY, to)
             }
         }
-        return execGet(
-            endpoint = assembleAnalysesUrl(),
-            query = query
-        )
     }
-
 
     @Assembler
     private fun assembleAnalysesUrl(

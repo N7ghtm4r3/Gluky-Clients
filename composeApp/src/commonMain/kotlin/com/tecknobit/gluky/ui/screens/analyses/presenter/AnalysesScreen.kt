@@ -20,6 +20,7 @@ import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.State
@@ -73,6 +74,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
             loadingRoutine = { glycemicTrend.value != null },
             loadingContentColor = MaterialTheme.colorScheme.primary,
             content = {
+                CollectStatesAfterLoading()
                 AnimatedContent(
                     targetState = glycemicTrend.value!!.dataAvailable(),
                     transitionSpec = { fadeIn().togetherWith(fadeOut()) }
@@ -208,6 +210,14 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
         glycemicTrend = viewModel.glycemicTrend.collectAsState()
         glycemicTrendPeriod = viewModel.glycemicTrendPeriod.collectAsState()
         glycemicTrendGroupingDay = viewModel.glycemicTrendGroupingDay.collectAsState()
+    }
+
+    @Composable
+    override fun CollectStatesAfterLoading() {
+        viewModel.customPeriodPickerState = rememberDateRangePickerState(
+            initialSelectedStartDateMillis = glycemicTrend.value!!.from,
+            initialSelectedEndDateMillis = glycemicTrend.value!!.to
+        )
     }
 
 }

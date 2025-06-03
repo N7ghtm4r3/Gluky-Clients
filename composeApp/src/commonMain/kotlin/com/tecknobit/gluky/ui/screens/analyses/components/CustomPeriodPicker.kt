@@ -11,10 +11,8 @@ import androidx.compose.material3.DatePickerDefaults
 import androidx.compose.material3.DateRangePicker
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberDateRangePickerState
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -33,7 +31,6 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
-import com.tecknobit.equinoxcore.time.TimeFormatter
 import com.tecknobit.gluky.helpers.extendedText
 import com.tecknobit.gluky.ui.components.SaveButton
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
@@ -116,7 +113,6 @@ private fun PeriodPickerDialog(
             modifier = Modifier
                 .clip(DialogShape),
             viewModel = viewModel,
-            glycemicTrendData = glycemicTrendData,
             trendPeriod = trendPeriod,
             onSave = { show.value = false }
         )
@@ -152,7 +148,6 @@ private fun PeriodPickerBottomSheet(
                     containerColor = Color.Transparent
                 ),
                 viewModel = viewModel,
-                glycemicTrendData = glycemicTrendData,
                 trendPeriod = trendPeriod,
                 onSave = { closeSheet() }
             )
@@ -177,21 +172,15 @@ private fun PeriodPickerContent(
     modifier: Modifier = Modifier,
     colors: DatePickerColors = DatePickerDefaults.colors(),
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
     onSave: () -> Unit,
 ) {
-    val rangePickerState = rememberDateRangePickerState(
-        initialSelectedStartDateMillis = glycemicTrendData.from,
-        initialSelectedEndDateMillis = glycemicTrendData.to,
-        selectableDates = DatesValidator
-    )
     val trendPeriodString = stringResource(trendPeriod.extendedText())
     DateRangePicker(
         modifier = modifier
             .useDialogSize(),
         colors = colors,
-        state = rangePickerState,
+        state = viewModel.customPeriodPickerState,
         showModeToggle = false,
         title = {
             Row(
@@ -217,7 +206,6 @@ private fun PeriodPickerContent(
                         save = {
                             viewModel.applyCustomTrendPeriod(
                                 allowedPeriod = trendPeriodString,
-                                rangePickerState = rangePickerState,
                                 onApply = onSave
                             )
                         }
@@ -227,16 +215,4 @@ private fun PeriodPickerContent(
         },
         headline = null
     )
-}
-
-private object DatesValidator : SelectableDates {
-
-    private val currentTimestamp = TimeFormatter.currentTimestamp()
-
-    override fun isSelectableDate(
-        utcTimeMillis: Long,
-    ): Boolean {
-        return utcTimeMillis <= currentTimestamp
-    }
-
 }

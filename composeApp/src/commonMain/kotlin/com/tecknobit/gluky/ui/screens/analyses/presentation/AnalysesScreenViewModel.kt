@@ -14,20 +14,17 @@ import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
-import com.tecknobit.gluky.helpers.KReviewer
 import com.tecknobit.gluky.requester
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
+import com.tecknobit.gluky.ui.screens.analyses.data.Report
 import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
 import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isCustomTrendPeriodValid
 import gluky.composeapp.generated.resources.Res
-import gluky.composeapp.generated.resources.open
-import gluky.composeapp.generated.resources.report_created
 import gluky.composeapp.generated.resources.wrong_custom_range
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -64,6 +61,8 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         value = false
     )
     val creatingReport = _creatingReport.asStateFlow()
+
+    lateinit var customPeriodPickerState: DateRangePickerState
 
     fun retrieveGlycemicTrend(
         from: Long? = null,
@@ -108,11 +107,10 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     }
 
     fun applyCustomTrendPeriod(
-        rangePickerState: DateRangePickerState,
         allowedPeriod: String,
         onApply: () -> Unit,
     ) {
-        if (!isCustomPeriodValid(rangePickerState)) {
+        if (!isCustomPeriodValid(customPeriodPickerState)) {
             toastError(
                 error = Res.string.wrong_custom_range,
                 allowedPeriod
@@ -120,8 +118,8 @@ class AnalysesScreenViewModel : EquinoxViewModel(
             return
         }
         retrieveGlycemicTrend(
-            from = rangePickerState.selectedStartDateMillis,
-            to = rangePickerState.selectedEndDateMillis
+            from = customPeriodPickerState.selectedStartDateMillis,
+            to = customPeriodPickerState.selectedEndDateMillis
         )
         onApply()
     }
@@ -138,26 +136,61 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         )
     }
 
-    fun createReport(
-        onCreated: () -> Unit,
+    fun generateReport(
+        onGenerated: () -> Unit,
     ) {
-        // TODO: TO MAKE THE REQUEST THEN DOWNLOAD FROM THE URL RETURNED
-        _creatingReport.value = true
         viewModelScope.launch {
-            delay(2000L) // TODO: TO REMOVE
-            _creatingReport.value = false
-            onCreated()
-            showSnackbarMessage(
-                message = Res.string.report_created,
-                actionLabel = Res.string.open,
-                onActionPerformed = {
-                    val kReviewer = KReviewer()
-                    kReviewer.reviewInApp {
-                        // TODO: OPEN THE FILE
-                    }
+            requester.sendRequest(
+                request = {
+                    _creatingReport.value = true
+                    generateReport(
+                        period = _glycemicTrendPeriod.value,
+                        groupingDay = _glycemicTrendGroupingDay.value,
+                        from = customPeriodPickerState.selectedStartDateMillis,
+                        to = customPeriodPickerState.selectedEndDateMillis
+                    )
+                },
+                onSuccess = {
+                    val report: Report = Json.decodeFromJsonElement(it.toResponseData())
+                    downloadReport(
+                        report = report,
+                        onDownloadCompleted = onGenerated
+                    )
+                },
+                onFailure = {
+                    _creatingReport.value = false
+                    onGenerated()
+                    showSnackbarMessage(it)
                 }
             )
         }
+
+        // TODO: TO MAKE THE REQUEST THEN DOWNLOAD FROM THE URL RETURNED
+    }
+
+    private fun downloadReport(
+        report: Report,
+        onDownloadCompleted: () -> Unit,
+    ) {
+
+        viewModelScope.launch {
+            requester.downloadReport(
+                report = report
+            )
+        }
+
+        /*_creatingReport.value = false
+        onDownloadCompleted()
+        showSnackbarMessage(
+            message = Res.string.report_created,
+            actionLabel = Res.string.open,
+            onActionPerformed = {
+                val kReviewer = KReviewer()
+                kReviewer.reviewInApp {
+                    // TODO: OPEN THE FILE
+                }
+            }
+        )*/
     }
 
 }
