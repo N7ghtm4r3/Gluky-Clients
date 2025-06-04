@@ -30,6 +30,7 @@ import gluky.composeapp.generated.resources.failed_to_download_report
 import gluky.composeapp.generated.resources.report_created
 import gluky.composeapp.generated.resources.wrong_custom_range
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -182,6 +183,9 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                     onDownloadCompleted = { reportUrl ->
                         _creatingReport.value = false
                         onDownloadCompleted()
+                        deleteReport(
+                            report = report
+                        )
                         completedSnackMessage(
                             reportUrl = reportUrl
                         )
@@ -195,8 +199,17 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         }
     }
 
-    private fun deleteReport() {
-        
+    private fun deleteReport(
+        report: Report,
+    ) {
+        val scope = CoroutineScope(
+            context = Dispatchers.Default
+        )
+        scope.launch {
+            requester.deleteReport(
+                report = report
+            )
+        }
     }
 
     private fun completedSnackMessage(

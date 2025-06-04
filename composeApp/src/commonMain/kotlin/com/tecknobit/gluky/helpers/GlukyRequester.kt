@@ -214,7 +214,7 @@ class GlukyRequester(
         )
         return execGet(
             endpoint = assembleAnalysesUrl(
-                subEndpoint = REPORTS_ENDPOINT.removePrefix("/")
+                subEndpoint = REPORTS_ENDPOINT
             ),
             query = query
         )
@@ -244,7 +244,7 @@ class GlukyRequester(
     ): JsonObject {
         return execDelete(
             endpoint = assembleAnalysesUrl(
-                subEndpoint = "$REPORTS_ENDPOINT/$report.id"
+                subEndpoint = "$REPORTS_ENDPOINT/${report.reportId}"
             )
         )
     }
@@ -255,7 +255,7 @@ class GlukyRequester(
     ): String {
         return assembleCustomEndpointPath(
             customEndpoint = ANALYSES_ENDPOINT,
-            subEndpoint = subEndpoint
+            subEndpoint = subEndpoint.removePrefix("/")
         )
     }
 
