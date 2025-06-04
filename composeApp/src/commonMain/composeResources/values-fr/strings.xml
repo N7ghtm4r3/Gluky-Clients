@@ -152,4 +152,5 @@
     <string name="are_you_new_to_gluky">Vous êtes nouveau sur Gluky?</string>
     <string name="welcome_back">Bienvenue à nouveau</string>
     <string name="hello">Bonjour</string>
+    <string name="failed_to_download_report">Échec du téléchargement du rapport</string>
 </resources>

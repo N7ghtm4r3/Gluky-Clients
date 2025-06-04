@@ -27,7 +27,6 @@ import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.MeasurementType
 import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.ANALYSES_ENDPOINT
 import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.REPORTS_ENDPOINT
-import io.github.vinceglb.filekit.PlatformFile
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
@@ -201,7 +200,7 @@ class GlukyRequester(
         )
     }
 
-    suspend fun generateReport(
+    suspend fun createReport(
         period: GlycemicTrendPeriod,
         groupingDay: GlycemicTrendGroupingDay?,
         from: Long?,
@@ -240,6 +239,16 @@ class GlukyRequester(
         }
     }
 
+    suspend fun deleteReport(
+        report: Report,
+    ): JsonObject {
+        return execDelete(
+            endpoint = assembleAnalysesUrl(
+                subEndpoint = "$REPORTS_ENDPOINT/$report.id"
+            )
+        )
+    }
+
     @Assembler
     private fun assembleAnalysesUrl(
         subEndpoint: String = "",
@@ -252,7 +261,7 @@ class GlukyRequester(
 
     suspend fun downloadReport(
         report: Report,
-        onDownloadCompleted: (PlatformFile) -> Unit,
+        onDownloadCompleted: (String?) -> Unit,
     ) {
         val reportBytes: ByteArray = ktorClient.get(
             urlString = host.removeSuffix(BASE_EQUINOX_ENDPOINT) + "/" + report.reportUrl

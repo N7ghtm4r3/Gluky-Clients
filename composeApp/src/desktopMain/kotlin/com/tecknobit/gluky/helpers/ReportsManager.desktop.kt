@@ -3,25 +3,26 @@ package com.tecknobit.gluky.helpers
 import io.github.vinceglb.filekit.FileKit
 import io.github.vinceglb.filekit.PlatformFile
 import io.github.vinceglb.filekit.downloadDir
+import io.github.vinceglb.filekit.path
 import io.github.vinceglb.filekit.write
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 import java.awt.Desktop
+import java.io.File
 
 actual suspend fun saveReport(
     reportBytes: ByteArray,
     reportName: String,
-    onDownloadCompleted: (PlatformFile) -> Unit,
+    onDownloadCompleted: (String?) -> Unit,
 ) {
     val downloadedReport = PlatformFile(FileKit.downloadDir, reportName)
     downloadedReport.write(reportBytes)
-    onDownloadCompleted(downloadedReport)
+    onDownloadCompleted(downloadedReport.path)
 }
 
 actual fun openReport(
-    reportFile: PlatformFile,
+    url: String?,
 ) {
-    MainScope().launch {
-        Desktop.getDesktop().open(reportFile.file)
+    url?.let {
+        val report = File(url)
+        Desktop.getDesktop().open(report)
     }
 }

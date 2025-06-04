@@ -1,13 +1,11 @@
 package com.tecknobit.gluky.helpers
 
-import io.github.vinceglb.filekit.PlatformFile
-
 expect suspend fun saveReport(
     reportBytes: ByteArray,
     reportName: String,
-    onDownloadCompleted: (PlatformFile) -> Unit,
+    onDownloadCompleted: (String?) -> Unit,
 )
 
 expect fun openReport(
-    reportFile: PlatformFile,
+    url: String?,
 )

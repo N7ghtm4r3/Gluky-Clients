@@ -19,16 +19,16 @@ import com.tecknobit.gluky.helpers.openReport
 import com.tecknobit.gluky.requester
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.analyses.data.Report
+import com.tecknobit.gluky.ui.screens.analyses.helpers.openReportLabel
 import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod.ONE_MONTH
 import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isCustomTrendPeriodValid
 import gluky.composeapp.generated.resources.Res
-import gluky.composeapp.generated.resources.open
+import gluky.composeapp.generated.resources.failed_to_download_report
 import gluky.composeapp.generated.resources.report_created
 import gluky.composeapp.generated.resources.wrong_custom_range
-import io.github.vinceglb.filekit.PlatformFile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -62,10 +62,10 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     )
     val glycemicTrendGroupingDay = _glycemicTrendGroupingDay.asStateFlow()
 
-    private val _generatingReport = MutableStateFlow(
+    private val _creatingReport = MutableStateFlow(
         value = false
     )
-    val generatingReport = _generatingReport.asStateFlow()
+    val creatingReport = _creatingReport.asStateFlow()
 
     lateinit var customPeriodPickerState: DateRangePickerState
 
@@ -141,14 +141,14 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         )
     }
 
-    fun generateReport(
-        onGenerated: () -> Unit,
+    fun createReport(
+        onCreated: () -> Unit,
     ) {
         viewModelScope.launch {
             requester.sendRequest(
                 request = {
-                    _generatingReport.value = true
-                    generateReport(
+                    _creatingReport.value = true
+                    createReport(
                         period = _glycemicTrendPeriod.value,
                         groupingDay = _glycemicTrendGroupingDay.value,
                         from = customPeriodPickerState.selectedStartDateMillis,
@@ -159,18 +159,16 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                     val report: Report = Json.decodeFromJsonElement(it.toResponseData())
                     downloadReport(
                         report = report,
-                        onDownloadCompleted = onGenerated
+                        onDownloadCompleted = onCreated
                     )
                 },
                 onFailure = {
-                    _generatingReport.value = false
-                    onGenerated()
+                    _creatingReport.value = false
+                    onCreated()
                     showSnackbarMessage(it)
                 }
             )
         }
-
-        // TODO: TO MAKE THE REQUEST THEN DOWNLOAD FROM THE URL RETURNED
     }
 
     private fun downloadReport(
@@ -178,30 +176,40 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         onDownloadCompleted: () -> Unit,
     ) {
         viewModelScope.launch {
-            requester.downloadReport(
-                report = report,
-                onDownloadCompleted = { reportFile ->
-                    _generatingReport.value = false
-                    onDownloadCompleted()
-                    completedSnackMessage(
-                        reportFile = reportFile
-                    )
-                }
-            )
+            try {
+                requester.downloadReport(
+                    report = report,
+                    onDownloadCompleted = { reportUrl ->
+                        _creatingReport.value = false
+                        onDownloadCompleted()
+                        completedSnackMessage(
+                            reportUrl = reportUrl
+                        )
+                    }
+                )
+            } catch (e: IllegalStateException) {
+                showSnackbarMessage(
+                    message = Res.string.failed_to_download_report
+                )
+            }
         }
     }
 
+    private fun deleteReport() {
+        
+    }
+
     private fun completedSnackMessage(
-        reportFile: PlatformFile,
+        reportUrl: String?,
     ) {
         showSnackbarMessage(
             message = Res.string.report_created,
-            actionLabel = Res.string.open,
+            actionLabel = openReportLabel,
             onActionPerformed = {
                 val kReviewer = KReviewer()
                 kReviewer.reviewInApp {
                     openReport(
-                        reportFile = reportFile
+                        url = reportUrl
                     )
                 }
             }
