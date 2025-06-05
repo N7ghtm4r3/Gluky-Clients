@@ -47,7 +47,8 @@ class GlukyRequester(
     userId = userId,
     userToken = userToken,
     debugMode = debugMode,
-    connectionErrorMessage = DEFAULT_CONNECTION_ERROR_MESSAGE
+    connectionErrorMessage = DEFAULT_CONNECTION_ERROR_MESSAGE,
+    byPassSSLValidation = true // TODO: TO REMOVE IN PROD 
 ) {
 
     private companion object {

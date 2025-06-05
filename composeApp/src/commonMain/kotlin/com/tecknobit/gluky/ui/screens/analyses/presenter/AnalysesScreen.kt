@@ -165,7 +165,8 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     @Composable
     override fun FABContent() {
         awaitNullItemLoaded(
-            itemToWait = glycemicTrend.value
+            itemToWait = glycemicTrend.value,
+            extras = { glycemicTrendData -> glycemicTrendData.dataAvailable() }
         ) {
             val createReportTitle = stringResource(Res.string.create_report)
             val createReport = remember { mutableStateOf(false) }
