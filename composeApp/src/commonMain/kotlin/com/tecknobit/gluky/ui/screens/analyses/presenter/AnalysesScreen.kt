@@ -45,7 +45,7 @@ import com.tecknobit.gluky.ui.screens.analyses.components.GroupingDayChip
 import com.tecknobit.gluky.ui.screens.analyses.components.TrendPeriodChip
 import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
-import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
+import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab
 import com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay
 import com.tecknobit.glukycore.enums.GlycemicTrendPeriod
 import gluky.composeapp.generated.resources.Res
@@ -53,7 +53,7 @@ import gluky.composeapp.generated.resources.analyses
 import gluky.composeapp.generated.resources.create_report
 import org.jetbrains.compose.resources.stringResource
 
-class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
+class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
     viewModel = AnalysesScreenViewModel(),
     title = Res.string.analyses
 ) {
@@ -65,7 +65,7 @@ class AnalysesScreen : GlukyScreenPage<AnalysesScreenViewModel>(
     private lateinit var glycemicTrendGroupingDay: State<GlycemicTrendGroupingDay?>
 
     @Composable
-    override fun ColumnScope.ScreenPageContent() {
+    override fun ColumnScope.ScreenContent() {
         SessionFlowContainer(
             modifier = Modifier
                 .fillMaxSize(),

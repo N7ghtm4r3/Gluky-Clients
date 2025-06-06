@@ -19,6 +19,13 @@ import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The [Splashscreen] class is used to retrieve and load the session data and enter into the
+ * application's workflow
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxNoModelScreen
+ */
 class Splashscreen : EquinoxNoModelScreen() {
 
     /**

@@ -18,6 +18,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.COMPACT_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CONTENT
+import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcore.annotations.FutureEquinoxApi
 import com.tecknobit.equinoxnavigation.I18nNavigationTab
 import com.tecknobit.equinoxnavigation.NavigatorScreen
@@ -28,7 +33,7 @@ import com.tecknobit.gluky.ui.screens.TMPNavigatorScreen
 import com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen
 import com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen
 import com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen
-import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
+import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.GlukyTheme
 import gluky.composeapp.generated.resources.Res
@@ -38,6 +43,14 @@ import gluky.composeapp.generated.resources.app_version
 import gluky.composeapp.generated.resources.meals
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The [HomeScreen] class is used to display the specific tab and handle the navigation in app
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxNoModelScreen
+ * @see NavigatorScreen
+ * @see I18nNavigationTab
+ */
 @OptIn(ExperimentalComposeApi::class)
 class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
 
@@ -52,7 +65,13 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
         }
     }
 
+    /**
+     * Custom header content to display on the [SideNavigationArrangement] bar
+     */
     @Composable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun ColumnScope.SideNavigationHeaderContent() {
         ProfilePic(
             modifier = Modifier
@@ -64,7 +83,13 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
         )
     }
 
+    /**
+     * Custom footer content to display on the [SideNavigationArrangement] bar
+     */
     @Composable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun ColumnScope.SideNavigationFooterContent() {
         Text(
             modifier = Modifier
@@ -75,7 +100,16 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
         )
     }
 
+    /**
+     * The navigation item of the [SideNavigationArrangement] bar
+     *
+     * @param index The index related to the item in the [tabs] array
+     * @param tab The related tab of the [index]
+     */
     @Composable
+    @ResponsiveClassComponent(
+        classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
+    )
     override fun SideNavigationItem(
         index: Int,
         tab: I18nNavigationTab,
@@ -84,7 +118,16 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
             super.SideNavigationItem(index, tab)
     }
 
+    /**
+     * The navigation item of the [BottomNavigationItem] bar
+     *
+     * @param index The index related to the item in the [tabs] array
+     * @param tab The related tab of the [index]
+     */
     @Composable
+    @ResponsiveClassComponent(
+        classes = [MEDIUM_EXPANDED_CONTENT, COMPACT_CONTENT]
+    )
     override fun RowScope.BottomNavigationItem(
         index: Int,
         tab: I18nNavigationTab,
@@ -120,6 +163,11 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
         )
     }
 
+    /**
+     * Method used to check whether the [I18nNavigationTab] is the [AccountScreen] one
+     *
+     * @return whether the tab is the account one as [Boolean]
+     */
     private fun I18nNavigationTab.isNotAccountTab(): Boolean {
         return title != Res.string.account
     }
@@ -168,7 +216,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
      *
      * @return the screen as [EquinoxNoModelScreen]
      */
-    override fun Int.tabContent(): GlukyScreenPage<*> {
+    override fun Int.tabContent(): GlukyScreenTab<*> {
         return when (this) {
             0 -> MeasurementsScreen()
             1 -> AnalysesScreen()

@@ -36,14 +36,14 @@ import com.tecknobit.gluky.ui.screens.measurements.components.daypickers.DayPick
 import com.tecknobit.gluky.ui.screens.measurements.components.daypickers.ScrollableDayPicker
 import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
-import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
+import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.daily_notes
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalComposeApi::class, ExperimentalMaterial3Api::class)
-class MeasurementsScreen : GlukyScreenPage<MeasurementsScreenViewModel>(
+class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
     viewModel = MeasurementsScreenViewModel(),
     useResponsiveWidth = false
 ) {
@@ -54,7 +54,7 @@ class MeasurementsScreen : GlukyScreenPage<MeasurementsScreenViewModel>(
 
     @Composable
     @LayoutCoordinator
-    override fun ColumnScope.ScreenPageContent() {
+    override fun ColumnScope.ScreenContent() {
         Column(
             modifier = Modifier
                 .fillMaxSize(),

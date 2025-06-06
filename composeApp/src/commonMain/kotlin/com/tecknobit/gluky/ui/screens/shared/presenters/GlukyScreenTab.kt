@@ -21,8 +21,18 @@ import com.tecknobit.gluky.ui.theme.AppTypography
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The [GlukyScreenTab] class defines the behavior of a screen tab displayed by the
+ * [com.tecknobit.gluky.ui.screens.home.HomeScreen], and manages the arrangement of content for
+ * each tab.
+ *
+ * This class is intended to be used as a base for implementing individual screen tabs.
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ */
 @ScreenCoordinator
-abstract class GlukyScreenPage<V : EquinoxViewModel>(
+abstract class GlukyScreenTab<V : EquinoxViewModel>(
     viewModel: V,
     private val useResponsiveWidth: Boolean = true,
     private val title: StringResource? = null,
@@ -30,6 +40,9 @@ abstract class GlukyScreenPage<V : EquinoxViewModel>(
     viewModel = viewModel
 ) {
 
+    /**
+     * Method used to arrange the content of the screen to display
+     */
     @OptIn(ExperimentalComposeApi::class)
     @Composable
     override fun ArrangeScreenContent() {
@@ -64,15 +77,21 @@ abstract class GlukyScreenPage<V : EquinoxViewModel>(
                                 Modifier
                         )
                 ) {
-                    ScreenPageContent()
+                    ScreenContent()
                 }
             }
         }
     }
 
+    /**
+     * The content of the screen customized by each tab
+     */
     @Composable
-    protected abstract fun ColumnScope.ScreenPageContent()
+    protected abstract fun ColumnScope.ScreenContent()
 
+    /**
+     * The content displayed in the `Scaffold.floatingActionButton` section
+     */
     @Composable
     @NonRestartableComposable
     protected open fun FABContent() {

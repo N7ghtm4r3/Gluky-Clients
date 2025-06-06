@@ -66,7 +66,7 @@ import com.tecknobit.gluky.ui.components.DeleteAccount
 import com.tecknobit.gluky.ui.components.Logout
 import com.tecknobit.gluky.ui.components.ProfilePic
 import com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel
-import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenPage
+import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab
 import com.tecknobit.gluky.ui.theme.AppTypography
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.account
@@ -88,13 +88,24 @@ import io.github.vinceglb.filekit.readBytes
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
-class AccountScreen : GlukyScreenPage<AccountScreenViewModel>(
+/**
+ * The [AccountScreen] display the account settings of the current [localUser],
+ * allow to customize the preferences and settings
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+ * @see GlukyScreenTab
+ */
+class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
     viewModel = AccountScreenViewModel(),
     title = Res.string.account
 ) {
 
+    /**
+     * The content of the screen customized by each tab
+     */
     @Composable
-    override fun ColumnScope.ScreenPageContent() {
+    override fun ColumnScope.ScreenContent() {
         UserDetails()
         Settings()
     }
