@@ -40,6 +40,7 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_EXPANDED_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
+import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.gluky.helpers.asMonth
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.INITIAL_SELECTED_DAY
@@ -49,12 +50,25 @@ import com.tecknobit.gluky.ui.theme.AppTypography
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * `IndicatorWidth` constant width value for the indicators
+ */
 private val IndicatorWidth = 125.dp
 
+/**
+ * `BarShape` the shape of the bar
+ */
 private val BarShape = RoundedCornerShape(
     size = 16.dp
 )
 
+/**
+ * Custom bar used to pick a day
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param currentDay The current selected day
+ * @param content The content to display based on the selected day
+ */
 @Composable
 @ResponsiveClassComponent(
     classes = [EXPANDED_CONTENT, MEDIUM_EXPANDED_CONTENT]
@@ -147,6 +161,13 @@ fun DayPickerBar(
     }
 }
 
+/**
+ * Method used to compute a day value in millis
+ *
+ * @param currentDay The current selected day
+ * @param index The index in the range of the [MAX_LOADABLE_DAYS]
+ */
+@Returner
 private fun computeDayMillis(
     currentDay: Long,
     index: Int,
@@ -155,6 +176,16 @@ private fun computeDayMillis(
     return (currentDay + (offset * ONE_DAY_MILLIS))
 }
 
+/**
+ * Core component of the picker used to pick a day
+ *
+ * @param modifier The modifier to apply to the picker
+ * @param viewModel The support viewmodel of the screen
+ * @param daysWindow The window of the selectable days
+ * @param currentMonth The current indicated month on top of the bar
+ * @param currentDay The current selected day
+ * @param state The state used by the [LazyHorizontalGrid] to manage the picker behavior
+ */
 @Composable
 private fun PickerBar(
     modifier: Modifier = Modifier,
@@ -199,4 +230,3 @@ private fun PickerBar(
         }
     }
 }
-

@@ -1,4 +1,4 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeApi::class)
+@file:OptIn(ExperimentalMaterial3Api::class)
 
 package com.tecknobit.gluky.ui.screens.measurements.components.formdialogs
 
@@ -25,7 +25,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateListOf
@@ -40,7 +39,9 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
+import com.tecknobit.equinoxcore.annotations.Assembler
 import com.tecknobit.equinoxcore.json.treatsAsString
 import com.tecknobit.gluky.ui.screens.measurements.data.types.Meal
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
@@ -58,6 +59,13 @@ import gluky.composeapp.generated.resources.what_i_ate
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [EquinoxDialog] use to fill the details of a meal measurement
+ *
+ * @param show Whether the dialog is shown
+ * @param viewModel The support viewmodel of the screen
+ * @param meal The meal element to fill
+ */
 @Composable
 fun MealFormDialog(
     show: MutableState<Boolean>,
@@ -91,6 +99,12 @@ fun MealFormDialog(
     )
 }
 
+/**
+ * Section of the form where the user can insert the relative glycemia value
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param meal The meal element to fill
+ */
 @Composable
 private fun GlycemiaSection(
     viewModel: MeasurementsScreenViewModel,
@@ -130,6 +144,12 @@ private fun GlycemiaSection(
     }
 }
 
+/**
+ * Section of the form where the user can insert the content of the meal
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param meal The meal element to fill
+ */
 @Composable
 private fun MealContentSection(
     viewModel: MeasurementsScreenViewModel,
@@ -175,6 +195,14 @@ private fun MealContentSection(
     }
 }
 
+/**
+ * Utility method used to convert the raw data of the meal content in a format compatible with
+ * the [MeasurementsScreenViewModel.mealContent] instance
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param meal The meal element to fill
+ */
+@Assembler
 @Composable
 private fun ConvertRawData(
     viewModel: MeasurementsScreenViewModel,
@@ -192,6 +220,13 @@ private fun ConvertRawData(
     }
 }
 
+/**
+ * Custom [SmallFloatingActionButton] used to add a meal entry for the [MealContentSection]
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param lazyListState The state which manage the behavior of the [MealContentSection]
+ *
+ */
 @Composable
 private fun AddMealEntryButton(
     viewModel: MeasurementsScreenViewModel,
@@ -222,6 +257,15 @@ private fun AddMealEntryButton(
     }
 }
 
+/**
+ * The meal entry component allows the user to insert the type of the food or beverage and the
+ * relative quantity
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param mealEntry The container of the meal entry details
+ * @param index The index occupied by the entry
+ *
+ */
 @Composable
 private fun LazyItemScope.MealEntry(
     viewModel: MeasurementsScreenViewModel,

@@ -40,6 +40,7 @@ import com.tecknobit.equinoxcompose.components.EquinoxDialog
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPicker
 import com.tecknobit.equinoxcompose.components.quantitypicker.rememberQuantityPickerState
+import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.gluky.ui.components.MeasurementTitle
 import com.tecknobit.gluky.ui.components.SaveButton
 import com.tecknobit.gluky.ui.components.SectionTitle
@@ -62,6 +63,15 @@ import gluky.composeapp.generated.resources.units
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [EquinoxDialog] use to fill the details of a measurement
+ *
+ * @param show Whether the dialog is shown
+ * @param viewModel The support viewmodel of the screen
+ * @param type The type of the measurement to fill
+ * @param content The content of the form
+ * @param save The save action to execute
+ */
 @Composable
 internal fun MeasurementFormDialogContainer(
     show: MutableState<Boolean>,
@@ -116,6 +126,12 @@ internal fun MeasurementFormDialogContainer(
     }
 }
 
+/**
+ * The title of the form
+ *
+ * @param show Whether the dialog is shown
+ * @param type The type of the measurement to fill
+ */
 @Composable
 private fun FormTitle(
     show: MutableState<Boolean>,
@@ -138,6 +154,12 @@ private fun FormTitle(
     )
 }
 
+/**
+ * Method used to assign the initial value to a glycemic state
+ *
+ * @return the state initialized as [MutableState] of [String]
+ */
+@Returner
 internal fun MutableState<Int>.toInitialGlycemicValue(): MutableState<String> {
     return mutableStateOf(
         if (value == -1)
@@ -147,6 +169,15 @@ internal fun MutableState<Int>.toInitialGlycemicValue(): MutableState<String> {
     )
 }
 
+/**
+ * Custom [EquinoxOutlinedTextField] used to insert a glycemic value
+ *
+ * @param modifier The modifier to apply to the input field
+ * @param title The title related to the type of glycemic value the user must insert
+ * @param glycemia The state container of the glycemic value
+ * @param glycemiaError Whether the [glycemia] field is valid
+ * @param imeAction The ime action attached to the input field
+ */
 @Composable
 internal fun GlycemiaInputField(
     modifier: Modifier = Modifier,
@@ -181,6 +212,12 @@ internal fun GlycemiaInputField(
     }
 }
 
+/**
+ * Section of the form where the user can insert the details about the insulin units
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param item The container item where are attached the insulin units
+ */
 @OptIn(ExperimentalComposeApi::class)
 @Composable
 internal fun InsulinSection(
@@ -238,6 +275,13 @@ internal fun InsulinSection(
     }
 }
 
+/**
+ * Wrapper component used to arrange the content of a section
+ *
+ * @param sectionTitle The title of the section
+ * @param verticalSpacing The vertical spacing to apply to the element in the section
+ * @param content The content of the section
+ */
 @Composable
 internal fun FormSection(
     sectionTitle: StringResource,

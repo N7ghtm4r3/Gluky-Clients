@@ -42,6 +42,13 @@ import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 import kotlin.math.min
 
+/**
+ * Custom picker to select a day displayed on small and medium screen classes device
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param currentDay The current selected day
+ * @param content The content to display based on the selected day
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 @ResponsiveClassComponent(
@@ -88,6 +95,12 @@ fun ScrollableDayPicker(
     }
 }
 
+/**
+ * The controls of the [ScrollableDayPicker]
+ *
+ * @param state The state which manages the picker behavior
+ * @param panel The content of the panel to display
+ */
 @Composable
 private fun PickerControls(
     state: PagerState,
@@ -147,6 +160,13 @@ private fun PickerControls(
     }
 }
 
+/**
+ * Core component of the picker where the user can select the day with controls or scrolling
+ *
+ * @param state The state which manages the picker behavior
+ * @param viewModel The support viewmodel of the screen
+ * @param currentDay The current selected day
+ */
 @Composable
 private fun PickerPanel(
     state: PagerState,

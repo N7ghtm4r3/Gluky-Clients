@@ -16,6 +16,14 @@ import com.tecknobit.gluky.helpers.asDayOfWeek
 import com.tecknobit.gluky.ui.theme.AppTypography
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Component used to indicate a day value (number, month and day of week) from a day picker
+ *
+ * @param modifier The modifier to apply to the component
+ * @param dayInMillis The value of the day in millis
+ * @param contentColor The color of the content
+ * @param monthVisible Whether the month value must be visible
+ */
 @Composable
 fun DayIndicator(
     modifier: Modifier = Modifier,
