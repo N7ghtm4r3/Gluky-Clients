@@ -127,7 +127,6 @@ class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
             ) {
                 CustomPeriodButton(
                     viewModel = viewModel,
-                    glycemicTrendData = glycemicTrend.value!!,
                     trendPeriod = glycemicTrendPeriod.value
                 )
             }

@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.LayoutCoordinator
@@ -42,16 +43,33 @@ import gluky.composeapp.generated.resources.daily_notes
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The [MeasurementsScreen] displays the measurements of a day based on the day selected by a dedicated
+ * picker
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see GlukyScreenTab
+ */
 @OptIn(ExperimentalComposeApi::class, ExperimentalMaterial3Api::class)
 class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
     viewModel = MeasurementsScreenViewModel(),
     useResponsiveWidth = false
 ) {
 
+    /**
+     * `currentDay` the current day selected
+     */
     private lateinit var currentDay: State<Long>
 
+    /**
+     * `dailyMeasurements` the daily measurements related to the selected [currentDay]
+     */
     private lateinit var dailyMeasurements: State<DailyMeasurements?>
 
+    /**
+     * The content of the screen customized by each tab
+     */
     @Composable
     @LayoutCoordinator
     override fun ColumnScope.ScreenContent() {
@@ -101,6 +119,11 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
         }
     }
 
+    /**
+     * Content related to the measurements
+     *
+     * @param horizontalPadding The padding to apply horizontally between the items in the list
+     */
     @Composable
     private fun MeasurementsContent(
         horizontalPadding: Dp = 0.dp,
@@ -146,6 +169,9 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
         )
     }
 
+    /**
+     * The content displayed in the `Scaffold.floatingActionButton` section
+     */
     @Composable
     override fun FABContent() {
         AnimatedVisibility(
@@ -192,6 +218,9 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
         }
     }
 
+    /**
+     * Method invoked when the [ShowContent] composable has been started
+     */
     override fun onStart() {
         super.onStart()
         viewModel.retrieveDailyMeasurements()

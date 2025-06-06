@@ -33,7 +33,6 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcompose.utilities.ResponsiveContent
 import com.tecknobit.gluky.helpers.extendedText
 import com.tecknobit.gluky.ui.components.SaveButton
-import com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer
 import com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.DialogShape
@@ -51,7 +50,6 @@ import org.jetbrains.compose.resources.stringResource
 fun CustomPeriodPicker(
     show: MutableState<Boolean>,
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
 ) {
     ResponsiveContent(
@@ -59,7 +57,6 @@ fun CustomPeriodPicker(
             PeriodPickerDialog(
                 show = show,
                 viewModel = viewModel,
-                glycemicTrendData = glycemicTrendData,
                 trendPeriod = trendPeriod
             )
         },
@@ -67,7 +64,6 @@ fun CustomPeriodPicker(
             PeriodPickerDialog(
                 show = show,
                 viewModel = viewModel,
-                glycemicTrendData = glycemicTrendData,
                 trendPeriod = trendPeriod
             )
         },
@@ -86,7 +82,6 @@ fun CustomPeriodPicker(
                 state = sheetState,
                 scope = scope,
                 viewModel = viewModel,
-                glycemicTrendData = glycemicTrendData,
                 trendPeriod = trendPeriod
             )
         }
@@ -100,7 +95,6 @@ fun CustomPeriodPicker(
 private fun PeriodPickerDialog(
     show: MutableState<Boolean>,
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
 ) {
     EquinoxDialog(
@@ -126,7 +120,6 @@ private fun PeriodPickerBottomSheet(
     state: SheetState,
     scope: CoroutineScope,
     viewModel: AnalysesScreenViewModel,
-    glycemicTrendData: GlycemicTrendDataContainer,
     trendPeriod: GlycemicTrendPeriod,
 ) {
     if (state.isVisible) {

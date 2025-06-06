@@ -9,6 +9,7 @@ import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPickerState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.network.Requester.Companion.toNullableResponseData
@@ -34,53 +35,117 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.decodeFromJsonElement
 
+/**
+ * The `MeasurementsScreenViewModel` class is the support class used to manage the daily measurements
+ * requests
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see androidx.lifecycle.ViewModel
+ * @see com.tecknobit.equinoxcompose.session.Retriever.RetrieverWrapper
+ * @see EquinoxViewModel
+ * @see ToastsLauncher
+ */
 class MeasurementsScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
 ), ToastsLauncher {
 
     companion object {
 
+        /**
+         * `ONE_DAY_MILLIS` constant value representing one day in millis
+         */
         const val ONE_DAY_MILLIS = 86_400_000L
 
+        /**
+         * `MAX_LOADABLE_DAYS` the maximum loadable days
+         */
         const val MAX_LOADABLE_DAYS = 100
 
+        /**
+         * `INITIAL_SELECTED_DAY` the initial selected day, so the middle of the [MAX_LOADABLE_DAYS]
+         * range
+         */
         const val INITIAL_SELECTED_DAY = MAX_LOADABLE_DAYS / 2
 
     }
 
+    /**
+     * `sessionFlowState` the state used to manage the session lifecycle in the screen
+     */
     @OptIn(ExperimentalComposeApi::class)
     lateinit var sessionFlowState: SessionFlowState
 
+    /**
+     * `toasterState` the state used to launch the toasts messages
+     */
     override lateinit var toasterState: ToasterState
 
+    /**
+     * `toasterState` the state used to launch the toasts messages
+     */
     override var scope: CoroutineScope = viewModelScope
 
+    /**
+     * `_currentDay` the current day selected
+     */
     private val _currentDay = MutableStateFlow(
         value = currentTimestamp()
     )
     val currentDay = _currentDay.asStateFlow()
 
+    /**
+     * `previousPage` the previous page displayed for the previous day
+     */
     private var previousPage = INITIAL_SELECTED_DAY
 
+    /**
+     * `_dailyMeasurements` the daily measurements related to the selected [_currentDay]
+     */
     private val _dailyMeasurements = MutableStateFlow<DailyMeasurements?>(
         value = null
     )
     val dailyMeasurements = _dailyMeasurements.asStateFlow()
 
+    /**
+     * `glycemia` the value of the glycemia
+     */
     lateinit var glycemia: MutableState<String>
 
+    /**
+     * `glycemiaError` whether the [glycemia] field is not valid
+     */
     lateinit var glycemiaError: MutableState<Boolean>
 
+    /**
+     * `postPrandialGlycemia` the value of the post-prandial glycemia
+     */
     lateinit var postPrandialGlycemia: MutableState<String>
 
+    /**
+     * `postPrandialGlycemiaError` whether the [postPrandialGlycemia] field is not valid
+     */
     lateinit var postPrandialGlycemiaError: MutableState<Boolean>
 
+    /**
+     * `insulinUnits` the state used to pick the insulin units quantity
+     */
     lateinit var insulinUnits: QuantityPickerState
 
+    /**
+     * `insulinNeeded` whether the measurement requires the insulin units administration
+     */
     lateinit var insulinNeeded: MutableState<Boolean>
 
+    /**
+     * `mealContent` list with the content of a meal
+     */
     lateinit var mealContent: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>
 
+    /**
+     * Method used to compute the value in millis of the [_currentDay] based on the [page]
+     *
+     * @param page The selected page
+     */
     fun computeDayValue(
         page: Int,
     ) {
@@ -90,6 +155,11 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         retrieveDailyMeasurements()
     }
 
+    /**
+     * Method used to set the value for the [_currentDay]
+     *
+     * @param millis The millis value to set
+     */
     fun setCurrentDay(
         millis: Long,
     ) {
@@ -97,6 +167,9 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         retrieveDailyMeasurements()
     }
 
+    /**
+     * Method used to request to retrieve the daily measurements related to the selected [_currentDay]
+     */
     @OptIn(ExperimentalComposeApi::class)
     fun retrieveDailyMeasurements() {
         viewModelScope.launch {
@@ -124,6 +197,9 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         }
     }
 
+    /**
+     * Method used to request the filling of the selected [_currentDay]
+     */
     fun fillDay() {
         viewModelScope.launch {
             requester.sendRequest(
@@ -143,6 +219,12 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         }
     }
 
+    /**
+     * Method used to request to fill a meal
+     *
+     * @param meal The meal to fill
+     * @param onSave The callback to invoke after the meal has been filled
+     */
     fun fillMeal(
         meal: Meal,
         onSave: () -> Unit,
@@ -174,6 +256,11 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         }
     }
 
+    /**
+     * Method used to validate the meal data before request its filling
+     *
+     * @return whether the meal data are valid as [Boolean]
+     */
     @Validator
     private fun areMealDataValid(): Boolean {
         if (!isGlycemicValueValid())
@@ -194,6 +281,12 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         return true
     }
 
+    /**
+     * Method used to locally update the [meal] with the new values inserted
+     *
+     * @param meal The meal to update
+     * @param rawContent The raw content returned by the request
+     */
     private fun locallyUpdateMeal(
         meal: Meal,
         rawContent: JsonObject,
@@ -205,6 +298,12 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         meal.rawContent.value = rawContent
     }
 
+    /**
+     * Method used to request to fill a basal insulin record
+     *
+     * @param basalInsulin The basal insulin to fill
+     * @param onSave The callback to invoke after the meal has been filled
+     */
     fun fillBasalInsulin(
         basalInsulin: BasalInsulin,
         onSave: () -> Unit,
@@ -231,12 +330,22 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         }
     }
 
+    /**
+     * Method used to validate the basal insulin data before request its filling
+     *
+     * @return whether the basal insulin data are valid as [Boolean]
+     */
     @Wrapper
     @Validator
     private fun areBasalInsulinDataValid(): Boolean {
         return isGlycemicValueValid()
     }
 
+    /**
+     * Method used to validate a glycemic value
+     *
+     * @return whether the glycemic value is valid as [Boolean]
+     */
     @Validator
     private fun isGlycemicValueValid(): Boolean {
         return if (!isGlycemiaValueValid(glycemia.value)) {
@@ -247,6 +356,11 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
             true
     }
 
+    /**
+     * Method used to locally update the [basalInsulin] with the new values inserted
+     *
+     * @param basalInsulin The basal insulin record to update
+     */
     @Wrapper
     private fun locallyUpdateBasalInsulin(
         basalInsulin: BasalInsulin,
@@ -256,6 +370,11 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         )
     }
 
+    /**
+     * Method used to locally update the [item] with the new values inserted
+     *
+     * @param item The item to update
+     */
     private fun locallyUpdateGlycemicMeasurementItem(
         item: GlycemicMeasurementItem,
     ) {
@@ -267,7 +386,13 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         else
             -1
     }
-    
+
+    /**
+     * Method used to normalize a string value into a integer glycemic value
+     *
+     * @return the normalized glycemic value as [Int]
+     */
+    @Returner
     private fun MutableState<String>.toNormalizedGlycemicValue(): Int {
         return if (value.isEmpty())
             -1
@@ -275,6 +400,9 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
             value.toInt()
     }
 
+    /**
+     * Method used to toast an error message related to a wrong glycemic value
+     */
     @Wrapper
     private fun toastGlycemiaValueError() {
         toastError(
@@ -282,6 +410,12 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
         )
     }
 
+    /**
+     * Method used to request to save the daily notes content
+     *
+     * @param content The content of the daily notes
+     * @param onSave The callback to invoke after the notes have been saved
+     */
     fun saveDailyNotes(
         content: String,
         onSave: () -> Unit,
