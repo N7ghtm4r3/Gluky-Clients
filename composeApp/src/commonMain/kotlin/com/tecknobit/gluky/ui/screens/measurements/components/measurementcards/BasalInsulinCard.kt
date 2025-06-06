@@ -22,6 +22,12 @@ import gluky.composeapp.generated.resources.Res.string
 import gluky.composeapp.generated.resources.fill_basal_insulin
 import gluky.composeapp.generated.resources.glycemic_value
 
+/**
+ * Custom [Card] used to display the [BasalInsulin] measurement details
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param dailyMeasurements The container of the measurements of a day
+ */
 @Composable
 fun BasalInsulinCard(
     viewModel: MeasurementsScreenViewModel,
@@ -50,6 +56,12 @@ fun BasalInsulinCard(
     }
 }
 
+/**
+ * The header of the [BasalInsulinCard] component
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param basalInsulin The basal insulin details
+ */
 @Composable
 private fun CardHeader(
     viewModel: MeasurementsScreenViewModel,
@@ -73,6 +85,11 @@ private fun CardHeader(
     )
 }
 
+/**
+ * The content of the [BasalInsulinCard] component
+ *
+ * @param basalInsulin The basal insulin details
+ */
 @Composable
 private fun CardContent(
     basalInsulin: BasalInsulin,
@@ -88,6 +105,11 @@ private fun CardContent(
     )
 }
 
+/**
+ * The content displayed when the [basalInsulin] is filled
+ *
+ * @param basalInsulin The basal insulin details
+ */
 @Composable
 private fun FilledBasalInsulin(
     basalInsulin: BasalInsulin,
@@ -102,6 +124,11 @@ private fun FilledBasalInsulin(
     }
 }
 
+/**
+ * The section of the card where is displayed the level of the glycemia related to the [basalInsulin]
+ *
+ * @param basalInsulin The basal insulin details
+ */
 @Composable
 private fun GlycemiaLevelSection(
     basalInsulin: BasalInsulin,

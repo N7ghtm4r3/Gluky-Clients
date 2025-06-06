@@ -69,6 +69,13 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The header of the card
+ *
+ * @param item The item displayed on the card
+ * @param type The type of the item displayed on the card
+ * @param endContent The content displayed at the end of the title
+ */
 @Composable
 internal fun CardHeaderContent(
     item: GlycemicMeasurementItem,
@@ -96,6 +103,11 @@ internal fun CardHeaderContent(
     }
 }
 
+/**
+ * Method used to get the properly annotated text based on the [MeasurementType]
+ *
+ * @return the noted text as [StringResource]
+ */
 @Returner
 private fun MeasurementType.notedString(): StringResource {
     return when (this) {
@@ -108,6 +120,13 @@ private fun MeasurementType.notedString(): StringResource {
     }
 }
 
+/**
+ * The implementation of the content of the card
+ *
+ * @param item The item displayed on the card
+ * @param type The type of the item displayed on the card
+ * @param filledContent The content to display when the [item] is filled
+ */
 @Composable
 internal fun CardContentImpl(
     item: GlycemicMeasurementItem,
@@ -126,6 +145,11 @@ internal fun CardContentImpl(
     }
 }
 
+/**
+ * The content displayed when the item is not displayed
+ *
+ * @param type The type of the item displayed on the card
+ */
 @Composable
 private fun UnfilledMeasurement(
     type: MeasurementType,
@@ -145,6 +169,12 @@ private fun UnfilledMeasurement(
     )
 }
 
+/**
+ * Method to obtain the details to display in the [UnfilledMeasurement] empty state based on the
+ * type of the item
+ *
+ * @return the details to display as [Triple] of [StringResource] and [DrawableResource]
+ */
 @Returner
 private fun MeasurementType.unfilledEmptyStateRes(): Triple<StringResource, DrawableResource, DrawableResource> {
     return when (this) {
@@ -198,6 +228,11 @@ private fun MeasurementType.unfilledEmptyStateRes(): Triple<StringResource, Draw
     }
 }
 
+/**
+ * Section where the user can insert the administered insulin units
+ *
+ * @param insulinUnits The administered insulin units value
+ */
 @Composable
 internal fun AdministeredInsulinUnits(
     insulinUnits: Int,
@@ -220,6 +255,14 @@ internal fun AdministeredInsulinUnits(
     )
 }
 
+/**
+ * Method used to format as [AnnotatedString] the insulin units value
+ *
+ * @param insulinUnits the insulin units to format
+ *
+ * @return the insulin units value formatted as [AnnotatedString]
+ */
+@Returner
 @Composable
 private fun formatInsulinUnits(
     insulinUnits: Int,

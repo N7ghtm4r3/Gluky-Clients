@@ -42,6 +42,7 @@ import com.pushpal.jetlime.JetLimeDefaults
 import com.pushpal.jetlime.JetLimeEvent
 import com.pushpal.jetlime.JetLimeEventDefaults
 import com.pushpal.jetlime.JetLimeRow
+import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.components.ToggleButton
@@ -61,8 +62,17 @@ import gluky.composeapp.generated.resources.what_i_ate
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * `quantityRegex` the regex used to format the quantity value in an [AnnotatedString]
+ */
 private val quantityRegex = Regex("""\((.*?)\)""")
 
+/**
+ * Custom [Card] used to display a [Meal] measurement details
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param meal The meal to display on the card
+ */
 @Composable
 fun MealCard(
     viewModel: MeasurementsScreenViewModel,
@@ -94,6 +104,13 @@ fun MealCard(
     }
 }
 
+/**
+ * Header of the [MealCard] component
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param meal The meal to display on the card
+ * @param mealContentDisplayed Whether the [MealContent] section is displayed
+ */
 @Composable
 private fun CardHeader(
     viewModel: MeasurementsScreenViewModel,
@@ -134,6 +151,12 @@ private fun CardHeader(
     )
 }
 
+/**
+ * The content of the [MealCard] component
+ *
+ * @param meal The meal to display on the card
+ * @param mealContentDisplayed Whether the [MealContent] section is displayed
+ */
 @Composable
 private fun CardContent(
     meal: Meal,
@@ -151,6 +174,12 @@ private fun CardContent(
     )
 }
 
+/**
+ * The content displayed when the [meal] is filled
+ *
+ * @param meal The meal displayed on the card
+ * @param mealContentDisplayed Whether the [MealContent] section is displayed
+ */
 @Composable
 private fun FilledMeal(
     meal: Meal,
@@ -170,6 +199,12 @@ private fun FilledMeal(
     }
 }
 
+/**
+ * Section where are displayed the status of the [Meal.glycemia] and [Meal.postPrandialGlycemia]
+ * values using a [JetLimeRow]
+ *
+ * @param meal The meal displayed on the card
+ */
 @Composable
 private fun GlycemiaStatus(
     meal: Meal,
@@ -200,6 +235,13 @@ private fun GlycemiaStatus(
     }
 }
 
+/**
+ * Component used to display the level of a glycemic value
+ *
+ * @param glycemia The glycemic value
+ * @param position The position inside the [JetLimeRow] container
+ * @param isPrePrandial Whether the glycemic value is related to a pre-prandial value
+ */
 @Composable
 private fun GlycemiaLevel(
     glycemia: Int,
@@ -256,6 +298,12 @@ private fun GlycemiaLevel(
     }
 }
 
+/**
+ * The content of the [MealCard] component
+ *
+ * @param meal The meal displayed on the card
+ * @param mealContentDisplayed Whether the [MealContent] section is displayed
+ */
 @Composable
 private fun MealContent(
     meal: Meal,
@@ -278,6 +326,14 @@ private fun MealContent(
     }
 }
 
+/**
+ * Method used to format as [AnnotatedString] the content of a meal
+ *
+ * @param mealContent the content of a meal to format
+ *
+ * @return the meal content formatted as [AnnotatedString]
+ */
+@Returner
 @Composable
 private fun formatMealContent(
     mealContent: String,

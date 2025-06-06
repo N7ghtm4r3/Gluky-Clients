@@ -65,14 +65,14 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
                     DayPickerBar(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
-                        content = { ScreenContent() }
+                        content = { MeasurementsContent() }
                     )
                 },
                 onMediumSizeClass = {
                     DayPickerBar(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
-                        content = { ScreenContent() }
+                        content = { MeasurementsContent() }
                     )
                 },
                 onMediumWidthExpandedHeight = {
@@ -80,7 +80,7 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
                         content = {
-                            ScreenContent(
+                            MeasurementsContent(
                                 horizontalPadding = 16.dp
                             )
                         }
@@ -91,7 +91,7 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
                         viewModel = viewModel,
                         currentDay = currentDay.value,
                         content = {
-                            ScreenContent(
+                            MeasurementsContent(
                                 horizontalPadding = 16.dp
                             )
                         }
@@ -102,7 +102,7 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
     }
 
     @Composable
-    private fun ScreenContent(
+    private fun MeasurementsContent(
         horizontalPadding: Dp = 0.dp,
     ) {
         SessionFlowContainer(
@@ -186,6 +186,7 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
                     state = state,
                     scope = scope,
                     viewModel = viewModel,
+                    dailyMeasurements = dailyMeasurements.value!!
                 )
             }
         }
