@@ -13,6 +13,12 @@ import com.tecknobit.gluky.ui.icons.EditItem
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [IconButton] used to request to fill an item
+ *
+ * @param contentDescription The description of the content
+ * @param fillDialog The fill dialog used to insert the data of the item to fill
+ */
 @Composable
 fun FillItemButton(
     contentDescription: StringResource,

@@ -186,7 +186,6 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
                     state = state,
                     scope = scope,
                     viewModel = viewModel,
-                    mealDay = dailyMeasurements.value!!
                 )
             }
         }

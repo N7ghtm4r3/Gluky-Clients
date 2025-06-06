@@ -8,6 +8,12 @@ import com.tecknobit.equinoxcompose.components.getContrastColor
 import com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Companion.levelColor
 
 @OptIn(ExperimentalComposeUiApi::class)
+/**
+ * Custom [BadgeText] useful to display the level of a glycemic value
+ *
+ * @param modifier The modifier to apply to the badge
+ * @param glycemia The glycemic value
+ */
 @Composable
 fun GlycemiaLevelBadge(
     modifier: Modifier = Modifier,

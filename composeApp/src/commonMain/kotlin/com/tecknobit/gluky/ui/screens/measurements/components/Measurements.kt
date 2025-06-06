@@ -19,6 +19,13 @@ import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.glukycore.enums.MeasurementType
 
+/**
+ * Section of the screen where are displayed the measurement for a specific day
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param horizontalPadding The padding to apply horizontally between the items in the list
+ * @param dailyMeasurements The container with the measurement of a specific day
+ */
 @Composable
 @ScreenSection
 fun Measurements(

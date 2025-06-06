@@ -21,6 +21,11 @@ import gluky.composeapp.generated.resources.no_filled_day_light
 import gluky.composeapp.generated.resources.unfilled_day
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Empty state displayed when the day is not filled yet
+ *
+ * @param viewModel The support viewmodel of the screen
+ */
 @Composable
 fun UnfilledDay(
     viewModel: MeasurementsScreenViewModel,

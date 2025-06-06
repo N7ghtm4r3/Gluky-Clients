@@ -56,12 +56,20 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [ModalBottomSheet] used to display the daily notes attached to the [dailyMeasurements]
+ *
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param viewModel The support viewmodel of the screen
+ * @param dailyMeasurements The measurements related to a day
+ */
 @Composable
 fun DailyNotes(
     state: SheetState,
     scope: CoroutineScope,
     viewModel: MeasurementsScreenViewModel,
-    mealDay: DailyMeasurements,
+    dailyMeasurements: DailyMeasurements,
 ) {
     if (state.isVisible) {
         ScreenMonitor.keepScreenAwake()
@@ -74,7 +82,7 @@ fun DailyNotes(
                 }
             }
         ) {
-            val dailyNotes = mealDay.dailyNotes
+            val dailyNotes = dailyMeasurements.dailyNotes
             val isEditing = remember { mutableStateOf(dailyNotes.isEmpty()) }
             val content = remember { mutableStateOf(dailyNotes) }
             SheetHeader(
@@ -94,6 +102,17 @@ fun DailyNotes(
         ScreenMonitor.allowScreenSleeps()
 }
 
+/**
+ * The header section of the [DailyNotes] component
+ *
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param viewModel The support viewmodel of the screen
+ * @param isEditing Whether the user is editing the content of the notes
+ * @param dailyNotes The content of the daily notes
+ * @param content The state container of the [dailyNotes] used when the user changes the content and
+ * must be displayed the new updated content
+ */
 @Composable
 private fun SheetHeader(
     state: SheetState,
@@ -166,6 +185,11 @@ private fun SheetHeader(
     HorizontalDivider()
 }
 
+/**
+ * The representative icon for the button which change the component's mode
+ *
+ * @param isEditing Whether the user is editing the content of the notes
+ */
 @Composable
 private fun CurrentModeIcon(
     isEditing: Boolean,
@@ -183,6 +207,13 @@ private fun CurrentModeIcon(
     }
 }
 
+/**
+ * The section where are displayed the notes or where the user can edit those notes
+ *
+ * @param isEditing Whether the user is editing the content of the notes
+ * @param content The state container of the daily notes used when the user changes the content and
+ * must be displayed the new updated content
+ */
 @Composable
 private fun NotesContent(
     isEditing: MutableState<Boolean>,
@@ -204,6 +235,12 @@ private fun NotesContent(
     }
 }
 
+/**
+ * The section where the user can update the content of the notes
+ *
+ * @param content The state container of the daily notes used when the user changes the content and
+ * must be displayed the new updated content
+ */
 @Composable
 private fun EditNotes(
     content: MutableState<String>,
@@ -229,6 +266,12 @@ private fun EditNotes(
     )
 }
 
+/**
+ * The section where the user read the content of the daily notes
+ *
+ * @param content The state container of the daily notes used when the user changes the content and
+ * must be displayed the new updated content
+ */
 @Composable
 private fun DisplayNotes(
     content: MutableState<String>,
