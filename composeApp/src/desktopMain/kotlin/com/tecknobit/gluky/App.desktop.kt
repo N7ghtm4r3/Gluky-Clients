@@ -21,7 +21,6 @@ import java.util.Locale
 /**
  * Method to check whether are available any updates for each platform and then launch the application
  * which the correct first screen to display
- *
  */
 @Composable
 actual fun CheckForUpdatesAndLaunch() {
@@ -43,7 +42,6 @@ actual fun CheckForUpdatesAndLaunch() {
 
 /**
  * Method to manage correctly the back navigation from the current screen
- *
  */
 @Composable
 @NonRestartableComposable
@@ -52,7 +50,6 @@ actual fun CloseApplicationOnNavBack() {
 
 /**
  * Method to points locale language for the application
- *
  */
 actual fun setUserLanguage() {
     // TODO: TO REMOVE THIS WORKAROUND AND USE DIRECTLY localUser.language

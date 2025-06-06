@@ -17,18 +17,33 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 
+/**
+ * Method used to save a report after its download
+ *
+ * @param reportBytes The bytes made-up the report
+ * @param reportName The name of the report, it used to name the file also
+ * @param onSave Callback invoked when the file has been saved
+ */
 actual suspend fun saveReport(
     reportBytes: ByteArray,
     reportName: String,
-    onDownloadCompleted: (String?) -> Unit,
+    onSave: (String?) -> Unit,
 ) {
     val downloadedReport = FileKit.saveToDownloads(
         bytes = reportBytes,
         filename = reportName
     ) ?: throw IllegalStateException()
-    onDownloadCompleted(downloadedReport.path)
+    onSave(downloadedReport.path)
 }
 
+/**
+ * Method used to save a file into the [DIRECTORY_DOWNLOADS] folder
+ *
+ * @param bytes The bytes made-up the file
+ * @param filename The name used to save the file
+ *
+ * @return the uri of the file saved as nullable [Uri]
+ */
 private suspend fun FileKit.saveToDownloads(
     bytes: ByteArray,
     filename: String,
@@ -60,6 +75,11 @@ private suspend fun FileKit.saveToDownloads(
     }
 }
 
+/**
+ * Method used to open the report file when saved
+ *
+ * @param url The url of the report to open it
+ */
 actual fun openReport(
     url: String?,
 ) {

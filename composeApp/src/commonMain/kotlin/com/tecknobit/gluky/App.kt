@@ -37,21 +37,42 @@ lateinit var displayFontFamily: FontFamily
  */
 lateinit var bodyFontFamily: FontFamily
 
+/**
+ * `navigator` the instance used to navigate between the screens of the app
+ */
 lateinit var navigator: Navigator
 
+/**
+ * `requester` the instance to manage the requests with the backend
+ */
 lateinit var requester: GlukyRequester
 
+/**
+ * `SPLASHSCREEN` the route to navigate to the [com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen]
+ */
 const val SPLASHSCREEN = "SplashScreen"
 
-const val HOME_SCREEN = "HomeScreen"
-
+/**
+ * `AUTH_SCREEN` the route to navigate to the [com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen]
+ */
 const val AUTH_SCREEN = "AuthScreen"
 
+/**
+ * `HOME_SCREEN` the route to navigate to the [com.tecknobit.gluky.ui.screens.home.HomeScreen]
+ */
+const val HOME_SCREEN = "HomeScreen"
+
+/**
+ * `localUser` the local user session details
+ */
 val localUser = EquinoxLocalUser(
     localStoragePath = "Gluky"
 )
 
-// TODO: TO SET AMETISTA 
+// TODO: TO SET AMETISTA
+/**
+ * Common entry point of the `Gluky` application
+ */
 @Composable
 fun App() {
     displayFontFamily = FontFamily(Font(Res.font.fredoka))
@@ -105,7 +126,6 @@ expect fun CheckForUpdatesAndLaunch()
 
 /**
  * Method to init the local session and the related instances then start the user session
- *
  */
 fun startSession() {
     requester = GlukyRequester(
@@ -140,13 +160,11 @@ fun startSession() {
 
 /**
  * Method to points locale language for the application
- *
  */
 expect fun setUserLanguage()
 
 /**
  * Method to manage correctly the back navigation from the current screen
- *
  */
 @Composable
 expect fun CloseApplicationOnNavBack()

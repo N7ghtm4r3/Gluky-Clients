@@ -11,6 +11,9 @@ import io.github.vinceglb.filekit.FileKit
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The [main] function is used as entry point of Nova's application for Desktop
+ */
 fun main() = application {
     FileKit.init(
         appId = "Gluky"

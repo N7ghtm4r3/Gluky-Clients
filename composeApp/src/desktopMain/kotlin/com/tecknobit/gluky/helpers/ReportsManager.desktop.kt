@@ -8,16 +8,28 @@ import io.github.vinceglb.filekit.write
 import java.awt.Desktop
 import java.io.File
 
+/**
+ * Method used to save a report after its download
+ *
+ * @param reportBytes The bytes made-up the report
+ * @param reportName The name of the report, it used to name the file also
+ * @param onSave Callback invoked when the file has been saved
+ */
 actual suspend fun saveReport(
     reportBytes: ByteArray,
     reportName: String,
-    onDownloadCompleted: (String?) -> Unit,
+    onSave: (String?) -> Unit,
 ) {
     val downloadedReport = PlatformFile(FileKit.downloadDir, reportName)
     downloadedReport.write(reportBytes)
-    onDownloadCompleted(downloadedReport.path)
+    onSave(downloadedReport.path)
 }
 
+/**
+ * Method used to open the report file when saved
+ *
+ * @param url The url of the report to open it
+ */
 actual fun openReport(
     url: String?,
 ) {

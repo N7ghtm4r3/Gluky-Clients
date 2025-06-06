@@ -8,10 +8,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult
+import androidx.annotation.ContentView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 
+/**
+ * The [MainActivity] is used as entry point of Gluky's application for Android
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see ComponentActivity
+ *
+ */
 class MainActivity : ComponentActivity() {
 
     companion object {
@@ -35,6 +43,12 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * If your ComponentActivity is annotated with [ContentView], this will
+     * call [setContentView] for you.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)

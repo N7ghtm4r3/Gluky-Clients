@@ -9,7 +9,6 @@ import kotlinx.coroutines.delay
 /**
  * Method to check whether are available any updates for each platform and then launch the application
  * which the correct first screen to display
- *
  */
 @Composable
 @NonRestartableComposable
@@ -29,7 +28,6 @@ actual fun setUserLanguage() {
 
 /**
  * Method to manage correctly the back navigation from the current screen
- *
  */
 @Composable
 @NonRestartableComposable

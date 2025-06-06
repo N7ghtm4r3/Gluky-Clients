@@ -13,6 +13,11 @@ import gluky.composeapp.generated.resources.one_week_extended
 import gluky.composeapp.generated.resources.three_months_extended
 import org.jetbrains.compose.resources.StringResource
 
+/**
+ * Method used to obtain the extended text from a [GlycemicTrendPeriod] value
+ *
+ * @return the extended text as [StringResource]
+ */
 @Returner
 fun GlycemicTrendPeriod.extendedText(): StringResource {
     return when (this) {

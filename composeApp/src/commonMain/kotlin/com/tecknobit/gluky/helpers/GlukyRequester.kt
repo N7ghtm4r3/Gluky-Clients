@@ -270,7 +270,7 @@ class GlukyRequester(
         saveReport(
             reportBytes = reportBytes,
             reportName = report.name,
-            onDownloadCompleted = onDownloadCompleted
+            onSave = onDownloadCompleted
         )
     }
 
