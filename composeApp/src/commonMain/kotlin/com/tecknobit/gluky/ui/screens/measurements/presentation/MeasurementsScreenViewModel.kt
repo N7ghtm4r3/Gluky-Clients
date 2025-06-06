@@ -17,10 +17,10 @@ import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.equinoxcore.time.TimeFormatter.currentTimestamp
 import com.tecknobit.gluky.helpers.KReviewer
 import com.tecknobit.gluky.requester
-import com.tecknobit.gluky.ui.screens.measurements.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
-import com.tecknobit.gluky.ui.screens.measurements.data.GlycemicMeasurementItem
-import com.tecknobit.gluky.ui.screens.measurements.data.Meal
+import com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin
+import com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem
+import com.tecknobit.gluky.ui.screens.measurements.data.types.Meal
 import com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher
 import com.tecknobit.glukycore.helpers.GlukyInputsValidator.isGlycemiaValueValid
 import gluky.composeapp.generated.resources.Res

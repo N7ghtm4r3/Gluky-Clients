@@ -5,7 +5,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.text.input.ImeAction
-import com.tecknobit.gluky.ui.screens.measurements.data.BasalInsulin
+import com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.glukycore.enums.MeasurementType.BASAL_INSULIN
 import gluky.composeapp.generated.resources.Res

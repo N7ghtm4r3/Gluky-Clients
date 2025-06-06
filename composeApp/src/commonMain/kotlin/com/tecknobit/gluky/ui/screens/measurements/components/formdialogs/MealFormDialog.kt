@@ -42,7 +42,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcore.json.treatsAsString
-import com.tecknobit.gluky.ui.screens.measurements.data.Meal
+import com.tecknobit.gluky.ui.screens.measurements.data.types.Meal
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.InputFieldHeight
 import com.tecknobit.gluky.ui.theme.InputFieldShape

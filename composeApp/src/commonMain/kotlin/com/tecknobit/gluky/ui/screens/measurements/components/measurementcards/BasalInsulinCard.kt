@@ -13,8 +13,8 @@ import com.tecknobit.gluky.ui.components.SectionTitle
 import com.tecknobit.gluky.ui.screens.measurements.components.FillItemButton
 import com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge
 import com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.BasalInsulinFormDialog
-import com.tecknobit.gluky.ui.screens.measurements.data.BasalInsulin
 import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
+import com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import com.tecknobit.glukycore.enums.MeasurementType.BASAL_INSULIN

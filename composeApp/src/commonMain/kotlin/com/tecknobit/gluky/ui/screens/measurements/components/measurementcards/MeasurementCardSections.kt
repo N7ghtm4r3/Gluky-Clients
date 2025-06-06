@@ -24,7 +24,7 @@ import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.time.TimeFormatter.H24_HOURS_MINUTES_PATTERN
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
 import com.tecknobit.gluky.ui.components.MeasurementTitle
-import com.tecknobit.gluky.ui.screens.measurements.data.GlycemicMeasurementItem
+import com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem
 import com.tecknobit.gluky.ui.theme.AppTypography
 import com.tecknobit.gluky.ui.theme.applyDarkTheme
 import com.tecknobit.glukycore.enums.MeasurementType

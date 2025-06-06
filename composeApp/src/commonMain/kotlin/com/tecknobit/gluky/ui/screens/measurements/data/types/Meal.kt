@@ -1,4 +1,4 @@
-package com.tecknobit.gluky.ui.screens.measurements.data
+package com.tecknobit.gluky.ui.screens.measurements.data.types
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -7,6 +7,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.Color
+import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.json.treatsAsString
 import com.tecknobit.gluky.ui.theme.green
 import com.tecknobit.gluky.ui.theme.red
@@ -27,6 +28,21 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlin.math.abs
 
+/**
+ * The `Meal` data class represents the measurement of a meal
+ *
+ * @property id The identifier of the meal
+ * @property type The type of the meal
+ * @property _annotationDate The date when the meal has been annotated
+ * @property _rawContent The content of the meal "raw" formatted as json
+ * @property _glycemia The value of the glycemia when annotated
+ * @property _postPrandialGlycemia The value of the post-prandial glycemia when annotated
+ * @property _insulinUnits The value of the administered insulin units related to the {@link #glycemia} value
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ *
+ * @see GlycemicMeasurementItem
+ */
 @Serializable
 data class Meal(
     override val id: String,
@@ -45,6 +61,12 @@ data class Meal(
 
     companion object {
 
+        /**
+         * Method used to obtain the properly color based on the glycemia level
+         *
+         * @return the properly color as [Color]
+         */
+        @Returner
         @Composable
         fun Int.levelColor(): Color {
             if (this == -1)
@@ -62,16 +84,28 @@ data class Meal(
 
     }
 
+    /**
+     * `_rawContent` state for the content of the meal "raw" formatted as json
+     */
     @Transient
     val rawContent: MutableState<JsonObject> = mutableStateOf(
         Json.decodeFromString(_rawContent)
     )
 
+    /**
+     * `content` state for the content pretty formatted
+     */
     @Transient
     val content: State<String> = derivedStateOf {
         rawContent.prettyText()
     }
 
+    /**
+     * Method used to format the [rawContent] into a pretty text
+     *
+     * @return the pretty text as [String]
+     */
+    @Returner
     private fun MutableState<JsonObject>.prettyText(): String {
         val prettyText = StringBuilder()
         val lastKey = value.entries.lastOrNull()?.key
@@ -86,18 +120,30 @@ data class Meal(
         return prettyText.toString()
     }
 
+    /**
+     * `postPrandialGlycemia` state for the value of the post-prandial glycemia when annotated
+     */
     @Transient
     val postPrandialGlycemia: MutableState<Int> = mutableStateOf(_postPrandialGlycemia)
 
-    val glycemiaTrend: List<Int>
+    /**
+     * `glycemicTrend` the current glycemic trend annotated
+     */
+    val glycemicTrend: List<Int>
         get() = if (postPrandialGlycemia.value != -1)
             listOf(glycemia.value, postPrandialGlycemia.value)
         else
             listOf(glycemia.value)
 
-    val glycemiaGap: Int
+    /**
+     * `glycemicGap` the glycemic gap between the [postPrandialGlycemia] and [glycemia] value
+     */
+    val glycemicGap: Int
         get() = abs(glycemia.value - postPrandialGlycemia.value)
 
+    /**
+     * `isNotFilledYet` whether the item has been filled
+     */
     override val isNotFilledYet: Boolean
         get() = annotationDate.value == -1L &&
                 content.value.isEmpty() &&

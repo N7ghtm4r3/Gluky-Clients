@@ -5,7 +5,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import com.tecknobit.equinoxcompose.components.BadgeText
 import com.tecknobit.equinoxcompose.components.getContrastColor
-import com.tecknobit.gluky.ui.screens.measurements.data.Meal.Companion.levelColor
+import com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Companion.levelColor
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable

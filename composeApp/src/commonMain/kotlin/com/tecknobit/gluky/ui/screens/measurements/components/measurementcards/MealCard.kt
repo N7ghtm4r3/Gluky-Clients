@@ -48,8 +48,8 @@ import com.tecknobit.gluky.ui.components.ToggleButton
 import com.tecknobit.gluky.ui.screens.measurements.components.FillItemButton
 import com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge
 import com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.MealFormDialog
-import com.tecknobit.gluky.ui.screens.measurements.data.Meal
-import com.tecknobit.gluky.ui.screens.measurements.data.Meal.Companion.levelColor
+import com.tecknobit.gluky.ui.screens.measurements.data.types.Meal
+import com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Companion.levelColor
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
 import com.tecknobit.gluky.ui.theme.GlukyCardColors
 import gluky.composeapp.generated.resources.Res.string
@@ -178,7 +178,7 @@ private fun GlycemiaStatus(
     JetLimeRow(
         modifier = Modifier
             .fillMaxWidth(),
-        itemsList = ItemsList(meal.glycemiaTrend),
+        itemsList = ItemsList(meal.glycemicTrend),
         style = JetLimeDefaults.rowStyle(
             lineBrush = Brush.linearGradient(
                 colors = listOf(
@@ -187,7 +187,7 @@ private fun GlycemiaStatus(
                 )
             ),
             itemSpacing = with(density) {
-                meal.glycemiaGap.toDp()
+                meal.glycemicGap.toDp()
             },
             contentDistance = 10.dp
         )
