@@ -6,6 +6,11 @@ import androidx.compose.runtime.Composable
 import com.tecknobit.equinoxcompose.resources.retry
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [TextButton] used to invoke the [retryAction]
+ *
+ * @param retryAction The action to retry
+ */
 @Composable
 fun RetryButton(
     retryAction: () -> Unit,

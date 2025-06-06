@@ -22,7 +22,7 @@ import gluky.composeapp.generated.resources.logout
 import gluky.composeapp.generated.resources.logout_warn_text
 
 /**
- * `titleStyle` -> the style to apply to the title of the [EquinoxAlertDialog]
+ * `titleStyle` the style to apply to the title of the [EquinoxAlertDialog]
  */
 val titleStyle = TextStyle(
     fontFamily = displayFontFamily,

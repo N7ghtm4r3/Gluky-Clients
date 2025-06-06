@@ -12,6 +12,12 @@ import com.tecknobit.gluky.ui.icons.ExpandAll
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [IconButton] used to toggle a layout section
+ *
+ * @param expanded Whether the layout section is visible
+ * @param contentDescription The description of the content
+ */
 @Composable
 fun ToggleButton(
     expanded: MutableState<Boolean>,

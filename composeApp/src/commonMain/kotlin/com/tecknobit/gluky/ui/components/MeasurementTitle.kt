@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.gluky.ui.icons.Apple
 import com.tecknobit.gluky.ui.icons.BasalInsulin
 import com.tecknobit.gluky.ui.icons.Snack
@@ -38,6 +39,13 @@ import gluky.composeapp.generated.resources.morning_snack
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Component used to display the related title and representative icon based on the [type]
+ *
+ * @param modifier The modifier to apply to the component
+ * @param type The type of the measurement
+ * @param endContent Custom optional content to display at the end of the title
+ */
 @Composable
 fun MeasurementTitle(
     modifier: Modifier = Modifier,
@@ -71,6 +79,12 @@ fun MeasurementTitle(
     }
 }
 
+/**
+ * Method used to get the representative icon based on a [MeasurementType] value
+ *
+ * @return the representative icon as [ImageVector]
+ */
+@Returner
 private fun MeasurementType.icon(): ImageVector {
     return when (this) {
         BREAKFAST -> Icons.Default.BreakfastDining
@@ -82,6 +96,12 @@ private fun MeasurementType.icon(): ImageVector {
     }
 }
 
+/**
+ * Method used to get the representative text based on a [MeasurementType] value
+ *
+ * @return the representative text as [StringResource]
+ */
+@Returner
 private fun MeasurementType.text(): StringResource {
     return when (this) {
         BREAKFAST -> Res.string.breakfast

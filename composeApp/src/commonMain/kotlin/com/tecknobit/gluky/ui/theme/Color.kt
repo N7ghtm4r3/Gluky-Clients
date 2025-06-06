@@ -2,6 +2,9 @@ package com.tecknobit.gluky.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+/**
+ * Set of the light colors scheme
+ */
 val primaryLight = Color(0xFF2EBFA5)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFB9EFE4)
@@ -38,6 +41,9 @@ val surfaceContainerLight = Color(0xFFE6ECE9)
 val surfaceContainerHighLight = Color(0xFFD9DFDC)
 val surfaceContainerHighestLight = Color(0xFFCDD3D0)
 
+/**
+ * Set of the dark colors scheme
+ */
 val primaryDark = Color(0xFF73E0CD)
 val onPrimaryDark = Color(0xFF003730)
 val primaryContainerDark = Color(0xFF005046)
@@ -74,23 +80,44 @@ val surfaceContainerDark = Color(0xFF1B211F)
 val surfaceContainerHighDark = Color(0xFF252B29)
 val surfaceContainerHighestDark = Color(0xFF303634)
 
+/**
+ * `green` custom green color used to indicate a normal glycemic value
+ */
 val GreenLight = Color(0xFF4CAF50)
 val GreenDark = Color(0xFF81C784)
 
-val RedLight = Color(0xFFE53935)
-val RedDark = Color(0xFFEF9A9A)
-
+/**
+ * `yellow` custom yellow color used to indicate a medium glycemic value
+ */
 val YellowLight = Color(0xFFFBC02D)
 val YellowDark = Color(0xFFFFF176)
 
+/**
+ * `red` custom red color used to indicate a critic glycemic value
+ */
+val RedLight = Color(0xFFE53935)
+val RedDark = Color(0xFFEF9A9A)
+
+/**
+ * `blue` custom blue color used to color the line of the first set of the chart
+ */
 val ChartLine1Light = Color(0xFF4A90E2)
 val ChartLine1Dark = Color(0xFF1C5DA3)
 
+/**
+ * `red` custom red color used to color the line of the second set of the chart
+ */
 val ChartLine2Light = Color(0xFFE26D5C)
 val ChartLine2Dark = Color(0xFFB04335)
 
+/**
+ * `orange` custom orange color used to color the line of the third set of the chart
+ */
 val ChartLine3Light = Color(0xFFF0A500)
 val ChartLine3Dark = Color(0xFFC37C00)
 
+/**
+ * `green` custom green color used to color the line of the fourth set of the chart
+ */
 val ChartLine4Light = Color(0xFF4CB944)
 val ChartLine4Dark = Color(0xFF2E7D32)

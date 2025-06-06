@@ -10,6 +10,15 @@ import com.tecknobit.gluky.ui.theme.AppTypography
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Title of a section component
+ *
+ * @param modifier The modifier to apply to the component
+ * @param title The title value
+ * @param style The style to apply to the title
+ * @param fontWeight The typeface thickness to use when painting the text (e.g., FontWeight.Bold)
+ * @param color The color to apply to the title
+ */
 @Composable
 fun SectionTitle(
     modifier: Modifier = Modifier,

@@ -5,12 +5,12 @@ import com.tecknobit.gluky.bodyFontFamily
 import com.tecknobit.gluky.displayFontFamily
 
 /**
- * `baseline` -> the Glider's baseline
+ * `baseline` the Glider's baseline
  */
 val baseline = Typography()
 
 /**
- * `AppTypography` -> the Glider's Typography
+ * `AppTypography` the Glider's Typography
  */
 val AppTypography = Typography(
     displayLarge = baseline.displayLarge.copy(fontFamily = displayFontFamily),

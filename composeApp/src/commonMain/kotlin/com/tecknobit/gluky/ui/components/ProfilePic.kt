@@ -22,15 +22,19 @@ import gluky.composeapp.generated.resources.logo
 import org.jetbrains.compose.resources.painterResource
 
 /**
- * `imageLoader` the image loader used by coil library to load the image and by-passing the https self-signed certificates
+ * `imageLoader` the image loader used by coil library to load the image and by-passing the
+ * https self-signed certificates
  */
 lateinit var imageLoader: ImageLoader
 
 /**
- * Custom [AsyncImage] used to display the profile pic of the [com.tecknobit.gluky.localUser] or the member of a team
+ * Custom [AsyncImage] used to display the profile pic of the [com.tecknobit.gluky.localUser] or the
+ * member of a team
  *
  * @param modifier The modifier to apply to the component
+ * @param profilePic The profile pic data
  * @param size The size of the profile pic
+ * @param borderWidth The size of the border to apply
  * @param onClick The action to execute when the component has been clicked
  */
 @Composable

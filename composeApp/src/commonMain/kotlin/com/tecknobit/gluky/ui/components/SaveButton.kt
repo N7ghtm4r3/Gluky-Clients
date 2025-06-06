@@ -11,6 +11,12 @@ import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.save
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [Button] used to save an item
+ *
+ * @param modifier The modifier to apply to the button
+ * @param save The save action to execute
+ */
 @Composable
 fun SaveButton(
     modifier: Modifier = Modifier,

@@ -10,6 +10,9 @@ import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.*
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.*
 import com.tecknobit.gluky.localUser
 
+/**
+ * `lightScheme` default light colors scheme
+ */
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
@@ -48,6 +51,9 @@ private val lightScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLight,
 )
 
+/**
+ * `darkScheme` default dark colors scheme
+ */
 private val darkScheme = darkColorScheme(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
@@ -108,6 +114,11 @@ fun GlukyTheme(
     )
 }
 
+/**
+ * Method used to retrieve the custom green color to apply based on the [applyDarkTheme] result
+ *
+ * @return the color to apply as [Color]
+ */
 @Composable
 fun green(): Color {
     return if (applyDarkTheme())
@@ -116,20 +127,30 @@ fun green(): Color {
         GreenLight
 }
 
-@Composable
-fun red(): Color {
-    return if (applyDarkTheme())
-        RedDark
-    else
-        RedLight
-}
-
+/**
+ * Method used to retrieve the custom yellow color to apply based on the [applyDarkTheme] result
+ *
+ * @return the color to apply as [Color]
+ */
 @Composable
 fun yellow(): Color {
     return if (applyDarkTheme())
         YellowDark
     else
         YellowLight
+}
+
+/**
+ * Method used to retrieve the custom red color to apply based on the [applyDarkTheme] result
+ *
+ * @return the color to apply as [Color]
+ */
+@Composable
+fun red(): Color {
+    return if (applyDarkTheme())
+        RedDark
+    else
+        RedLight
 }
 
 /**
