@@ -54,7 +54,6 @@ import kotlinx.serialization.json.putJsonObject
  * @see com.tecknobit.equinoxcore.network.Requester
  * @see EquinoxRequester
  */
-// TODO: TO SETUP CORRECTLY (SSL validation)
 class GlukyRequester(
     userId: String? = null,
     userToken: String? = null,
@@ -65,7 +64,7 @@ class GlukyRequester(
     userToken = userToken,
     debugMode = debugMode,
     connectionErrorMessage = DEFAULT_CONNECTION_ERROR_MESSAGE,
-    byPassSSLValidation = true // TODO: TO REMOVE IN PROD 
+    byPassSSLValidation = true
 ) {
 
     private companion object {

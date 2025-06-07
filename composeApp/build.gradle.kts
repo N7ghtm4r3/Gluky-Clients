@@ -231,13 +231,3 @@ tasks.withType<DokkaTask>().configureEach {
         footerMessage = "(c) 2025 Tecknobit"
     }
 }
-
-buildConfig {
-    className("GlukyConfig")
-    packageName("com.tecknobit.gluky")
-    useKotlinOutput { topLevelConstants = true }
-    buildConfigField<String>(
-        name = "BACKEND_URL",
-        value = project.findProperty("backend_url").toString()
-    )
-}

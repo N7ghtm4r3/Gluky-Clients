@@ -153,4 +153,8 @@
     <string name="welcome_back">Bentornat</string>
     <string name="hello">Ciao</string>
     <string name="failed_to_download_report">Download della relazione non riuscito</string>
+    <string name="host">Host</string>
+    <string name="wrong_host_address">Indirizzo host errato</string>
+    <string name="wrong_server_secret">Segreto del server errato</string>
+    <string name="server_secret">Segreto del server</string>
 </resources>

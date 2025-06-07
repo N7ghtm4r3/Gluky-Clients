@@ -80,7 +80,6 @@ fun App() {
     imageLoader = ImageLoader.Builder(LocalPlatformContext.current)
         .components {
             add(
-                // TODO: CHECK TO KEEP OR TO REMOVE
                 KtorNetworkFetcherFactory(
                     httpClient = customHttpClient()
                 )
@@ -130,8 +129,7 @@ expect fun CheckForUpdatesAndLaunch()
 fun startSession() {
     requester = GlukyRequester(
         userId = localUser.userId,
-        userToken = localUser.userToken,
-        debugMode = true // TODO: TO REMOVE
+        userToken = localUser.userToken
     )
     setUserLanguage()
     val route = if (localUser.isAuthenticated) {

@@ -153,4 +153,8 @@
     <string name="welcome_back">Bienvenue à nouveau</string>
     <string name="hello">Bonjour</string>
     <string name="failed_to_download_report">Échec du téléchargement du rapport</string>
+    <string name="host">Hôte</string>
+    <string name="wrong_host_address">Mauvaise adresse de l'hôte</string>
+    <string name="wrong_server_secret">Mauvais secret de serveur</string>
+    <string name="server_secret">Secret du serveur</string>
 </resources>

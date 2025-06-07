@@ -47,10 +47,11 @@ import com.tecknobit.equinoxcompose.annotations.ScreenSection
 import com.tecknobit.equinoxcompose.components.EquinoxOutlinedTextField
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isHostValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isNameValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isServerSecretValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isSurnameValid
-import com.tecknobit.gluky.BACKEND_URL
 import com.tecknobit.gluky.CloseApplicationOnNavBack
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.screens.auth.presentation.AuthScreenViewModel
@@ -64,15 +65,19 @@ import gluky.composeapp.generated.resources.email
 import gluky.composeapp.generated.resources.github
 import gluky.composeapp.generated.resources.have_an_account
 import gluky.composeapp.generated.resources.hello
+import gluky.composeapp.generated.resources.host
 import gluky.composeapp.generated.resources.name
 import gluky.composeapp.generated.resources.password
+import gluky.composeapp.generated.resources.server_secret
 import gluky.composeapp.generated.resources.sign_in
 import gluky.composeapp.generated.resources.sign_up
 import gluky.composeapp.generated.resources.surname
 import gluky.composeapp.generated.resources.welcome_back
 import gluky.composeapp.generated.resources.wrong_email
+import gluky.composeapp.generated.resources.wrong_host_address
 import gluky.composeapp.generated.resources.wrong_name
 import gluky.composeapp.generated.resources.wrong_password
+import gluky.composeapp.generated.resources.wrong_server_secret
 import gluky.composeapp.generated.resources.wrong_surname
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -208,12 +213,30 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
                 val keyboardOptions = KeyboardOptions(
                     imeAction = ImeAction.Next
                 )
+                EquinoxOutlinedTextField(
+                    shape = InputFieldShape,
+                    value = viewModel.host,
+                    label = stringResource(Res.string.host),
+                    keyboardOptions = keyboardOptions,
+                    errorText = stringResource(Res.string.wrong_host_address),
+                    isError = viewModel.hostError,
+                    validator = { isHostValid(it) }
+                )
                 AnimatedVisibility(
                     visible = viewModel.isSignUp.value
                 ) {
                     Column(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
+                        EquinoxOutlinedTextField(
+                            shape = InputFieldShape,
+                            value = viewModel.serverSecret,
+                            label = stringResource(Res.string.server_secret),
+                            keyboardOptions = keyboardOptions,
+                            errorText = stringResource(Res.string.wrong_server_secret),
+                            isError = viewModel.serverSecretError,
+                            validator = { isServerSecretValid(it) }
+                        )
                         EquinoxOutlinedTextField(
                             shape = InputFieldShape,
                             value = viewModel.name,
@@ -341,7 +364,7 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
     @Composable
     override fun CollectStates() {
         viewModel.isSignUp = remember { mutableStateOf(false) }
-        viewModel.host = remember { mutableStateOf(BACKEND_URL) }
+        viewModel.host = remember { mutableStateOf("") }
         viewModel.hostError = remember { mutableStateOf(false) }
         viewModel.serverSecret = remember { mutableStateOf("") }
         viewModel.serverSecretError = remember { mutableStateOf(false) }
