@@ -22,6 +22,21 @@ import com.tecknobit.glukycore.enums.MeasurementType.MORNING_SNACK
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * The `GlycemicTrendDataContainer` data class is used as container of the data related to the
+ * glycemic trend over a selected period
+ *
+ * @property breakfast The trend data related to the breakfast measurements
+ * @property morningSnack The trend data related to the morning snack measurements
+ * @property lunch The trend data related to the lunch measurements
+ * @property afternoonSnack The trend data related to the afternoon snack measurements
+ * @property dinner The trend data related to the dinner measurements
+ * @property basalInsulin The trend data related to the basal insulin measurements
+ * @property from The start date from retrieve the measurements
+ * @property to The end date from retrieve the measurements
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ */
 @Serializable
 data class GlycemicTrendDataContainer(
     val breakfast: GlycemicTrendData? = null,
@@ -37,6 +52,9 @@ data class GlycemicTrendDataContainer(
     val to: Long = -1,
 ) {
 
+    /**
+     * `availableSets` the list of available sets
+     */
     val availableSets: MutableList<MeasurementType> = mutableListOf()
 
     init {
@@ -60,6 +78,11 @@ data class GlycemicTrendDataContainer(
         )
     }
 
+    /**
+     * Method used to check whether the data are available
+     *
+     * @return whether the data are available as [Boolean]
+     */
     fun dataAvailable(): Boolean {
         return ((breakfast != null && breakfast.hasDataAvailable()) ||
                 (morningSnack != null && morningSnack.hasDataAvailable()) ||
@@ -68,6 +91,11 @@ data class GlycemicTrendDataContainer(
                 (dinner != null && dinner.hasDataAvailable()))
     }
 
+    /**
+     * Utility method used to append to [availableSets] a set of data if is not null
+     *
+     * @param type The type of the [GlycemicTrendData] to append
+     */
     private fun GlycemicTrendData?.ifIsNotNullAppend(
         type: MeasurementType,
     ) {
@@ -76,6 +104,13 @@ data class GlycemicTrendDataContainer(
         availableSets.add(type)
     }
 
+    /**
+     * Method used to retrieve the specific set based on the [type]
+     *
+     * @param type The type of the set to retrieve
+     *
+     * @return the specific set as nullable [GlycemicTrendData]
+     */
     fun getRelatedSet(
         type: MeasurementType,
     ): GlycemicTrendData? {
@@ -91,6 +126,20 @@ data class GlycemicTrendDataContainer(
 
 }
 
+/**
+ * The `GlycemicTrendData` data class is used to contains the trend data for each type of measurement
+ *
+ * @property higherGlycemia The higher glycemia value
+ * @property lowerGlycemia The lower glycemia value
+ * @property averageGlycemia The average glycemia value
+ * @property firstSet The first set of data
+ * @property secondSet The second set of data
+ * @property thirdSet The third set of data
+ * @property fourthSet The fourth set of data
+ * @property labelType The type of the label
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ */
 @Serializable
 data class GlycemicTrendData(
     @SerialName(HIGHER_GLYCEMIA_KEY)
@@ -111,6 +160,9 @@ data class GlycemicTrendData(
     val labelType: GlycemicTrendLabelType? = null,
 ) {
 
+    /**
+     * `sets` the list of available sets
+     */
     val sets: MutableList<List<GlycemiaPoint>> = mutableListOf()
 
     init {
@@ -120,6 +172,13 @@ data class GlycemicTrendData(
         fourthSet.ifIsNotNullAppend()
     }
 
+    /**
+     * Method used to retrieve the specific set based on the [index]
+     *
+     * @param index The index of the set to retrieve
+     *
+     * @return the specific set as nullable [List] of [GlycemiaPoint]
+     */
     fun getSpecifiedSet(
         index: Int,
     ): List<GlycemiaPoint>? {
@@ -132,6 +191,11 @@ data class GlycemicTrendData(
         }
     }
 
+    /**
+     * Method used to check whether the data are available
+     *
+     * @return whether the data are available as [Boolean]
+     */
     fun hasDataAvailable(): Boolean {
         var biggestSet = 0
         sets.forEach { set ->
@@ -142,6 +206,9 @@ data class GlycemicTrendData(
         return biggestSet > 1
     }
 
+    /**
+     * Utility method used to append to [sets] a set of points if is not null
+     */
     private fun List<GlycemiaPoint>?.ifIsNotNullAppend() {
         if (this == null)
             return
@@ -150,6 +217,14 @@ data class GlycemicTrendData(
 
 }
 
+/**
+ * The `GlycemiaPoint` data class is useful to represent a value on a chart
+ *
+ * @property date The date when the value has been annotated
+ * @property value The glycemic value
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ */
 @Serializable
 data class GlycemiaPoint(
     val date: Long,
