@@ -107,8 +107,8 @@ dependencies {
 
 <details>
   <summary>Desktop UI</summary>
-  <img src="https://github.com/N7ghtm4r3/Gluky-Clients/blob/main/images/measurements_desktop_eng.png" alt="measurements"/>
-  <img src="https://github.com/N7ghtm4r3/Gluky-Clients/blob/main/images/analyses_desktop_eng.png" alt="analyses"/>
+  <img src="https://github.com/N7ghtm4r3/Gluky-Clients/blob/main/images/measurements_desktop.png" alt="measurements"/>
+  <img src="https://github.com/N7ghtm4r3/Gluky-Clients/blob/main/images/analyses_desktop.png" alt="analyses"/>
 </details>
 
 ## Illustrations
