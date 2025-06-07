@@ -68,11 +68,11 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
     private lateinit var dailyMeasurements: State<DailyMeasurements?>
 
     /**
-     * The content of the screen customized by each tab
+     * The custom content of the tab
      */
     @Composable
     @LayoutCoordinator
-    override fun ColumnScope.ScreenContent() {
+    override fun ColumnScope.TabContent() {
         Column(
             modifier = Modifier
                 .fillMaxSize(),

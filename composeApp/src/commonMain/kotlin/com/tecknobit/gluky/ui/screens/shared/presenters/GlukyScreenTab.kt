@@ -77,17 +77,17 @@ abstract class GlukyScreenTab<V : EquinoxViewModel>(
                                 Modifier
                         )
                 ) {
-                    ScreenContent()
+                    TabContent()
                 }
             }
         }
     }
 
     /**
-     * The content of the screen customized by each tab
+     * The custom content of the tab
      */
     @Composable
-    protected abstract fun ColumnScope.ScreenContent()
+    protected abstract fun ColumnScope.TabContent()
 
     /**
      * The content displayed in the `Scaffold.floatingActionButton` section

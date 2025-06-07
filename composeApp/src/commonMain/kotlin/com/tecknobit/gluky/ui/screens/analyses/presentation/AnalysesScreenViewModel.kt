@@ -11,7 +11,6 @@ import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
 import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Validator
-import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
 import com.tecknobit.gluky.helpers.KReviewer
@@ -37,39 +36,78 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
 
+/**
+ * The `AnalysesScreenViewModel` class is the support class used to manage the analyses requests
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see androidx.lifecycle.ViewModel
+ * @see com.tecknobit.equinoxcompose.session.Retriever.RetrieverWrapper
+ * @see EquinoxViewModel
+ * @see ToastsLauncher
+ */
 class AnalysesScreenViewModel : EquinoxViewModel(
     snackbarHostState = SnackbarHostState()
 ), ToastsLauncher {
 
+    /**
+     * `sessionFlowState` the state used to manage the session lifecycle in the screen
+     */
     @OptIn(ExperimentalComposeApi::class)
     lateinit var sessionFlowState: SessionFlowState
 
+    /**
+     * `toasterState` the state used to launch the toasts messages
+     */
     override lateinit var toasterState: ToasterState
 
+    /**
+     * `toasterState` the state used to launch the toasts messages
+     */
     override var scope: CoroutineScope = viewModelScope
 
+    /**
+     * `_glycemicTrend` the glycemic trend data
+     */
     private val _glycemicTrend = MutableStateFlow<GlycemicTrendDataContainer?>(
         value = null
     )
     val glycemicTrend = _glycemicTrend.asStateFlow()
 
+    /**
+     * `_glycemicTrendPeriod` the current selected trend period
+     */
     private val _glycemicTrendPeriod = MutableStateFlow(
         value = ONE_MONTH
     )
     val glycemicTrendPeriod = _glycemicTrendPeriod.asStateFlow()
 
+    /**
+     * `_glycemicTrendGroupingDay` the current selected grouping day
+     */
     private val _glycemicTrendGroupingDay = MutableStateFlow<GlycemicTrendGroupingDay?>(
         value = null
     )
     val glycemicTrendGroupingDay = _glycemicTrendGroupingDay.asStateFlow()
 
+    /**
+     * `_creatingReport` whether a report is currently in creation
+     */
     private val _creatingReport = MutableStateFlow(
         value = false
     )
     val creatingReport = _creatingReport.asStateFlow()
 
+    /**
+     * `customPeriodPickerState` the state of the picker used to select a custom dates range
+     */
     lateinit var customPeriodPickerState: DateRangePickerState
 
+    /**
+     * Method used to request the glycemic trend
+     *
+     * @param from        The start date from retrieve the measurements
+     * @param to          The end date to retrieve the measurements
+     */
     fun retrieveGlycemicTrend(
         from: Long? = null,
         to: Long? = null,
@@ -98,6 +136,11 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         }
     }
 
+    /**
+     * Method used to apply the new value of the grouping day
+     *
+     * @param groupingDay The selected grouping day
+     */
     fun selectGlycemicGroupingDay(
         groupingDay: GlycemicTrendGroupingDay,
     ) {
@@ -105,6 +148,11 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         retrieveGlycemicTrend()
     }
 
+    /**
+     * Method used to apply the new value of the trend period
+     *
+     * @param period The selected trend period period
+     */
     fun selectGlycemicTrendPeriod(
         period: GlycemicTrendPeriod,
     ) {
@@ -112,11 +160,17 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         retrieveGlycemicTrend()
     }
 
+    /**
+     * Method used to select the selected custom range dates
+     *
+     * @param allowedPeriod The maximum allowed period
+     * @param onApply The callback to invoke when the user selected the custom range
+     */
     fun applyCustomTrendPeriod(
         allowedPeriod: String,
         onApply: () -> Unit,
     ) {
-        if (!isCustomPeriodValid(customPeriodPickerState)) {
+        if (!isCustomPeriodValid()) {
             toastError(
                 error = Res.string.wrong_custom_range,
                 allowedPeriod
@@ -130,18 +184,25 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         onApply()
     }
 
-    @Wrapper
+    /**
+     * Method used to validate the selected custom period
+     *
+     * @return whether the selected custom period is valid as [Boolean]
+     */
     @Validator
-    private fun isCustomPeriodValid(
-        state: DateRangePickerState,
-    ): Boolean {
+    private fun isCustomPeriodValid(): Boolean {
         return isCustomTrendPeriodValid(
-            from = state.selectedStartDateMillis,
-            to = state.selectedEndDateMillis,
+            from = customPeriodPickerState.selectedStartDateMillis,
+            to = customPeriodPickerState.selectedEndDateMillis,
             period = _glycemicTrendPeriod.value
         )
     }
 
+    /**
+     * Method used to request to create a report
+     *
+     * @param onCreated The callback to invoke after the report created
+     */
     fun createReport(
         onCreated: () -> Unit,
     ) {
@@ -172,6 +233,12 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         }
     }
 
+    /**
+     * Method used to download the created report
+     *
+     * @param report The report to download
+     * @param onDownloadCompleted The callback to invoke after the report downloaded
+     */
     private fun downloadReport(
         report: Report,
         onDownloadCompleted: () -> Unit,
@@ -199,19 +266,11 @@ class AnalysesScreenViewModel : EquinoxViewModel(
         }
     }
 
-    private fun deleteReport(
-        report: Report,
-    ) {
-        val scope = CoroutineScope(
-            context = Dispatchers.Default
-        )
-        scope.launch {
-            requester.deleteReport(
-                report = report
-            )
-        }
-    }
-
+    /**
+     * Method used to show the snackbar about the download completion
+     *
+     * @param reportUrl The url where the report has been saved
+     */
     private fun completedSnackMessage(
         reportUrl: String?,
     ) {
@@ -227,6 +286,24 @@ class AnalysesScreenViewModel : EquinoxViewModel(
                 }
             }
         )
+    }
+
+    /**
+     * Method used to request the report deletion
+     *
+     * @param report The report to delete
+     */
+    private fun deleteReport(
+        report: Report,
+    ) {
+        val scope = CoroutineScope(
+            context = Dispatchers.Default
+        )
+        scope.launch {
+            requester.deleteReport(
+                report = report
+            )
+        }
     }
 
 }

@@ -102,10 +102,10 @@ class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
 ) {
 
     /**
-     * The content of the screen customized by each tab
+     * The custom content of the tab
      */
     @Composable
-    override fun ColumnScope.ScreenContent() {
+    override fun ColumnScope.TabContent() {
         UserDetails()
         Settings()
     }

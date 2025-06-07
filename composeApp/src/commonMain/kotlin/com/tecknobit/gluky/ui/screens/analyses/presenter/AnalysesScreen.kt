@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.tecknobit.equinoxcompose.annotations.ScreenSection
+import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowContainer
 import com.tecknobit.equinoxcompose.session.sessionflow.rememberSessionFlowState
 import com.tecknobit.equinoxcompose.utilities.awaitNullItemLoaded
@@ -53,19 +54,38 @@ import gluky.composeapp.generated.resources.analyses
 import gluky.composeapp.generated.resources.create_report
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The [AnalysesScreen] displays the analyses charts and allows the user to create custom reports
+ *
+ * @author N7ghtm4r3 - Tecknobit
+ * @see EquinoxScreen
+ * @see GlukyScreenTab
+ */
 class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
     viewModel = AnalysesScreenViewModel(),
     title = Res.string.analyses
 ) {
 
+    /**
+     * `glycemicTrend` the glycemic trend data
+     */
     private lateinit var glycemicTrend: State<GlycemicTrendDataContainer?>
 
+    /**
+     * `glycemicTrendPeriod` the current selected trend period
+     */
     private lateinit var glycemicTrendPeriod: State<GlycemicTrendPeriod>
 
+    /**
+     * `glycemicTrendGroupingDay` the current selected grouping day
+     */
     private lateinit var glycemicTrendGroupingDay: State<GlycemicTrendGroupingDay?>
 
+    /**
+     * The custom content of the tab
+     */
     @Composable
-    override fun ColumnScope.ScreenContent() {
+    override fun ColumnScope.TabContent() {
         SessionFlowContainer(
             modifier = Modifier
                 .fillMaxSize(),
@@ -104,6 +124,9 @@ class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
         )
     }
 
+    /**
+     * The section where the user can filter the analyses data to retrieve
+     */
     @Composable
     @ScreenSection
     private fun FiltersSection() {
@@ -133,6 +156,9 @@ class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
         }
     }
 
+    /**
+     * The section where are displayed all the analyses charts
+     */
     @Composable
     @ScreenSection
     private fun ChartsSection() {
@@ -161,6 +187,9 @@ class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
         }
     }
 
+    /**
+     * The content displayed in the `Scaffold.floatingActionButton` section
+     */
     @Composable
     override fun FABContent() {
         awaitNullItemLoaded(
@@ -196,6 +225,9 @@ class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
         }
     }
 
+    /**
+     * Method used to collect or instantiate the states of the screen
+     */
     override fun onStart() {
         super.onStart()
         viewModel.retrieveGlycemicTrend()
@@ -212,6 +244,10 @@ class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel>(
         glycemicTrendGroupingDay = viewModel.glycemicTrendGroupingDay.collectAsState()
     }
 
+    /**
+     * Method used to collect or instantiate the states of the screen after a loading required to correctly assign an
+     * initial value to the states
+     */
     @Composable
     override fun CollectStatesAfterLoading() {
         viewModel.customPeriodPickerState = rememberDateRangePickerState(
