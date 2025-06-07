@@ -18,6 +18,12 @@ import gluky.composeapp.generated.resources.empty_sets_light
 import gluky.composeapp.generated.resources.no_data_available
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * The empty state component displayed when there are no trend data available
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param glycemicTrendPeriod The period to use as maximum threshold to select the dates
+ */
 @Composable
 fun EmptyTrendData(
     viewModel: AnalysesScreenViewModel,

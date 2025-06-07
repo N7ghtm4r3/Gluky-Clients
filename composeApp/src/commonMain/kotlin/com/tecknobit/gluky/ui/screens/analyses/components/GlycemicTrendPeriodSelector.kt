@@ -22,6 +22,12 @@ import gluky.composeapp.generated.resources.three_months
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Component used to select the period to use to retrieve the trend data
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param glycemicTrendPeriod The current selected trend period
+ */
 @Composable
 fun GlycemicTrendPeriodSelector(
     viewModel: AnalysesScreenViewModel,
@@ -53,6 +59,11 @@ fun GlycemicTrendPeriodSelector(
     }
 }
 
+/**
+ * Method used to get the informative text related to a [GlycemicTrendPeriod] value
+ *
+ * @return the informative text as [StringResource]
+ */
 @Returner
 private fun GlycemicTrendPeriod.text(): StringResource {
     return when (this) {

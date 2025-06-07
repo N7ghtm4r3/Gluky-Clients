@@ -53,6 +53,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.tecknobit.equinoxcore.annotations.Assembler
 import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.annotations.Wrapper
 import com.tecknobit.equinoxcore.time.TimeFormatter.EUROPEAN_DATE_PATTERN
@@ -117,29 +118,51 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * `AxisProperties` the properties of the axis of the chart
+ */
 private val AxisProperties = GridProperties.AxisProperties(
     style = StrokeStyle.Dashed()
 )
 
+/**
+ * `LabelStyle` the style applied to the labels of the chart
+ */
 private val LabelStyle
     @Composable get() = AppTypography.labelLarge.copy(
         color = MaterialTheme.colorScheme.onSurfaceVariant
     )
 
-private val lightLineColors = arrayOf(
+/**
+ * `LightLineColors` light colors of the lines of the chart
+ */
+private val LightLineColors = arrayOf(
     ChartLine1Light,
     ChartLine2Light,
     ChartLine3Light,
     ChartLine4Light
 )
 
-private val darkLineColors = arrayOf(
+/**
+ * `DarkLineColors` dark colors of the lines of the chart
+ */
+private val DarkLineColors = arrayOf(
     ChartLine1Dark,
     ChartLine2Dark,
     ChartLine3Dark,
     ChartLine4Dark
 )
 
+/**
+ * Component displays the glycemic trend data of a specific measurement
+ *
+ * @param type The type of the measurement to display
+ * @param glycemicTrendDataContainer The container with all the data about the glycemic trend
+ * @param glycemicTrendData The data related to the [type] of the measurement displayed by the
+ * component
+ * @param glycemicTrendPeriod The period to use as maximum threshold to select the dates
+ * @param glycemicTrendGroupingDay The day used to group the data on a specific [GlycemicTrendGroupingDay]
+ */
 @Composable
 fun GlycemicTrend(
     type: MeasurementType,
@@ -163,9 +186,9 @@ fun GlycemicTrend(
                 )
         ) {
             val colors = if (applyDarkTheme())
-                darkLineColors
+                DarkLineColors
             else
-                lightLineColors
+                LightLineColors
             val statsDisplayed = remember { mutableStateOf(false) }
             ChartHeader(
                 type = type,
@@ -235,12 +258,21 @@ fun GlycemicTrend(
             )
             TrendStats(
                 statsDisplayed = statsDisplayed,
-                glycemiaTrendData = glycemicTrendData
+                glycemicTrendData = glycemicTrendData
             )
         }
     }
 }
 
+/**
+ * Component displays the glycemic trend data of a specific measurement
+ *
+ * @param type The type of the measurement to display
+ * @param statsDisplayed Whether the stats section is displayed
+ * @param glycemicTrendData The data related to the [type] of the measurement displayed by the
+ * component
+ * @param colors The colors to apply to the lines of the chart
+ */
 @Composable
 private fun ChartHeader(
     type: MeasurementType,
@@ -274,6 +306,11 @@ private fun ChartHeader(
     )
 }
 
+/**
+ * Component used to display the information about the chart displayed
+ *
+ * @param type The type of the measurement to display
+ */
 @Composable
 private fun InfoChart(
     type: MeasurementType,
@@ -307,6 +344,12 @@ private fun InfoChart(
     )
 }
 
+/**
+ * Method used to retrieve the informative text based on [MeasurementType]
+ *
+ * @return the informative text as [StringResource]
+ */
+@Returner
 private fun MeasurementType.infoText(): StringResource {
     return when (this) {
         BREAKFAST -> string.breakfast_info_chart
@@ -318,6 +361,13 @@ private fun MeasurementType.infoText(): StringResource {
     }
 }
 
+/**
+ * The legend of the [GlycemicTrend] component
+ *
+ * @param glycemicTrendData The data related to the type of the measurement displayed by the
+ * component
+ * @param colors The colors to apply to the lines of the chart
+ */
 @Composable
 @NonRestartableComposable
 private fun ChartLegend(
@@ -359,6 +409,11 @@ private fun ChartLegend(
     }
 }
 
+/**
+ * Method used to get the labels to display on the [ChartLegend] component
+ *
+ * @return the labels as [Array] of [String]
+ */
 @Returner
 @Composable
 private fun GlycemicTrendData.getLabels(): Array<String> {
@@ -385,6 +440,15 @@ private fun GlycemicTrendData.getLabels(): Array<String> {
     }
 }
 
+/**
+ * Method used to convert the [GlycemicTrendData] to list of line to display on the
+ * [GlycemicTrend] component
+ *
+ * @param colors The colors to apply to the lines of the chart
+ *
+ * @return the list of data converted as [List] of [Line]
+ */
+@Assembler
 private fun GlycemicTrendData.toChartData(
     colors: Array<Color>,
 ): List<Line> {
@@ -410,6 +474,17 @@ private fun GlycemicTrendData.toChartData(
     return lines
 }
 
+/**
+ * Method used to format the text to display on the popups of the [GlycemicTrend] component
+ *
+ * @param glycemicTrendData The data related to the type of the measurement displayed by the
+ * component
+ * @param dataIndex The index of the set from retrieve the value
+ * @param valueIndex The index of the point to retrieve from the set
+ * @param value The value of the point
+ *
+ * @return the text formatted as [String]
+ */
 private fun useContentBuilder(
     glycemicTrendData: GlycemicTrendData,
     dataIndex: Int,
@@ -433,10 +508,17 @@ private fun useContentBuilder(
     """.trimIndent()
 }
 
+/**
+ * Section where are displayed the stats about the chart displayed
+ *
+ * @param statsDisplayed Whether the stats section is displayed
+ * @param glycemicTrendData The data related to the measurement displayed by the
+ * component
+ */
 @Composable
 private fun TrendStats(
     statsDisplayed: MutableState<Boolean>,
-    glycemiaTrendData: GlycemicTrendData,
+    glycemicTrendData: GlycemicTrendData,
 ) {
     AnimatedVisibility(
         visible = statsDisplayed.value
@@ -453,19 +535,19 @@ private fun TrendStats(
             ) {
                 item {
                     StatsTile(
-                        stat = glycemiaTrendData.higherGlycemia,
+                        stat = glycemicTrendData.higherGlycemia,
                         header = string.higher_glycemia
                     )
                 }
                 item {
                     StatsTile(
-                        stat = glycemiaTrendData.lowerGlycemia,
+                        stat = glycemicTrendData.lowerGlycemia,
                         header = string.lower_glycemia
                     )
                 }
                 item {
                     StatsTile(
-                        stat = glycemiaTrendData.averageGlycemia,
+                        stat = glycemicTrendData.averageGlycemia,
                         header = string.average_glycemia
                     )
                 }
@@ -474,6 +556,12 @@ private fun TrendStats(
     }
 }
 
+/**
+ * The tile used to display a stat data
+ *
+ * @param stat The stat data
+ * @param header The informative header about the stat displayed
+ */
 @Wrapper
 @Composable
 private fun StatsTile(
@@ -497,6 +585,14 @@ private fun StatsTile(
     )
 }
 
+/**
+ * The tile used to display a stat data
+ *
+ * @param stat The stat data
+ * @param decimalPlaces The number of the decimal places to display
+ * @param header The informative header about the stat displayed
+ * @param extraContent Extra content to display on the tile
+ */
 @Composable
 private fun StatsTile(
     stat: Double,

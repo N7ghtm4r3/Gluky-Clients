@@ -24,6 +24,12 @@ import gluky.composeapp.generated.resources.create_report_warn_text
 import gluky.composeapp.generated.resources.creating
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Dialog displayed when the user requests to create a report
+ *
+ * @param show Whether the dialog is shown
+ * @param viewModel The support viewmodel of the screen
+ */
 @Composable
 fun GlycemicReportDialog(
     show: MutableState<Boolean>,

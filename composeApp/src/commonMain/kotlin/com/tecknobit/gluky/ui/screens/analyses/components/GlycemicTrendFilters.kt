@@ -47,6 +47,12 @@ import gluky.composeapp.generated.resources.wednesday
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom [FilterChip] used to select the grouping day to retrieve the trend data
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param groupingDay The current selected grouping day
+ */
 @Composable
 fun GroupingDayChip(
     viewModel: AnalysesScreenViewModel,
@@ -76,6 +82,12 @@ fun GroupingDayChip(
     }
 }
 
+/**
+ * Dropdown menu used to select the [GlycemicTrendGroupingDay]
+ *
+ * @param select Whether the menu is visible
+ * @param viewModel The support viewmodel of the screen
+ */
 @Composable
 private fun GroupingDayDropdownMenu(
     select: MutableState<Boolean>,
@@ -102,6 +114,11 @@ private fun GroupingDayDropdownMenu(
     }
 }
 
+/**
+ * Method used to get the informative text related to a [GlycemicTrendGroupingDay] value
+ *
+ * @return the informative text as [StringResource]
+ */
 @Returner
 private fun GlycemicTrendGroupingDay?.text(): StringResource {
     return when (this) {
@@ -116,6 +133,12 @@ private fun GlycemicTrendGroupingDay?.text(): StringResource {
     }
 }
 
+/**
+ * Custom [FilterChip] used to select the period to retrieve the trend data
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param trendPeriod The current selected period
+ */
 @Composable
 fun TrendPeriodChip(
     viewModel: AnalysesScreenViewModel,
@@ -145,6 +168,12 @@ fun TrendPeriodChip(
     }
 }
 
+/**
+ * Dropdown menu used to select the [GlycemicTrendPeriod]
+ *
+ * @param select Whether the menu is visible
+ * @param viewModel The support viewmodel of the screen
+ */
 @Composable
 private fun TrendPeriodDropdownMenu(
     select: MutableState<Boolean>,
@@ -171,6 +200,12 @@ private fun TrendPeriodDropdownMenu(
     }
 }
 
+/**
+ * Dropdown menu used to select the a filter value
+ *
+ * @param select Whether the menu is visible
+ * @param itemContent The content of the menu item
+ */
 @Composable
 private fun FiltersDropdownMenu(
     select: MutableState<Boolean>,
@@ -186,6 +221,12 @@ private fun FiltersDropdownMenu(
     )
 }
 
+/**
+ * Button used to display the [CustomPeriodPicker] component to pick a custom dates range
+ *
+ * @param viewModel The support viewmodel of the screen
+ * @param trendPeriod The current selected period
+ */
 @Composable
 fun CustomPeriodButton(
     viewModel: AnalysesScreenViewModel,

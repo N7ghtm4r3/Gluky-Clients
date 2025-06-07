@@ -45,6 +45,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
+/**
+ * Custom picker used to select a custom range of dates to retrieve the trend data of a custom period
+ *
+ * @param show Whether the picker is shown
+ * @param viewModel The support viewmodel of the screen
+ * @param trendPeriod The period to use as maximum threshold to select the dates
+ */
 @Composable
 @LayoutCoordinator
 fun CustomPeriodPicker(
@@ -88,6 +95,13 @@ fun CustomPeriodPicker(
     )
 }
 
+/**
+ * The picker displayed on [EXPANDED_CONTENT] and [MEDIUM_CONTENT] screen classes as [EquinoxDialog]
+ *
+ * @param show Whether the picker is shown
+ * @param viewModel The support viewmodel of the screen
+ * @param trendPeriod The period to use as maximum threshold to select the dates
+ */
 @Composable
 @ResponsiveClassComponent(
     classes = [EXPANDED_CONTENT, MEDIUM_CONTENT]
@@ -113,6 +127,16 @@ private fun PeriodPickerDialog(
     }
 }
 
+/**
+ * The picker displayed on [com.tecknobit.equinoxcompose.utilities.ResponsiveClass.COMPACT_CONTENT]
+ * screen classes as [ModalBottomSheet]
+ *
+ * @param show Whether the picker is shown
+ * @param state The state useful to manage the visibility of the [ModalBottomSheet]
+ * @param scope The coroutine useful to manage the visibility of the [ModalBottomSheet]
+ * @param viewModel The support viewmodel of the screen
+ * @param trendPeriod The period to use as maximum threshold to select the dates
+ */
 @Composable
 @CompactClassComponent
 private fun PeriodPickerBottomSheet(
@@ -148,6 +172,11 @@ private fun PeriodPickerBottomSheet(
     }
 }
 
+/**
+ * The element used as container for the [Toaster] component
+ *
+ * @param viewModel The support viewmodel of the screen
+ */
 @Composable
 private fun ToasterContainer(
     viewModel: AnalysesScreenViewModel,
@@ -160,6 +189,15 @@ private fun ToasterContainer(
     )
 }
 
+/**
+ * The content of the [CustomPeriodPicker] component
+ *
+ * @param modifier The modifier to apply to the component
+ * @param colors The colors to apply to the picker
+ * @param viewModel The support viewmodel of the screen
+ * @param trendPeriod The period to use as maximum threshold to select the dates
+ * @param onSave The callback to invoke after the user saved the selection
+ */
 @Composable
 private fun PeriodPickerContent(
     modifier: Modifier = Modifier,
