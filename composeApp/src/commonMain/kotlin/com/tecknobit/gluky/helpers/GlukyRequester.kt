@@ -12,7 +12,6 @@ import com.tecknobit.equinoxcore.network.RequestMethod.DELETE
 import com.tecknobit.equinoxcore.network.RequestMethod.GET
 import com.tecknobit.equinoxcore.network.RequestMethod.PUT
 import com.tecknobit.equinoxcore.time.TimeFormatter.toDateString
-import com.tecknobit.gluky.BACKEND_URL
 import com.tecknobit.gluky.ui.screens.analyses.data.Report
 import com.tecknobit.glukycore.BASAL_INSULIN_KEY
 import com.tecknobit.glukycore.CONTENT_KEY
@@ -44,6 +43,7 @@ import kotlinx.serialization.json.putJsonObject
 /**
  * The `GlukyRequester` class is useful to communicate with the Gluky's backend
  *
+ * @param host The host address where is running the backend
  * @param userId The user identifier
  * @param userToken The user token
  * @param debugMode Whether the requester is still in development and who is developing needs the log of the requester's
@@ -55,11 +55,12 @@ import kotlinx.serialization.json.putJsonObject
  * @see EquinoxRequester
  */
 class GlukyRequester(
+    host: String,
     userId: String? = null,
     userToken: String? = null,
     debugMode: Boolean = false,
 ) : EquinoxRequester(
-    host = BACKEND_URL,
+    host = host,
     userId = userId,
     userToken = userToken,
     debugMode = debugMode,

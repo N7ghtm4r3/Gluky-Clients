@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartIntentSend
 import androidx.annotation.ContentView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
+import com.tecknobit.ametistaengine.AmetistaEngine
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 
 /**
@@ -55,6 +56,7 @@ class MainActivity : ComponentActivity() {
         ContextActivityProvider.setCurrentActivity(this)
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
+        AmetistaEngine.intake()
         appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
         setContent {
             App()

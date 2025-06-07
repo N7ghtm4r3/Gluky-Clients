@@ -105,6 +105,7 @@ kotlin {
                 implementation(libs.compose.charts)
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.dialogs.compose)
+                implementation(libs.ametista.engine)
                 implementation(libs.glukycore)
             }
         }
@@ -230,4 +231,25 @@ tasks.withType<DokkaTask>().configureEach {
         customAssets = listOf(file("../docs/logo-icon.svg"))
         footerMessage = "(c) 2025 Tecknobit"
     }
+}
+
+buildConfig {
+    className("AmetistaConfig")
+    packageName("com.tecknobit.gluky")
+    buildConfigField<String>(
+        name = "HOST",
+        value = project.findProperty("host").toString()
+    )
+    buildConfigField<String?>(
+        name = "SERVER_SECRET",
+        value = project.findProperty("server_secret").toString()
+    )
+    buildConfigField<String?>(
+        name = "APPLICATION_IDENTIFIER",
+        value = project.findProperty("application_id").toString()
+    )
+    buildConfigField<Boolean>(
+        name = "BYPASS_SSL_VALIDATION",
+        value = project.findProperty("bypass_ssl_validation").toString().toBoolean()
+    )
 }

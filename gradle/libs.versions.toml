@@ -1,5 +1,6 @@
 [versions]
 agp = "8.7.3"
+ametistaEngine = "1.0.4"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
@@ -29,6 +30,7 @@ dokka = "2.0.0"
 buildconfig = "5.6.5"
 
 [libraries]
+ametista-engine = { module = "io.github.n7ghtm4r3:Ametista-Engine", version.ref = "ametistaEngine" }
 compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "composeCharts" }
 filekit-core = { module = "io.github.vinceglb:filekit-core", version.ref = "filekit" }
 filekit-dialogs-compose = { module = "io.github.vinceglb:filekit-dialogs-compose", version.ref = "filekit" }
