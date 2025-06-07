@@ -121,7 +121,7 @@
     <string name="create_report">Crea relazione</string>
     <string name="create_report_warn_text">Vuoi creare un report per il periodo attualmente visualizzato?</string>
     <string name="creating">Creando...</string>
-    <string name="report_created">Report creato!</string>
+    <string name="report_created">Relazione creata!</string>
     <string name="open">Apri</string>
     <string name="statistics">Statistiche</string>
     <string name="lower_glycemia">Glicemia più bassa</string>
