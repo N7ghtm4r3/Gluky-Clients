@@ -9,9 +9,7 @@ use!
 
 This is an open source self-hosted project useful to daily track the glucose levels and meals.
 
-`Gluky` allows the creation of custom reports based on one week, one month, three months and four
-months
-gap period fully customizable. Following a report example:
+Gluky is an open-source, self-hosted project designed to help users track their glucose levels and meals on a daily basis. It allows users to log measurements associated with specific meals—such as breakfast, morning snack, lunch, afternoon snack, and dinner. Gluky also supports the creation of customizable reports over different time periods, including one week, one month, three months, or four months. Following a report example:
 
 <img style="max-width:100%; height:auto;" src="images/report_demo.png" alt="report demo"/>
 
