@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>DailyMeasurements</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+    <script type="text/javascript"
+            src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
+            async="async"></script>
+    <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js"
+            async="async"></script>
+    <link href="../../../styles/style.css" rel="Stylesheet">
+    <link href="../../../styles/main.css" rel="Stylesheet">
+    <link href="../../../styles/prism.css" rel="Stylesheet">
+    <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+    <link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+    <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
+    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/navigation-loader.js"
+            async="async"></script>
+    <script type="text/javascript" src="../../../scripts/platform-content-handler.js"
+            async="async"></script>
+    <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+    <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+    <script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
+    <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js"
+            defer="defer"></script>
+    <link href="../../../images/logo-icon.svg">
+</head>
+<body>
+<div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+        <a class="library-name--link" href="../../../index.html">
+            Gluky
+        </a>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only"
+                id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
+            1.0.0
+        </div>
+        <div class="navigation-controls">
+            <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        data-filter=":composeApp:dokkaHtml/commonMain">common
+                </button>
+                <div class="dropdown filter-section--dropdown" data-role="dropdown"
+                     id="filter-section-dropdown">
+                    <button class="button button_dropdown filter-section--dropdown-toggle"
+                            role="combobox"
+                            data-role="dropdown-toggle"
+                            aria-controls="platform-tags-listbox"
+                            aria-haspopup="listbox"
+                            aria-expanded="false"
+                            aria-label="Toggle source sets"
+                    ></button>
+                    <ul role="listbox" id="platform-tags-listbox" class="dropdown--list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header"><span>Platform filter</span>
+                            <button class="button" data-role="dropdown-toggle"
+                                    aria-label="Close platform filter">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option common-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp:dokkaHtml/commonMain"
+                                       data-filter=":composeApp:dokkaHtml/commonMain"/>
+                                <span class="checkbox--icon"></span>
+                                common
+                            </label>
+                        </li>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme"
+                    id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar"
+                 role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+    <div id="container">
+        <div class="sidebar" id="leftColumn">
+            <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                    data-role="dropdown-listbox">
+                    <div class="dropdown--header">
+                            <span>
+                                    Gluky
+                            </span>
+                        <button class="button" data-role="dropdown-toggle"
+                                aria-label="Close table of contents">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar--inner" id="sideMenu"></div>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+        <div id="main">
+            <div class="main-content" data-page-type="classlike" id="content"
+                 pageIds="Gluky::com.tecknobit.gluky.ui.screens.measurements.data/DailyMeasurements///PointingToDeclaration//-813795679">
+                <div class="breadcrumbs"><a href="../../../index.html">Gluky</a><span
+                        class="delimiter">/</span><a href="../index.html">com.tecknobit.gluky.ui.screens.measurements.data</a><span
+                        class="delimiter">/</span><span class="current">DailyMeasurements</span>
+                </div>
+                <div class="cover ">
+                    <h1 class="cover"><span>Daily</span>
+                        <wbr></wbr>
+                        <span><span>Measurements</span></span></h1>
+                    <div class="platform-hinted " data-platform-hinted="data-platform-hinted">
+                        <div class="content sourceset-dependent-content" data-active=""
+                             data-togglable=":composeApp:dokkaHtml/commonMain">
+                            <div class="symbol monospace">
+                                <div class="block">
+                                    <div class="block"><span
+                                            class="token annotation builtin">@</span><span
+                                            data-unresolved-link="kotlinx.serialization/Serializable///PointingToDeclaration/"><span
+                                            class="token annotation builtin">Serializable</span></span>
+                                    </div>
+                                </div>
+                                <span class="token keyword">data </span><span class="token keyword">class </span><a
+                                    href="index.html">DailyMeasurements</a><span
+                                    class="token punctuation">(</span><span
+                                    class="parameters "><span class="parameter "><span
+                                    class="token keyword">val </span>id<span class="token operator">: </span><a
+                                    href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span
+                                    class="token punctuation">, </span></span><span
+                                    class="parameter "><span class="token keyword">val </span>breakfast<span
+                                    class="token operator">: </span><a
+                                    href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                    class="token punctuation">, </span></span><span
+                                    class="parameter "><span class="token keyword">val </span>morningSnack<span
+                                    class="token operator">: </span><a
+                                    href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                    class="token punctuation">, </span></span><span
+                                    class="parameter "><span
+                                    class="token keyword">val </span>lunch<span
+                                    class="token operator">: </span><a
+                                    href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                    class="token punctuation">, </span></span><span
+                                    class="parameter "><span class="token keyword">val </span>afternoonSnack<span
+                                    class="token operator">: </span><a
+                                    href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                    class="token punctuation">, </span></span><span
+                                    class="parameter "><span class="token keyword">val </span>dinner<span
+                                    class="token operator">: </span><a
+                                    href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                    class="token punctuation">, </span></span><span
+                                    class="parameter "><span class="token keyword">val </span>basalInsulin<span
+                                    class="token operator">: </span><a
+                                    href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-basal-insulin/index.html">BasalInsulin</a><span
+                                    class="token punctuation">, </span></span><span
+                                    class="parameter "><span class="token keyword">var </span>dailyNotes<span
+                                    class="token operator">: </span><a
+                                    href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span
+                                    class="token operator"> = </span><span class="token string">&quot;&quot;</span></span></span><span
+                                    class="token punctuation">)</span></div>
+                            <p class="paragraph">The <code
+                                    class="lang-kotlin">DailyMeasurements</code> data class
+                                represents the container of the daily measurements inserted by the
+                                user</p><span class="kdoc-tag"><h4 class="">Author</h4><p
+                                class="paragraph">N7ghtm4r3 - Tecknobit</p></span><h4 class="">
+                            Parameters</h4>
+                            <div class="table">
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span><span>id</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The identifier
+                                                of the measurements</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span><span>breakfast</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The breakfast
+                                                measurement</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span>morning</span><wbr></wbr><span><span>Snack</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The morning
+                                                snack measurement</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span><span>lunch</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The lunch
+                                                measurement</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span>afternoon</span><wbr></wbr><span><span>Snack</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The afternoon
+                                                snack measurement</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span><span>dinner</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The dinner
+                                                measurement</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span>basal</span><wbr></wbr><span><span>Insulin</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The basal
+                                                insulin measurement</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex"><div><u><span>daily</span><wbr></wbr><span><span>Notes</span></span></u></div></span>
+                                        </div>
+                                        <div>
+                                            <div class="title"><p class="paragraph">The notes about
+                                                the daily measurements</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabbedcontent">
+                    <div class="tabs-section" tabs-section="tabs-section">
+                        <button class="section-tab" data-active=""
+                                data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members
+                        </button>
+                    </div>
+                    <div class="tabs-section-body">
+                        <div data-togglable="CONSTRUCTOR">
+                            <h2 class="">Constructors</h2>
+                            <div class="table"><a data-name="-361546532%2FConstructors%2F-813795679"
+                                                  anchor-label="DailyMeasurements"
+                                                  id="-361546532%2FConstructors%2F-813795679"
+                                                  data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row" data-togglable="CONSTRUCTOR"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="-daily-measurements.html"><span>Daily</span><wbr></wbr><span><span>Measurements</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-361546532%2FConstructors%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">constructor</span><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">id<span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">breakfast<span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">morningSnack<span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">lunch<span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">afternoonSnack<span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">dinner<span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">basalInsulin<span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-basal-insulin/index.html">BasalInsulin</a><span
+                                                                class="token punctuation">, </span></span><span
+                                                                class="parameter ">dailyNotes<span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span
+                                                                class="token operator"> = </span><span
+                                                                class="token string">&quot;&quot;</span></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-togglable="PROPERTY">
+                            <h2 class="">Properties</h2>
+                            <div class="table"><a data-name="-1159951307%2FProperties%2F-813795679"
+                                                  anchor-label="afternoonSnack"
+                                                  id="-1159951307%2FProperties%2F-813795679"
+                                                  data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="afternoon-snack.html"><span>afternoon</span><wbr></wbr><span><span>Snack</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1159951307%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace">
+                                                            <div class="block">
+                                                                <div class="block"><span
+                                                                        class="token annotation builtin">@</span><span
+                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
+                                                                        class="token annotation builtin">SerialName</span></span><span
+                                                                        class="token punctuation">(</span><span>value<span
+                                                                        class="token operator"> = </span><span
+                                                                        class="breakable-word"><span
+                                                                        class="token string">&quot;afternoon_snack&quot;</span></span></span>
+                                                                    <wbr></wbr>
+                                                                    <span class="token punctuation">)</span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="token keyword">val </span><a
+                                                                href="afternoon-snack.html">afternoonSnack</a><span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="939185308%2FProperties%2F-813795679"
+                                   anchor-label="basalInsulin"
+                                   id="939185308%2FProperties%2F-813795679"
+                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="basal-insulin.html"><span>basal</span><wbr></wbr><span><span>Insulin</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="939185308%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace">
+                                                            <div class="block">
+                                                                <div class="block"><span
+                                                                        class="token annotation builtin">@</span><span
+                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
+                                                                        class="token annotation builtin">SerialName</span></span><span
+                                                                        class="token punctuation">(</span><span>value<span
+                                                                        class="token operator"> = </span><span
+                                                                        class="breakable-word"><span
+                                                                        class="token string">&quot;basal_insulin&quot;</span></span></span>
+                                                                    <wbr></wbr>
+                                                                    <span class="token punctuation">)</span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="token keyword">val </span><a
+                                                                href="basal-insulin.html">basalInsulin</a><span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-basal-insulin/index.html">BasalInsulin</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-305673896%2FProperties%2F-813795679"
+                                   anchor-label="breakfast"
+                                   id="-305673896%2FProperties%2F-813795679"
+                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="breakfast.html"><span><span>breakfast</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-305673896%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">val </span><a
+                                                                href="breakfast.html">breakfast</a><span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-1534191553%2FProperties%2F-813795679"
+                                   anchor-label="dailyNotes"
+                                   id="-1534191553%2FProperties%2F-813795679"
+                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="daily-notes.html"><span>daily</span><wbr></wbr><span><span>Notes</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1534191553%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace">
+                                                            <div class="block">
+                                                                <div class="block"><span
+                                                                        class="token annotation builtin">@</span><span
+                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
+                                                                        class="token annotation builtin">SerialName</span></span><span
+                                                                        class="token punctuation">(</span><span>value<span
+                                                                        class="token operator"> = </span><span
+                                                                        class="breakable-word"><span
+                                                                        class="token string">&quot;daily_notes&quot;</span></span></span>
+                                                                    <wbr></wbr>
+                                                                    <span class="token punctuation">)</span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="token keyword">var </span><a
+                                                                href="daily-notes.html">dailyNotes</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="334987317%2FProperties%2F-813795679"
+                                   anchor-label="dinner" id="334987317%2FProperties%2F-813795679"
+                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="dinner.html"><span><span>dinner</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="334987317%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">val </span><a
+                                                                href="dinner.html">dinner</a><span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="1414800556%2FProperties%2F-813795679"
+                                   anchor-label="id" id="1414800556%2FProperties%2F-813795679"
+                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="id.html"><span><span>id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="1414800556%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">val </span><a
+                                                                href="id.html">id</a><span
+                                                                class="token operator">: </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-314547735%2FProperties%2F-813795679"
+                                   anchor-label="lunch" id="-314547735%2FProperties%2F-813795679"
+                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="lunch.html"><span><span>lunch</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-314547735%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">val </span><a
+                                                                href="lunch.html">lunch</a><span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-name="-716414659%2FProperties%2F-813795679"
+                                   anchor-label="morningSnack"
+                                   id="-716414659%2FProperties%2F-813795679"
+                                   data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="morning-snack.html"><span>morning</span><wbr></wbr><span><span>Snack</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-716414659%2FProperties%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace">
+                                                            <div class="block">
+                                                                <div class="block"><span
+                                                                        class="token annotation builtin">@</span><span
+                                                                        data-unresolved-link="kotlinx.serialization/SerialName///PointingToDeclaration/"><span
+                                                                        class="token annotation builtin">SerialName</span></span><span
+                                                                        class="token punctuation">(</span><span>value<span
+                                                                        class="token operator"> = </span><span
+                                                                        class="breakable-word"><span
+                                                                        class="token string">&quot;morning_snack&quot;</span></span></span>
+                                                                    <wbr></wbr>
+                                                                    <span class="token punctuation">)</span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="token keyword">val </span><a
+                                                                href="morning-snack.html">morningSnack</a><span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-togglable="FUNCTION">
+                            <h2 class="">Functions</h2>
+                            <div class="table"><a data-name="-1677222792%2FFunctions%2F-813795679"
+                                                  anchor-label="getMealByType"
+                                                  id="-1677222792%2FFunctions%2F-813795679"
+                                                  data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
+                                <div class="table-row"
+                                     data-filterable-current=":composeApp:dokkaHtml/commonMain"
+                                     data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                                    <div class="main-subrow keyValue ">
+                                        <div class=""><span class="inline-flex">
+                  <div><a href="get-meal-by-type.html"><span>get</span><wbr></wbr><span>Meal</span><wbr></wbr><span>By</span><wbr></wbr><span><span>Type</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon"
+                                   pointing-to="-1677222792%2FFunctions%2F-813795679"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+                                        <div>
+                                            <div class="title">
+                                                <div class="platform-hinted "
+                                                     data-platform-hinted="data-platform-hinted">
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-active=""
+                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">fun </span><a
+                                                                href="get-meal-by-type.html"><span
+                                                                class="token function">getMealByType</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">type<span
+                                                                class="token operator">: </span><span
+                                                                data-unresolved-link="com.tecknobit.glukycore.enums/MeasurementType///PointingToDeclaration/">MeasurementType</span></span></span><span
+                                                                class="token punctuation">)</span><span
+                                                                class="token operator">: </span><a
+                                                                href="../../com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html">Meal</a>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to obtain the specific meal
+                                                            based on the <a
+                                                                href="get-meal-by-type.html">type</a>
+                                                            passed</p></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <a href="#content" id="go-to-top-link"
+                   class="footer--button footer--button_go-to-top"></a>
+                <span>(c) 2025 Tecknobit</span>
+                <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
