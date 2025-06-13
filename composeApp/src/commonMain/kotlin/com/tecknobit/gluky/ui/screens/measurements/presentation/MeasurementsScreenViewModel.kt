@@ -239,7 +239,10 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
                         mealType = meal.type,
                         glycemia = glycemia.value,
                         postPrandialGlycemia = postPrandialGlycemia.value,
-                        insulinUnits = insulinUnits.quantityPicked,
+                        insulinUnits = if (insulinNeeded.value)
+                            insulinUnits.quantityPicked
+                        else
+                            -1,
                         content = mealContent
                     )
                 },

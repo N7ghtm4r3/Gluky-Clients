@@ -41,7 +41,6 @@ kotlin {
     }
 
     jvm("desktop") {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_22)
         }
@@ -148,8 +147,8 @@ android {
         applicationId = "com.tecknobit.gluky"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.0.1"
     }
     packaging {
         resources {
@@ -191,8 +190,8 @@ compose.desktop {
                 "jdk.security.auth"
             )
             packageName = "Gluky"
-            packageVersion = "1.0.0"
-            version = "1.0.0"
+            packageVersion = "1.0.1"
+            version = "1.0.1"
             description = "A daily tracker for glucose levels and meals"
             copyright = "© 2025 Tecknobit"
             vendor = "Tecknobit"
@@ -209,7 +208,7 @@ compose.desktop {
                 iconFile.set(project.file("src/desktopMain/resources/logo.png"))
                 packageName = "com-tecknobit-gluky"
                 debMaintainer = "infotecknobitcompany@gmail.com"
-                appRelease = "1.0.0"
+                appRelease = "1.0.1"
                 appCategory = "PERSONALIZATION"
                 rpmLicenseType = "APACHE2"
             }
