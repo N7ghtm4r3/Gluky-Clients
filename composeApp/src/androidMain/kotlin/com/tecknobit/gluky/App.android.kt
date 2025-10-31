@@ -1,5 +1,6 @@
 package com.tecknobit.gluky
 
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.NonRestartableComposable
@@ -10,7 +11,6 @@ import com.google.android.play.core.ktx.isImmediateUpdateAllowed
 import com.tecknobit.equinoxcore.utilities.AppContext
 import com.tecknobit.gluky.MainActivity.Companion.appUpdateManager
 import com.tecknobit.gluky.MainActivity.Companion.launcher
-import moe.tlaster.precompose.navigation.BackHandler
 import java.util.Locale
 
 /**

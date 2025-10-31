@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalComposeRuntimeApi::class)
+
 package com.tecknobit.gluky.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -5,9 +7,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeRuntimeApi
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.*
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme.*
+import com.tecknobit.equinoxcore.helpers.THEME_KEY
 import com.tecknobit.gluky.localUser
 
 /**
@@ -160,7 +165,10 @@ fun red(): Color {
  */
 @Composable
 fun applyDarkTheme(): Boolean {
-    return when (localUser.theme) {
+    val theme by localUser.observe<ApplicationTheme>(
+        key = THEME_KEY
+    )
+    return when (theme) {
         Dark -> true
         Light -> false
         Auto -> isSystemInDarkTheme()

@@ -58,10 +58,9 @@ import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.SUPPORTED_LANGUAGES
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
-import com.tecknobit.gluky.SPLASHSCREEN
 import com.tecknobit.gluky.bodyFontFamily
+import com.tecknobit.gluky.helpers.navToSplashscreen
 import com.tecknobit.gluky.localUser
-import com.tecknobit.gluky.navigator
 import com.tecknobit.gluky.ui.components.DeleteAccount
 import com.tecknobit.gluky.ui.components.Logout
 import com.tecknobit.gluky.ui.components.ProfilePic
@@ -269,7 +268,7 @@ class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
                         viewModel.changeLanguage(
                             onChange = {
                                 visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
+                                navToSplashscreen()
                             }
                         )
                     }
@@ -283,7 +282,6 @@ class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
                         viewModel.changeTheme(
                             onChange = {
                                 visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
                             }
                         )
                     }

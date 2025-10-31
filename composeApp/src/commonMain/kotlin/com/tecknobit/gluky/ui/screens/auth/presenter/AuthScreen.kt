@@ -56,7 +56,6 @@ import com.tecknobit.gluky.CloseApplicationOnNavBack
 import com.tecknobit.gluky.displayFontFamily
 import com.tecknobit.gluky.ui.screens.auth.presentation.AuthScreenViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
-import com.tecknobit.gluky.ui.theme.GlukyTheme
 import com.tecknobit.gluky.ui.theme.InputFieldShape
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.app_version
@@ -98,17 +97,15 @@ class AuthScreen : EquinoxScreen<AuthScreenViewModel>(
     @Composable
     override fun ArrangeScreenContent() {
         CloseApplicationOnNavBack()
-        GlukyTheme {
-            Scaffold(
-                snackbarHost = { SnackbarHost(hostState = viewModel.snackbarHostState!!) },
+        Scaffold(
+            snackbarHost = { SnackbarHost(hostState = viewModel.snackbarHostState!!) },
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) {
-                    HeaderSection()
-                    FormSection()
-                }
+                HeaderSection()
+                FormSection()
             }
         }
     }

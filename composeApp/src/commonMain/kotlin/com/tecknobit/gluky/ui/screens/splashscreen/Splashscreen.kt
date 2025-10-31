@@ -14,7 +14,6 @@ import androidx.compose.ui.text.font.FontWeight
 import com.tecknobit.equinoxcompose.session.screens.EquinoxNoModelScreen
 import com.tecknobit.gluky.CheckForUpdatesAndLaunch
 import com.tecknobit.gluky.ui.theme.AppTypography
-import com.tecknobit.gluky.ui.theme.GlukyTheme
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
@@ -33,25 +32,23 @@ class Splashscreen : EquinoxNoModelScreen() {
      */
     @Composable
     override fun ArrangeScreenContent() {
-        GlukyTheme {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.primary),
-                contentAlignment = Alignment.Center
-            ) {
-                Column {
-                    Text(
-                        text = stringResource(Res.string.app_name),
-                        style = AppTypography.displayLarge,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                    Text(
-                        text = "by Tecknobit",
-                        color = Color.White
-                    )
-                }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.primary),
+            contentAlignment = Alignment.Center
+        ) {
+            Column {
+                Text(
+                    text = stringResource(Res.string.app_name),
+                    style = AppTypography.displayLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
+                Text(
+                    text = "by Tecknobit",
+                    color = Color.White
+                )
             }
         }
         CheckForUpdatesAndLaunch()

@@ -92,7 +92,6 @@ kotlin {
                 implementation(libs.equinox.compose)
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.navigation)
-                api(libs.precompose)
                 implementation(libs.coil.compose)
                 implementation(libs.coil.network.ktor3)
                 implementation(libs.kotlinx.datetime)
@@ -103,6 +102,7 @@ kotlin {
                 implementation(libs.compose.charts)
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.dialogs.compose)
+                implementation(libs.navigation.compose)
                 implementation(libs.glukycore)
             }
         }

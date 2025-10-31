@@ -33,7 +33,6 @@ import com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen
 import com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen
 import com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab
 import com.tecknobit.gluky.ui.theme.AppTypography
-import com.tecknobit.gluky.ui.theme.GlukyTheme
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.account
 import gluky.composeapp.generated.resources.analyses
@@ -57,9 +56,7 @@ class HomeScreen : NavigatorScreen<I18nNavigationTab>() {
     @Composable
     override fun ArrangeScreenContent() {
         CloseApplicationOnNavBack()
-        GlukyTheme {
-            NavigationContent()
-        }
+        NavigationContent()
     }
 
     /**
