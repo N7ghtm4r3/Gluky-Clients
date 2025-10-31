@@ -1,8 +1,7 @@
 package com.tecknobit.gluky.ui.screens.account.presentation
 
 import androidx.compose.material3.SnackbarHostState
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxProfileViewModel
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxProfileViewModel
 import com.tecknobit.gluky.localUser
 import com.tecknobit.gluky.requester
 
@@ -13,7 +12,7 @@ import com.tecknobit.gluky.requester
  * @author N7ghtm4r3 - Tecknobit
  * @see androidx.lifecycle.ViewModel
  * @see com.tecknobit.equinoxcompose.session.Retriever.RetrieverWrapper
- * @see EquinoxViewModel
+ * @see com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
  * @see EquinoxProfileViewModel
  */
 class AccountScreenViewModel : EquinoxProfileViewModel(

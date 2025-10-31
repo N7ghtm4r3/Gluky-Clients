@@ -6,9 +6,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.tecknobit.equinoxcompose.utilities.getCurrentLocaleLanguage
-import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.DEFAULT_LANGUAGE
-import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.LANGUAGES_SUPPORTED
 import com.tecknobit.gluky.ui.theme.GlukyTheme
 import com.tecknobit.octocatkdu.OctocatKDUConfig
 import com.tecknobit.octocatkdu.UpdaterDialog
@@ -52,13 +49,5 @@ actual fun CloseApplicationOnNavBack() {
  * Method to points locale language for the application
  */
 actual fun setUserLanguage() {
-    // TODO: TO REMOVE THIS WORKAROUND AND USE DIRECTLY localUser.language
-    val language = localUser.language.ifBlank {
-        val currentLocaleLang = getCurrentLocaleLanguage()
-        if (LANGUAGES_SUPPORTED.containsKey(currentLocaleLang))
-            currentLocaleLang
-        else
-            DEFAULT_LANGUAGE
-    }
-    Locale.setDefault(Locale.forLanguageTag(language))
+    Locale.setDefault(Locale.forLanguageTag(localUser.language))
 }

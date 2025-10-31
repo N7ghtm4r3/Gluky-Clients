@@ -1,16 +1,12 @@
 package com.tecknobit.gluky
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.text.font.FontFamily
 import coil3.ImageLoader
 import coil3.compose.LocalPlatformContext
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
-import com.tecknobit.ametistaengine.AmetistaEngine
-import com.tecknobit.ametistaengine.AmetistaEngine.Companion.FILES_AMETISTA_CONFIG_PATHNAME
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
@@ -78,7 +74,6 @@ val localUser = EquinoxLocalUser(
  */
 @Composable
 fun App() {
-    InitAmetista()
     displayFontFamily = FontFamily(Font(Res.font.fredoka))
     bodyFontFamily = FontFamily(Font(Res.font.comicneue))
     imageLoader = ImageLoader.Builder(LocalPlatformContext.current)
@@ -116,25 +111,6 @@ fun App() {
                 HomeScreen().ShowContent()
             }
         }
-    }
-}
-
-/**
- * Method used to initialize the Ametista system
- */
-@Composable
-@NonRestartableComposable
-private fun InitAmetista() {
-    LaunchedEffect(Unit) {
-        val ametistaEngine = AmetistaEngine.ametistaEngine
-        ametistaEngine.fireUp(
-            configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME),
-            host = AmetistaConfig.HOST,
-            serverSecret = AmetistaConfig.SERVER_SECRET!!,
-            applicationId = AmetistaConfig.APPLICATION_IDENTIFIER!!,
-            bypassSslValidation = AmetistaConfig.BYPASS_SSL_VALIDATION,
-            debugMode = false
-        )
     }
 }
 

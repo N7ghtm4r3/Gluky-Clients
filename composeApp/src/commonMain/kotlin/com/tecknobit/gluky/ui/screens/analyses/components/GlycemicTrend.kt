@@ -29,6 +29,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RichTooltip
 import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipAnchorPosition
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.rememberTooltipState
@@ -242,12 +243,12 @@ fun GlycemicTrend(
                         fontSize = 12.sp,
                         textAlign = TextAlign.Center
                     ),
-                    contentBuilder = { dataIndex, valueIndex, value ->
+                    contentBuilder = { popup ->
                         useContentBuilder(
                             glycemicTrendData = glycemicTrendData,
-                            dataIndex = dataIndex,
-                            valueIndex = valueIndex,
-                            value = value
+                            dataIndex = popup.dataIndex,
+                            valueIndex = popup.valueIndex,
+                            value = popup.value
                         )
                     }
                 ),
@@ -318,7 +319,9 @@ private fun InfoChart(
     val tooltipState = rememberTooltipState()
     val scope = rememberCoroutineScope()
     TooltipBox(
-        positionProvider = TooltipDefaults.rememberRichTooltipPositionProvider(),
+        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(
+            positioning = TooltipAnchorPosition.Above
+        ),
         state = tooltipState,
         tooltip = {
             RichTooltip {

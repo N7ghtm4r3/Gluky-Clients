@@ -9,14 +9,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.tecknobit.equinoxcompose.annotations.ScreenCoordinator
 import com.tecknobit.equinoxcompose.session.screens.EquinoxScreen
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcompose.utilities.responsiveMaxWidth
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
 import com.tecknobit.gluky.ui.theme.AppTypography
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -43,7 +42,6 @@ abstract class GlukyScreenTab<V : EquinoxViewModel>(
     /**
      * Method used to arrange the content of the screen to display
      */
-    @OptIn(ExperimentalComposeApi::class)
     @Composable
     override fun ArrangeScreenContent() {
         Scaffold(

@@ -12,7 +12,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -29,7 +28,6 @@ import com.tecknobit.equinoxnavigation.NavigatorScreen
 import com.tecknobit.gluky.CloseApplicationOnNavBack
 import com.tecknobit.gluky.ui.components.ProfilePic
 import com.tecknobit.gluky.ui.icons.Meals
-import com.tecknobit.gluky.ui.screens.TMPNavigatorScreen
 import com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen
 import com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen
 import com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen
@@ -51,8 +49,7 @@ import org.jetbrains.compose.resources.stringResource
  * @see NavigatorScreen
  * @see I18nNavigationTab
  */
-@OptIn(ExperimentalComposeApi::class)
-class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
+class HomeScreen : NavigatorScreen<I18nNavigationTab>() {
 
     /**
      * Method used to arrange the content of the screen to display
@@ -140,7 +137,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
                 if (isNotAccountTab) {
                     Icon(
                         imageVector = tab.icon,
-                        contentDescription = tab.contentDescription
+                        contentDescription = tab.resolveContentDescription()
                     )
                 } else {
                     ProfilePic(
@@ -152,7 +149,7 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
             label = if (isNotAccountTab) {
                 {
                     Text(
-                        text = tab.prepareTitle(),
+                        text = tab.resolveTitle(),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -195,18 +192,15 @@ class HomeScreen : TMPNavigatorScreen<I18nNavigationTab>() {
         return arrayOf(
             I18nNavigationTab(
                 title = Res.string.meals,
-                icon = Meals,
-                contentDescription = "Meals"
+                icon = Meals
             ),
             I18nNavigationTab(
                 title = Res.string.analyses,
-                icon = Icons.Default.Analytics,
-                contentDescription = "Analyses"
+                icon = Icons.Default.Analytics
             ),
             I18nNavigationTab(
                 title = Res.string.account,
-                icon = Icons.Default.Settings,
-                contentDescription = "Account"
+                icon = Icons.Default.Settings
             )
         )
     }
