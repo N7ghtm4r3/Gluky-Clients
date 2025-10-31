@@ -10,6 +10,7 @@ import coil3.request.addLastModifiedToFileCacheKey
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
+import com.tecknobit.gluky.GlukyConfig.LOCAL_STORAGE_PATH
 import com.tecknobit.gluky.helpers.GlukyRequester
 import com.tecknobit.gluky.helpers.customHttpClient
 import com.tecknobit.gluky.ui.components.imageLoader
@@ -66,7 +67,7 @@ const val HOME_SCREEN = "HomeScreen"
  * `localUser` the local user session details
  */
 val localUser = EquinoxLocalUser(
-    localStoragePath = "Gluky"
+    localStoragePath = LOCAL_STORAGE_PATH
 )
 
 /**
