@@ -1,7 +1,6 @@
 package com.tecknobit.gluky
 
 import android.os.Bundle
-import android.os.StrictMode
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -53,8 +52,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         ContextActivityProvider.setCurrentActivity(this)
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
         appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
         setContent {
             App()
