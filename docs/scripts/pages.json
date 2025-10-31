@@ -1,0 +1,3092 @@
+[
+  {
+    "name": "abstract class GlukyScreenTab<V : EquinoxViewModel>(viewModel: V, useResponsiveWidth: Boolean = true, title: StringResource? = null) : EquinoxScreen<V> ",
+    "description": "com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.shared.presenters/-gluky-screen-tab/index.html",
+    "searchKeys": [
+      "GlukyScreenTab",
+      "abstract class GlukyScreenTab<V : EquinoxViewModel>(viewModel: V, useResponsiveWidth: Boolean = true, title: StringResource? = null) : EquinoxScreen<V> ",
+      "com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab"
+    ]
+  },
+  {
+    "name": "abstract val isNotFilledYet: Boolean",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.isNotFilledYet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-glycemic-measurement-item/is-not-filled-yet.html",
+    "searchKeys": [
+      "isNotFilledYet",
+      "abstract val isNotFilledYet: Boolean",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.isNotFilledYet"
+    ]
+  },
+  {
+    "name": "abstract var scope: CoroutineScope",
+    "description": "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher.scope",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/scope.html",
+    "searchKeys": [
+      "scope",
+      "abstract var scope: CoroutineScope",
+      "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher.scope"
+    ]
+  },
+  {
+    "name": "abstract var toasterState: ToasterState",
+    "description": "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher.toasterState",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/toaster-state.html",
+    "searchKeys": [
+      "toasterState",
+      "abstract var toasterState: ToasterState",
+      "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher.toasterState"
+    ]
+  },
+  {
+    "name": "class AccountScreen : GlukyScreenTab<AccountScreenViewModel> ",
+    "description": "com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.account.presenter/-account-screen/index.html",
+    "searchKeys": [
+      "AccountScreen",
+      "class AccountScreen : GlukyScreenTab<AccountScreenViewModel> ",
+      "com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen"
+    ]
+  },
+  {
+    "name": "class AccountScreenViewModel : EquinoxProfileViewModel",
+    "description": "com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.account.presentation/-account-screen-view-model/index.html",
+    "searchKeys": [
+      "AccountScreenViewModel",
+      "class AccountScreenViewModel : EquinoxProfileViewModel",
+      "com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel"
+    ]
+  },
+  {
+    "name": "class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel> ",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presenter/-analyses-screen/index.html",
+    "searchKeys": [
+      "AnalysesScreen",
+      "class AnalysesScreen : GlukyScreenTab<AnalysesScreenViewModel> ",
+      "com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen"
+    ]
+  },
+  {
+    "name": "class AnalysesScreenViewModel : EquinoxViewModel, ToastsLauncher",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/index.html",
+    "searchKeys": [
+      "AnalysesScreenViewModel",
+      "class AnalysesScreenViewModel : EquinoxViewModel, ToastsLauncher",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel"
+    ]
+  },
+  {
+    "name": "class AuthScreen : EquinoxScreen<AuthScreenViewModel> ",
+    "description": "com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.auth.presenter/-auth-screen/index.html",
+    "searchKeys": [
+      "AuthScreen",
+      "class AuthScreen : EquinoxScreen<AuthScreenViewModel> ",
+      "com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen"
+    ]
+  },
+  {
+    "name": "class AuthScreenViewModel : EquinoxAuthViewModel",
+    "description": "com.tecknobit.gluky.ui.screens.auth.presentation.AuthScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.auth.presentation/-auth-screen-view-model/index.html",
+    "searchKeys": [
+      "AuthScreenViewModel",
+      "class AuthScreenViewModel : EquinoxAuthViewModel",
+      "com.tecknobit.gluky.ui.screens.auth.presentation.AuthScreenViewModel"
+    ]
+  },
+  {
+    "name": "class GlukyRequester(host: String, userId: String? = null, userToken: String? = null, debugMode: Boolean = false) : EquinoxRequester",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/index.html",
+    "searchKeys": [
+      "GlukyRequester",
+      "class GlukyRequester(host: String, userId: String? = null, userToken: String? = null, debugMode: Boolean = false) : EquinoxRequester",
+      "com.tecknobit.gluky.helpers.GlukyRequester"
+    ]
+  },
+  {
+    "name": "class HomeScreen : NavigatorScreen<I18nNavigationTab> ",
+    "description": "com.tecknobit.gluky.ui.screens.home.HomeScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.home/-home-screen/index.html",
+    "searchKeys": [
+      "HomeScreen",
+      "class HomeScreen : NavigatorScreen<I18nNavigationTab> ",
+      "com.tecknobit.gluky.ui.screens.home.HomeScreen"
+    ]
+  },
+  {
+    "name": "class MainActivity : ComponentActivity",
+    "description": "com.tecknobit.gluky.MainActivity",
+    "location": "-gluky/com.tecknobit.gluky/-main-activity/index.html",
+    "searchKeys": [
+      "MainActivity",
+      "class MainActivity : ComponentActivity",
+      "com.tecknobit.gluky.MainActivity"
+    ]
+  },
+  {
+    "name": "class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel> ",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presenter/-measurements-screen/index.html",
+    "searchKeys": [
+      "MeasurementsScreen",
+      "class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel> ",
+      "com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen"
+    ]
+  },
+  {
+    "name": "class MeasurementsScreenViewModel : EquinoxViewModel, ToastsLauncher",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/index.html",
+    "searchKeys": [
+      "MeasurementsScreenViewModel",
+      "class MeasurementsScreenViewModel : EquinoxViewModel, ToastsLauncher",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel"
+    ]
+  },
+  {
+    "name": "class Splashscreen : EquinoxNoModelScreen",
+    "description": "com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.splashscreen/-splashscreen/index.html",
+    "searchKeys": [
+      "Splashscreen",
+      "class Splashscreen : EquinoxNoModelScreen",
+      "com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen"
+    ]
+  },
+  {
+    "name": "const val AUTH_SCREEN: String",
+    "description": "com.tecknobit.gluky.helpers.AUTH_SCREEN",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-a-u-t-h_-s-c-r-e-e-n.html",
+    "searchKeys": [
+      "AUTH_SCREEN",
+      "const val AUTH_SCREEN: String",
+      "com.tecknobit.gluky.helpers.AUTH_SCREEN"
+    ]
+  },
+  {
+    "name": "const val HOME_SCREEN: String",
+    "description": "com.tecknobit.gluky.helpers.HOME_SCREEN",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-h-o-m-e_-s-c-r-e-e-n.html",
+    "searchKeys": [
+      "HOME_SCREEN",
+      "const val HOME_SCREEN: String",
+      "com.tecknobit.gluky.helpers.HOME_SCREEN"
+    ]
+  },
+  {
+    "name": "const val INITIAL_SELECTED_DAY: Int",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.INITIAL_SELECTED_DAY",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/-companion/-i-n-i-t-i-a-l_-s-e-l-e-c-t-e-d_-d-a-y.html",
+    "searchKeys": [
+      "INITIAL_SELECTED_DAY",
+      "const val INITIAL_SELECTED_DAY: Int",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.INITIAL_SELECTED_DAY"
+    ]
+  },
+  {
+    "name": "const val MAX_LOADABLE_DAYS: Int = 100",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.MAX_LOADABLE_DAYS",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/-companion/-m-a-x_-l-o-a-d-a-b-l-e_-d-a-y-s.html",
+    "searchKeys": [
+      "MAX_LOADABLE_DAYS",
+      "const val MAX_LOADABLE_DAYS: Int = 100",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.MAX_LOADABLE_DAYS"
+    ]
+  },
+  {
+    "name": "const val ONE_DAY_MILLIS: Long",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.ONE_DAY_MILLIS",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/-companion/-o-n-e_-d-a-y_-m-i-l-l-i-s.html",
+    "searchKeys": [
+      "ONE_DAY_MILLIS",
+      "const val ONE_DAY_MILLIS: Long",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion.ONE_DAY_MILLIS"
+    ]
+  },
+  {
+    "name": "const val SPLASHSCREEN: String",
+    "description": "com.tecknobit.gluky.helpers.SPLASHSCREEN",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-s-p-l-a-s-h-s-c-r-e-e-n.html",
+    "searchKeys": [
+      "SPLASHSCREEN",
+      "const val SPLASHSCREEN: String",
+      "com.tecknobit.gluky.helpers.SPLASHSCREEN"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.MainActivity.MainActivity",
+    "location": "-gluky/com.tecknobit.gluky/-main-activity/-main-activity.html",
+    "searchKeys": [
+      "MainActivity",
+      "constructor()",
+      "com.tecknobit.gluky.MainActivity.MainActivity"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel.AccountScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.account.presentation/-account-screen-view-model/-account-screen-view-model.html",
+    "searchKeys": [
+      "AccountScreenViewModel",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel.AccountScreenViewModel"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen.AccountScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.account.presenter/-account-screen/-account-screen.html",
+    "searchKeys": [
+      "AccountScreen",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.account.presenter.AccountScreen.AccountScreen"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.AnalysesScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/-analyses-screen-view-model.html",
+    "searchKeys": [
+      "AnalysesScreenViewModel",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.AnalysesScreenViewModel"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen.AnalysesScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presenter/-analyses-screen/-analyses-screen.html",
+    "searchKeys": [
+      "AnalysesScreen",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.analyses.presenter.AnalysesScreen.AnalysesScreen"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.auth.presentation.AuthScreenViewModel.AuthScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.auth.presentation/-auth-screen-view-model/-auth-screen-view-model.html",
+    "searchKeys": [
+      "AuthScreenViewModel",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.auth.presentation.AuthScreenViewModel.AuthScreenViewModel"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen.AuthScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.auth.presenter/-auth-screen/-auth-screen.html",
+    "searchKeys": [
+      "AuthScreen",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen.AuthScreen"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.home.HomeScreen.HomeScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.home/-home-screen/-home-screen.html",
+    "searchKeys": [
+      "HomeScreen",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.home.HomeScreen.HomeScreen"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.MeasurementsScreenViewModel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/-measurements-screen-view-model.html",
+    "searchKeys": [
+      "MeasurementsScreenViewModel",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.MeasurementsScreenViewModel"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen.MeasurementsScreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presenter/-measurements-screen/-measurements-screen.html",
+    "searchKeys": [
+      "MeasurementsScreen",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.measurements.presenter.MeasurementsScreen.MeasurementsScreen"
+    ]
+  },
+  {
+    "name": "constructor()",
+    "description": "com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen.Splashscreen",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.splashscreen/-splashscreen/-splashscreen.html",
+    "searchKeys": [
+      "Splashscreen",
+      "constructor()",
+      "com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen.Splashscreen"
+    ]
+  },
+  {
+    "name": "constructor(breakfast: GlycemicTrendData? = null, morningSnack: GlycemicTrendData? = null, lunch: GlycemicTrendData? = null, afternoonSnack: GlycemicTrendData? = null, dinner: GlycemicTrendData? = null, basalInsulin: GlycemicTrendData? = null, from: Long = -1, to: Long = -1)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.GlycemicTrendDataContainer",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/-glycemic-trend-data-container.html",
+    "searchKeys": [
+      "GlycemicTrendDataContainer",
+      "constructor(breakfast: GlycemicTrendData? = null, morningSnack: GlycemicTrendData? = null, lunch: GlycemicTrendData? = null, afternoonSnack: GlycemicTrendData? = null, dinner: GlycemicTrendData? = null, basalInsulin: GlycemicTrendData? = null, from: Long = -1, to: Long = -1)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.GlycemicTrendDataContainer"
+    ]
+  },
+  {
+    "name": "constructor(date: Long, value: Double)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint.GlycemiaPoint",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemia-point/-glycemia-point.html",
+    "searchKeys": [
+      "GlycemiaPoint",
+      "constructor(date: Long, value: Double)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint.GlycemiaPoint"
+    ]
+  },
+  {
+    "name": "constructor(higherGlycemia: GlycemiaPoint, lowerGlycemia: GlycemiaPoint, averageGlycemia: Double, firstSet: List<GlycemiaPoint>? = null, secondSet: List<GlycemiaPoint>? = null, thirdSet: List<GlycemiaPoint>? = null, fourthSet: List<GlycemiaPoint>? = null, labelType: GlycemicTrendLabelType? = null)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.GlycemicTrendData",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/-glycemic-trend-data.html",
+    "searchKeys": [
+      "GlycemicTrendData",
+      "constructor(higherGlycemia: GlycemiaPoint, lowerGlycemia: GlycemiaPoint, averageGlycemia: Double, firstSet: List<GlycemiaPoint>? = null, secondSet: List<GlycemiaPoint>? = null, thirdSet: List<GlycemiaPoint>? = null, fourthSet: List<GlycemiaPoint>? = null, labelType: GlycemicTrendLabelType? = null)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.GlycemicTrendData"
+    ]
+  },
+  {
+    "name": "constructor(host: String, userId: String? = null, userToken: String? = null, debugMode: Boolean = false)",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.GlukyRequester",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/-gluky-requester.html",
+    "searchKeys": [
+      "GlukyRequester",
+      "constructor(host: String, userId: String? = null, userToken: String? = null, debugMode: Boolean = false)",
+      "com.tecknobit.gluky.helpers.GlukyRequester.GlukyRequester"
+    ]
+  },
+  {
+    "name": "constructor(id: String, _annotationDate: Long = -1, _glycemia: Int = -1, _insulinUnits: Int = -1)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin.BasalInsulin",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-basal-insulin/-basal-insulin.html",
+    "searchKeys": [
+      "BasalInsulin",
+      "constructor(id: String, _annotationDate: Long = -1, _glycemia: Int = -1, _insulinUnits: Int = -1)",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin.BasalInsulin"
+    ]
+  },
+  {
+    "name": "constructor(id: String, breakfast: Meal, morningSnack: Meal, lunch: Meal, afternoonSnack: Meal, dinner: Meal, basalInsulin: BasalInsulin, dailyNotes: String = \"\")",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.DailyMeasurements",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/-daily-measurements.html",
+    "searchKeys": [
+      "DailyMeasurements",
+      "constructor(id: String, breakfast: Meal, morningSnack: Meal, lunch: Meal, afternoonSnack: Meal, dinner: Meal, basalInsulin: BasalInsulin, dailyNotes: String = \"\")",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.DailyMeasurements"
+    ]
+  },
+  {
+    "name": "constructor(id: String, type: MeasurementType, _annotationDate: Long = -1, _rawContent: String = \"\", _glycemia: Int = -1, _postPrandialGlycemia: Int = -1, _insulinUnits: Int = -1)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Meal",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/-meal.html",
+    "searchKeys": [
+      "Meal",
+      "constructor(id: String, type: MeasurementType, _annotationDate: Long = -1, _rawContent: String = \"\", _glycemia: Int = -1, _postPrandialGlycemia: Int = -1, _insulinUnits: Int = -1)",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Meal"
+    ]
+  },
+  {
+    "name": "constructor(reportId: String, name: String, reportUrl: String)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.Report.Report",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-report/-report.html",
+    "searchKeys": [
+      "Report",
+      "constructor(reportId: String, name: String, reportUrl: String)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.Report.Report"
+    ]
+  },
+  {
+    "name": "constructor(viewModel: V, useResponsiveWidth: Boolean = true, title: StringResource? = null)",
+    "description": "com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab.GlukyScreenTab",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.shared.presenters/-gluky-screen-tab/-gluky-screen-tab.html",
+    "searchKeys": [
+      "GlukyScreenTab",
+      "constructor(viewModel: V, useResponsiveWidth: Boolean = true, title: StringResource? = null)",
+      "com.tecknobit.gluky.ui.screens.shared.presenters.GlukyScreenTab.GlukyScreenTab"
+    ]
+  },
+  {
+    "name": "data class BasalInsulin(id: String, _annotationDate: Long = -1, _glycemia: Int = -1, _insulinUnits: Int = -1) : GlycemicMeasurementItem",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-basal-insulin/index.html",
+    "searchKeys": [
+      "BasalInsulin",
+      "data class BasalInsulin(id: String, _annotationDate: Long = -1, _glycemia: Int = -1, _insulinUnits: Int = -1) : GlycemicMeasurementItem",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin"
+    ]
+  },
+  {
+    "name": "data class DailyMeasurements(val id: String, val breakfast: Meal, val morningSnack: Meal, val lunch: Meal, val afternoonSnack: Meal, val dinner: Meal, val basalInsulin: BasalInsulin, var dailyNotes: String = \"\")",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/index.html",
+    "searchKeys": [
+      "DailyMeasurements",
+      "data class DailyMeasurements(val id: String, val breakfast: Meal, val morningSnack: Meal, val lunch: Meal, val afternoonSnack: Meal, val dinner: Meal, val basalInsulin: BasalInsulin, var dailyNotes: String = \"\")",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements"
+    ]
+  },
+  {
+    "name": "data class GlycemiaPoint(val date: Long, val value: Double)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemia-point/index.html",
+    "searchKeys": [
+      "GlycemiaPoint",
+      "data class GlycemiaPoint(val date: Long, val value: Double)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint"
+    ]
+  },
+  {
+    "name": "data class GlycemicTrendData(val higherGlycemia: GlycemiaPoint, val lowerGlycemia: GlycemiaPoint, val averageGlycemia: Double, val firstSet: List<GlycemiaPoint>? = null, val secondSet: List<GlycemiaPoint>? = null, val thirdSet: List<GlycemiaPoint>? = null, val fourthSet: List<GlycemiaPoint>? = null, val labelType: GlycemicTrendLabelType? = null)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/index.html",
+    "searchKeys": [
+      "GlycemicTrendData",
+      "data class GlycemicTrendData(val higherGlycemia: GlycemiaPoint, val lowerGlycemia: GlycemiaPoint, val averageGlycemia: Double, val firstSet: List<GlycemiaPoint>? = null, val secondSet: List<GlycemiaPoint>? = null, val thirdSet: List<GlycemiaPoint>? = null, val fourthSet: List<GlycemiaPoint>? = null, val labelType: GlycemicTrendLabelType? = null)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData"
+    ]
+  },
+  {
+    "name": "data class GlycemicTrendDataContainer(val breakfast: GlycemicTrendData? = null, val morningSnack: GlycemicTrendData? = null, val lunch: GlycemicTrendData? = null, val afternoonSnack: GlycemicTrendData? = null, val dinner: GlycemicTrendData? = null, val basalInsulin: GlycemicTrendData? = null, val from: Long = -1, val to: Long = -1)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/index.html",
+    "searchKeys": [
+      "GlycemicTrendDataContainer",
+      "data class GlycemicTrendDataContainer(val breakfast: GlycemicTrendData? = null, val morningSnack: GlycemicTrendData? = null, val lunch: GlycemicTrendData? = null, val afternoonSnack: GlycemicTrendData? = null, val dinner: GlycemicTrendData? = null, val basalInsulin: GlycemicTrendData? = null, val from: Long = -1, val to: Long = -1)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer"
+    ]
+  },
+  {
+    "name": "data class Meal(id: String, val type: MeasurementType, _annotationDate: Long = -1, _rawContent: String = \"\", _glycemia: Int = -1, _postPrandialGlycemia: Int = -1, _insulinUnits: Int = -1) : GlycemicMeasurementItem",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/index.html",
+    "searchKeys": [
+      "Meal",
+      "data class Meal(id: String, val type: MeasurementType, _annotationDate: Long = -1, _rawContent: String = \"\", _glycemia: Int = -1, _postPrandialGlycemia: Int = -1, _insulinUnits: Int = -1) : GlycemicMeasurementItem",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal"
+    ]
+  },
+  {
+    "name": "data class Report(val reportId: String, val name: String, val reportUrl: String)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.Report",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-report/index.html",
+    "searchKeys": [
+      "Report",
+      "data class Report(val reportId: String, val name: String, val reportUrl: String)",
+      "com.tecknobit.gluky.ui.screens.analyses.data.Report"
+    ]
+  },
+  {
+    "name": "expect class KReviewer",
+    "description": "com.tecknobit.gluky.helpers.KReviewer",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-k-reviewer/index.html",
+    "searchKeys": [
+      "KReviewer",
+      "expect class KReviewer",
+      "com.tecknobit.gluky.helpers.KReviewer"
+    ]
+  },
+  {
+    "name": "expect constructor()",
+    "description": "com.tecknobit.gluky.helpers.KReviewer.KReviewer",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-k-reviewer/-k-reviewer.html",
+    "searchKeys": [
+      "KReviewer",
+      "expect constructor()",
+      "com.tecknobit.gluky.helpers.KReviewer.KReviewer"
+    ]
+  },
+  {
+    "name": "expect fun CheckForUpdatesAndLaunch()",
+    "description": "com.tecknobit.gluky.CheckForUpdatesAndLaunch",
+    "location": "-gluky/com.tecknobit.gluky/-check-for-updates-and-launch.html",
+    "searchKeys": [
+      "CheckForUpdatesAndLaunch",
+      "expect fun CheckForUpdatesAndLaunch()",
+      "com.tecknobit.gluky.CheckForUpdatesAndLaunch"
+    ]
+  },
+  {
+    "name": "expect fun CloseApplicationOnNavBack()",
+    "description": "com.tecknobit.gluky.CloseApplicationOnNavBack",
+    "location": "-gluky/com.tecknobit.gluky/-close-application-on-nav-back.html",
+    "searchKeys": [
+      "CloseApplicationOnNavBack",
+      "expect fun CloseApplicationOnNavBack()",
+      "com.tecknobit.gluky.CloseApplicationOnNavBack"
+    ]
+  },
+  {
+    "name": "expect fun customHttpClient(): HttpClient",
+    "description": "com.tecknobit.gluky.helpers.customHttpClient",
+    "location": "-gluky/com.tecknobit.gluky.helpers/custom-http-client.html",
+    "searchKeys": [
+      "customHttpClient",
+      "expect fun customHttpClient(): HttpClient",
+      "com.tecknobit.gluky.helpers.customHttpClient"
+    ]
+  },
+  {
+    "name": "expect fun openReport(url: String?)",
+    "description": "com.tecknobit.gluky.helpers.openReport",
+    "location": "-gluky/com.tecknobit.gluky.helpers/open-report.html",
+    "searchKeys": [
+      "openReport",
+      "expect fun openReport(url: String?)",
+      "com.tecknobit.gluky.helpers.openReport"
+    ]
+  },
+  {
+    "name": "expect fun reviewInApp(flowAction: () -> Unit = {})",
+    "description": "com.tecknobit.gluky.helpers.KReviewer.reviewInApp",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-k-reviewer/review-in-app.html",
+    "searchKeys": [
+      "reviewInApp",
+      "expect fun reviewInApp(flowAction: () -> Unit = {})",
+      "com.tecknobit.gluky.helpers.KReviewer.reviewInApp"
+    ]
+  },
+  {
+    "name": "expect fun setUserLanguage()",
+    "description": "com.tecknobit.gluky.setUserLanguage",
+    "location": "-gluky/com.tecknobit.gluky/set-user-language.html",
+    "searchKeys": [
+      "setUserLanguage",
+      "expect fun setUserLanguage()",
+      "com.tecknobit.gluky.setUserLanguage"
+    ]
+  },
+  {
+    "name": "expect suspend fun saveReport(reportBytes: ByteArray, reportName: String, onSave: (String?) -> Unit)",
+    "description": "com.tecknobit.gluky.helpers.saveReport",
+    "location": "-gluky/com.tecknobit.gluky.helpers/save-report.html",
+    "searchKeys": [
+      "saveReport",
+      "expect suspend fun saveReport(reportBytes: ByteArray, reportName: String, onSave: (String?) -> Unit)",
+      "com.tecknobit.gluky.helpers.saveReport"
+    ]
+  },
+  {
+    "name": "expect val openReportLabel: StringResource?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.helpers.openReportLabel",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.helpers/open-report-label.html",
+    "searchKeys": [
+      "openReportLabel",
+      "expect val openReportLabel: StringResource?",
+      "com.tecknobit.gluky.ui.screens.analyses.helpers.openReportLabel"
+    ]
+  },
+  {
+    "name": "fun App()",
+    "description": "com.tecknobit.gluky.App",
+    "location": "-gluky/com.tecknobit.gluky/-app.html",
+    "searchKeys": [
+      "App",
+      "fun App()",
+      "com.tecknobit.gluky.App"
+    ]
+  },
+  {
+    "name": "fun BasalInsulinCard(viewModel: MeasurementsScreenViewModel, dailyMeasurements: DailyMeasurements)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.measurementcards.BasalInsulinCard",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components.measurementcards/-basal-insulin-card.html",
+    "searchKeys": [
+      "BasalInsulinCard",
+      "fun BasalInsulinCard(viewModel: MeasurementsScreenViewModel, dailyMeasurements: DailyMeasurements)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.measurementcards.BasalInsulinCard"
+    ]
+  },
+  {
+    "name": "fun BasalInsulinFormDialog(show: MutableState<Boolean>, viewModel: MeasurementsScreenViewModel, basalInsulin: BasalInsulin)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.BasalInsulinFormDialog",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components.formdialogs/-basal-insulin-form-dialog.html",
+    "searchKeys": [
+      "BasalInsulinFormDialog",
+      "fun BasalInsulinFormDialog(show: MutableState<Boolean>, viewModel: MeasurementsScreenViewModel, basalInsulin: BasalInsulin)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.BasalInsulinFormDialog"
+    ]
+  },
+  {
+    "name": "fun ByteArray.toNSData(): NSData",
+    "description": "com.tecknobit.gluky.helpers.toNSData",
+    "location": "-gluky/com.tecknobit.gluky.helpers/to-n-s-data.html",
+    "searchKeys": [
+      "toNSData",
+      "fun ByteArray.toNSData(): NSData",
+      "com.tecknobit.gluky.helpers.toNSData"
+    ]
+  },
+  {
+    "name": "fun CustomPeriodButton(viewModel: AnalysesScreenViewModel, trendPeriod: GlycemicTrendPeriod)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodButton",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-custom-period-button.html",
+    "searchKeys": [
+      "CustomPeriodButton",
+      "fun CustomPeriodButton(viewModel: AnalysesScreenViewModel, trendPeriod: GlycemicTrendPeriod)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodButton"
+    ]
+  },
+  {
+    "name": "fun CustomPeriodPicker(show: MutableState<Boolean>, viewModel: AnalysesScreenViewModel, trendPeriod: GlycemicTrendPeriod)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodPicker",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-custom-period-picker.html",
+    "searchKeys": [
+      "CustomPeriodPicker",
+      "fun CustomPeriodPicker(show: MutableState<Boolean>, viewModel: AnalysesScreenViewModel, trendPeriod: GlycemicTrendPeriod)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.CustomPeriodPicker"
+    ]
+  },
+  {
+    "name": "fun DailyNotes(state: SheetState, scope: CoroutineScope, viewModel: MeasurementsScreenViewModel, dailyMeasurements: DailyMeasurements)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.DailyNotes",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-daily-notes.html",
+    "searchKeys": [
+      "DailyNotes",
+      "fun DailyNotes(state: SheetState, scope: CoroutineScope, viewModel: MeasurementsScreenViewModel, dailyMeasurements: DailyMeasurements)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.DailyNotes"
+    ]
+  },
+  {
+    "name": "fun DayIndicator(modifier: Modifier = Modifier, dayInMillis: Long, contentColor: Color = Color.White, monthVisible: Boolean = true)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.daypickers.DayIndicator",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components.daypickers/-day-indicator.html",
+    "searchKeys": [
+      "DayIndicator",
+      "fun DayIndicator(modifier: Modifier = Modifier, dayInMillis: Long, contentColor: Color = Color.White, monthVisible: Boolean = true)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.daypickers.DayIndicator"
+    ]
+  },
+  {
+    "name": "fun DayPickerBar(viewModel: MeasurementsScreenViewModel, currentDay: Long, content: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.daypickers.DayPickerBar",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components.daypickers/-day-picker-bar.html",
+    "searchKeys": [
+      "DayPickerBar",
+      "fun DayPickerBar(viewModel: MeasurementsScreenViewModel, currentDay: Long, content: () -> Unit)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.daypickers.DayPickerBar"
+    ]
+  },
+  {
+    "name": "fun DeleteAccount(viewModel: AccountScreenViewModel, show: MutableState<Boolean>)",
+    "description": "com.tecknobit.gluky.ui.components.DeleteAccount",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-delete-account.html",
+    "searchKeys": [
+      "DeleteAccount",
+      "fun DeleteAccount(viewModel: AccountScreenViewModel, show: MutableState<Boolean>)",
+      "com.tecknobit.gluky.ui.components.DeleteAccount"
+    ]
+  },
+  {
+    "name": "fun EmptyTrendData(viewModel: AnalysesScreenViewModel, glycemicTrendPeriod: GlycemicTrendPeriod)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.EmptyTrendData",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-empty-trend-data.html",
+    "searchKeys": [
+      "EmptyTrendData",
+      "fun EmptyTrendData(viewModel: AnalysesScreenViewModel, glycemicTrendPeriod: GlycemicTrendPeriod)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.EmptyTrendData"
+    ]
+  },
+  {
+    "name": "fun FillItemButton(contentDescription: StringResource, fillDialog: (MutableState<Boolean>) -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.FillItemButton",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-fill-item-button.html",
+    "searchKeys": [
+      "FillItemButton",
+      "fun FillItemButton(contentDescription: StringResource, fillDialog: (MutableState<Boolean>) -> Unit)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.FillItemButton"
+    ]
+  },
+  {
+    "name": "fun GlukyTheme(darkTheme: Boolean = applyDarkTheme(), content: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.theme.GlukyTheme",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-gluky-theme.html",
+    "searchKeys": [
+      "GlukyTheme",
+      "fun GlukyTheme(darkTheme: Boolean = applyDarkTheme(), content: () -> Unit)",
+      "com.tecknobit.gluky.ui.theme.GlukyTheme"
+    ]
+  },
+  {
+    "name": "fun GlycemiaLevelBadge(modifier: Modifier = Modifier, glycemia: Int, onClick: () -> Unit? = null)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-glycemia-level-badge.html",
+    "searchKeys": [
+      "GlycemiaLevelBadge",
+      "fun GlycemiaLevelBadge(modifier: Modifier = Modifier, glycemia: Int, onClick: () -> Unit? = null)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge"
+    ]
+  },
+  {
+    "name": "fun GlycemicReportDialog(show: MutableState<Boolean>, viewModel: AnalysesScreenViewModel)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.GlycemicReportDialog",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-glycemic-report-dialog.html",
+    "searchKeys": [
+      "GlycemicReportDialog",
+      "fun GlycemicReportDialog(show: MutableState<Boolean>, viewModel: AnalysesScreenViewModel)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.GlycemicReportDialog"
+    ]
+  },
+  {
+    "name": "fun GlycemicTrend(type: MeasurementType, glycemicTrendDataContainer: GlycemicTrendDataContainer, glycemicTrendData: GlycemicTrendData, glycemicTrendPeriod: GlycemicTrendPeriod, glycemicTrendGroupingDay: GlycemicTrendGroupingDay?)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrend",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-glycemic-trend.html",
+    "searchKeys": [
+      "GlycemicTrend",
+      "fun GlycemicTrend(type: MeasurementType, glycemicTrendDataContainer: GlycemicTrendDataContainer, glycemicTrendData: GlycemicTrendData, glycemicTrendPeriod: GlycemicTrendPeriod, glycemicTrendGroupingDay: GlycemicTrendGroupingDay?)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrend"
+    ]
+  },
+  {
+    "name": "fun GlycemicTrendPeriod.extendedText(): StringResource",
+    "description": "com.tecknobit.gluky.helpers.extendedText",
+    "location": "-gluky/com.tecknobit.gluky.helpers/extended-text.html",
+    "searchKeys": [
+      "extendedText",
+      "fun GlycemicTrendPeriod.extendedText(): StringResource",
+      "com.tecknobit.gluky.helpers.extendedText"
+    ]
+  },
+  {
+    "name": "fun GlycemicTrendPeriodSelector(viewModel: AnalysesScreenViewModel, glycemicTrendPeriod: GlycemicTrendPeriod)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrendPeriodSelector",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-glycemic-trend-period-selector.html",
+    "searchKeys": [
+      "GlycemicTrendPeriodSelector",
+      "fun GlycemicTrendPeriodSelector(viewModel: AnalysesScreenViewModel, glycemicTrendPeriod: GlycemicTrendPeriod)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.GlycemicTrendPeriodSelector"
+    ]
+  },
+  {
+    "name": "fun GroupingDayChip(viewModel: AnalysesScreenViewModel, groupingDay: GlycemicTrendGroupingDay?)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.GroupingDayChip",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-grouping-day-chip.html",
+    "searchKeys": [
+      "GroupingDayChip",
+      "fun GroupingDayChip(viewModel: AnalysesScreenViewModel, groupingDay: GlycemicTrendGroupingDay?)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.GroupingDayChip"
+    ]
+  },
+  {
+    "name": "fun Int.levelColor(): Color",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Companion.levelColor",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/-companion/level-color.html",
+    "searchKeys": [
+      "levelColor",
+      "fun Int.levelColor(): Color",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Companion.levelColor"
+    ]
+  },
+  {
+    "name": "fun Logout(viewModel: AccountScreenViewModel, show: MutableState<Boolean>)",
+    "description": "com.tecknobit.gluky.ui.components.Logout",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-logout.html",
+    "searchKeys": [
+      "Logout",
+      "fun Logout(viewModel: AccountScreenViewModel, show: MutableState<Boolean>)",
+      "com.tecknobit.gluky.ui.components.Logout"
+    ]
+  },
+  {
+    "name": "fun Long.asDayOfWeek(): StringResource",
+    "description": "com.tecknobit.gluky.helpers.asDayOfWeek",
+    "location": "-gluky/com.tecknobit.gluky.helpers/as-day-of-week.html",
+    "searchKeys": [
+      "asDayOfWeek",
+      "fun Long.asDayOfWeek(): StringResource",
+      "com.tecknobit.gluky.helpers.asDayOfWeek"
+    ]
+  },
+  {
+    "name": "fun Long.asMonth(): StringResource",
+    "description": "com.tecknobit.gluky.helpers.asMonth",
+    "location": "-gluky/com.tecknobit.gluky.helpers/as-month.html",
+    "searchKeys": [
+      "asMonth",
+      "fun Long.asMonth(): StringResource",
+      "com.tecknobit.gluky.helpers.asMonth"
+    ]
+  },
+  {
+    "name": "fun MainViewController()",
+    "description": "com.tecknobit.gluky.MainViewController",
+    "location": "-gluky/com.tecknobit.gluky/-main-view-controller.html",
+    "searchKeys": [
+      "MainViewController",
+      "fun MainViewController()",
+      "com.tecknobit.gluky.MainViewController"
+    ]
+  },
+  {
+    "name": "fun MealCard(viewModel: MeasurementsScreenViewModel, meal: Meal)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.measurementcards.MealCard",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components.measurementcards/-meal-card.html",
+    "searchKeys": [
+      "MealCard",
+      "fun MealCard(viewModel: MeasurementsScreenViewModel, meal: Meal)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.measurementcards.MealCard"
+    ]
+  },
+  {
+    "name": "fun MealFormDialog(show: MutableState<Boolean>, viewModel: MeasurementsScreenViewModel, meal: Meal)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.MealFormDialog",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components.formdialogs/-meal-form-dialog.html",
+    "searchKeys": [
+      "MealFormDialog",
+      "fun MealFormDialog(show: MutableState<Boolean>, viewModel: MeasurementsScreenViewModel, meal: Meal)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.MealFormDialog"
+    ]
+  },
+  {
+    "name": "fun MeasurementTitle(modifier: Modifier = Modifier, type: MeasurementType, endContent: ColumnScope.() -> Unit? = null)",
+    "description": "com.tecknobit.gluky.ui.components.MeasurementTitle",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-measurement-title.html",
+    "searchKeys": [
+      "MeasurementTitle",
+      "fun MeasurementTitle(modifier: Modifier = Modifier, type: MeasurementType, endContent: ColumnScope.() -> Unit? = null)",
+      "com.tecknobit.gluky.ui.components.MeasurementTitle"
+    ]
+  },
+  {
+    "name": "fun Measurements(viewModel: MeasurementsScreenViewModel, horizontalPadding: Dp = 0.dp, dailyMeasurements: DailyMeasurements)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.Measurements",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-measurements.html",
+    "searchKeys": [
+      "Measurements",
+      "fun Measurements(viewModel: MeasurementsScreenViewModel, horizontalPadding: Dp = 0.dp, dailyMeasurements: DailyMeasurements)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.Measurements"
+    ]
+  },
+  {
+    "name": "fun ProfilePic(modifier: Modifier = Modifier, profilePic: String = localUser.profilePic, size: Dp, borderWidth: Dp = 1.dp, onClick: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.components.ProfilePic",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-profile-pic.html",
+    "searchKeys": [
+      "ProfilePic",
+      "fun ProfilePic(modifier: Modifier = Modifier, profilePic: String = localUser.profilePic, size: Dp, borderWidth: Dp = 1.dp, onClick: () -> Unit)",
+      "com.tecknobit.gluky.ui.components.ProfilePic"
+    ]
+  },
+  {
+    "name": "fun RetryButton(retryAction: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.components.RetryButton",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-retry-button.html",
+    "searchKeys": [
+      "RetryButton",
+      "fun RetryButton(retryAction: () -> Unit)",
+      "com.tecknobit.gluky.ui.components.RetryButton"
+    ]
+  },
+  {
+    "name": "fun SaveButton(modifier: Modifier = Modifier, save: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.components.SaveButton",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-save-button.html",
+    "searchKeys": [
+      "SaveButton",
+      "fun SaveButton(modifier: Modifier = Modifier, save: () -> Unit)",
+      "com.tecknobit.gluky.ui.components.SaveButton"
+    ]
+  },
+  {
+    "name": "fun ScrollableDayPicker(viewModel: MeasurementsScreenViewModel, currentDay: Long, content: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.daypickers.ScrollableDayPicker",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components.daypickers/-scrollable-day-picker.html",
+    "searchKeys": [
+      "ScrollableDayPicker",
+      "fun ScrollableDayPicker(viewModel: MeasurementsScreenViewModel, currentDay: Long, content: () -> Unit)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.daypickers.ScrollableDayPicker"
+    ]
+  },
+  {
+    "name": "fun SectionTitle(modifier: Modifier = Modifier, title: StringResource, style: TextStyle = AppTypography.titleMedium, fontWeight: FontWeight? = FontWeight.Bold, color: Color = Color.Unspecified)",
+    "description": "com.tecknobit.gluky.ui.components.SectionTitle",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-section-title.html",
+    "searchKeys": [
+      "SectionTitle",
+      "fun SectionTitle(modifier: Modifier = Modifier, title: StringResource, style: TextStyle = AppTypography.titleMedium, fontWeight: FontWeight? = FontWeight.Bold, color: Color = Color.Unspecified)",
+      "com.tecknobit.gluky.ui.components.SectionTitle"
+    ]
+  },
+  {
+    "name": "fun ToggleButton(expanded: MutableState<Boolean>, contentDescription: StringResource)",
+    "description": "com.tecknobit.gluky.ui.components.ToggleButton",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/-toggle-button.html",
+    "searchKeys": [
+      "ToggleButton",
+      "fun ToggleButton(expanded: MutableState<Boolean>, contentDescription: StringResource)",
+      "com.tecknobit.gluky.ui.components.ToggleButton"
+    ]
+  },
+  {
+    "name": "fun TrendPeriodChip(viewModel: AnalysesScreenViewModel, trendPeriod: GlycemicTrendPeriod)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.components.TrendPeriodChip",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.components/-trend-period-chip.html",
+    "searchKeys": [
+      "TrendPeriodChip",
+      "fun TrendPeriodChip(viewModel: AnalysesScreenViewModel, trendPeriod: GlycemicTrendPeriod)",
+      "com.tecknobit.gluky.ui.screens.analyses.components.TrendPeriodChip"
+    ]
+  },
+  {
+    "name": "fun UnfilledDay(viewModel: MeasurementsScreenViewModel)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.components.UnfilledDay",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-unfilled-day.html",
+    "searchKeys": [
+      "UnfilledDay",
+      "fun UnfilledDay(viewModel: MeasurementsScreenViewModel)",
+      "com.tecknobit.gluky.ui.screens.measurements.components.UnfilledDay"
+    ]
+  },
+  {
+    "name": "fun applyCustomTrendPeriod(allowedPeriod: String, onApply: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.applyCustomTrendPeriod",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/apply-custom-trend-period.html",
+    "searchKeys": [
+      "applyCustomTrendPeriod",
+      "fun applyCustomTrendPeriod(allowedPeriod: String, onApply: () -> Unit)",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.applyCustomTrendPeriod"
+    ]
+  },
+  {
+    "name": "fun applyDarkTheme(): Boolean",
+    "description": "com.tecknobit.gluky.ui.theme.applyDarkTheme",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/apply-dark-theme.html",
+    "searchKeys": [
+      "applyDarkTheme",
+      "fun applyDarkTheme(): Boolean",
+      "com.tecknobit.gluky.ui.theme.applyDarkTheme"
+    ]
+  },
+  {
+    "name": "fun computeDayValue(page: Int)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.computeDayValue",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/compute-day-value.html",
+    "searchKeys": [
+      "computeDayValue",
+      "fun computeDayValue(page: Int)",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.computeDayValue"
+    ]
+  },
+  {
+    "name": "fun createReport(onCreated: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.createReport",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/create-report.html",
+    "searchKeys": [
+      "createReport",
+      "fun createReport(onCreated: () -> Unit)",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.createReport"
+    ]
+  },
+  {
+    "name": "fun dataAvailable(): Boolean",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.dataAvailable",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/data-available.html",
+    "searchKeys": [
+      "dataAvailable",
+      "fun dataAvailable(): Boolean",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.dataAvailable"
+    ]
+  },
+  {
+    "name": "fun fillBasalInsulin(basalInsulin: BasalInsulin, onSave: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.fillBasalInsulin",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/fill-basal-insulin.html",
+    "searchKeys": [
+      "fillBasalInsulin",
+      "fun fillBasalInsulin(basalInsulin: BasalInsulin, onSave: () -> Unit)",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.fillBasalInsulin"
+    ]
+  },
+  {
+    "name": "fun fillDay()",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.fillDay",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/fill-day.html",
+    "searchKeys": [
+      "fillDay",
+      "fun fillDay()",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.fillDay"
+    ]
+  },
+  {
+    "name": "fun fillMeal(meal: Meal, onSave: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.fillMeal",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/fill-meal.html",
+    "searchKeys": [
+      "fillMeal",
+      "fun fillMeal(meal: Meal, onSave: () -> Unit)",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.fillMeal"
+    ]
+  },
+  {
+    "name": "fun getMealByType(type: MeasurementType): Meal",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.getMealByType",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/get-meal-by-type.html",
+    "searchKeys": [
+      "getMealByType",
+      "fun getMealByType(type: MeasurementType): Meal",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.getMealByType"
+    ]
+  },
+  {
+    "name": "fun getRelatedSet(type: MeasurementType): GlycemicTrendData?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.getRelatedSet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/get-related-set.html",
+    "searchKeys": [
+      "getRelatedSet",
+      "fun getRelatedSet(type: MeasurementType): GlycemicTrendData?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.getRelatedSet"
+    ]
+  },
+  {
+    "name": "fun getSpecifiedSet(index: Int): List<GlycemiaPoint>?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.getSpecifiedSet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/get-specified-set.html",
+    "searchKeys": [
+      "getSpecifiedSet",
+      "fun getSpecifiedSet(index: Int): List<GlycemiaPoint>?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.getSpecifiedSet"
+    ]
+  },
+  {
+    "name": "fun green(): Color",
+    "description": "com.tecknobit.gluky.ui.theme.green",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/green.html",
+    "searchKeys": [
+      "green",
+      "fun green(): Color",
+      "com.tecknobit.gluky.ui.theme.green"
+    ]
+  },
+  {
+    "name": "fun hasDataAvailable(): Boolean",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.hasDataAvailable",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/has-data-available.html",
+    "searchKeys": [
+      "hasDataAvailable",
+      "fun hasDataAvailable(): Boolean",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.hasDataAvailable"
+    ]
+  },
+  {
+    "name": "fun main()",
+    "description": "com.tecknobit.gluky.main",
+    "location": "-gluky/com.tecknobit.gluky/[desktop]main.html",
+    "searchKeys": [
+      "main",
+      "fun main()",
+      "com.tecknobit.gluky.main"
+    ]
+  },
+  {
+    "name": "fun main()",
+    "description": "com.tecknobit.gluky.main",
+    "location": "-gluky/com.tecknobit.gluky/[wasm-js]main.html",
+    "searchKeys": [
+      "main",
+      "fun main()",
+      "com.tecknobit.gluky.main"
+    ]
+  },
+  {
+    "name": "fun navToAuthScreen()",
+    "description": "com.tecknobit.gluky.helpers.navToAuthScreen",
+    "location": "-gluky/com.tecknobit.gluky.helpers/nav-to-auth-screen.html",
+    "searchKeys": [
+      "navToAuthScreen",
+      "fun navToAuthScreen()",
+      "com.tecknobit.gluky.helpers.navToAuthScreen"
+    ]
+  },
+  {
+    "name": "fun navToHomeScreen()",
+    "description": "com.tecknobit.gluky.helpers.navToHomeScreen",
+    "location": "-gluky/com.tecknobit.gluky.helpers/nav-to-home-screen.html",
+    "searchKeys": [
+      "navToHomeScreen",
+      "fun navToHomeScreen()",
+      "com.tecknobit.gluky.helpers.navToHomeScreen"
+    ]
+  },
+  {
+    "name": "fun navToSplashscreen()",
+    "description": "com.tecknobit.gluky.helpers.navToSplashscreen",
+    "location": "-gluky/com.tecknobit.gluky.helpers/nav-to-splashscreen.html",
+    "searchKeys": [
+      "navToSplashscreen",
+      "fun navToSplashscreen()",
+      "com.tecknobit.gluky.helpers.navToSplashscreen"
+    ]
+  },
+  {
+    "name": "fun red(): Color",
+    "description": "com.tecknobit.gluky.ui.theme.red",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/red.html",
+    "searchKeys": [
+      "red",
+      "fun red(): Color",
+      "com.tecknobit.gluky.ui.theme.red"
+    ]
+  },
+  {
+    "name": "fun retrieveDailyMeasurements()",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.retrieveDailyMeasurements",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/retrieve-daily-measurements.html",
+    "searchKeys": [
+      "retrieveDailyMeasurements",
+      "fun retrieveDailyMeasurements()",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.retrieveDailyMeasurements"
+    ]
+  },
+  {
+    "name": "fun retrieveGlycemicTrend(from: Long? = null, to: Long? = null)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.retrieveGlycemicTrend",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/retrieve-glycemic-trend.html",
+    "searchKeys": [
+      "retrieveGlycemicTrend",
+      "fun retrieveGlycemicTrend(from: Long? = null, to: Long? = null)",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.retrieveGlycemicTrend"
+    ]
+  },
+  {
+    "name": "fun saveDailyNotes(content: String, onSave: () -> Unit)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.saveDailyNotes",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/save-daily-notes.html",
+    "searchKeys": [
+      "saveDailyNotes",
+      "fun saveDailyNotes(content: String, onSave: () -> Unit)",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.saveDailyNotes"
+    ]
+  },
+  {
+    "name": "fun selectGlycemicGroupingDay(groupingDay: GlycemicTrendGroupingDay)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.selectGlycemicGroupingDay",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/select-glycemic-grouping-day.html",
+    "searchKeys": [
+      "selectGlycemicGroupingDay",
+      "fun selectGlycemicGroupingDay(groupingDay: GlycemicTrendGroupingDay)",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.selectGlycemicGroupingDay"
+    ]
+  },
+  {
+    "name": "fun selectGlycemicTrendPeriod(period: GlycemicTrendPeriod)",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.selectGlycemicTrendPeriod",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/select-glycemic-trend-period.html",
+    "searchKeys": [
+      "selectGlycemicTrendPeriod",
+      "fun selectGlycemicTrendPeriod(period: GlycemicTrendPeriod)",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.selectGlycemicTrendPeriod"
+    ]
+  },
+  {
+    "name": "fun setCurrentDay(millis: Long)",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.setCurrentDay",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/set-current-day.html",
+    "searchKeys": [
+      "setCurrentDay",
+      "fun setCurrentDay(millis: Long)",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.setCurrentDay"
+    ]
+  },
+  {
+    "name": "fun startSession()",
+    "description": "com.tecknobit.gluky.startSession",
+    "location": "-gluky/com.tecknobit.gluky/start-session.html",
+    "searchKeys": [
+      "startSession",
+      "fun startSession()",
+      "com.tecknobit.gluky.startSession"
+    ]
+  },
+  {
+    "name": "fun yellow(): Color",
+    "description": "com.tecknobit.gluky.ui.theme.yellow",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/yellow.html",
+    "searchKeys": [
+      "yellow",
+      "fun yellow(): Color",
+      "com.tecknobit.gluky.ui.theme.yellow"
+    ]
+  },
+  {
+    "name": "inline fun Modifier.useDialogSize(): Modifier",
+    "description": "com.tecknobit.gluky.ui.theme.useDialogSize",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/use-dialog-size.html",
+    "searchKeys": [
+      "useDialogSize",
+      "inline fun Modifier.useDialogSize(): Modifier",
+      "com.tecknobit.gluky.ui.theme.useDialogSize"
+    ]
+  },
+  {
+    "name": "interface ToastsLauncher",
+    "description": "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/index.html",
+    "searchKeys": [
+      "ToastsLauncher",
+      "interface ToastsLauncher",
+      "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher"
+    ]
+  },
+  {
+    "name": "lateinit var appUpdateManager: AppUpdateManager",
+    "description": "com.tecknobit.gluky.MainActivity.Companion.appUpdateManager",
+    "location": "-gluky/com.tecknobit.gluky/-main-activity/-companion/app-update-manager.html",
+    "searchKeys": [
+      "appUpdateManager",
+      "lateinit var appUpdateManager: AppUpdateManager",
+      "com.tecknobit.gluky.MainActivity.Companion.appUpdateManager"
+    ]
+  },
+  {
+    "name": "lateinit var bodyFontFamily: FontFamily",
+    "description": "com.tecknobit.gluky.bodyFontFamily",
+    "location": "-gluky/com.tecknobit.gluky/body-font-family.html",
+    "searchKeys": [
+      "bodyFontFamily",
+      "lateinit var bodyFontFamily: FontFamily",
+      "com.tecknobit.gluky.bodyFontFamily"
+    ]
+  },
+  {
+    "name": "lateinit var customPeriodPickerState: DateRangePickerState",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.customPeriodPickerState",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/custom-period-picker-state.html",
+    "searchKeys": [
+      "customPeriodPickerState",
+      "lateinit var customPeriodPickerState: DateRangePickerState",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.customPeriodPickerState"
+    ]
+  },
+  {
+    "name": "lateinit var displayFontFamily: FontFamily",
+    "description": "com.tecknobit.gluky.displayFontFamily",
+    "location": "-gluky/com.tecknobit.gluky/display-font-family.html",
+    "searchKeys": [
+      "displayFontFamily",
+      "lateinit var displayFontFamily: FontFamily",
+      "com.tecknobit.gluky.displayFontFamily"
+    ]
+  },
+  {
+    "name": "lateinit var glycemia: MutableState<String>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.glycemia",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/glycemia.html",
+    "searchKeys": [
+      "glycemia",
+      "lateinit var glycemia: MutableState<String>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.glycemia"
+    ]
+  },
+  {
+    "name": "lateinit var glycemiaError: MutableState<Boolean>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.glycemiaError",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/glycemia-error.html",
+    "searchKeys": [
+      "glycemiaError",
+      "lateinit var glycemiaError: MutableState<Boolean>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.glycemiaError"
+    ]
+  },
+  {
+    "name": "lateinit var imageLoader: ImageLoader",
+    "description": "com.tecknobit.gluky.ui.components.imageLoader",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/image-loader.html",
+    "searchKeys": [
+      "imageLoader",
+      "lateinit var imageLoader: ImageLoader",
+      "com.tecknobit.gluky.ui.components.imageLoader"
+    ]
+  },
+  {
+    "name": "lateinit var insulinNeeded: MutableState<Boolean>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.insulinNeeded",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/insulin-needed.html",
+    "searchKeys": [
+      "insulinNeeded",
+      "lateinit var insulinNeeded: MutableState<Boolean>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.insulinNeeded"
+    ]
+  },
+  {
+    "name": "lateinit var insulinUnits: QuantityPickerState",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.insulinUnits",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/insulin-units.html",
+    "searchKeys": [
+      "insulinUnits",
+      "lateinit var insulinUnits: QuantityPickerState",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.insulinUnits"
+    ]
+  },
+  {
+    "name": "lateinit var launcher: ActivityResultLauncher<IntentSenderRequest>",
+    "description": "com.tecknobit.gluky.MainActivity.Companion.launcher",
+    "location": "-gluky/com.tecknobit.gluky/-main-activity/-companion/launcher.html",
+    "searchKeys": [
+      "launcher",
+      "lateinit var launcher: ActivityResultLauncher<IntentSenderRequest>",
+      "com.tecknobit.gluky.MainActivity.Companion.launcher"
+    ]
+  },
+  {
+    "name": "lateinit var mealContent: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.mealContent",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/meal-content.html",
+    "searchKeys": [
+      "mealContent",
+      "lateinit var mealContent: SnapshotStateList<Pair<MutableState<String>, MutableState<String>>>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.mealContent"
+    ]
+  },
+  {
+    "name": "lateinit var navigator: NavHostController",
+    "description": "com.tecknobit.gluky.helpers.navigator",
+    "location": "-gluky/com.tecknobit.gluky.helpers/navigator.html",
+    "searchKeys": [
+      "navigator",
+      "lateinit var navigator: NavHostController",
+      "com.tecknobit.gluky.helpers.navigator"
+    ]
+  },
+  {
+    "name": "lateinit var postPrandialGlycemia: MutableState<String>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.postPrandialGlycemia",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/post-prandial-glycemia.html",
+    "searchKeys": [
+      "postPrandialGlycemia",
+      "lateinit var postPrandialGlycemia: MutableState<String>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.postPrandialGlycemia"
+    ]
+  },
+  {
+    "name": "lateinit var postPrandialGlycemiaError: MutableState<Boolean>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.postPrandialGlycemiaError",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/post-prandial-glycemia-error.html",
+    "searchKeys": [
+      "postPrandialGlycemiaError",
+      "lateinit var postPrandialGlycemiaError: MutableState<Boolean>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.postPrandialGlycemiaError"
+    ]
+  },
+  {
+    "name": "lateinit var requester: GlukyRequester",
+    "description": "com.tecknobit.gluky.requester",
+    "location": "-gluky/com.tecknobit.gluky/requester.html",
+    "searchKeys": [
+      "requester",
+      "lateinit var requester: GlukyRequester",
+      "com.tecknobit.gluky.requester"
+    ]
+  },
+  {
+    "name": "lateinit var sessionFlowState: SessionFlowState",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.sessionFlowState",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/session-flow-state.html",
+    "searchKeys": [
+      "sessionFlowState",
+      "lateinit var sessionFlowState: SessionFlowState",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.sessionFlowState"
+    ]
+  },
+  {
+    "name": "lateinit var sessionFlowState: SessionFlowState",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.sessionFlowState",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/session-flow-state.html",
+    "searchKeys": [
+      "sessionFlowState",
+      "lateinit var sessionFlowState: SessionFlowState",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.sessionFlowState"
+    ]
+  },
+  {
+    "name": "object Companion",
+    "description": "com.tecknobit.gluky.MainActivity.Companion",
+    "location": "-gluky/com.tecknobit.gluky/-main-activity/-companion/index.html",
+    "searchKeys": [
+      "Companion",
+      "object Companion",
+      "com.tecknobit.gluky.MainActivity.Companion"
+    ]
+  },
+  {
+    "name": "object Companion",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Companion",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/-companion/index.html",
+    "searchKeys": [
+      "Companion",
+      "object Companion",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.Companion"
+    ]
+  },
+  {
+    "name": "object Companion",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/-companion/index.html",
+    "searchKeys": [
+      "Companion",
+      "object Companion",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.Companion"
+    ]
+  },
+  {
+    "name": "open fun toastError(error: StringResource, vararg formatArgs: Any)",
+    "description": "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher.toastError",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/toast-error.html",
+    "searchKeys": [
+      "toastError",
+      "open fun toastError(error: StringResource, vararg formatArgs: Any)",
+      "com.tecknobit.gluky.ui.screens.shared.presentations.ToastsLauncher.toastError"
+    ]
+  },
+  {
+    "name": "open lateinit override var toasterState: ToasterState",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.toasterState",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/toaster-state.html",
+    "searchKeys": [
+      "toasterState",
+      "open lateinit override var toasterState: ToasterState",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.toasterState"
+    ]
+  },
+  {
+    "name": "open lateinit override var toasterState: ToasterState",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.toasterState",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/toaster-state.html",
+    "searchKeys": [
+      "toasterState",
+      "open lateinit override var toasterState: ToasterState",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.toasterState"
+    ]
+  },
+  {
+    "name": "open override val isNotFilledYet: Boolean",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin.isNotFilledYet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-basal-insulin/is-not-filled-yet.html",
+    "searchKeys": [
+      "isNotFilledYet",
+      "open override val isNotFilledYet: Boolean",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin.isNotFilledYet"
+    ]
+  },
+  {
+    "name": "open override val isNotFilledYet: Boolean",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.isNotFilledYet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/is-not-filled-yet.html",
+    "searchKeys": [
+      "isNotFilledYet",
+      "open override val isNotFilledYet: Boolean",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.isNotFilledYet"
+    ]
+  },
+  {
+    "name": "open override var scope: CoroutineScope",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.scope",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/scope.html",
+    "searchKeys": [
+      "scope",
+      "open override var scope: CoroutineScope",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.scope"
+    ]
+  },
+  {
+    "name": "open override var scope: CoroutineScope",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.scope",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/scope.html",
+    "searchKeys": [
+      "scope",
+      "open override var scope: CoroutineScope",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.scope"
+    ]
+  },
+  {
+    "name": "sealed class GlycemicMeasurementItem",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-glycemic-measurement-item/index.html",
+    "searchKeys": [
+      "GlycemicMeasurementItem",
+      "sealed class GlycemicMeasurementItem",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem"
+    ]
+  },
+  {
+    "name": "suspend fun createReport(period: GlycemicTrendPeriod, groupingDay: GlycemicTrendGroupingDay?, from: Long?, to: Long?): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.createReport",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/create-report.html",
+    "searchKeys": [
+      "createReport",
+      "suspend fun createReport(period: GlycemicTrendPeriod, groupingDay: GlycemicTrendGroupingDay?, from: Long?, to: Long?): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.createReport"
+    ]
+  },
+  {
+    "name": "suspend fun deleteReport(report: Report): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.deleteReport",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/delete-report.html",
+    "searchKeys": [
+      "deleteReport",
+      "suspend fun deleteReport(report: Report): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.deleteReport"
+    ]
+  },
+  {
+    "name": "suspend fun downloadReport(report: Report, onDownloadCompleted: (String?) -> Unit)",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.downloadReport",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/download-report.html",
+    "searchKeys": [
+      "downloadReport",
+      "suspend fun downloadReport(report: Report, onDownloadCompleted: (String?) -> Unit)",
+      "com.tecknobit.gluky.helpers.GlukyRequester.downloadReport"
+    ]
+  },
+  {
+    "name": "suspend fun fillBasalInsulin(targetDay: Long, glycemia: String, insulinUnits: Int): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.fillBasalInsulin",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/fill-basal-insulin.html",
+    "searchKeys": [
+      "fillBasalInsulin",
+      "suspend fun fillBasalInsulin(targetDay: Long, glycemia: String, insulinUnits: Int): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.fillBasalInsulin"
+    ]
+  },
+  {
+    "name": "suspend fun fillDay(targetDay: Long): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.fillDay",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/fill-day.html",
+    "searchKeys": [
+      "fillDay",
+      "suspend fun fillDay(targetDay: Long): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.fillDay"
+    ]
+  },
+  {
+    "name": "suspend fun fillMeal(targetDay: Long, mealType: MeasurementType, glycemia: String, postPrandialGlycemia: String, insulinUnits: Int, content: List<Pair<MutableState<String>, MutableState<String>>>): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.fillMeal",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/fill-meal.html",
+    "searchKeys": [
+      "fillMeal",
+      "suspend fun fillMeal(targetDay: Long, mealType: MeasurementType, glycemia: String, postPrandialGlycemia: String, insulinUnits: Int, content: List<Pair<MutableState<String>, MutableState<String>>>): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.fillMeal"
+    ]
+  },
+  {
+    "name": "suspend fun getDailyMeasurements(targetDay: Long): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.getDailyMeasurements",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/get-daily-measurements.html",
+    "searchKeys": [
+      "getDailyMeasurements",
+      "suspend fun getDailyMeasurements(targetDay: Long): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.getDailyMeasurements"
+    ]
+  },
+  {
+    "name": "suspend fun getGlycemicTrend(period: GlycemicTrendPeriod, groupingDay: GlycemicTrendGroupingDay?, from: Long?, to: Long?): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.getGlycemicTrend",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/get-glycemic-trend.html",
+    "searchKeys": [
+      "getGlycemicTrend",
+      "suspend fun getGlycemicTrend(period: GlycemicTrendPeriod, groupingDay: GlycemicTrendGroupingDay?, from: Long?, to: Long?): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.getGlycemicTrend"
+    ]
+  },
+  {
+    "name": "suspend fun saveDailyNotes(targetDay: Long, content: String): JsonObject",
+    "description": "com.tecknobit.gluky.helpers.GlukyRequester.saveDailyNotes",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-gluky-requester/save-daily-notes.html",
+    "searchKeys": [
+      "saveDailyNotes",
+      "suspend fun saveDailyNotes(targetDay: Long, content: String): JsonObject",
+      "com.tecknobit.gluky.helpers.GlukyRequester.saveDailyNotes"
+    ]
+  },
+  {
+    "name": "val AppTypography: Typography",
+    "description": "com.tecknobit.gluky.ui.theme.AppTypography",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-app-typography.html",
+    "searchKeys": [
+      "AppTypography",
+      "val AppTypography: Typography",
+      "com.tecknobit.gluky.ui.theme.AppTypography"
+    ]
+  },
+  {
+    "name": "val Apple: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.Apple",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-apple.html",
+    "searchKeys": [
+      "Apple",
+      "val Apple: ImageVector",
+      "com.tecknobit.gluky.ui.icons.Apple"
+    ]
+  },
+  {
+    "name": "val BasalInsulin: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.BasalInsulin",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-basal-insulin.html",
+    "searchKeys": [
+      "BasalInsulin",
+      "val BasalInsulin: ImageVector",
+      "com.tecknobit.gluky.ui.icons.BasalInsulin"
+    ]
+  },
+  {
+    "name": "val ChartLine1Dark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine1Dark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line1-dark.html",
+    "searchKeys": [
+      "ChartLine1Dark",
+      "val ChartLine1Dark: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine1Dark"
+    ]
+  },
+  {
+    "name": "val ChartLine1Light: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine1Light",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line1-light.html",
+    "searchKeys": [
+      "ChartLine1Light",
+      "val ChartLine1Light: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine1Light"
+    ]
+  },
+  {
+    "name": "val ChartLine2Dark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine2Dark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line2-dark.html",
+    "searchKeys": [
+      "ChartLine2Dark",
+      "val ChartLine2Dark: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine2Dark"
+    ]
+  },
+  {
+    "name": "val ChartLine2Light: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine2Light",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line2-light.html",
+    "searchKeys": [
+      "ChartLine2Light",
+      "val ChartLine2Light: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine2Light"
+    ]
+  },
+  {
+    "name": "val ChartLine3Dark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine3Dark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line3-dark.html",
+    "searchKeys": [
+      "ChartLine3Dark",
+      "val ChartLine3Dark: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine3Dark"
+    ]
+  },
+  {
+    "name": "val ChartLine3Light: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine3Light",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line3-light.html",
+    "searchKeys": [
+      "ChartLine3Light",
+      "val ChartLine3Light: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine3Light"
+    ]
+  },
+  {
+    "name": "val ChartLine4Dark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine4Dark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line4-dark.html",
+    "searchKeys": [
+      "ChartLine4Dark",
+      "val ChartLine4Dark: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine4Dark"
+    ]
+  },
+  {
+    "name": "val ChartLine4Light: Color",
+    "description": "com.tecknobit.gluky.ui.theme.ChartLine4Light",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-chart-line4-light.html",
+    "searchKeys": [
+      "ChartLine4Light",
+      "val ChartLine4Light: Color",
+      "com.tecknobit.gluky.ui.theme.ChartLine4Light"
+    ]
+  },
+  {
+    "name": "val CollapseAll: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.CollapseAll",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-collapse-all.html",
+    "searchKeys": [
+      "CollapseAll",
+      "val CollapseAll: ImageVector",
+      "com.tecknobit.gluky.ui.icons.CollapseAll"
+    ]
+  },
+  {
+    "name": "val DialogShape: RoundedCornerShape",
+    "description": "com.tecknobit.gluky.ui.theme.DialogShape",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-dialog-shape.html",
+    "searchKeys": [
+      "DialogShape",
+      "val DialogShape: RoundedCornerShape",
+      "com.tecknobit.gluky.ui.theme.DialogShape"
+    ]
+  },
+  {
+    "name": "val EditItem: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.EditItem",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-edit-item.html",
+    "searchKeys": [
+      "EditItem",
+      "val EditItem: ImageVector",
+      "com.tecknobit.gluky.ui.icons.EditItem"
+    ]
+  },
+  {
+    "name": "val EmptyStateTitleStyle: TextStyle",
+    "description": "com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-empty-state-title-style.html",
+    "searchKeys": [
+      "EmptyStateTitleStyle",
+      "val EmptyStateTitleStyle: TextStyle",
+      "com.tecknobit.gluky.ui.theme.EmptyStateTitleStyle"
+    ]
+  },
+  {
+    "name": "val ExpandAll: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.ExpandAll",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-expand-all.html",
+    "searchKeys": [
+      "ExpandAll",
+      "val ExpandAll: ImageVector",
+      "com.tecknobit.gluky.ui.icons.ExpandAll"
+    ]
+  },
+  {
+    "name": "val GlukyCardColors: CardColors",
+    "description": "com.tecknobit.gluky.ui.theme.GlukyCardColors",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-gluky-card-colors.html",
+    "searchKeys": [
+      "GlukyCardColors",
+      "val GlukyCardColors: CardColors",
+      "com.tecknobit.gluky.ui.theme.GlukyCardColors"
+    ]
+  },
+  {
+    "name": "val GreenDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.GreenDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-green-dark.html",
+    "searchKeys": [
+      "GreenDark",
+      "val GreenDark: Color",
+      "com.tecknobit.gluky.ui.theme.GreenDark"
+    ]
+  },
+  {
+    "name": "val GreenLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.GreenLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-green-light.html",
+    "searchKeys": [
+      "GreenLight",
+      "val GreenLight: Color",
+      "com.tecknobit.gluky.ui.theme.GreenLight"
+    ]
+  },
+  {
+    "name": "val InputFieldHeight: Dp",
+    "description": "com.tecknobit.gluky.ui.theme.InputFieldHeight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-input-field-height.html",
+    "searchKeys": [
+      "InputFieldHeight",
+      "val InputFieldHeight: Dp",
+      "com.tecknobit.gluky.ui.theme.InputFieldHeight"
+    ]
+  },
+  {
+    "name": "val InputFieldShape: RoundedCornerShape",
+    "description": "com.tecknobit.gluky.ui.theme.InputFieldShape",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-input-field-shape.html",
+    "searchKeys": [
+      "InputFieldShape",
+      "val InputFieldShape: RoundedCornerShape",
+      "com.tecknobit.gluky.ui.theme.InputFieldShape"
+    ]
+  },
+  {
+    "name": "val Meals: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.Meals",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-meals.html",
+    "searchKeys": [
+      "Meals",
+      "val Meals: ImageVector",
+      "com.tecknobit.gluky.ui.icons.Meals"
+    ]
+  },
+  {
+    "name": "val RedDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.RedDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-red-dark.html",
+    "searchKeys": [
+      "RedDark",
+      "val RedDark: Color",
+      "com.tecknobit.gluky.ui.theme.RedDark"
+    ]
+  },
+  {
+    "name": "val RedLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.RedLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-red-light.html",
+    "searchKeys": [
+      "RedLight",
+      "val RedLight: Color",
+      "com.tecknobit.gluky.ui.theme.RedLight"
+    ]
+  },
+  {
+    "name": "val Report: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.Report",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-report.html",
+    "searchKeys": [
+      "Report",
+      "val Report: ImageVector",
+      "com.tecknobit.gluky.ui.icons.Report"
+    ]
+  },
+  {
+    "name": "val Snack: ImageVector",
+    "description": "com.tecknobit.gluky.ui.icons.Snack",
+    "location": "-gluky/com.tecknobit.gluky.ui.icons/-snack.html",
+    "searchKeys": [
+      "Snack",
+      "val Snack: ImageVector",
+      "com.tecknobit.gluky.ui.icons.Snack"
+    ]
+  },
+  {
+    "name": "val YellowDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.YellowDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-yellow-dark.html",
+    "searchKeys": [
+      "YellowDark",
+      "val YellowDark: Color",
+      "com.tecknobit.gluky.ui.theme.YellowDark"
+    ]
+  },
+  {
+    "name": "val YellowLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.YellowLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/-yellow-light.html",
+    "searchKeys": [
+      "YellowLight",
+      "val YellowLight: Color",
+      "com.tecknobit.gluky.ui.theme.YellowLight"
+    ]
+  },
+  {
+    "name": "val afternoonSnack: GlycemicTrendData?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.afternoonSnack",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/afternoon-snack.html",
+    "searchKeys": [
+      "afternoonSnack",
+      "val afternoonSnack: GlycemicTrendData?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.afternoonSnack"
+    ]
+  },
+  {
+    "name": "val afternoonSnack: Meal",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.afternoonSnack",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/afternoon-snack.html",
+    "searchKeys": [
+      "afternoonSnack",
+      "val afternoonSnack: Meal",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.afternoonSnack"
+    ]
+  },
+  {
+    "name": "val annotationDate: MutableState<Long>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.annotationDate",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-glycemic-measurement-item/annotation-date.html",
+    "searchKeys": [
+      "annotationDate",
+      "val annotationDate: MutableState<Long>",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.annotationDate"
+    ]
+  },
+  {
+    "name": "val availableSets: MutableList<MeasurementType>",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.availableSets",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/available-sets.html",
+    "searchKeys": [
+      "availableSets",
+      "val availableSets: MutableList<MeasurementType>",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.availableSets"
+    ]
+  },
+  {
+    "name": "val averageGlycemia: Double",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.averageGlycemia",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/average-glycemia.html",
+    "searchKeys": [
+      "averageGlycemia",
+      "val averageGlycemia: Double",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.averageGlycemia"
+    ]
+  },
+  {
+    "name": "val backgroundDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.backgroundDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/background-dark.html",
+    "searchKeys": [
+      "backgroundDark",
+      "val backgroundDark: Color",
+      "com.tecknobit.gluky.ui.theme.backgroundDark"
+    ]
+  },
+  {
+    "name": "val backgroundLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.backgroundLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/background-light.html",
+    "searchKeys": [
+      "backgroundLight",
+      "val backgroundLight: Color",
+      "com.tecknobit.gluky.ui.theme.backgroundLight"
+    ]
+  },
+  {
+    "name": "val basalInsulin: BasalInsulin",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.basalInsulin",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/basal-insulin.html",
+    "searchKeys": [
+      "basalInsulin",
+      "val basalInsulin: BasalInsulin",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.basalInsulin"
+    ]
+  },
+  {
+    "name": "val basalInsulin: GlycemicTrendData?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.basalInsulin",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/basal-insulin.html",
+    "searchKeys": [
+      "basalInsulin",
+      "val basalInsulin: GlycemicTrendData?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.basalInsulin"
+    ]
+  },
+  {
+    "name": "val baseline: Typography",
+    "description": "com.tecknobit.gluky.ui.theme.baseline",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/baseline.html",
+    "searchKeys": [
+      "baseline",
+      "val baseline: Typography",
+      "com.tecknobit.gluky.ui.theme.baseline"
+    ]
+  },
+  {
+    "name": "val breakfast: GlycemicTrendData?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.breakfast",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/breakfast.html",
+    "searchKeys": [
+      "breakfast",
+      "val breakfast: GlycemicTrendData?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.breakfast"
+    ]
+  },
+  {
+    "name": "val breakfast: Meal",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.breakfast",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/breakfast.html",
+    "searchKeys": [
+      "breakfast",
+      "val breakfast: Meal",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.breakfast"
+    ]
+  },
+  {
+    "name": "val content: State<String>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.content",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/content.html",
+    "searchKeys": [
+      "content",
+      "val content: State<String>",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.content"
+    ]
+  },
+  {
+    "name": "val creatingReport: StateFlow<Boolean>",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.creatingReport",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/creating-report.html",
+    "searchKeys": [
+      "creatingReport",
+      "val creatingReport: StateFlow<Boolean>",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.creatingReport"
+    ]
+  },
+  {
+    "name": "val currentDay: StateFlow<Long>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.currentDay",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/current-day.html",
+    "searchKeys": [
+      "currentDay",
+      "val currentDay: StateFlow<Long>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.currentDay"
+    ]
+  },
+  {
+    "name": "val dailyMeasurements: StateFlow<DailyMeasurements?>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.dailyMeasurements",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/-measurements-screen-view-model/daily-measurements.html",
+    "searchKeys": [
+      "dailyMeasurements",
+      "val dailyMeasurements: StateFlow<DailyMeasurements?>",
+      "com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel.dailyMeasurements"
+    ]
+  },
+  {
+    "name": "val date: Long",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint.date",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemia-point/date.html",
+    "searchKeys": [
+      "date",
+      "val date: Long",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint.date"
+    ]
+  },
+  {
+    "name": "val dinner: GlycemicTrendData?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.dinner",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/dinner.html",
+    "searchKeys": [
+      "dinner",
+      "val dinner: GlycemicTrendData?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.dinner"
+    ]
+  },
+  {
+    "name": "val dinner: Meal",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.dinner",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/dinner.html",
+    "searchKeys": [
+      "dinner",
+      "val dinner: Meal",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.dinner"
+    ]
+  },
+  {
+    "name": "val errorContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.errorContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/error-container-dark.html",
+    "searchKeys": [
+      "errorContainerDark",
+      "val errorContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.errorContainerDark"
+    ]
+  },
+  {
+    "name": "val errorContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.errorContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/error-container-light.html",
+    "searchKeys": [
+      "errorContainerLight",
+      "val errorContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.errorContainerLight"
+    ]
+  },
+  {
+    "name": "val errorDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.errorDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/error-dark.html",
+    "searchKeys": [
+      "errorDark",
+      "val errorDark: Color",
+      "com.tecknobit.gluky.ui.theme.errorDark"
+    ]
+  },
+  {
+    "name": "val errorLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.errorLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/error-light.html",
+    "searchKeys": [
+      "errorLight",
+      "val errorLight: Color",
+      "com.tecknobit.gluky.ui.theme.errorLight"
+    ]
+  },
+  {
+    "name": "val firstSet: List<GlycemiaPoint>?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.firstSet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/first-set.html",
+    "searchKeys": [
+      "firstSet",
+      "val firstSet: List<GlycemiaPoint>?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.firstSet"
+    ]
+  },
+  {
+    "name": "val fourthSet: List<GlycemiaPoint>?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.fourthSet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/fourth-set.html",
+    "searchKeys": [
+      "fourthSet",
+      "val fourthSet: List<GlycemiaPoint>?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.fourthSet"
+    ]
+  },
+  {
+    "name": "val from: Long",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.from",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/from.html",
+    "searchKeys": [
+      "from",
+      "val from: Long",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.from"
+    ]
+  },
+  {
+    "name": "val glycemia: MutableState<Int>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.glycemia",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-glycemic-measurement-item/glycemia.html",
+    "searchKeys": [
+      "glycemia",
+      "val glycemia: MutableState<Int>",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.glycemia"
+    ]
+  },
+  {
+    "name": "val glycemicGap: Int",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.glycemicGap",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/glycemic-gap.html",
+    "searchKeys": [
+      "glycemicGap",
+      "val glycemicGap: Int",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.glycemicGap"
+    ]
+  },
+  {
+    "name": "val glycemicTrend: List<Int>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.glycemicTrend",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/glycemic-trend.html",
+    "searchKeys": [
+      "glycemicTrend",
+      "val glycemicTrend: List<Int>",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.glycemicTrend"
+    ]
+  },
+  {
+    "name": "val glycemicTrend: StateFlow<GlycemicTrendDataContainer?>",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.glycemicTrend",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/glycemic-trend.html",
+    "searchKeys": [
+      "glycemicTrend",
+      "val glycemicTrend: StateFlow<GlycemicTrendDataContainer?>",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.glycemicTrend"
+    ]
+  },
+  {
+    "name": "val glycemicTrendGroupingDay: StateFlow<GlycemicTrendGroupingDay?>",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.glycemicTrendGroupingDay",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/glycemic-trend-grouping-day.html",
+    "searchKeys": [
+      "glycemicTrendGroupingDay",
+      "val glycemicTrendGroupingDay: StateFlow<GlycemicTrendGroupingDay?>",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.glycemicTrendGroupingDay"
+    ]
+  },
+  {
+    "name": "val glycemicTrendPeriod: StateFlow<GlycemicTrendPeriod>",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.glycemicTrendPeriod",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/-analyses-screen-view-model/glycemic-trend-period.html",
+    "searchKeys": [
+      "glycemicTrendPeriod",
+      "val glycemicTrendPeriod: StateFlow<GlycemicTrendPeriod>",
+      "com.tecknobit.gluky.ui.screens.analyses.presentation.AnalysesScreenViewModel.glycemicTrendPeriod"
+    ]
+  },
+  {
+    "name": "val higherGlycemia: GlycemiaPoint",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.higherGlycemia",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/higher-glycemia.html",
+    "searchKeys": [
+      "higherGlycemia",
+      "val higherGlycemia: GlycemiaPoint",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.higherGlycemia"
+    ]
+  },
+  {
+    "name": "val id: String",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.id",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/id.html",
+    "searchKeys": [
+      "id",
+      "val id: String",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.id"
+    ]
+  },
+  {
+    "name": "val insulinUnits: MutableState<Int>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.insulinUnits",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-glycemic-measurement-item/insulin-units.html",
+    "searchKeys": [
+      "insulinUnits",
+      "val insulinUnits: MutableState<Int>",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.insulinUnits"
+    ]
+  },
+  {
+    "name": "val inverseOnSurfaceDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.inverseOnSurfaceDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/inverse-on-surface-dark.html",
+    "searchKeys": [
+      "inverseOnSurfaceDark",
+      "val inverseOnSurfaceDark: Color",
+      "com.tecknobit.gluky.ui.theme.inverseOnSurfaceDark"
+    ]
+  },
+  {
+    "name": "val inverseOnSurfaceLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.inverseOnSurfaceLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/inverse-on-surface-light.html",
+    "searchKeys": [
+      "inverseOnSurfaceLight",
+      "val inverseOnSurfaceLight: Color",
+      "com.tecknobit.gluky.ui.theme.inverseOnSurfaceLight"
+    ]
+  },
+  {
+    "name": "val inversePrimaryDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.inversePrimaryDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/inverse-primary-dark.html",
+    "searchKeys": [
+      "inversePrimaryDark",
+      "val inversePrimaryDark: Color",
+      "com.tecknobit.gluky.ui.theme.inversePrimaryDark"
+    ]
+  },
+  {
+    "name": "val inversePrimaryLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.inversePrimaryLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/inverse-primary-light.html",
+    "searchKeys": [
+      "inversePrimaryLight",
+      "val inversePrimaryLight: Color",
+      "com.tecknobit.gluky.ui.theme.inversePrimaryLight"
+    ]
+  },
+  {
+    "name": "val inverseSurfaceDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.inverseSurfaceDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/inverse-surface-dark.html",
+    "searchKeys": [
+      "inverseSurfaceDark",
+      "val inverseSurfaceDark: Color",
+      "com.tecknobit.gluky.ui.theme.inverseSurfaceDark"
+    ]
+  },
+  {
+    "name": "val inverseSurfaceLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.inverseSurfaceLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/inverse-surface-light.html",
+    "searchKeys": [
+      "inverseSurfaceLight",
+      "val inverseSurfaceLight: Color",
+      "com.tecknobit.gluky.ui.theme.inverseSurfaceLight"
+    ]
+  },
+  {
+    "name": "val isGlycemiaFilled: Boolean",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin.isGlycemiaFilled",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-basal-insulin/is-glycemia-filled.html",
+    "searchKeys": [
+      "isGlycemiaFilled",
+      "val isGlycemiaFilled: Boolean",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.BasalInsulin.isGlycemiaFilled"
+    ]
+  },
+  {
+    "name": "val labelType: GlycemicTrendLabelType?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.labelType",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/label-type.html",
+    "searchKeys": [
+      "labelType",
+      "val labelType: GlycemicTrendLabelType?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.labelType"
+    ]
+  },
+  {
+    "name": "val localUser: EquinoxLocalUser",
+    "description": "com.tecknobit.gluky.localUser",
+    "location": "-gluky/com.tecknobit.gluky/local-user.html",
+    "searchKeys": [
+      "localUser",
+      "val localUser: EquinoxLocalUser",
+      "com.tecknobit.gluky.localUser"
+    ]
+  },
+  {
+    "name": "val lowerGlycemia: GlycemiaPoint",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.lowerGlycemia",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/lower-glycemia.html",
+    "searchKeys": [
+      "lowerGlycemia",
+      "val lowerGlycemia: GlycemiaPoint",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.lowerGlycemia"
+    ]
+  },
+  {
+    "name": "val lunch: GlycemicTrendData?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.lunch",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/lunch.html",
+    "searchKeys": [
+      "lunch",
+      "val lunch: GlycemicTrendData?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.lunch"
+    ]
+  },
+  {
+    "name": "val lunch: Meal",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.lunch",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/lunch.html",
+    "searchKeys": [
+      "lunch",
+      "val lunch: Meal",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.lunch"
+    ]
+  },
+  {
+    "name": "val morningSnack: GlycemicTrendData?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.morningSnack",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/morning-snack.html",
+    "searchKeys": [
+      "morningSnack",
+      "val morningSnack: GlycemicTrendData?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.morningSnack"
+    ]
+  },
+  {
+    "name": "val morningSnack: Meal",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.morningSnack",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/morning-snack.html",
+    "searchKeys": [
+      "morningSnack",
+      "val morningSnack: Meal",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.morningSnack"
+    ]
+  },
+  {
+    "name": "val name: String",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.Report.name",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-report/name.html",
+    "searchKeys": [
+      "name",
+      "val name: String",
+      "com.tecknobit.gluky.ui.screens.analyses.data.Report.name"
+    ]
+  },
+  {
+    "name": "val onBackgroundDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onBackgroundDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-background-dark.html",
+    "searchKeys": [
+      "onBackgroundDark",
+      "val onBackgroundDark: Color",
+      "com.tecknobit.gluky.ui.theme.onBackgroundDark"
+    ]
+  },
+  {
+    "name": "val onBackgroundLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onBackgroundLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-background-light.html",
+    "searchKeys": [
+      "onBackgroundLight",
+      "val onBackgroundLight: Color",
+      "com.tecknobit.gluky.ui.theme.onBackgroundLight"
+    ]
+  },
+  {
+    "name": "val onErrorContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onErrorContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-error-container-dark.html",
+    "searchKeys": [
+      "onErrorContainerDark",
+      "val onErrorContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.onErrorContainerDark"
+    ]
+  },
+  {
+    "name": "val onErrorContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onErrorContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-error-container-light.html",
+    "searchKeys": [
+      "onErrorContainerLight",
+      "val onErrorContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.onErrorContainerLight"
+    ]
+  },
+  {
+    "name": "val onErrorDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onErrorDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-error-dark.html",
+    "searchKeys": [
+      "onErrorDark",
+      "val onErrorDark: Color",
+      "com.tecknobit.gluky.ui.theme.onErrorDark"
+    ]
+  },
+  {
+    "name": "val onErrorLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onErrorLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-error-light.html",
+    "searchKeys": [
+      "onErrorLight",
+      "val onErrorLight: Color",
+      "com.tecknobit.gluky.ui.theme.onErrorLight"
+    ]
+  },
+  {
+    "name": "val onPrimaryContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onPrimaryContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-primary-container-dark.html",
+    "searchKeys": [
+      "onPrimaryContainerDark",
+      "val onPrimaryContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.onPrimaryContainerDark"
+    ]
+  },
+  {
+    "name": "val onPrimaryContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onPrimaryContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-primary-container-light.html",
+    "searchKeys": [
+      "onPrimaryContainerLight",
+      "val onPrimaryContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.onPrimaryContainerLight"
+    ]
+  },
+  {
+    "name": "val onPrimaryDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onPrimaryDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-primary-dark.html",
+    "searchKeys": [
+      "onPrimaryDark",
+      "val onPrimaryDark: Color",
+      "com.tecknobit.gluky.ui.theme.onPrimaryDark"
+    ]
+  },
+  {
+    "name": "val onPrimaryLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onPrimaryLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-primary-light.html",
+    "searchKeys": [
+      "onPrimaryLight",
+      "val onPrimaryLight: Color",
+      "com.tecknobit.gluky.ui.theme.onPrimaryLight"
+    ]
+  },
+  {
+    "name": "val onSecondaryContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSecondaryContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-secondary-container-dark.html",
+    "searchKeys": [
+      "onSecondaryContainerDark",
+      "val onSecondaryContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.onSecondaryContainerDark"
+    ]
+  },
+  {
+    "name": "val onSecondaryContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSecondaryContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-secondary-container-light.html",
+    "searchKeys": [
+      "onSecondaryContainerLight",
+      "val onSecondaryContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.onSecondaryContainerLight"
+    ]
+  },
+  {
+    "name": "val onSecondaryDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSecondaryDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-secondary-dark.html",
+    "searchKeys": [
+      "onSecondaryDark",
+      "val onSecondaryDark: Color",
+      "com.tecknobit.gluky.ui.theme.onSecondaryDark"
+    ]
+  },
+  {
+    "name": "val onSecondaryLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSecondaryLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-secondary-light.html",
+    "searchKeys": [
+      "onSecondaryLight",
+      "val onSecondaryLight: Color",
+      "com.tecknobit.gluky.ui.theme.onSecondaryLight"
+    ]
+  },
+  {
+    "name": "val onSurfaceDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSurfaceDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-surface-dark.html",
+    "searchKeys": [
+      "onSurfaceDark",
+      "val onSurfaceDark: Color",
+      "com.tecknobit.gluky.ui.theme.onSurfaceDark"
+    ]
+  },
+  {
+    "name": "val onSurfaceLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSurfaceLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-surface-light.html",
+    "searchKeys": [
+      "onSurfaceLight",
+      "val onSurfaceLight: Color",
+      "com.tecknobit.gluky.ui.theme.onSurfaceLight"
+    ]
+  },
+  {
+    "name": "val onSurfaceVariantDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSurfaceVariantDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-surface-variant-dark.html",
+    "searchKeys": [
+      "onSurfaceVariantDark",
+      "val onSurfaceVariantDark: Color",
+      "com.tecknobit.gluky.ui.theme.onSurfaceVariantDark"
+    ]
+  },
+  {
+    "name": "val onSurfaceVariantLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onSurfaceVariantLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-surface-variant-light.html",
+    "searchKeys": [
+      "onSurfaceVariantLight",
+      "val onSurfaceVariantLight: Color",
+      "com.tecknobit.gluky.ui.theme.onSurfaceVariantLight"
+    ]
+  },
+  {
+    "name": "val onTertiaryContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onTertiaryContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-tertiary-container-dark.html",
+    "searchKeys": [
+      "onTertiaryContainerDark",
+      "val onTertiaryContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.onTertiaryContainerDark"
+    ]
+  },
+  {
+    "name": "val onTertiaryContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onTertiaryContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-tertiary-container-light.html",
+    "searchKeys": [
+      "onTertiaryContainerLight",
+      "val onTertiaryContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.onTertiaryContainerLight"
+    ]
+  },
+  {
+    "name": "val onTertiaryDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onTertiaryDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-tertiary-dark.html",
+    "searchKeys": [
+      "onTertiaryDark",
+      "val onTertiaryDark: Color",
+      "com.tecknobit.gluky.ui.theme.onTertiaryDark"
+    ]
+  },
+  {
+    "name": "val onTertiaryLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.onTertiaryLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/on-tertiary-light.html",
+    "searchKeys": [
+      "onTertiaryLight",
+      "val onTertiaryLight: Color",
+      "com.tecknobit.gluky.ui.theme.onTertiaryLight"
+    ]
+  },
+  {
+    "name": "val outlineDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.outlineDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/outline-dark.html",
+    "searchKeys": [
+      "outlineDark",
+      "val outlineDark: Color",
+      "com.tecknobit.gluky.ui.theme.outlineDark"
+    ]
+  },
+  {
+    "name": "val outlineLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.outlineLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/outline-light.html",
+    "searchKeys": [
+      "outlineLight",
+      "val outlineLight: Color",
+      "com.tecknobit.gluky.ui.theme.outlineLight"
+    ]
+  },
+  {
+    "name": "val outlineVariantDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.outlineVariantDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/outline-variant-dark.html",
+    "searchKeys": [
+      "outlineVariantDark",
+      "val outlineVariantDark: Color",
+      "com.tecknobit.gluky.ui.theme.outlineVariantDark"
+    ]
+  },
+  {
+    "name": "val outlineVariantLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.outlineVariantLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/outline-variant-light.html",
+    "searchKeys": [
+      "outlineVariantLight",
+      "val outlineVariantLight: Color",
+      "com.tecknobit.gluky.ui.theme.outlineVariantLight"
+    ]
+  },
+  {
+    "name": "val postPrandialGlycemia: MutableState<Int>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.postPrandialGlycemia",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/post-prandial-glycemia.html",
+    "searchKeys": [
+      "postPrandialGlycemia",
+      "val postPrandialGlycemia: MutableState<Int>",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.postPrandialGlycemia"
+    ]
+  },
+  {
+    "name": "val primaryContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.primaryContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/primary-container-dark.html",
+    "searchKeys": [
+      "primaryContainerDark",
+      "val primaryContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.primaryContainerDark"
+    ]
+  },
+  {
+    "name": "val primaryContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.primaryContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/primary-container-light.html",
+    "searchKeys": [
+      "primaryContainerLight",
+      "val primaryContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.primaryContainerLight"
+    ]
+  },
+  {
+    "name": "val primaryDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.primaryDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/primary-dark.html",
+    "searchKeys": [
+      "primaryDark",
+      "val primaryDark: Color",
+      "com.tecknobit.gluky.ui.theme.primaryDark"
+    ]
+  },
+  {
+    "name": "val primaryLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.primaryLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/primary-light.html",
+    "searchKeys": [
+      "primaryLight",
+      "val primaryLight: Color",
+      "com.tecknobit.gluky.ui.theme.primaryLight"
+    ]
+  },
+  {
+    "name": "val rawContent: MutableState<JsonObject>",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.rawContent",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/raw-content.html",
+    "searchKeys": [
+      "rawContent",
+      "val rawContent: MutableState<JsonObject>",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.rawContent"
+    ]
+  },
+  {
+    "name": "val reportId: String",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.Report.reportId",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-report/report-id.html",
+    "searchKeys": [
+      "reportId",
+      "val reportId: String",
+      "com.tecknobit.gluky.ui.screens.analyses.data.Report.reportId"
+    ]
+  },
+  {
+    "name": "val reportUrl: String",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.Report.reportUrl",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-report/report-url.html",
+    "searchKeys": [
+      "reportUrl",
+      "val reportUrl: String",
+      "com.tecknobit.gluky.ui.screens.analyses.data.Report.reportUrl"
+    ]
+  },
+  {
+    "name": "val scrimDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.scrimDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/scrim-dark.html",
+    "searchKeys": [
+      "scrimDark",
+      "val scrimDark: Color",
+      "com.tecknobit.gluky.ui.theme.scrimDark"
+    ]
+  },
+  {
+    "name": "val scrimLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.scrimLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/scrim-light.html",
+    "searchKeys": [
+      "scrimLight",
+      "val scrimLight: Color",
+      "com.tecknobit.gluky.ui.theme.scrimLight"
+    ]
+  },
+  {
+    "name": "val secondSet: List<GlycemiaPoint>?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.secondSet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/second-set.html",
+    "searchKeys": [
+      "secondSet",
+      "val secondSet: List<GlycemiaPoint>?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.secondSet"
+    ]
+  },
+  {
+    "name": "val secondaryContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.secondaryContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/secondary-container-dark.html",
+    "searchKeys": [
+      "secondaryContainerDark",
+      "val secondaryContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.secondaryContainerDark"
+    ]
+  },
+  {
+    "name": "val secondaryContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.secondaryContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/secondary-container-light.html",
+    "searchKeys": [
+      "secondaryContainerLight",
+      "val secondaryContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.secondaryContainerLight"
+    ]
+  },
+  {
+    "name": "val secondaryDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.secondaryDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/secondary-dark.html",
+    "searchKeys": [
+      "secondaryDark",
+      "val secondaryDark: Color",
+      "com.tecknobit.gluky.ui.theme.secondaryDark"
+    ]
+  },
+  {
+    "name": "val secondaryLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.secondaryLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/secondary-light.html",
+    "searchKeys": [
+      "secondaryLight",
+      "val secondaryLight: Color",
+      "com.tecknobit.gluky.ui.theme.secondaryLight"
+    ]
+  },
+  {
+    "name": "val sets: MutableList<List<GlycemiaPoint>>",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.sets",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/sets.html",
+    "searchKeys": [
+      "sets",
+      "val sets: MutableList<List<GlycemiaPoint>>",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.sets"
+    ]
+  },
+  {
+    "name": "val surfaceBrightDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceBrightDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-bright-dark.html",
+    "searchKeys": [
+      "surfaceBrightDark",
+      "val surfaceBrightDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceBrightDark"
+    ]
+  },
+  {
+    "name": "val surfaceBrightLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceBrightLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-bright-light.html",
+    "searchKeys": [
+      "surfaceBrightLight",
+      "val surfaceBrightLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceBrightLight"
+    ]
+  },
+  {
+    "name": "val surfaceContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-dark.html",
+    "searchKeys": [
+      "surfaceContainerDark",
+      "val surfaceContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerDark"
+    ]
+  },
+  {
+    "name": "val surfaceContainerHighDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerHighDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-high-dark.html",
+    "searchKeys": [
+      "surfaceContainerHighDark",
+      "val surfaceContainerHighDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerHighDark"
+    ]
+  },
+  {
+    "name": "val surfaceContainerHighLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerHighLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-high-light.html",
+    "searchKeys": [
+      "surfaceContainerHighLight",
+      "val surfaceContainerHighLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerHighLight"
+    ]
+  },
+  {
+    "name": "val surfaceContainerHighestDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerHighestDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-highest-dark.html",
+    "searchKeys": [
+      "surfaceContainerHighestDark",
+      "val surfaceContainerHighestDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerHighestDark"
+    ]
+  },
+  {
+    "name": "val surfaceContainerHighestLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerHighestLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-highest-light.html",
+    "searchKeys": [
+      "surfaceContainerHighestLight",
+      "val surfaceContainerHighestLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerHighestLight"
+    ]
+  },
+  {
+    "name": "val surfaceContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-light.html",
+    "searchKeys": [
+      "surfaceContainerLight",
+      "val surfaceContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerLight"
+    ]
+  },
+  {
+    "name": "val surfaceContainerLowDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerLowDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-low-dark.html",
+    "searchKeys": [
+      "surfaceContainerLowDark",
+      "val surfaceContainerLowDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerLowDark"
+    ]
+  },
+  {
+    "name": "val surfaceContainerLowLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerLowLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-low-light.html",
+    "searchKeys": [
+      "surfaceContainerLowLight",
+      "val surfaceContainerLowLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerLowLight"
+    ]
+  },
+  {
+    "name": "val surfaceContainerLowestDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerLowestDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-lowest-dark.html",
+    "searchKeys": [
+      "surfaceContainerLowestDark",
+      "val surfaceContainerLowestDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerLowestDark"
+    ]
+  },
+  {
+    "name": "val surfaceContainerLowestLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceContainerLowestLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-container-lowest-light.html",
+    "searchKeys": [
+      "surfaceContainerLowestLight",
+      "val surfaceContainerLowestLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceContainerLowestLight"
+    ]
+  },
+  {
+    "name": "val surfaceDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-dark.html",
+    "searchKeys": [
+      "surfaceDark",
+      "val surfaceDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceDark"
+    ]
+  },
+  {
+    "name": "val surfaceDimDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceDimDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-dim-dark.html",
+    "searchKeys": [
+      "surfaceDimDark",
+      "val surfaceDimDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceDimDark"
+    ]
+  },
+  {
+    "name": "val surfaceDimLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceDimLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-dim-light.html",
+    "searchKeys": [
+      "surfaceDimLight",
+      "val surfaceDimLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceDimLight"
+    ]
+  },
+  {
+    "name": "val surfaceLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-light.html",
+    "searchKeys": [
+      "surfaceLight",
+      "val surfaceLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceLight"
+    ]
+  },
+  {
+    "name": "val surfaceVariantDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceVariantDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-variant-dark.html",
+    "searchKeys": [
+      "surfaceVariantDark",
+      "val surfaceVariantDark: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceVariantDark"
+    ]
+  },
+  {
+    "name": "val surfaceVariantLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.surfaceVariantLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/surface-variant-light.html",
+    "searchKeys": [
+      "surfaceVariantLight",
+      "val surfaceVariantLight: Color",
+      "com.tecknobit.gluky.ui.theme.surfaceVariantLight"
+    ]
+  },
+  {
+    "name": "val tertiaryContainerDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.tertiaryContainerDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/tertiary-container-dark.html",
+    "searchKeys": [
+      "tertiaryContainerDark",
+      "val tertiaryContainerDark: Color",
+      "com.tecknobit.gluky.ui.theme.tertiaryContainerDark"
+    ]
+  },
+  {
+    "name": "val tertiaryContainerLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.tertiaryContainerLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/tertiary-container-light.html",
+    "searchKeys": [
+      "tertiaryContainerLight",
+      "val tertiaryContainerLight: Color",
+      "com.tecknobit.gluky.ui.theme.tertiaryContainerLight"
+    ]
+  },
+  {
+    "name": "val tertiaryDark: Color",
+    "description": "com.tecknobit.gluky.ui.theme.tertiaryDark",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/tertiary-dark.html",
+    "searchKeys": [
+      "tertiaryDark",
+      "val tertiaryDark: Color",
+      "com.tecknobit.gluky.ui.theme.tertiaryDark"
+    ]
+  },
+  {
+    "name": "val tertiaryLight: Color",
+    "description": "com.tecknobit.gluky.ui.theme.tertiaryLight",
+    "location": "-gluky/com.tecknobit.gluky.ui.theme/tertiary-light.html",
+    "searchKeys": [
+      "tertiaryLight",
+      "val tertiaryLight: Color",
+      "com.tecknobit.gluky.ui.theme.tertiaryLight"
+    ]
+  },
+  {
+    "name": "val thirdSet: List<GlycemiaPoint>?",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.thirdSet",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/third-set.html",
+    "searchKeys": [
+      "thirdSet",
+      "val thirdSet: List<GlycemiaPoint>?",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.thirdSet"
+    ]
+  },
+  {
+    "name": "val titleStyle: TextStyle",
+    "description": "com.tecknobit.gluky.ui.components.titleStyle",
+    "location": "-gluky/com.tecknobit.gluky.ui.components/title-style.html",
+    "searchKeys": [
+      "titleStyle",
+      "val titleStyle: TextStyle",
+      "com.tecknobit.gluky.ui.components.titleStyle"
+    ]
+  },
+  {
+    "name": "val to: Long",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.to",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/to.html",
+    "searchKeys": [
+      "to",
+      "val to: Long",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.to"
+    ]
+  },
+  {
+    "name": "val type: MeasurementType",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.type",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-meal/type.html",
+    "searchKeys": [
+      "type",
+      "val type: MeasurementType",
+      "com.tecknobit.gluky.ui.screens.measurements.data.types.Meal.type"
+    ]
+  },
+  {
+    "name": "val value: Double",
+    "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint.value",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemia-point/value.html",
+    "searchKeys": [
+      "value",
+      "val value: Double",
+      "com.tecknobit.gluky.ui.screens.analyses.data.GlycemiaPoint.value"
+    ]
+  },
+  {
+    "name": "var dailyNotes: String",
+    "description": "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.dailyNotes",
+    "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data/-daily-measurements/daily-notes.html",
+    "searchKeys": [
+      "dailyNotes",
+      "var dailyNotes: String",
+      "com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements.dailyNotes"
+    ]
+  }
+]
