@@ -15,7 +15,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.composeHotReload)
     alias(libs.plugins.dokka)
     alias(libs.plugins.buildconfig)
     kotlin("plugin.serialization") version "2.0.20"
@@ -104,7 +103,6 @@ kotlin {
                 implementation(libs.compose.charts)
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.dialogs.compose)
-                implementation(libs.ametista.engine)
                 implementation(libs.glukycore)
             }
         }
@@ -147,8 +145,8 @@ android {
         applicationId = "com.tecknobit.gluky"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 3
+        versionName = "1.0.2"
     }
     packaging {
         resources {
@@ -190,8 +188,8 @@ compose.desktop {
                 "jdk.security.auth"
             )
             packageName = "Gluky"
-            packageVersion = "1.0.1"
-            version = "1.0.1"
+            packageVersion = "1.0.2"
+            version = "1.0.2"
             description = "A daily tracker for glucose levels and meals"
             copyright = "© 2025 Tecknobit"
             vendor = "Tecknobit"
@@ -208,7 +206,7 @@ compose.desktop {
                 iconFile.set(project.file("src/desktopMain/resources/logo.png"))
                 packageName = "com-tecknobit-gluky"
                 debMaintainer = "infotecknobitcompany@gmail.com"
-                appRelease = "1.0.1"
+                appRelease = "1.0.2"
                 appCategory = "PERSONALIZATION"
                 rpmLicenseType = "APACHE2"
             }
