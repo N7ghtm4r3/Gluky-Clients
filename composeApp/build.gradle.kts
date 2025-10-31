@@ -73,6 +73,7 @@ kotlin {
             implementation(libs.app.update.ktx)
             implementation(libs.review)
             implementation(libs.review.ktx)
+            implementation(libs.androidx.fragment.ktx)
         }
 
         val commonMain by getting {
