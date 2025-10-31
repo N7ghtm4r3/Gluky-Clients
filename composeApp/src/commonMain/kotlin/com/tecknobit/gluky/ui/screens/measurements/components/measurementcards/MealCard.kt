@@ -4,7 +4,6 @@ package com.tecknobit.gluky.ui.screens.measurements.components.measurementcards
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,12 +11,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipAnchorPosition
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.rememberTooltipState
@@ -27,7 +26,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.AnnotatedString
@@ -262,7 +260,9 @@ private fun GlycemiaLevel(
             val scope = rememberCoroutineScope()
             val tooltipState = rememberTooltipState()
             TooltipBox(
-                positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
+                positionProvider = TooltipDefaults.rememberTooltipPositionProvider(
+                    positioning = TooltipAnchorPosition.Above
+                ),
                 state = tooltipState,
                 tooltip = {
                     PlainTooltip {
@@ -278,19 +278,12 @@ private fun GlycemiaLevel(
                 },
                 content = {
                     GlycemiaLevelBadge(
-                        // TODO: TO ADOPT THE BUILT-IN CALLBACK WHEN INTEGRATED
-                        modifier = Modifier
-                            .clip(
-                                shape = RoundedCornerShape( // TODO: REMOVE WHEN BUILT-IN CALLBACK INTEGRATED
-                                    size = 8.dp
-                                )
-                            )
-                            .clickable {
-                                scope.launch {
-                                    tooltipState.show()
-                                }
-                            },
-                        glycemia = glycemia
+                        glycemia = glycemia,
+                        onClick = {
+                            scope.launch {
+                                tooltipState.show()
+                            }
+                        }
                     )
                 }
             )

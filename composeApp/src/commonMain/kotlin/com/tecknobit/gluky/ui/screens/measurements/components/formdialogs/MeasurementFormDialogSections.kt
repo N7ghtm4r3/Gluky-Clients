@@ -263,7 +263,6 @@ internal fun InsulinSection(
                 style = AppTypography.labelLarge
             )
         }
-        // TODO: WHEN QuantityPicker HAS INTEGRATED THE enabled PROPERTY REMOVE AND USE DIRECTLY THAT
         AnimatedVisibility(
             visible = viewModel.insulinNeeded.value
         ) {
