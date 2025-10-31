@@ -2,11 +2,10 @@ package com.tecknobit.gluky.helpers
 
 import io.github.vinceglb.filekit.FileKit
 import io.github.vinceglb.filekit.PlatformFile
+import io.github.vinceglb.filekit.dialogs.openFileWithDefaultApplication
 import io.github.vinceglb.filekit.downloadDir
 import io.github.vinceglb.filekit.path
 import io.github.vinceglb.filekit.write
-import java.awt.Desktop
-import java.io.File
 
 /**
  * Method used to save a report after its download
@@ -34,7 +33,10 @@ actual fun openReport(
     url: String?,
 ) {
     url?.let {
-        val report = File(url)
-        Desktop.getDesktop().open(report)
+        FileKit.openFileWithDefaultApplication(
+            file = PlatformFile(
+                path = url
+            )
+        )
     }
 }

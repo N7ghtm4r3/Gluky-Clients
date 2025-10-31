@@ -1,17 +1,18 @@
 package com.tecknobit.gluky.helpers
 
 import com.tecknobit.equinoxcore.annotations.Returner
+import io.github.vinceglb.filekit.FileKit
+import io.github.vinceglb.filekit.PlatformFile
+import io.github.vinceglb.filekit.dialogs.openFileWithDefaultApplication
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.addressOf
 import kotlinx.cinterop.usePinned
 import platform.Foundation.NSData
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
-import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 import platform.Foundation.dataWithBytes
 import platform.Foundation.writeToFile
-import platform.UIKit.UIApplication
 
 /**
  * Method used to save a report after its download
@@ -63,11 +64,10 @@ actual fun openReport(
     url: String?,
 ) {
     url?.let {
-        val nsUrl = NSURL.URLWithString(
-            URLString = url
-        )!!
-        UIApplication.sharedApplication.openURL(
-            url = nsUrl
+        FileKit.openFileWithDefaultApplication(
+            file = PlatformFile(
+                path = url
+            )
         )
     }
 }
