@@ -1,36 +1,35 @@
 [versions]
-agp = "8.7.3"
-ametistaEngine = "1.0.4"
-android-compileSdk = "35"
+agp = "8.13.0"
+android-compileSdk = "36"
 android-minSdk = "24"
-android-targetSdk = "35"
-androidx-activity = "1.10.1"
-androidx-lifecycle = "2.8.4"
-composeCharts = "0.1.7"
-composeHotReload = "1.0.0-alpha09"
-composeMultiplatform = "1.8.0"
-filekit = "0.10.0-beta04"
-glukycore = "1.0.0"
-jetlime = "3.0.1"
-kotlin = "2.1.21"
+android-targetSdk = "36"
+androidx-activity = "1.11.0"
+androidx-lifecycle = "2.9.5"
+composeCharts = "0.2.0"
+composeMultiplatform = "1.9.2"
+filekit = "0.12.0"
+fragmentKtx = "1.8.9"
+glukycore = "1.0.1"
+jetlime = "4.0.0"
+kotlin = "2.2.21"
 kotlinx-coroutines = "1.10.2"
-equinox = "1.1.2"
-equinox-navigation = "1.0.1"
-kotlinxDatetime = "0.6.2"
-precompose = "1.7.0-alpha03"
-coilCompose = "3.1.0"
+equinox = "1.1.7"
+equinox-navigation = "1.0.4"
+kotlinxDatetime = "0.7.1"
+navigationCompose = "2.9.1"
+coilCompose = "3.3.0"
 ktor = "3.1.0"
-kotlinxSerializationJson = "1.8.1"
-richeditorCompose = "1.0.0-rc12"
+kotlinxSerializationJson = "1.9.0"
+richeditorCompose = "1.0.0-rc13"
 sonner = "0.3.8"
 octocatkdu = "1.0.6"
 appUpdate = "2.1.0"
 review = "2.0.2"
-dokka = "2.0.0"
-buildconfig = "5.6.5"
+dokka = "2.1.0"
+buildconfig = "5.7.0"
 
 [libraries]
-ametista-engine = { module = "io.github.n7ghtm4r3:Ametista-Engine", version.ref = "ametistaEngine" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 compose-charts = { module = "io.github.ehsannarmani:compose-charts", version.ref = "composeCharts" }
 filekit-core = { module = "io.github.vinceglb:filekit-core", version.ref = "filekit" }
 filekit-dialogs-compose = { module = "io.github.vinceglb:filekit-dialogs-compose", version.ref = "filekit" }
@@ -44,7 +43,7 @@ equinox-compose = { module = "io.github.n7ghtm4r3:equinox-compose", version.ref 
 equinox-core = { module = "io.github.n7ghtm4r3:equinox-core", version.ref = "equinox" }
 equinox-navigation = { module = "io.github.n7ghtm4r3:equinox-navigation", version.ref = "equinox-navigation" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "ktor" }
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
@@ -63,7 +62,6 @@ dokka-base = { module = "org.jetbrains.dokka:dokka-base", version.ref = "dokka" 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload" }
 composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }

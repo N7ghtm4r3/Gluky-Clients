@@ -1,9 +1,6 @@
 package com.tecknobit.gluky.helpers
 
-import android.app.DownloadManager
 import android.content.ContentValues
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 import android.os.Build
 import android.os.Environment.DIRECTORY_DOWNLOADS
@@ -12,7 +9,9 @@ import android.provider.MediaStore.Downloads
 import android.provider.MediaStore.VOLUME_EXTERNAL_PRIMARY
 import androidx.core.net.toUri
 import io.github.vinceglb.filekit.FileKit
+import io.github.vinceglb.filekit.PlatformFile
 import io.github.vinceglb.filekit.context
+import io.github.vinceglb.filekit.dialogs.openFileWithDefaultApplication
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -84,8 +83,10 @@ actual fun openReport(
     url: String?,
 ) {
     url?.let {
-        val intent = Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)
-        intent.addFlags(FLAG_ACTIVITY_NEW_TASK)
-        FileKit.context.startActivity(intent)
+        FileKit.openFileWithDefaultApplication(
+            file = PlatformFile(
+                uri = url.toUri()
+            )
+        )
     }
 }

@@ -1,34 +1,40 @@
 package com.tecknobit.gluky
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.NonRestartableComposable
 import androidx.compose.ui.text.font.FontFamily
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import coil3.ImageLoader
 import coil3.compose.LocalPlatformContext
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.CachePolicy
 import coil3.request.addLastModifiedToFileCacheKey
-import com.tecknobit.ametistaengine.AmetistaEngine
-import com.tecknobit.ametistaengine.AmetistaEngine.Companion.FILES_AMETISTA_CONFIG_PATHNAME
 import com.tecknobit.equinoxcompose.session.EquinoxLocalUser
+import com.tecknobit.equinoxcompose.session.screens.equinoxScreen
+import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
+import com.tecknobit.equinoxcore.helpers.THEME_KEY
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
+import com.tecknobit.gluky.GlukyConfig.LOCAL_STORAGE_PATH
+import com.tecknobit.gluky.helpers.AUTH_SCREEN
 import com.tecknobit.gluky.helpers.GlukyRequester
+import com.tecknobit.gluky.helpers.HOME_SCREEN
+import com.tecknobit.gluky.helpers.SPLASHSCREEN
 import com.tecknobit.gluky.helpers.customHttpClient
+import com.tecknobit.gluky.helpers.navToAuthScreen
+import com.tecknobit.gluky.helpers.navToSplashscreen
+import com.tecknobit.gluky.helpers.navigator
 import com.tecknobit.gluky.ui.components.imageLoader
 import com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen
 import com.tecknobit.gluky.ui.screens.home.HomeScreen
 import com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen
+import com.tecknobit.gluky.ui.theme.GlukyTheme
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.comicneue
 import gluky.composeapp.generated.resources.fredoka
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.PreComposeApp
-import moe.tlaster.precompose.navigation.NavHost
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.rememberNavigator
 import org.jetbrains.compose.resources.Font
 
 /**
@@ -42,35 +48,16 @@ lateinit var displayFontFamily: FontFamily
 lateinit var bodyFontFamily: FontFamily
 
 /**
- * `navigator` the instance used to navigate between the screens of the app
- */
-lateinit var navigator: Navigator
-
-/**
  * `requester` the instance to manage the requests with the backend
  */
 lateinit var requester: GlukyRequester
 
 /**
- * `SPLASHSCREEN` the route to navigate to the [com.tecknobit.gluky.ui.screens.splashscreen.Splashscreen]
- */
-const val SPLASHSCREEN = "SplashScreen"
-
-/**
- * `AUTH_SCREEN` the route to navigate to the [com.tecknobit.gluky.ui.screens.auth.presenter.AuthScreen]
- */
-const val AUTH_SCREEN = "AuthScreen"
-
-/**
- * `HOME_SCREEN` the route to navigate to the [com.tecknobit.gluky.ui.screens.home.HomeScreen]
- */
-const val HOME_SCREEN = "HomeScreen"
-
-/**
  * `localUser` the local user session details
  */
 val localUser = EquinoxLocalUser(
-    localStoragePath = "Gluky"
+    localStoragePath = LOCAL_STORAGE_PATH,
+    observableKeys = setOf(THEME_KEY)
 )
 
 /**
@@ -78,7 +65,6 @@ val localUser = EquinoxLocalUser(
  */
 @Composable
 fun App() {
-    InitAmetista()
     displayFontFamily = FontFamily(Font(Res.font.fredoka))
     bodyFontFamily = FontFamily(Font(Res.font.comicneue))
     imageLoader = ImageLoader.Builder(LocalPlatformContext.current)
@@ -94,47 +80,35 @@ fun App() {
         .networkCachePolicy(CachePolicy.ENABLED)
         .memoryCachePolicy(CachePolicy.ENABLED)
         .build()
-    PreComposeApp {
-        navigator = rememberNavigator()
+    navigator = rememberNavController()
+    GlukyTheme {
         NavHost(
-            navigator = navigator,
-            initialRoute = SPLASHSCREEN
+            navController = navigator,
+            startDestination = SPLASHSCREEN
         ) {
-            scene(
+            composable(
                 route = SPLASHSCREEN
             ) {
-                Splashscreen().ShowContent()
+                val splashscreen = equinoxScreen { Splashscreen() }
+                splashscreen.ShowContent()
             }
-            scene(
+            composable(
                 route = AUTH_SCREEN
             ) {
-                AuthScreen().ShowContent()
+                val authScreen = equinoxScreen { AuthScreen() }
+                authScreen.ShowContent()
             }
-            scene(
+            composable(
                 route = HOME_SCREEN
             ) {
-                HomeScreen().ShowContent()
+                val homeScreen = equinoxScreen { HomeScreen() }
+                homeScreen.ShowContent()
             }
         }
     }
-}
-
-/**
- * Method used to initialize the Ametista system
- */
-@Composable
-@NonRestartableComposable
-private fun InitAmetista() {
-    LaunchedEffect(Unit) {
-        val ametistaEngine = AmetistaEngine.ametistaEngine
-        ametistaEngine.fireUp(
-            configData = Res.readBytes(FILES_AMETISTA_CONFIG_PATHNAME),
-            host = AmetistaConfig.HOST,
-            serverSecret = AmetistaConfig.SERVER_SECRET!!,
-            applicationId = AmetistaConfig.APPLICATION_IDENTIFIER!!,
-            bypassSslValidation = AmetistaConfig.BYPASS_SSL_VALIDATION,
-            debugMode = false
-        )
+    SessionFlowState.invokeOnUserDisconnected {
+        localUser.clear()
+        navToSplashscreen()
     }
 }
 
@@ -169,7 +143,7 @@ fun startSession() {
                 onFailure = {
                     localUser.clear()
                     requester.clearSession()
-                    navigator.navigate(AUTH_SCREEN)
+                    navToAuthScreen()
                 },
                 onConnectionError = { }
             )

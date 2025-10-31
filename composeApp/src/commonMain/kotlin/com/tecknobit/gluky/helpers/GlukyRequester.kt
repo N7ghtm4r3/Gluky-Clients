@@ -3,10 +3,8 @@ package com.tecknobit.gluky.helpers
 import androidx.compose.runtime.MutableState
 import com.tecknobit.equinoxcompose.network.EquinoxRequester
 import com.tecknobit.equinoxcore.annotations.Assembler
-import com.tecknobit.equinoxcore.annotations.CustomParametersOrder
 import com.tecknobit.equinoxcore.annotations.RequestPath
 import com.tecknobit.equinoxcore.annotations.Wrapper
-import com.tecknobit.equinoxcore.helpers.LANGUAGE_KEY
 import com.tecknobit.equinoxcore.network.EquinoxBaseEndpointsSet.Companion.BASE_EQUINOX_ENDPOINT
 import com.tecknobit.equinoxcore.network.RequestMethod.DELETE
 import com.tecknobit.equinoxcore.network.RequestMethod.GET
@@ -32,11 +30,8 @@ import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.ANALYSES_ENDPOINT
 import com.tecknobit.glukycore.helpers.GlukyEndpointsSet.REPORTS_ENDPOINT
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
-import kotlinx.serialization.json.encodeToJsonElement
-import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.put
 import kotlinx.serialization.json.putJsonObject
 
@@ -75,29 +70,6 @@ class GlukyRequester(
          */
         const val TARGET_DAY_PATTERN = "dd-MM-yyyy"
 
-    }
-
-    /**
-     * Method used to create the payload for the [signIn] request
-     *
-     * @param email The email of the user
-     * @param password The password of the user
-     * @param custom The custom parameters added in a customization of the equinox user to execute a customized sign-in
-     *
-     * @return the payload for the request as [JsonObject]
-     *
-     */
-    // TODO: TO REMOVE WHEN LANGUAGE PARAMETER IMPLEMENTED BUILT-IN
-    @Assembler
-    @CustomParametersOrder(LANGUAGE_KEY)
-    override fun getSignInPayload(
-        email: String,
-        password: String,
-        vararg custom: Any?,
-    ): JsonObject {
-        val payload = super.getSignInPayload(email, password, *custom).toMutableMap()
-        payload[LANGUAGE_KEY] = Json.encodeToJsonElement(custom[0].toString())
-        return Json.encodeToJsonElement(payload).jsonObject
     }
 
     /**

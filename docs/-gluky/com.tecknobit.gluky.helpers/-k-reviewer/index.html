@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>KReviewer</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
     <script type="text/javascript"
             src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
@@ -28,9 +28,8 @@
     <link href="../../../styles/main.css" rel="Stylesheet">
     <link href="../../../styles/prism.css" rel="Stylesheet">
     <link href="../../../styles/logo-styles.css" rel="Stylesheet">
-    <link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
     <link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
-    <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="../../../scripts/safe-local-storage_blocking.js"></script>
     <script type="text/javascript" src="../../../scripts/navigation-loader.js"
             async="async"></script>
     <script type="text/javascript" src="../../../scripts/platform-content-handler.js"
@@ -38,14 +37,12 @@
     <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
     <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
     <script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
-    <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js"
-            defer="defer"></script>
     <link href="../../../images/logo-icon.svg">
 </head>
 <body>
 <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-        <a class="library-name--link" href="../../../index.html">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+        <a class="library-name--link" href="../../../index.html" tabindex="1">
             Gluky
         </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only"
@@ -54,21 +51,30 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-            1.0.1
+            1.0.2
         </div>
         <div class="navigation-controls">
-            <div class="filter-section filter-section_loading" id="filter-section">
+            <ul class="filter-section filter-section_loading" id="filter-section"
+                aria-label="Target filter">
                 <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/androidMain">android
+                        aria-pressed="true"
+                        data-filter=":composeApp/androidMain">android
                 </button>
                 <button class="platform-tag platform-selector common-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/commonMain">common
+                        aria-pressed="true"
+                        data-filter=":composeApp/commonMain">common
                 </button>
                 <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/desktopMain">desktop
+                        aria-pressed="true"
+                        data-filter=":composeApp/desktopMain">desktop
+                </button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/iosMain">ios
                 </button>
                 <button class="platform-tag platform-selector wasm-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/wasmJsMain">wasmJs
+                        aria-pressed="true"
+                        data-filter=":composeApp/wasmJsMain">wasmJs
                 </button>
                 <div class="dropdown filter-section--dropdown" data-role="dropdown"
                      id="filter-section-dropdown">
@@ -81,10 +87,10 @@
                             aria-label="Toggle source sets"
                     ></button>
                     <ul role="listbox" id="platform-tags-listbox" class="dropdown--list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header"><span>Platform filter</span>
+                        data-role="dropdown-listbox" aria-label="Target filter">
+                        <div class="dropdown--header"><span>Target filter</span>
                             <button class="button" data-role="dropdown-toggle"
-                                    aria-label="Close platform filter">
+                                    aria-label="Close target filter">
                                 <i class="ui-kit-icon ui-kit-icon_cross"></i>
                             </button>
                         </div>
@@ -92,8 +98,8 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/androidMain"
-                                       data-filter=":composeApp:dokkaHtml/androidMain"/>
+                                       id=":composeApp/androidMain"
+                                       data-filter=":composeApp/androidMain"/>
                                 <span class="checkbox--icon"></span>
                                 android
                             </label>
@@ -103,8 +109,8 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/commonMain"
-                                       data-filter=":composeApp:dokkaHtml/commonMain"/>
+                                       id=":composeApp/commonMain"
+                                       data-filter=":composeApp/commonMain"/>
                                 <span class="checkbox--icon"></span>
                                 common
                             </label>
@@ -113,10 +119,21 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/desktopMain"
-                                       data-filter=":composeApp:dokkaHtml/desktopMain"/>
+                                       id=":composeApp/desktopMain"
+                                       data-filter=":composeApp/desktopMain"/>
                                 <span class="checkbox--icon"></span>
                                 desktop
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option common-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/iosMain"
+                                       data-filter=":composeApp/iosMain"/>
+                                <span class="checkbox--icon"></span>
+                                ios
                             </label>
                         </li>
                         <li role="option"
@@ -124,8 +141,8 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/wasmJsMain"
-                                       data-filter=":composeApp:dokkaHtml/wasmJsMain"/>
+                                       id=":composeApp/wasmJsMain"
+                                       data-filter=":composeApp/wasmJsMain"/>
                                 <span class="checkbox--icon"></span>
                                 wasmJs
                             </label>
@@ -133,7 +150,7 @@
                     </ul>
                     <div class="dropdown--overlay"></div>
                 </div>
-            </div>
+            </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme"
                     id="theme-toggle-button"
                     type="button">Switch theme
@@ -143,12 +160,14 @@
                 API
             </div>
         </div>
-    </nav>
+    </header>
     <div id="container">
-        <div class="sidebar" id="leftColumn">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION"
+             data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
             <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
                 <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                    data-role="dropdown-listbox">
+                    data-role="dropdown-listbox" aria-label="Table of contents">
                     <div class="dropdown--header">
                             <span>
                                     Gluky
@@ -162,10 +181,11 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
-        <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
             <div class="main-content" data-page-type="classlike" id="content"
-                 pageIds="Gluky::com.tecknobit.gluky.helpers/KReviewer///PointingToDeclaration//-1989926055">
+                 pageIds="Gluky::com.tecknobit.gluky.helpers/KReviewer///PointingToDeclaration//121133551">
                 <div class="breadcrumbs"><a href="../../../index.html">Gluky</a><span
                         class="delimiter">/</span><a href="../index.html">com.tecknobit.gluky.helpers</a><span
                         class="delimiter">/</span><span class="current">KReviewer</span></div>
@@ -175,29 +195,33 @@
                          data-platform-hinted="data-platform-hinted">
                         <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list">
                             <button class="platform-bookmark"
-                                    data-filterable-current=":composeApp:dokkaHtml/androidMain"
-                                    data-filterable-set=":composeApp:dokkaHtml/androidMain"
-                                    data-active="" data-toggle=":composeApp:dokkaHtml/androidMain">
-                                android
+                                    data-filterable-current=":composeApp/androidMain"
+                                    data-filterable-set=":composeApp/androidMain" data-active=""
+                                    data-toggle=":composeApp/androidMain">android
                             </button>
                             <button class="platform-bookmark"
-                                    data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                    data-filterable-set=":composeApp:dokkaHtml/commonMain"
-                                    data-toggle=":composeApp:dokkaHtml/commonMain">common
+                                    data-filterable-current=":composeApp/commonMain"
+                                    data-filterable-set=":composeApp/commonMain"
+                                    data-toggle=":composeApp/commonMain">common
                             </button>
                             <button class="platform-bookmark"
-                                    data-filterable-current=":composeApp:dokkaHtml/desktopMain"
-                                    data-filterable-set=":composeApp:dokkaHtml/desktopMain"
-                                    data-toggle=":composeApp:dokkaHtml/desktopMain">desktop
+                                    data-filterable-current=":composeApp/desktopMain"
+                                    data-filterable-set=":composeApp/desktopMain"
+                                    data-toggle=":composeApp/desktopMain">desktop
                             </button>
                             <button class="platform-bookmark"
-                                    data-filterable-current=":composeApp:dokkaHtml/wasmJsMain"
-                                    data-filterable-set=":composeApp:dokkaHtml/wasmJsMain"
-                                    data-toggle=":composeApp:dokkaHtml/wasmJsMain">wasmJs
+                                    data-filterable-current=":composeApp/iosMain"
+                                    data-filterable-set=":composeApp/iosMain"
+                                    data-toggle=":composeApp/iosMain">ios
+                            </button>
+                            <button class="platform-bookmark"
+                                    data-filterable-current=":composeApp/wasmJsMain"
+                                    data-filterable-set=":composeApp/wasmJsMain"
+                                    data-toggle=":composeApp/wasmJsMain">wasmJs
                             </button>
                         </div>
                         <div class="content sourceset-dependent-content"
-                             data-togglable=":composeApp:dokkaHtml/androidMain">
+                             data-togglable=":composeApp/androidMain">
                             <div class="symbol monospace"><span class="token keyword">actual </span><span
                                     class="token keyword">class </span><a href="index.html">KReviewer</a>
                             </div>
@@ -206,7 +230,7 @@
                                 class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span>
                         </div>
                         <div class="content sourceset-dependent-content" data-active=""
-                             data-togglable=":composeApp:dokkaHtml/commonMain">
+                             data-togglable=":composeApp/commonMain">
                             <div class="symbol monospace"><span class="token keyword">expect </span><span
                                     class="token keyword">class </span><a href="index.html">KReviewer</a>
                             </div>
@@ -215,7 +239,7 @@
                                 class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span>
                         </div>
                         <div class="content sourceset-dependent-content"
-                             data-togglable=":composeApp:dokkaHtml/desktopMain">
+                             data-togglable=":composeApp/desktopMain">
                             <div class="symbol monospace"><span class="token keyword">actual </span><span
                                     class="token keyword">class </span><a href="index.html">KReviewer</a>
                             </div>
@@ -224,7 +248,16 @@
                                 class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span>
                         </div>
                         <div class="content sourceset-dependent-content"
-                             data-togglable=":composeApp:dokkaHtml/wasmJsMain">
+                             data-togglable=":composeApp/iosMain">
+                            <div class="symbol monospace"><span class="token keyword">actual </span><span
+                                    class="token keyword">class </span><a href="index.html">KReviewer</a>
+                            </div>
+                            <p class="paragraph">The <code class="lang-kotlin">KReviewer</code>
+                                class is useful to manage the biometric authentication</p><span
+                                class="kdoc-tag"><h4 class="">Author</h4><p class="paragraph">N7ghtm4r3 - Tecknobit</p></span>
+                        </div>
+                        <div class="content sourceset-dependent-content"
+                             data-togglable=":composeApp/wasmJsMain">
                             <div class="symbol monospace"><span class="token keyword">actual </span><span
                                     class="token keyword">class </span><a href="index.html">KReviewer</a>
                             </div>
@@ -242,20 +275,20 @@
                     </div>
                     <div class="tabs-section-body">
                         <div data-togglable="CONSTRUCTOR">
-                            <h2 class="">Constructors</h2>
-                            <div class="table"><a
-                                    data-name="1237910862%2FConstructors%2F-1989926055"
-                                    anchor-label="KReviewer"
-                                    id="1237910862%2FConstructors%2F-1989926055"
-                                    data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"></a>
-                                <div class="table-row" data-togglable="CONSTRUCTOR"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain">
+                            <h2 class="tableheader">Constructors</h2>
+                            <div class="table"><a data-name="1237910862%2FConstructors%2F121133551"
+                                                  anchor-label="KReviewer"
+                                                  id="1237910862%2FConstructors%2F121133551"
+                                                  data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-togglable="CONSTRUCTOR"
+                                     data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                                     data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="-k-reviewer.html"><span><span>KReviewer</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1237910862%2FConstructors%2F-1989926055"></span>
+                                   pointing-to="1237910862%2FConstructors%2F121133551"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -265,33 +298,39 @@
                                                     <div class="platform-bookmarks-row"
                                                          data-toggle-list="data-toggle-list">
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/androidMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/androidMain"
+                                                                data-filterable-current=":composeApp/androidMain"
+                                                                data-filterable-set=":composeApp/androidMain"
                                                                 data-active=""
-                                                                data-toggle=":composeApp:dokkaHtml/androidMain">
+                                                                data-toggle=":composeApp/androidMain">
                                                             android
                                                         </button>
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/commonMain"
-                                                                data-toggle=":composeApp:dokkaHtml/commonMain">
+                                                                data-filterable-current=":composeApp/commonMain"
+                                                                data-filterable-set=":composeApp/commonMain"
+                                                                data-toggle=":composeApp/commonMain">
                                                             common
                                                         </button>
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/desktopMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/desktopMain"
-                                                                data-toggle=":composeApp:dokkaHtml/desktopMain">
+                                                                data-filterable-current=":composeApp/desktopMain"
+                                                                data-filterable-set=":composeApp/desktopMain"
+                                                                data-toggle=":composeApp/desktopMain">
                                                             desktop
                                                         </button>
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/wasmJsMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/wasmJsMain"
-                                                                data-toggle=":composeApp:dokkaHtml/wasmJsMain">
+                                                                data-filterable-current=":composeApp/iosMain"
+                                                                data-filterable-set=":composeApp/iosMain"
+                                                                data-toggle=":composeApp/iosMain">
+                                                            ios
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/wasmJsMain"
+                                                                data-filterable-set=":composeApp/wasmJsMain"
+                                                                data-toggle=":composeApp/wasmJsMain">
                                                             wasmJs
                                                         </button>
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
-                                                         data-togglable=":composeApp:dokkaHtml/androidMain">
+                                                         data-togglable=":composeApp/androidMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">actual </span><span
                                                                 class="token keyword">constructor</span><span
@@ -301,7 +340,7 @@
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">expect </span><span
                                                                 class="token keyword">constructor</span><span
@@ -310,7 +349,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
-                                                         data-togglable=":composeApp:dokkaHtml/desktopMain">
+                                                         data-togglable=":composeApp/desktopMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">actual </span><span
                                                                 class="token keyword">constructor</span><span
@@ -319,7 +358,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
-                                                         data-togglable=":composeApp:dokkaHtml/wasmJsMain">
+                                                         data-togglable=":composeApp/iosMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">constructor</span><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/wasmJsMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">actual </span><span
                                                                 class="token keyword">constructor</span><span
@@ -335,19 +383,19 @@
                             </div>
                         </div>
                         <div data-togglable="FUNCTION">
-                            <h2 class="">Functions</h2>
-                            <div class="table"><a data-name="-1013174964%2FFunctions%2F-1989926055"
+                            <h2 class="tableheader">Functions</h2>
+                            <div class="table"><a data-name="-1013174964%2FFunctions%2F121133551"
                                                   anchor-label="reviewInApp"
-                                                  id="-1013174964%2FFunctions%2F-1989926055"
-                                                  data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"></a>
-                                <div class="table-row"
-                                     data-filterable-current=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"
-                                     data-filterable-set=":composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain">
+                                                  id="-1013174964%2FFunctions%2F121133551"
+                                                  data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                                <div class="table-row table-row_content"
+                                     data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                                     data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
                                     <div class="main-subrow keyValue ">
                                         <div class=""><span class="inline-flex">
                   <div><a href="review-in-app.html"><span>review</span><wbr></wbr><span>In</span><wbr></wbr><span><span>App</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1013174964%2FFunctions%2F-1989926055"></span>
+                                   pointing-to="-1013174964%2FFunctions%2F121133551"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
                                         <div>
@@ -357,33 +405,39 @@
                                                     <div class="platform-bookmarks-row"
                                                          data-toggle-list="data-toggle-list">
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/androidMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/androidMain"
+                                                                data-filterable-current=":composeApp/androidMain"
+                                                                data-filterable-set=":composeApp/androidMain"
                                                                 data-active=""
-                                                                data-toggle=":composeApp:dokkaHtml/androidMain">
+                                                                data-toggle=":composeApp/androidMain">
                                                             android
                                                         </button>
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/commonMain"
-                                                                data-toggle=":composeApp:dokkaHtml/commonMain">
+                                                                data-filterable-current=":composeApp/commonMain"
+                                                                data-filterable-set=":composeApp/commonMain"
+                                                                data-toggle=":composeApp/commonMain">
                                                             common
                                                         </button>
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/desktopMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/desktopMain"
-                                                                data-toggle=":composeApp:dokkaHtml/desktopMain">
+                                                                data-filterable-current=":composeApp/desktopMain"
+                                                                data-filterable-set=":composeApp/desktopMain"
+                                                                data-toggle=":composeApp/desktopMain">
                                                             desktop
                                                         </button>
                                                         <button class="platform-bookmark"
-                                                                data-filterable-current=":composeApp:dokkaHtml/wasmJsMain"
-                                                                data-filterable-set=":composeApp:dokkaHtml/wasmJsMain"
-                                                                data-toggle=":composeApp:dokkaHtml/wasmJsMain">
+                                                                data-filterable-current=":composeApp/iosMain"
+                                                                data-filterable-set=":composeApp/iosMain"
+                                                                data-toggle=":composeApp/iosMain">
+                                                            ios
+                                                        </button>
+                                                        <button class="platform-bookmark"
+                                                                data-filterable-current=":composeApp/wasmJsMain"
+                                                                data-filterable-set=":composeApp/wasmJsMain"
+                                                                data-toggle=":composeApp/wasmJsMain">
                                                             wasmJs
                                                         </button>
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
-                                                         data-togglable=":composeApp:dokkaHtml/androidMain">
+                                                         data-togglable=":composeApp/androidMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">actual </span><span
                                                                 class="token keyword">fun </span><a
@@ -405,7 +459,7 @@
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
                                                          data-active=""
-                                                         data-togglable=":composeApp:dokkaHtml/commonMain">
+                                                         data-togglable=":composeApp/commonMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">expect </span><span
                                                                 class="token keyword">fun </span><a
@@ -427,7 +481,7 @@
                                                             application</p></div>
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
-                                                         data-togglable=":composeApp:dokkaHtml/desktopMain">
+                                                         data-togglable=":composeApp/desktopMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">actual </span><span
                                                                 class="token keyword">fun </span><a
@@ -448,7 +502,28 @@
                                                             application</p></div>
                                                     </div>
                                                     <div class="content sourceset-dependent-content"
-                                                         data-togglable=":composeApp:dokkaHtml/wasmJsMain">
+                                                         data-togglable=":composeApp/iosMain">
+                                                        <div class="symbol monospace"><span
+                                                                class="token keyword">actual </span><span
+                                                                class="token keyword">fun </span><a
+                                                                href="review-in-app.html"><span
+                                                                class="token function">reviewInApp</span></a><span
+                                                                class="token punctuation">(</span><span
+                                                                class="parameters "><span
+                                                                class="parameter ">flowAction<span
+                                                                class="token operator">: </span><span
+                                                                class="token punctuation">(</span><span
+                                                                class="token punctuation">)</span><span
+                                                                class="token operator"> -&gt; </span><a
+                                                                href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-unit/index.html">Unit</a></span></span><span
+                                                                class="token punctuation">)</span>
+                                                        </div>
+                                                        <div class="brief "><p class="paragraph">
+                                                            Method used to review in-app the
+                                                            application</p></div>
+                                                    </div>
+                                                    <div class="content sourceset-dependent-content"
+                                                         data-togglable=":composeApp/wasmJsMain">
                                                         <div class="symbol monospace"><span
                                                                 class="token keyword">actual </span><span
                                                                 class="token keyword">fun </span><a
@@ -479,15 +554,20 @@
                 </div>
             </div>
             <div class="footer">
-                <a href="#content" id="go-to-top-link"
-                   class="footer--button footer--button_go-to-top"></a>
-                <span>(c) 2025 Tecknobit</span>
-                <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
+                <div class="footer--container">
+                    <a href="#content" id="go-to-top-link"
+                       class="footer--button footer--button_go-to-top"></a>
+                    <div class="footer--content">
+                        <div>
+                            <span>Generated by </span>
+                            <a class="footer--link footer--link_external"
+                               href="https://github.com/Kotlin/dokka">
+                                Dokka
+                            </a>
+                            <div>(c) 2025 Tecknobit</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

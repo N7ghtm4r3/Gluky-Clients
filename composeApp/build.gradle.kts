@@ -1,9 +1,6 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Deb
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Exe
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat.Pkg
-import org.jetbrains.dokka.base.DokkaBase
-import org.jetbrains.dokka.base.DokkaBaseConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -15,7 +12,6 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.composeHotReload)
     alias(libs.plugins.dokka)
     alias(libs.plugins.buildconfig)
     kotlin("plugin.serialization") version "2.0.20"
@@ -77,6 +73,7 @@ kotlin {
             implementation(libs.app.update.ktx)
             implementation(libs.review)
             implementation(libs.review.ktx)
+            implementation(libs.androidx.fragment.ktx)
         }
 
         val commonMain by getting {
@@ -93,7 +90,6 @@ kotlin {
                 implementation(libs.equinox.compose)
                 implementation(libs.equinox.core)
                 implementation(libs.equinox.navigation)
-                api(libs.precompose)
                 implementation(libs.coil.compose)
                 implementation(libs.coil.network.ktor3)
                 implementation(libs.kotlinx.datetime)
@@ -104,7 +100,7 @@ kotlin {
                 implementation(libs.compose.charts)
                 implementation(libs.filekit.core)
                 implementation(libs.filekit.dialogs.compose)
-                implementation(libs.ametista.engine)
+                implementation(libs.navigation.compose)
                 implementation(libs.glukycore)
             }
         }
@@ -147,8 +143,8 @@ android {
         applicationId = "com.tecknobit.gluky"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 3
+        versionName = "1.0.2"
     }
     packaging {
         resources {
@@ -190,8 +186,8 @@ compose.desktop {
                 "jdk.security.auth"
             )
             packageName = "Gluky"
-            packageVersion = "1.0.1"
-            version = "1.0.1"
+            packageVersion = "1.0.2"
+            version = "1.0.2"
             description = "A daily tracker for glucose levels and meals"
             copyright = "© 2025 Tecknobit"
             vendor = "Tecknobit"
@@ -208,7 +204,7 @@ compose.desktop {
                 iconFile.set(project.file("src/desktopMain/resources/logo.png"))
                 packageName = "com-tecknobit-gluky"
                 debMaintainer = "infotecknobitcompany@gmail.com"
-                appRelease = "1.0.1"
+                appRelease = "1.0.2"
                 appCategory = "PERSONALIZATION"
                 rpmLicenseType = "APACHE2"
             }
@@ -220,35 +216,27 @@ compose.desktop {
     }
 }
 
-tasks.withType<DokkaTask>().configureEach {
-    dokkaSourceSets {
-        moduleName.set("Gluky")
+dokka {
+    moduleName.set("Gluky")
+    dokkaPublications.html {
         outputDirectory.set(layout.projectDirectory.dir("../docs"))
     }
-
-    pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
-        customAssets = listOf(file("../docs/logo-icon.svg"))
-        footerMessage = "(c) 2025 Tecknobit"
+    pluginsConfiguration {
+        versioning {
+            version.set("1.0.2")
+        }
+        html {
+            customAssets.from("../images/logo-icon.svg")
+            footerMessage.set("(c) 2025 Tecknobit")
+        }
     }
 }
 
 buildConfig {
-    className("AmetistaConfig")
+    className("GlukyConfig")
     packageName("com.tecknobit.gluky")
     buildConfigField<String>(
-        name = "HOST",
-        value = project.findProperty("host").toString()
-    )
-    buildConfigField<String?>(
-        name = "SERVER_SECRET",
-        value = project.findProperty("server_secret").toString()
-    )
-    buildConfigField<String?>(
-        name = "APPLICATION_IDENTIFIER",
-        value = project.findProperty("application_id").toString()
-    )
-    buildConfigField<Boolean>(
-        name = "BYPASS_SSL_VALIDATION",
-        value = project.findProperty("bypass_ssl_validation").toString().toBoolean()
+        name = "LOCAL_STORAGE_PATH",
+        value = project.findProperty("localStoragePath").toString()
     )
 }

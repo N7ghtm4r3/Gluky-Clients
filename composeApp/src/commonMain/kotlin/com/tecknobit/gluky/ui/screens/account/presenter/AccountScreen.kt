@@ -55,13 +55,12 @@ import com.tecknobit.equinoxcompose.session.EquinoxLocalUser.ApplicationTheme
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.COMPACT_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClass.MEDIUM_CONTENT
 import com.tecknobit.equinoxcompose.utilities.ResponsiveClassComponent
-import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.LANGUAGES_SUPPORTED
+import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.SUPPORTED_LANGUAGES
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isEmailValid
 import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.isPasswordValid
-import com.tecknobit.gluky.SPLASHSCREEN
 import com.tecknobit.gluky.bodyFontFamily
+import com.tecknobit.gluky.helpers.navToSplashscreen
 import com.tecknobit.gluky.localUser
-import com.tecknobit.gluky.navigator
 import com.tecknobit.gluky.ui.components.DeleteAccount
 import com.tecknobit.gluky.ui.components.Logout
 import com.tecknobit.gluky.ui.components.ProfilePic
@@ -269,7 +268,7 @@ class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
                         viewModel.changeLanguage(
                             onChange = {
                                 visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
+                                navToSplashscreen()
                             }
                         )
                     }
@@ -283,7 +282,6 @@ class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
                         viewModel.changeTheme(
                             onChange = {
                                 visible.value = false
-                                navigator.navigate(SPLASHSCREEN)
                             }
                         )
                     }
@@ -426,7 +424,7 @@ class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
             modifier = Modifier
                 .selectableGroup()
         ) {
-            LANGUAGES_SUPPORTED.entries.forEach { entry ->
+            SUPPORTED_LANGUAGES.entries.forEach { entry ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -477,7 +475,6 @@ class AccountScreen : GlukyScreenTab<AccountScreenViewModel>(
     override fun CollectStates() {
         viewModel.profilePic = remember { mutableStateOf(localUser.profilePic) }
         viewModel.email = remember { mutableStateOf(localUser.email) }
-        viewModel.password = remember { mutableStateOf(localUser.password) }
         viewModel.language = remember { mutableStateOf(localUser.language) }
         viewModel.theme = remember { mutableStateOf(localUser.theme) }
     }

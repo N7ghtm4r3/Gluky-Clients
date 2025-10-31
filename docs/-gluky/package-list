@@ -1,12 +1,20 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:com.tecknobit.gluky.helpers////PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/index.html
+$dokka.location:com.tecknobit.gluky.helpers//AUTH_SCREEN/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-a-u-t-h_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.gluky.helpers//HOME_SCREEN/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-h-o-m-e_-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.gluky.helpers//SPLASHSCREEN/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-s-p-l-a-s-h-s-c-r-e-e-n.html
 $dokka.location:com.tecknobit.gluky.helpers//asDayOfWeek/kotlin.Long#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/as-day-of-week.html
 $dokka.location:com.tecknobit.gluky.helpers//asMonth/kotlin.Long#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/as-month.html
 $dokka.location:com.tecknobit.gluky.helpers//customHttpClient/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/custom-http-client.html
 $dokka.location:com.tecknobit.gluky.helpers//extendedText/com.tecknobit.glukycore.enums.GlycemicTrendPeriod#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/extended-text.html
+$dokka.location:com.tecknobit.gluky.helpers//navToAuthScreen/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/nav-to-auth-screen.html
+$dokka.location:com.tecknobit.gluky.helpers//navToHomeScreen/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/nav-to-home-screen.html
+$dokka.location:com.tecknobit.gluky.helpers//navToSplashscreen/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/nav-to-splashscreen.html
+$dokka.location:com.tecknobit.gluky.helpers//navigator/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/navigator.html
 $dokka.location:com.tecknobit.gluky.helpers//openReport/#kotlin.String?/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/open-report.html
 $dokka.location:com.tecknobit.gluky.helpers//saveReport/#kotlin.ByteArray#kotlin.String#kotlin.Function1[kotlin.String?,kotlin.Unit]/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/save-report.html
+$dokka.location:com.tecknobit.gluky.helpers//toNSData/kotlin.ByteArray#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/to-n-s-data.html
 $dokka.location:com.tecknobit.gluky.helpers/GlukyRequester///PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-gluky-requester/index.html
 $dokka.location:com.tecknobit.gluky.helpers/GlukyRequester/GlukyRequester/#kotlin.String#kotlin.String?#kotlin.String?#kotlin.Boolean/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-gluky-requester/-gluky-requester.html
 $dokka.location:com.tecknobit.gluky.helpers/GlukyRequester/createReport/#com.tecknobit.glukycore.enums.GlycemicTrendPeriod#com.tecknobit.glukycore.enums.GlycemicTrendGroupingDay?#kotlin.Long?#kotlin.Long?/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-gluky-requester/create-report.html
@@ -21,9 +29,6 @@ $dokka.location:com.tecknobit.gluky.helpers/GlukyRequester/saveDailyNotes/#kotli
 $dokka.location:com.tecknobit.gluky.helpers/KReviewer///PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-k-reviewer/index.html
 $dokka.location:com.tecknobit.gluky.helpers/KReviewer/KReviewer/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-k-reviewer/-k-reviewer.html
 $dokka.location:com.tecknobit.gluky.helpers/KReviewer/reviewInApp/#kotlin.Function0[kotlin.Unit]/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-k-reviewer/review-in-app.html
-$dokka.location:com.tecknobit.gluky.helpers/ScreenMonitor///PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-screen-monitor/index.html
-$dokka.location:com.tecknobit.gluky.helpers/ScreenMonitor/allowScreenSleeps/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-screen-monitor/allow-screen-sleeps.html
-$dokka.location:com.tecknobit.gluky.helpers/ScreenMonitor/keepScreenAwake/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.helpers/-screen-monitor/keep-screen-awake.html
 $dokka.location:com.tecknobit.gluky.ui.components////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.components/index.html
 $dokka.location:com.tecknobit.gluky.ui.components//DeleteAccount/#com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel#androidx.compose.runtime.MutableState[kotlin.Boolean]/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.components/-delete-account.html
 $dokka.location:com.tecknobit.gluky.ui.components//Logout/#com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel#androidx.compose.runtime.MutableState[kotlin.Boolean]/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.components/-logout.html
@@ -138,7 +143,7 @@ $dokka.location:com.tecknobit.gluky.ui.screens.measurements.components.measureme
 $dokka.location:com.tecknobit.gluky.ui.screens.measurements.components////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.components/index.html
 $dokka.location:com.tecknobit.gluky.ui.screens.measurements.components//DailyNotes/#androidx.compose.material3.SheetState#kotlinx.coroutines.CoroutineScope#com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel#com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-daily-notes.html
 $dokka.location:com.tecknobit.gluky.ui.screens.measurements.components//FillItemButton/#org.jetbrains.compose.resources.StringResource#kotlin.Function1[androidx.compose.runtime.MutableState[kotlin.Boolean],kotlin.Unit]/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-fill-item-button.html
-$dokka.location:com.tecknobit.gluky.ui.screens.measurements.components//GlycemiaLevelBadge/#androidx.compose.ui.Modifier#kotlin.Int/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-glycemia-level-badge.html
+$dokka.location:com.tecknobit.gluky.ui.screens.measurements.components//GlycemiaLevelBadge/#androidx.compose.ui.Modifier#kotlin.Int#kotlin.Function0[kotlin.Unit]?/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-glycemia-level-badge.html
 $dokka.location:com.tecknobit.gluky.ui.screens.measurements.components//Measurements/#com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel#androidx.compose.ui.unit.Dp#com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-measurements.html
 $dokka.location:com.tecknobit.gluky.ui.screens.measurements.components//UnfilledDay/#com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-unfilled-day.html
 $dokka.location:com.tecknobit.gluky.ui.screens.measurements.data.types////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/index.html
@@ -206,17 +211,14 @@ $dokka.location:com.tecknobit.gluky.ui.screens.measurements.presenter/Measuremen
 $dokka.location:com.tecknobit.gluky.ui.screens.shared.presentations////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/index.html
 $dokka.location:com.tecknobit.gluky.ui.screens.shared.presentations/ToastsLauncher///PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/index.html
 $dokka.location:com.tecknobit.gluky.ui.screens.shared.presentations/ToastsLauncher/scope/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/scope.html
-$dokka.location:com.tecknobit.gluky.ui.screens.shared.presentations/ToastsLauncher/toastError/#org.jetbrains.compose.resources.StringResource#kotlin.Array[kotlin.Any]/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/toast-error.html
+$dokka.location:com.tecknobit.gluky.ui.screens.shared.presentations/ToastsLauncher/toastError/#org.jetbrains.compose.resources.StringResource#kotlin.Any/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/toast-error.html
 $dokka.location:com.tecknobit.gluky.ui.screens.shared.presentations/ToastsLauncher/toasterState/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/-toasts-launcher/toaster-state.html
 $dokka.location:com.tecknobit.gluky.ui.screens.shared.presenters////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presenters/index.html
 $dokka.location:com.tecknobit.gluky.ui.screens.shared.presenters/GlukyScreenTab///PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presenters/-gluky-screen-tab/index.html
-$dokka.location:com.tecknobit.gluky.ui.screens.shared.presenters/GlukyScreenTab/GlukyScreenTab/#TypeParam(bounds=[com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel])#kotlin.Boolean#org.jetbrains.compose.resources.StringResource?/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presenters/-gluky-screen-tab/-gluky-screen-tab.html
+$dokka.location:com.tecknobit.gluky.ui.screens.shared.presenters/GlukyScreenTab/GlukyScreenTab/#TypeParam(bounds=[com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel])#kotlin.Boolean#org.jetbrains.compose.resources.StringResource?/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.shared.presenters/-gluky-screen-tab/-gluky-screen-tab.html
 $dokka.location:com.tecknobit.gluky.ui.screens.splashscreen////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.splashscreen/index.html
 $dokka.location:com.tecknobit.gluky.ui.screens.splashscreen/Splashscreen///PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.splashscreen/-splashscreen/index.html
 $dokka.location:com.tecknobit.gluky.ui.screens.splashscreen/Splashscreen/Splashscreen/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens.splashscreen/-splashscreen/-splashscreen.html
-$dokka.location:com.tecknobit.gluky.ui.screens////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens/index.html
-$dokka.location:com.tecknobit.gluky.ui.screens/TMPNavigatorScreen///PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens/-t-m-p-navigator-screen/index.html
-$dokka.location:com.tecknobit.gluky.ui.screens/TMPNavigatorScreen/TMPNavigatorScreen/#kotlin.Boolean/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.screens/-t-m-p-navigator-screen/-t-m-p-navigator-screen.html
 $dokka.location:com.tecknobit.gluky.ui.theme////PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.theme/index.html
 $dokka.location:com.tecknobit.gluky.ui.theme//AppTypography/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.theme/-app-typography.html
 $dokka.location:com.tecknobit.gluky.ui.theme//ChartLine1Dark/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.theme/-chart-line1-dark.html
@@ -316,17 +318,14 @@ $dokka.location:com.tecknobit.gluky.ui.theme//tertiaryLight/#/PointingToDeclarat
 $dokka.location:com.tecknobit.gluky.ui.theme//useDialogSize/androidx.compose.ui.Modifier#/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.theme/use-dialog-size.html
 $dokka.location:com.tecknobit.gluky.ui.theme//yellow/#/PointingToDeclaration/-gluky/com.tecknobit.gluky.ui.theme/yellow.html
 $dokka.location:com.tecknobit.gluky////PointingToDeclaration/-gluky/com.tecknobit.gluky/index.html
-$dokka.location:com.tecknobit.gluky//AUTH_SCREEN/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/-a-u-t-h_-s-c-r-e-e-n.html
 $dokka.location:com.tecknobit.gluky//App/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/-app.html
 $dokka.location:com.tecknobit.gluky//CheckForUpdatesAndLaunch/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/-check-for-updates-and-launch.html
 $dokka.location:com.tecknobit.gluky//CloseApplicationOnNavBack/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/-close-application-on-nav-back.html
-$dokka.location:com.tecknobit.gluky//HOME_SCREEN/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/-h-o-m-e_-s-c-r-e-e-n.html
-$dokka.location:com.tecknobit.gluky//SPLASHSCREEN/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/-s-p-l-a-s-h-s-c-r-e-e-n.html
+$dokka.location:com.tecknobit.gluky//MainViewController/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/-main-view-controller.html
 $dokka.location:com.tecknobit.gluky//bodyFontFamily/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/body-font-family.html
 $dokka.location:com.tecknobit.gluky//displayFontFamily/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/display-font-family.html
 $dokka.location:com.tecknobit.gluky//localUser/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/local-user.html
 $dokka.location:com.tecknobit.gluky//main/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/[wasm-js]main.html
-$dokka.location:com.tecknobit.gluky//navigator/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/navigator.html
 $dokka.location:com.tecknobit.gluky//requester/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/requester.html
 $dokka.location:com.tecknobit.gluky//setUserLanguage/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/set-user-language.html
 $dokka.location:com.tecknobit.gluky//startSession/#/PointingToDeclaration/-gluky/com.tecknobit.gluky/start-session.html
@@ -339,7 +338,6 @@ com.tecknobit.gluky
 com.tecknobit.gluky.helpers
 com.tecknobit.gluky.ui.components
 com.tecknobit.gluky.ui.icons
-com.tecknobit.gluky.ui.screens
 com.tecknobit.gluky.ui.screens.account.presentation
 com.tecknobit.gluky.ui.screens.account.presenter
 com.tecknobit.gluky.ui.screens.analyses.components

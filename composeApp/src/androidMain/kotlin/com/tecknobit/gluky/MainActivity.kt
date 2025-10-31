@@ -1,7 +1,6 @@
 package com.tecknobit.gluky
 
 import android.os.Bundle
-import android.os.StrictMode
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -11,7 +10,6 @@ import androidx.activity.result.contract.ActivityResultContracts.StartIntentSend
 import androidx.annotation.ContentView
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.tecknobit.ametistaengine.AmetistaEngine
 import com.tecknobit.equinoxcore.utilities.ContextActivityProvider
 
 /**
@@ -54,9 +52,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         ContextActivityProvider.setCurrentActivity(this)
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
-        AmetistaEngine.intake()
         appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
         setContent {
             App()

@@ -1,23 +1,23 @@
 <!DOCTYPE html>
-<html class="no-js">
+<html class="no-js" lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Gluky</title>
     <link href="images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "";</script>
-    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>document.documentElement.classList.replace("no-js", "js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-    if (storage == null) {
+      if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
         if (osDarkSchemePreferred === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    } else {
+      } else {
         const savedDarkMode = JSON.parse(storage)
-        if(savedDarkMode === true) {
-            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        if (savedDarkMode === true) {
+          document.getElementsByTagName("html")[0].classList.add("theme-dark")
         }
-    }
+      }
     </script>
     <script type="text/javascript"
             src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js"
@@ -27,22 +27,19 @@
     <link href="styles/main.css" rel="Stylesheet">
     <link href="styles/prism.css" rel="Stylesheet">
     <link href="styles/logo-styles.css" rel="Stylesheet">
-    <link href="styles/font-jb-sans-auto.css" rel="Stylesheet">
     <link href="ui-kit/ui-kit.min.css" rel="Stylesheet">
-    <script type="text/javascript" src="scripts/clipboard.js" async="async"></script>
+    <script type="text/javascript" src="scripts/safe-local-storage_blocking.js"></script>
     <script type="text/javascript" src="scripts/navigation-loader.js" async="async"></script>
     <script type="text/javascript" src="scripts/platform-content-handler.js" async="async"></script>
     <script type="text/javascript" src="scripts/main.js" defer="defer"></script>
     <script type="text/javascript" src="scripts/prism.js" async="async"></script>
     <script type="text/javascript" src="ui-kit/ui-kit.min.js" defer="defer"></script>
-    <script type="text/javascript" src="scripts/symbol-parameters-wrapper_deferred.js"
-            defer="defer"></script>
     <link href="images/logo-icon.svg">
 </head>
 <body>
 <div class="root">
-    <nav class="navigation theme-dark" id="navigation-wrapper">
-        <a class="library-name--link" href="index.html">
+    <header class="navigation theme-dark" id="navigation-wrapper" role="banner">
+        <a class="library-name--link" href="index.html" tabindex="1">
             Gluky
         </a>
         <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only"
@@ -51,21 +48,30 @@
         </button>
         <div class="navigation-controls--break ui-kit_mobile-only"></div>
         <div class="library-version" id="library-version">
-            1.0.1
+            1.0.2
         </div>
         <div class="navigation-controls">
-            <div class="filter-section filter-section_loading" id="filter-section">
+            <ul class="filter-section filter-section_loading" id="filter-section"
+                aria-label="Target filter">
                 <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/androidMain">android
+                        aria-pressed="true"
+                        data-filter=":composeApp/androidMain">android
                 </button>
                 <button class="platform-tag platform-selector common-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/commonMain">common
+                        aria-pressed="true"
+                        data-filter=":composeApp/commonMain">common
                 </button>
                 <button class="platform-tag platform-selector jvm-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/desktopMain">desktop
+                        aria-pressed="true"
+                        data-filter=":composeApp/desktopMain">desktop
+                </button>
+                <button class="platform-tag platform-selector common-like" data-active=""
+                        aria-pressed="true"
+                        data-filter=":composeApp/iosMain">ios
                 </button>
                 <button class="platform-tag platform-selector wasm-like" data-active=""
-                        data-filter=":composeApp:dokkaHtml/wasmJsMain">wasmJs
+                        aria-pressed="true"
+                        data-filter=":composeApp/wasmJsMain">wasmJs
                 </button>
                 <div class="dropdown filter-section--dropdown" data-role="dropdown"
                      id="filter-section-dropdown">
@@ -78,10 +84,10 @@
                             aria-label="Toggle source sets"
                     ></button>
                     <ul role="listbox" id="platform-tags-listbox" class="dropdown--list"
-                        data-role="dropdown-listbox">
-                        <div class="dropdown--header"><span>Platform filter</span>
+                        data-role="dropdown-listbox" aria-label="Target filter">
+                        <div class="dropdown--header"><span>Target filter</span>
                             <button class="button" data-role="dropdown-toggle"
-                                    aria-label="Close platform filter">
+                                    aria-label="Close target filter">
                                 <i class="ui-kit-icon ui-kit-icon_cross"></i>
                             </button>
                         </div>
@@ -89,8 +95,8 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/androidMain"
-                                       data-filter=":composeApp:dokkaHtml/androidMain"/>
+                                       id=":composeApp/androidMain"
+                                       data-filter=":composeApp/androidMain"/>
                                 <span class="checkbox--icon"></span>
                                 android
                             </label>
@@ -100,8 +106,8 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/commonMain"
-                                       data-filter=":composeApp:dokkaHtml/commonMain"/>
+                                       id=":composeApp/commonMain"
+                                       data-filter=":composeApp/commonMain"/>
                                 <span class="checkbox--icon"></span>
                                 common
                             </label>
@@ -110,10 +116,21 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/desktopMain"
-                                       data-filter=":composeApp:dokkaHtml/desktopMain"/>
+                                       id=":composeApp/desktopMain"
+                                       data-filter=":composeApp/desktopMain"/>
                                 <span class="checkbox--icon"></span>
                                 desktop
+                            </label>
+                        </li>
+                        <li role="option"
+                            class="dropdown--option platform-selector-option common-like"
+                            tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input"
+                                       id=":composeApp/iosMain"
+                                       data-filter=":composeApp/iosMain"/>
+                                <span class="checkbox--icon"></span>
+                                ios
                             </label>
                         </li>
                         <li role="option"
@@ -121,8 +138,8 @@
                             tabindex="0">
                             <label class="checkbox">
                                 <input type="checkbox" class="checkbox--input"
-                                       id=":composeApp:dokkaHtml/wasmJsMain"
-                                       data-filter=":composeApp:dokkaHtml/wasmJsMain"/>
+                                       id=":composeApp/wasmJsMain"
+                                       data-filter=":composeApp/wasmJsMain"/>
                                 <span class="checkbox--icon"></span>
                                 wasmJs
                             </label>
@@ -130,7 +147,7 @@
                     </ul>
                     <div class="dropdown--overlay"></div>
                 </div>
-            </div>
+            </ul>
             <button class="navigation-controls--btn navigation-controls--btn_theme"
                     id="theme-toggle-button"
                     type="button">Switch theme
@@ -140,12 +157,14 @@
                 API
             </div>
         </div>
-    </nav>
+    </header>
     <div id="container">
-        <div class="sidebar" id="leftColumn">
+        <nav id="leftColumn" class="sidebar" data-item-type="SECTION"
+             data-item-config='{"defaultSize": 280, "minSize": 200, "maxSize": 400}'>
+            <a class="toc--skip-link" href="#main">Skip to content</a>
             <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
                 <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
-                    data-role="dropdown-listbox">
+                    data-role="dropdown-listbox" aria-label="Table of contents">
                     <div class="dropdown--header">
                             <span>
                                     Gluky
@@ -159,35 +178,37 @@
                 </ul>
                 <div class="dropdown--overlay"></div>
             </div>
-        </div>
-        <div id="main">
+        </nav>
+        <div id="resizer" class="resizer" data-item-type="BAR"></div>
+        <div id="main" data-item-type="SECTION" role="main">
             <div class="main-content" id="content"
-                 pageIds="Gluky::////PointingToDeclaration//-1989926055">
+                 pageIds="Gluky::////PointingToDeclaration//121133551">
                 <div class="breadcrumbs"></div>
                 <div class="cover ">
                     <h1 class="cover"><span><span>Gluky</span></span></h1>
                 </div>
                 <h2 class="">Packages</h2>
-                <div class="table"><a data-name="1719339928%2FPackages%2F-1989926055"
+                <div class="table"><a data-name="1719339928%2FPackages%2F121133551"
                                       anchor-label="com.tecknobit.gluky"
-                                      id="1719339928%2FPackages%2F-1989926055"
-                                      data-filterable-set=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"
-                         data-filterable-set=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain">
+                                      id="1719339928%2FPackages%2F121133551"
+                                      data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                         data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky/index.html">com.tecknobit.gluky</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1719339928%2FPackages%2F-1989926055"></span>
+                                   pointing-to="1719339928%2FPackages%2F121133551"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag jvm-like">android</div>
                                         <div class="platform-tag common-like">common</div>
                                         <div class="platform-tag jvm-like">desktop</div>
+                                        <div class="platform-tag common-like">ios</div>
                                         <div class="platform-tag wasm-like">wasmJs</div>
                                     </div>
                                 </div>
@@ -195,26 +216,27 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="1001868655%2FPackages%2F-1989926055"
+                    <a data-name="1001868655%2FPackages%2F121133551"
                        anchor-label="com.tecknobit.gluky.helpers"
-                       id="1001868655%2FPackages%2F-1989926055"
-                       data-filterable-set=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"
-                         data-filterable-set=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain">
+                       id="1001868655%2FPackages%2F121133551"
+                       data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                         data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.helpers/index.html">com.tecknobit.gluky.helpers</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1001868655%2FPackages%2F-1989926055"></span>
+                                   pointing-to="1001868655%2FPackages%2F121133551"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag jvm-like">android</div>
                                         <div class="platform-tag common-like">common</div>
                                         <div class="platform-tag jvm-like">desktop</div>
+                                        <div class="platform-tag common-like">ios</div>
                                         <div class="platform-tag wasm-like">wasmJs</div>
                                     </div>
                                 </div>
@@ -222,22 +244,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="1359204314%2FPackages%2F-813795679"
+                    <a data-name="1359204314%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.components"
-                       id="1359204314%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="1359204314%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.components/index.html">com.tecknobit.gluky.ui.components</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1359204314%2FPackages%2F-813795679"></span>
+                                   pointing-to="1359204314%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -246,22 +268,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="1153156826%2FPackages%2F-813795679"
+                    <a data-name="1153156826%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.icons"
-                       id="1153156826%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="1153156826%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.icons/index.html">com.tecknobit.gluky.ui.icons</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1153156826%2FPackages%2F-813795679"></span>
+                                   pointing-to="1153156826%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -270,46 +292,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="278594439%2FPackages%2F-813795679"
-                       anchor-label="com.tecknobit.gluky.ui.screens"
-                       id="278594439%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
-                        <div>
-                            <div class="main-subrow ">
-                                <div class=""><span class="inline-flex">
-              <div><a href="-gluky/com.tecknobit.gluky.ui.screens/index.html">com.tecknobit.gluky.ui.screens</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="278594439%2FPackages%2F-813795679"></span>
-                <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-              </span></span></div>
-                                <div class="pull-right">
-                                    <div class="platform-tags no-gutters">
-                                        <div class="platform-tag common-like">common</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div></div>
-                        </div>
-                    </div>
-                    <a data-name="-1766095738%2FPackages%2F-813795679"
+                    <a data-name="-1766095738%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.account.presentation"
-                       id="-1766095738%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-1766095738%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.account.presentation/index.html">com.tecknobit.gluky.ui.screens.account.presentation</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1766095738%2FPackages%2F-813795679"></span>
+                                   pointing-to="-1766095738%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -318,22 +316,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-979104576%2FPackages%2F-813795679"
+                    <a data-name="-979104576%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.account.presenter"
-                       id="-979104576%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-979104576%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.account.presenter/index.html">com.tecknobit.gluky.ui.screens.account.presenter</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-979104576%2FPackages%2F-813795679"></span>
+                                   pointing-to="-979104576%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -342,22 +340,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="419147773%2FPackages%2F-813795679"
+                    <a data-name="419147773%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.analyses.components"
-                       id="419147773%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="419147773%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.analyses.components/index.html">com.tecknobit.gluky.ui.screens.analyses.components</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="419147773%2FPackages%2F-813795679"></span>
+                                   pointing-to="419147773%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -366,22 +364,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-209513647%2FPackages%2F-813795679"
+                    <a data-name="-209513647%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.analyses.data"
-                       id="-209513647%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-209513647%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.analyses.data/index.html">com.tecknobit.gluky.ui.screens.analyses.data</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-209513647%2FPackages%2F-813795679"></span>
+                                   pointing-to="-209513647%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -390,26 +388,27 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-998046270%2FPackages%2F-1989926055"
+                    <a data-name="-998046270%2FPackages%2F121133551"
                        anchor-label="com.tecknobit.gluky.ui.screens.analyses.helpers"
-                       id="-998046270%2FPackages%2F-1989926055"
-                       data-filterable-set=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain"
-                         data-filterable-set=":composeApp:dokkaHtml/androidMain,:composeApp:dokkaHtml/commonMain,:composeApp:dokkaHtml/desktopMain,:composeApp:dokkaHtml/wasmJsMain">
+                       id="-998046270%2FPackages%2F121133551"
+                       data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain"
+                         data-filterable-set=":composeApp/commonMain,:composeApp/androidMain,:composeApp/desktopMain,:composeApp/iosMain,:composeApp/wasmJsMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.analyses.helpers/index.html">com.tecknobit.gluky.ui.screens.analyses.helpers</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-998046270%2FPackages%2F-1989926055"></span>
+                                   pointing-to="-998046270%2FPackages%2F121133551"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag jvm-like">android</div>
                                         <div class="platform-tag common-like">common</div>
                                         <div class="platform-tag jvm-like">desktop</div>
+                                        <div class="platform-tag common-like">ios</div>
                                         <div class="platform-tag wasm-like">wasmJs</div>
                                     </div>
                                 </div>
@@ -417,22 +416,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="1869128129%2FPackages%2F-813795679"
+                    <a data-name="1869128129%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.analyses.presentation"
-                       id="1869128129%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="1869128129%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.analyses.presentation/index.html">com.tecknobit.gluky.ui.screens.analyses.presentation</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1869128129%2FPackages%2F-813795679"></span>
+                                   pointing-to="1869128129%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -441,22 +440,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-908627611%2FPackages%2F-813795679"
+                    <a data-name="-908627611%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.analyses.presenter"
-                       id="-908627611%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-908627611%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.analyses.presenter/index.html">com.tecknobit.gluky.ui.screens.analyses.presenter</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-908627611%2FPackages%2F-813795679"></span>
+                                   pointing-to="-908627611%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -465,22 +464,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-1865651975%2FPackages%2F-813795679"
+                    <a data-name="-1865651975%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.auth.presentation"
-                       id="-1865651975%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-1865651975%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.auth.presentation/index.html">com.tecknobit.gluky.ui.screens.auth.presentation</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1865651975%2FPackages%2F-813795679"></span>
+                                   pointing-to="-1865651975%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -489,22 +488,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-272386771%2FPackages%2F-813795679"
+                    <a data-name="-272386771%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.auth.presenter"
-                       id="-272386771%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-272386771%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.auth.presenter/index.html">com.tecknobit.gluky.ui.screens.auth.presenter</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-272386771%2FPackages%2F-813795679"></span>
+                                   pointing-to="-272386771%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -513,22 +512,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="1646368042%2FPackages%2F-813795679"
+                    <a data-name="1646368042%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.home"
-                       id="1646368042%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="1646368042%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.home/index.html">com.tecknobit.gluky.ui.screens.home</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1646368042%2FPackages%2F-813795679"></span>
+                                   pointing-to="1646368042%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -537,22 +536,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-1108787962%2FPackages%2F-813795679"
+                    <a data-name="-1108787962%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.components"
-                       id="-1108787962%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-1108787962%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.components/index.html">com.tecknobit.gluky.ui.screens.measurements.components</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1108787962%2FPackages%2F-813795679"></span>
+                                   pointing-to="-1108787962%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -561,22 +560,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-167400267%2FPackages%2F-813795679"
+                    <a data-name="-167400267%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.components.daypickers"
-                       id="-167400267%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-167400267%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.components.daypickers/index.html">com.tecknobit.gluky.ui.screens.measurements.components.daypickers</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-167400267%2FPackages%2F-813795679"></span>
+                                   pointing-to="-167400267%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -585,22 +584,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-1494195265%2FPackages%2F-813795679"
+                    <a data-name="-1494195265%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.components.formdialogs"
-                       id="-1494195265%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-1494195265%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.components.formdialogs/index.html">com.tecknobit.gluky.ui.screens.measurements.components.formdialogs</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1494195265%2FPackages%2F-813795679"></span>
+                                   pointing-to="-1494195265%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -609,22 +608,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-1210943917%2FPackages%2F-813795679"
+                    <a data-name="-1210943917%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.components.measurementcards"
-                       id="-1210943917%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-1210943917%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.components.measurementcards/index.html">com.tecknobit.gluky.ui.screens.measurements.components.measurementcards</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1210943917%2FPackages%2F-813795679"></span>
+                                   pointing-to="-1210943917%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -633,22 +632,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-2000856294%2FPackages%2F-813795679"
+                    <a data-name="-2000856294%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.data"
-                       id="-2000856294%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-2000856294%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.data/index.html">com.tecknobit.gluky.ui.screens.measurements.data</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-2000856294%2FPackages%2F-813795679"></span>
+                                   pointing-to="-2000856294%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -657,22 +656,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="194678373%2FPackages%2F-813795679"
+                    <a data-name="194678373%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.data.types"
-                       id="194678373%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="194678373%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/index.html">com.tecknobit.gluky.ui.screens.measurements.data.types</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="194678373%2FPackages%2F-813795679"></span>
+                                   pointing-to="194678373%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -681,22 +680,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-1893265270%2FPackages%2F-813795679"
+                    <a data-name="-1893265270%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.presentation"
-                       id="-1893265270%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-1893265270%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.presentation/index.html">com.tecknobit.gluky.ui.screens.measurements.presentation</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-1893265270%2FPackages%2F-813795679"></span>
+                                   pointing-to="-1893265270%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -705,22 +704,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="-403726532%2FPackages%2F-813795679"
+                    <a data-name="-403726532%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.measurements.presenter"
-                       id="-403726532%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="-403726532%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.measurements.presenter/index.html">com.tecknobit.gluky.ui.screens.measurements.presenter</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="-403726532%2FPackages%2F-813795679"></span>
+                                   pointing-to="-403726532%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -729,22 +728,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="58616283%2FPackages%2F-813795679"
+                    <a data-name="58616283%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.shared.presentations"
-                       id="58616283%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="58616283%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.shared.presentations/index.html">com.tecknobit.gluky.ui.screens.shared.presentations</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="58616283%2FPackages%2F-813795679"></span>
+                                   pointing-to="58616283%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -753,22 +752,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="455667277%2FPackages%2F-813795679"
+                    <a data-name="455667277%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.shared.presenters"
-                       id="455667277%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="455667277%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.shared.presenters/index.html">com.tecknobit.gluky.ui.screens.shared.presenters</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="455667277%2FPackages%2F-813795679"></span>
+                                   pointing-to="455667277%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -777,22 +776,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="1787391966%2FPackages%2F-813795679"
+                    <a data-name="1787391966%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.screens.splashscreen"
-                       id="1787391966%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="1787391966%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.screens.splashscreen/index.html">com.tecknobit.gluky.ui.screens.splashscreen</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="1787391966%2FPackages%2F-813795679"></span>
+                                   pointing-to="1787391966%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -801,22 +800,22 @@
                             <div></div>
                         </div>
                     </div>
-                    <a data-name="2109529289%2FPackages%2F-813795679"
+                    <a data-name="2109529289%2FPackages%2F799242938"
                        anchor-label="com.tecknobit.gluky.ui.theme"
-                       id="2109529289%2FPackages%2F-813795679"
-                       data-filterable-set=":composeApp:dokkaHtml/commonMain"></a>
-                    <div class="table-row"
-                         data-filterable-current=":composeApp:dokkaHtml/commonMain"
-                         data-filterable-set=":composeApp:dokkaHtml/commonMain">
+                       id="2109529289%2FPackages%2F799242938"
+                       data-filterable-set=":composeApp/commonMain"></a>
+                    <div class="table-row table-row_platform-tagged"
+                         data-filterable-current=":composeApp/commonMain"
+                         data-filterable-set=":composeApp/commonMain">
                         <div>
                             <div class="main-subrow ">
                                 <div class=""><span class="inline-flex">
               <div><a href="-gluky/com.tecknobit.gluky.ui.theme/index.html">com.tecknobit.gluky.ui.theme</a></div>
 <span class="anchor-wrapper"><span class="anchor-icon"
-                                   pointing-to="2109529289%2FPackages%2F-813795679"></span>
+                                   pointing-to="2109529289%2FPackages%2F799242938"></span>
                 <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
               </span></span></div>
-                                <div class="pull-right">
+                                <div class="pull-right platform-tags--wrapper">
                                     <div class="platform-tags no-gutters">
                                         <div class="platform-tag common-like">common</div>
                                     </div>
@@ -828,15 +827,20 @@
                 </div>
             </div>
             <div class="footer">
-                <a href="#content" id="go-to-top-link"
-                   class="footer--button footer--button_go-to-top"></a>
-                <span>(c) 2025 Tecknobit</span>
-                <span class="pull-right">
-            <span>Generated by </span>
-            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
-                <span>dokka</span>
-            </a>
-        </span>
+                <div class="footer--container">
+                    <a href="#content" id="go-to-top-link"
+                       class="footer--button footer--button_go-to-top"></a>
+                    <div class="footer--content">
+                        <div>
+                            <span>Generated by </span>
+                            <a class="footer--link footer--link_external"
+                               href="https://github.com/Kotlin/dokka">
+                                Dokka
+                            </a>
+                            <div>(c) 2025 Tecknobit</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

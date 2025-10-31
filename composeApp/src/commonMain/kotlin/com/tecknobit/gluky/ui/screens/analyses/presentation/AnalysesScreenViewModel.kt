@@ -1,15 +1,11 @@
-@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeApi::class)
-
 package com.tecknobit.gluky.ui.screens.analyses.presentation
 
 import androidx.compose.material3.DateRangePickerState
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.lifecycle.viewModelScope
 import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.network.Requester.Companion.toResponseData
 import com.tecknobit.equinoxcore.network.sendRequest
@@ -52,7 +48,6 @@ class AnalysesScreenViewModel : EquinoxViewModel(
     /**
      * `sessionFlowState` the state used to manage the session lifecycle in the screen
      */
-    @OptIn(ExperimentalComposeApi::class)
     lateinit var sessionFlowState: SessionFlowState
 
     /**

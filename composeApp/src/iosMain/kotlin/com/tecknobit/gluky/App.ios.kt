@@ -3,9 +3,6 @@ package com.tecknobit.gluky
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.NonRestartableComposable
-import com.tecknobit.equinoxcompose.utilities.getCurrentLocaleLanguage
-import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.DEFAULT_LANGUAGE
-import com.tecknobit.equinoxcore.helpers.InputsValidator.Companion.LANGUAGES_SUPPORTED
 import kotlinx.coroutines.delay
 import platform.Foundation.NSLocale
 import platform.Foundation.NSUserDefaults
@@ -27,16 +24,8 @@ actual fun CheckForUpdatesAndLaunch() {
  * Method to points locale language for the application
  */
 actual fun setUserLanguage() {
-    // TODO: TO REMOVE THIS WORKAROUND AND USE DIRECTLY localUser.language
-    val language = localUser.language.ifBlank {
-        val currentLocaleLang = getCurrentLocaleLanguage()
-        if (LANGUAGES_SUPPORTED.containsKey(currentLocaleLang))
-            currentLocaleLang
-        else
-            DEFAULT_LANGUAGE
-    }
     val locale = NSLocale(
-        localeIdentifier = language
+        localeIdentifier = localUser.language
     )
     NSUserDefaults.standardUserDefaults.setObject(
         value = locale,

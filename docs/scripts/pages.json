@@ -10,16 +10,6 @@
     ]
   },
   {
-    "name": "abstract class TMPNavigatorScreen<T : NavigatorTab<*>>(loggerEnabled: Boolean = true) : EquinoxNoModelScreen",
-    "description": "com.tecknobit.gluky.ui.screens.TMPNavigatorScreen",
-    "location": "-gluky/com.tecknobit.gluky.ui.screens/-t-m-p-navigator-screen/index.html",
-    "searchKeys": [
-      "TMPNavigatorScreen",
-      "abstract class TMPNavigatorScreen<T : NavigatorTab<*>>(loggerEnabled: Boolean = true) : EquinoxNoModelScreen",
-      "com.tecknobit.gluky.ui.screens.TMPNavigatorScreen"
-    ]
-  },
-  {
     "name": "abstract val isNotFilledYet: Boolean",
     "description": "com.tecknobit.gluky.ui.screens.measurements.data.types.GlycemicMeasurementItem.isNotFilledYet",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.data.types/-glycemic-measurement-item/is-not-filled-yet.html",
@@ -120,12 +110,12 @@
     ]
   },
   {
-    "name": "class HomeScreen : TMPNavigatorScreen<I18nNavigationTab> ",
+    "name": "class HomeScreen : NavigatorScreen<I18nNavigationTab> ",
     "description": "com.tecknobit.gluky.ui.screens.home.HomeScreen",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.home/-home-screen/index.html",
     "searchKeys": [
       "HomeScreen",
-      "class HomeScreen : TMPNavigatorScreen<I18nNavigationTab> ",
+      "class HomeScreen : NavigatorScreen<I18nNavigationTab> ",
       "com.tecknobit.gluky.ui.screens.home.HomeScreen"
     ]
   },
@@ -171,22 +161,22 @@
   },
   {
     "name": "const val AUTH_SCREEN: String",
-    "description": "com.tecknobit.gluky.AUTH_SCREEN",
-    "location": "-gluky/com.tecknobit.gluky/-a-u-t-h_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.gluky.helpers.AUTH_SCREEN",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-a-u-t-h_-s-c-r-e-e-n.html",
     "searchKeys": [
       "AUTH_SCREEN",
       "const val AUTH_SCREEN: String",
-      "com.tecknobit.gluky.AUTH_SCREEN"
+      "com.tecknobit.gluky.helpers.AUTH_SCREEN"
     ]
   },
   {
     "name": "const val HOME_SCREEN: String",
-    "description": "com.tecknobit.gluky.HOME_SCREEN",
-    "location": "-gluky/com.tecknobit.gluky/-h-o-m-e_-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.gluky.helpers.HOME_SCREEN",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-h-o-m-e_-s-c-r-e-e-n.html",
     "searchKeys": [
       "HOME_SCREEN",
       "const val HOME_SCREEN: String",
-      "com.tecknobit.gluky.HOME_SCREEN"
+      "com.tecknobit.gluky.helpers.HOME_SCREEN"
     ]
   },
   {
@@ -221,12 +211,12 @@
   },
   {
     "name": "const val SPLASHSCREEN: String",
-    "description": "com.tecknobit.gluky.SPLASHSCREEN",
-    "location": "-gluky/com.tecknobit.gluky/-s-p-l-a-s-h-s-c-r-e-e-n.html",
+    "description": "com.tecknobit.gluky.helpers.SPLASHSCREEN",
+    "location": "-gluky/com.tecknobit.gluky.helpers/-s-p-l-a-s-h-s-c-r-e-e-n.html",
     "searchKeys": [
       "SPLASHSCREEN",
       "const val SPLASHSCREEN: String",
-      "com.tecknobit.gluky.SPLASHSCREEN"
+      "com.tecknobit.gluky.helpers.SPLASHSCREEN"
     ]
   },
   {
@@ -410,16 +400,6 @@
     ]
   },
   {
-    "name": "constructor(loggerEnabled: Boolean = true)",
-    "description": "com.tecknobit.gluky.ui.screens.TMPNavigatorScreen.TMPNavigatorScreen",
-    "location": "-gluky/com.tecknobit.gluky.ui.screens/-t-m-p-navigator-screen/-t-m-p-navigator-screen.html",
-    "searchKeys": [
-      "TMPNavigatorScreen",
-      "constructor(loggerEnabled: Boolean = true)",
-      "com.tecknobit.gluky.ui.screens.TMPNavigatorScreen.TMPNavigatorScreen"
-    ]
-  },
-  {
     "name": "constructor(reportId: String, name: String, reportUrl: String)",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.Report.Report",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-report/-report.html",
@@ -550,16 +530,6 @@
     ]
   },
   {
-    "name": "expect fun allowScreenSleeps()",
-    "description": "com.tecknobit.gluky.helpers.ScreenMonitor.allowScreenSleeps",
-    "location": "-gluky/com.tecknobit.gluky.helpers/-screen-monitor/allow-screen-sleeps.html",
-    "searchKeys": [
-      "allowScreenSleeps",
-      "expect fun allowScreenSleeps()",
-      "com.tecknobit.gluky.helpers.ScreenMonitor.allowScreenSleeps"
-    ]
-  },
-  {
     "name": "expect fun customHttpClient(): HttpClient",
     "description": "com.tecknobit.gluky.helpers.customHttpClient",
     "location": "-gluky/com.tecknobit.gluky.helpers/custom-http-client.html",
@@ -567,16 +537,6 @@
       "customHttpClient",
       "expect fun customHttpClient(): HttpClient",
       "com.tecknobit.gluky.helpers.customHttpClient"
-    ]
-  },
-  {
-    "name": "expect fun keepScreenAwake()",
-    "description": "com.tecknobit.gluky.helpers.ScreenMonitor.keepScreenAwake",
-    "location": "-gluky/com.tecknobit.gluky.helpers/-screen-monitor/keep-screen-awake.html",
-    "searchKeys": [
-      "keepScreenAwake",
-      "expect fun keepScreenAwake()",
-      "com.tecknobit.gluky.helpers.ScreenMonitor.keepScreenAwake"
     ]
   },
   {
@@ -607,16 +567,6 @@
       "setUserLanguage",
       "expect fun setUserLanguage()",
       "com.tecknobit.gluky.setUserLanguage"
-    ]
-  },
-  {
-    "name": "expect object ScreenMonitor",
-    "description": "com.tecknobit.gluky.helpers.ScreenMonitor",
-    "location": "-gluky/com.tecknobit.gluky.helpers/-screen-monitor/index.html",
-    "searchKeys": [
-      "ScreenMonitor",
-      "expect object ScreenMonitor",
-      "com.tecknobit.gluky.helpers.ScreenMonitor"
     ]
   },
   {
@@ -667,6 +617,16 @@
       "BasalInsulinFormDialog",
       "fun BasalInsulinFormDialog(show: MutableState<Boolean>, viewModel: MeasurementsScreenViewModel, basalInsulin: BasalInsulin)",
       "com.tecknobit.gluky.ui.screens.measurements.components.formdialogs.BasalInsulinFormDialog"
+    ]
+  },
+  {
+    "name": "fun ByteArray.toNSData(): NSData",
+    "description": "com.tecknobit.gluky.helpers.toNSData",
+    "location": "-gluky/com.tecknobit.gluky.helpers/to-n-s-data.html",
+    "searchKeys": [
+      "toNSData",
+      "fun ByteArray.toNSData(): NSData",
+      "com.tecknobit.gluky.helpers.toNSData"
     ]
   },
   {
@@ -760,12 +720,12 @@
     ]
   },
   {
-    "name": "fun GlycemiaLevelBadge(modifier: Modifier = Modifier, glycemia: Int)",
+    "name": "fun GlycemiaLevelBadge(modifier: Modifier = Modifier, glycemia: Int, onClick: () -> Unit? = null)",
     "description": "com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.measurements.components/-glycemia-level-badge.html",
     "searchKeys": [
       "GlycemiaLevelBadge",
-      "fun GlycemiaLevelBadge(modifier: Modifier = Modifier, glycemia: Int)",
+      "fun GlycemiaLevelBadge(modifier: Modifier = Modifier, glycemia: Int, onClick: () -> Unit? = null)",
       "com.tecknobit.gluky.ui.screens.measurements.components.GlycemiaLevelBadge"
     ]
   },
@@ -857,6 +817,16 @@
       "asMonth",
       "fun Long.asMonth(): StringResource",
       "com.tecknobit.gluky.helpers.asMonth"
+    ]
+  },
+  {
+    "name": "fun MainViewController()",
+    "description": "com.tecknobit.gluky.MainViewController",
+    "location": "-gluky/com.tecknobit.gluky/-main-view-controller.html",
+    "searchKeys": [
+      "MainViewController",
+      "fun MainViewController()",
+      "com.tecknobit.gluky.MainViewController"
     ]
   },
   {
@@ -1130,6 +1100,36 @@
     ]
   },
   {
+    "name": "fun navToAuthScreen()",
+    "description": "com.tecknobit.gluky.helpers.navToAuthScreen",
+    "location": "-gluky/com.tecknobit.gluky.helpers/nav-to-auth-screen.html",
+    "searchKeys": [
+      "navToAuthScreen",
+      "fun navToAuthScreen()",
+      "com.tecknobit.gluky.helpers.navToAuthScreen"
+    ]
+  },
+  {
+    "name": "fun navToHomeScreen()",
+    "description": "com.tecknobit.gluky.helpers.navToHomeScreen",
+    "location": "-gluky/com.tecknobit.gluky.helpers/nav-to-home-screen.html",
+    "searchKeys": [
+      "navToHomeScreen",
+      "fun navToHomeScreen()",
+      "com.tecknobit.gluky.helpers.navToHomeScreen"
+    ]
+  },
+  {
+    "name": "fun navToSplashscreen()",
+    "description": "com.tecknobit.gluky.helpers.navToSplashscreen",
+    "location": "-gluky/com.tecknobit.gluky.helpers/nav-to-splashscreen.html",
+    "searchKeys": [
+      "navToSplashscreen",
+      "fun navToSplashscreen()",
+      "com.tecknobit.gluky.helpers.navToSplashscreen"
+    ]
+  },
+  {
     "name": "fun red(): Color",
     "description": "com.tecknobit.gluky.ui.theme.red",
     "location": "-gluky/com.tecknobit.gluky.ui.theme/red.html",
@@ -1350,13 +1350,13 @@
     ]
   },
   {
-    "name": "lateinit var navigator: Navigator",
-    "description": "com.tecknobit.gluky.navigator",
-    "location": "-gluky/com.tecknobit.gluky/navigator.html",
+    "name": "lateinit var navigator: NavHostController",
+    "description": "com.tecknobit.gluky.helpers.navigator",
+    "location": "-gluky/com.tecknobit.gluky.helpers/navigator.html",
     "searchKeys": [
       "navigator",
-      "lateinit var navigator: Navigator",
-      "com.tecknobit.gluky.navigator"
+      "lateinit var navigator: NavHostController",
+      "com.tecknobit.gluky.helpers.navigator"
     ]
   },
   {
@@ -1890,12 +1890,12 @@
     ]
   },
   {
-    "name": "val afternoonSnack: GlycemicTrendData? = null",
+    "name": "val afternoonSnack: GlycemicTrendData?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.afternoonSnack",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/afternoon-snack.html",
     "searchKeys": [
       "afternoonSnack",
-      "val afternoonSnack: GlycemicTrendData? = null",
+      "val afternoonSnack: GlycemicTrendData?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.afternoonSnack"
     ]
   },
@@ -1970,12 +1970,12 @@
     ]
   },
   {
-    "name": "val basalInsulin: GlycemicTrendData? = null",
+    "name": "val basalInsulin: GlycemicTrendData?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.basalInsulin",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/basal-insulin.html",
     "searchKeys": [
       "basalInsulin",
-      "val basalInsulin: GlycemicTrendData? = null",
+      "val basalInsulin: GlycemicTrendData?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.basalInsulin"
     ]
   },
@@ -1990,12 +1990,12 @@
     ]
   },
   {
-    "name": "val breakfast: GlycemicTrendData? = null",
+    "name": "val breakfast: GlycemicTrendData?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.breakfast",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/breakfast.html",
     "searchKeys": [
       "breakfast",
-      "val breakfast: GlycemicTrendData? = null",
+      "val breakfast: GlycemicTrendData?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.breakfast"
     ]
   },
@@ -2060,12 +2060,12 @@
     ]
   },
   {
-    "name": "val dinner: GlycemicTrendData? = null",
+    "name": "val dinner: GlycemicTrendData?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.dinner",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/dinner.html",
     "searchKeys": [
       "dinner",
-      "val dinner: GlycemicTrendData? = null",
+      "val dinner: GlycemicTrendData?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.dinner"
     ]
   },
@@ -2120,22 +2120,22 @@
     ]
   },
   {
-    "name": "val firstSet: List<GlycemiaPoint>? = null",
+    "name": "val firstSet: List<GlycemiaPoint>?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.firstSet",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/first-set.html",
     "searchKeys": [
       "firstSet",
-      "val firstSet: List<GlycemiaPoint>? = null",
+      "val firstSet: List<GlycemiaPoint>?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.firstSet"
     ]
   },
   {
-    "name": "val fourthSet: List<GlycemiaPoint>? = null",
+    "name": "val fourthSet: List<GlycemiaPoint>?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.fourthSet",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/fourth-set.html",
     "searchKeys": [
       "fourthSet",
-      "val fourthSet: List<GlycemiaPoint>? = null",
+      "val fourthSet: List<GlycemiaPoint>?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.fourthSet"
     ]
   },
@@ -2310,12 +2310,12 @@
     ]
   },
   {
-    "name": "val labelType: GlycemicTrendLabelType? = null",
+    "name": "val labelType: GlycemicTrendLabelType?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.labelType",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/label-type.html",
     "searchKeys": [
       "labelType",
-      "val labelType: GlycemicTrendLabelType? = null",
+      "val labelType: GlycemicTrendLabelType?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.labelType"
     ]
   },
@@ -2340,12 +2340,12 @@
     ]
   },
   {
-    "name": "val lunch: GlycemicTrendData? = null",
+    "name": "val lunch: GlycemicTrendData?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.lunch",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/lunch.html",
     "searchKeys": [
       "lunch",
-      "val lunch: GlycemicTrendData? = null",
+      "val lunch: GlycemicTrendData?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.lunch"
     ]
   },
@@ -2360,12 +2360,12 @@
     ]
   },
   {
-    "name": "val morningSnack: GlycemicTrendData? = null",
+    "name": "val morningSnack: GlycemicTrendData?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.morningSnack",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data-container/morning-snack.html",
     "searchKeys": [
       "morningSnack",
-      "val morningSnack: GlycemicTrendData? = null",
+      "val morningSnack: GlycemicTrendData?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendDataContainer.morningSnack"
     ]
   },
@@ -2750,12 +2750,12 @@
     ]
   },
   {
-    "name": "val secondSet: List<GlycemiaPoint>? = null",
+    "name": "val secondSet: List<GlycemiaPoint>?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.secondSet",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/second-set.html",
     "searchKeys": [
       "secondSet",
-      "val secondSet: List<GlycemiaPoint>? = null",
+      "val secondSet: List<GlycemiaPoint>?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.secondSet"
     ]
   },
@@ -3030,12 +3030,12 @@
     ]
   },
   {
-    "name": "val thirdSet: List<GlycemiaPoint>? = null",
+    "name": "val thirdSet: List<GlycemiaPoint>?",
     "description": "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.thirdSet",
     "location": "-gluky/com.tecknobit.gluky.ui.screens.analyses.data/-glycemic-trend-data/third-set.html",
     "searchKeys": [
       "thirdSet",
-      "val thirdSet: List<GlycemiaPoint>? = null",
+      "val thirdSet: List<GlycemiaPoint>?",
       "com.tecknobit.gluky.ui.screens.analyses.data.GlycemicTrendData.thirdSet"
     ]
   },

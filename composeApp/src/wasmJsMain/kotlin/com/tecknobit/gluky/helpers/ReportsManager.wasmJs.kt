@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalWasmJsInterop::class)
+
 package com.tecknobit.gluky.helpers
 
 import io.github.vinceglb.filekit.FileKit

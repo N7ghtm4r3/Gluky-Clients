@@ -15,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
@@ -51,7 +50,7 @@ import org.jetbrains.compose.resources.stringResource
  * @see EquinoxScreen
  * @see GlukyScreenTab
  */
-@OptIn(ExperimentalComposeApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
     viewModel = MeasurementsScreenViewModel(),
     useResponsiveWidth = false
@@ -179,10 +178,7 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
         ) {
             dailyMeasurements.value?.let {
                 val dailyNotes = stringResource(Res.string.daily_notes)
-                val state = rememberModalBottomSheetState(
-                    skipPartiallyExpanded = true,
-                    confirmValueChange = { false }
-                )
+                val state = rememberModalBottomSheetState()
                 val scope = rememberCoroutineScope()
                 ExtendedFloatingActionButton(
                     containerColor = MaterialTheme.colorScheme.primary,

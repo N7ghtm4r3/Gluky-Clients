@@ -1,14 +1,13 @@
 package com.tecknobit.gluky.ui.screens.measurements.presentation
 
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.lifecycle.viewModelScope
 import com.dokar.sonner.ToasterState
 import com.tecknobit.equinoxcompose.components.quantitypicker.QuantityPickerState
 import com.tecknobit.equinoxcompose.session.sessionflow.SessionFlowState
-import com.tecknobit.equinoxcompose.viewmodels.EquinoxViewModel
+import com.tecknobit.equinoxcompose.session.viewmodels.EquinoxViewModel
 import com.tecknobit.equinoxcore.annotations.Returner
 import com.tecknobit.equinoxcore.annotations.Validator
 import com.tecknobit.equinoxcore.annotations.Wrapper
@@ -72,7 +71,6 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     /**
      * `sessionFlowState` the state used to manage the session lifecycle in the screen
      */
-    @OptIn(ExperimentalComposeApi::class)
     lateinit var sessionFlowState: SessionFlowState
 
     /**
@@ -170,7 +168,6 @@ class MeasurementsScreenViewModel : EquinoxViewModel(
     /**
      * Method used to request to retrieve the daily measurements related to the selected [_currentDay]
      */
-    @OptIn(ExperimentalComposeApi::class)
     fun retrieveDailyMeasurements() {
         viewModelScope.launch {
             requester.sendRequest(

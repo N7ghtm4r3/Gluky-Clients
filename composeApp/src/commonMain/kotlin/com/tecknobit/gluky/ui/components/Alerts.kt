@@ -11,9 +11,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.tecknobit.equinoxcompose.components.EquinoxAlertDialog
-import com.tecknobit.gluky.SPLASHSCREEN
 import com.tecknobit.gluky.displayFontFamily
-import com.tecknobit.gluky.navigator
+import com.tecknobit.gluky.helpers.navToSplashscreen
 import com.tecknobit.gluky.ui.screens.account.presentation.AccountScreenViewModel
 import gluky.composeapp.generated.resources.Res
 import gluky.composeapp.generated.resources.delete
@@ -53,7 +52,7 @@ fun Logout(
         text = Res.string.logout_warn_text,
         confirmAction = {
             viewModel.clearSession {
-                navigator.navigate(SPLASHSCREEN)
+                navToSplashscreen()
             }
         }
     )
@@ -85,7 +84,7 @@ fun DeleteAccount(
             viewModel.deleteAccount(
                 onDelete = {
                     show.value = false
-                    navigator.navigate(SPLASHSCREEN)
+                    navToSplashscreen()
                 }
             )
         }
