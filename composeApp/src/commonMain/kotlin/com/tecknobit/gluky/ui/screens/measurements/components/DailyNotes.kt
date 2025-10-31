@@ -9,7 +9,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
@@ -36,12 +35,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.keepScreenOn
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import com.mohamedrejeb.richeditor.model.rememberRichTextState
 import com.mohamedrejeb.richeditor.ui.material3.RichText
 import com.tecknobit.equinoxcompose.components.EquinoxTextField
-import com.tecknobit.gluky.helpers.ScreenMonitor
 import com.tecknobit.gluky.ui.icons.EditItem
 import com.tecknobit.gluky.ui.screens.measurements.data.DailyMeasurements
 import com.tecknobit.gluky.ui.screens.measurements.presentation.MeasurementsScreenViewModel
@@ -72,10 +71,10 @@ fun DailyNotes(
     dailyMeasurements: DailyMeasurements,
 ) {
     if (state.isVisible) {
-        ScreenMonitor.keepScreenAwake()
         ModalBottomSheet(
             modifier = Modifier
-                .fillMaxHeight(),
+                .keepScreenOn(),
+            sheetState = state,
             onDismissRequest = {
                 scope.launch {
                     state.hide()
@@ -98,8 +97,7 @@ fun DailyNotes(
                 content = content
             )
         }
-    } else
-        ScreenMonitor.allowScreenSleeps()
+    }
 }
 
 /**

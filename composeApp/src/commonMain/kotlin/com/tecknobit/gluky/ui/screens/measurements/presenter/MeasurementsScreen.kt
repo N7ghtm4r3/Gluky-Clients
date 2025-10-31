@@ -178,10 +178,7 @@ class MeasurementsScreen : GlukyScreenTab<MeasurementsScreenViewModel>(
         ) {
             dailyMeasurements.value?.let {
                 val dailyNotes = stringResource(Res.string.daily_notes)
-                val state = rememberModalBottomSheetState(
-                    skipPartiallyExpanded = true,
-                    confirmValueChange = { false }
-                )
+                val state = rememberModalBottomSheetState()
                 val scope = rememberCoroutineScope()
                 ExtendedFloatingActionButton(
                     containerColor = MaterialTheme.colorScheme.primary,
